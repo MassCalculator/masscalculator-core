@@ -2,14 +2,14 @@
 #define ___MATERIAL_H___
 #include <iostream>
 
+#include <functional>
+
 /**
  * @brief 
  * 
  */
 namespace MassCalculator
 {
-namespace Material
-{  
   /**
    * @brief 
    * 
@@ -22,15 +22,6 @@ namespace Material
     {
       AL_6080 = 0,
       AL_6030
-    };
-
-    /**
-     * @brief Construct a new Material object
-     * 
-     */
-    Material(Type)
-    {
-
     };
 
     Material(void)
@@ -85,6 +76,5 @@ namespace Material
   //   return os;
   // }
 
-}//end namespace Material
 }//end namespace MassCalculator
 #endif

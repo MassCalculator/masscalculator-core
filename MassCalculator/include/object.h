@@ -17,7 +17,7 @@ namespace Interface
     public:
     Object(void) = delete;
     
-    Object(std::shared_ptr<TShape> shape, std::shared_ptr<TMaterial> material)
+    Object(std::unique_ptr<TShape> const &shape, std::unique_ptr<TMaterial> const &material)
     {
       weight_ = shape->getMass() * material->getSpecificMass();
 
