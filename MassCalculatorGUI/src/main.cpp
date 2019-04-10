@@ -22,7 +22,7 @@ int main(/*int argc, char** argv*/)
                                     Material<Aluminium>>>(shape, 
                                                           material);
 
-  std::cout << "Value: " << obj->getWeight() << std::endl;
+  std::cout << "Value: " << *material << std::endl;
 
 
   //std::make_shared<Object>;

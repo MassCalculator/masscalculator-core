@@ -1,8 +1,5 @@
 #ifndef ___ALUMINIUM_H___
 #define ___ALUMINIUM_H___
-
-#include <iostream>
-
 #include "material.h"
 
 /**
@@ -195,8 +192,18 @@ namespace MassCalculator
      */
     const double getSpecificWeight(void) const;
 
+    /**
+     * @brief Get the Specific Melting Point object
+     * 
+     * @return const double The specific melting point of Aluminium type
+     */
     const double getSpecificMeltingPoint(void) const;
 
+    /**
+     * @brief Get the Specific Boiling Point object
+     * 
+     * @return const double The specific boiling point of Aluminium type
+     */
     const double getSpecificBoilingPoint(void) const;
 
     /**
@@ -205,6 +212,10 @@ namespace MassCalculator
      */
     ~Aluminium(void) = default;
 
+    /**
+     * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
+     * 
+     */
     friend std::ostream &operator << (std::ostream &os, const Aluminium &obj);
 
     private:

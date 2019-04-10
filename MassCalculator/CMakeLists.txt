@@ -7,6 +7,10 @@ project(MassCalculator)
 message(STATUS ${GTEST_INCLUDE_DIRS})
 message(STATUS ${GTEST_BOTH_LIBRARIES})
 
+include_directories(
+  include/
+)
+
 # Sources
 set(SRC
   src/shapes/cylinder.cpp

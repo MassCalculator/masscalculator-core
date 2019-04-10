@@ -137,21 +137,17 @@ namespace MassCalculator
     return true;
   }
 
-  /**
-   * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
-   * 
-   */
   std::ostream &operator << (std::ostream &os, const Aluminium &obj)
   {
-    os << "Aluminium object properties: " "\n"
-          " - Type   : " + obj.specific_properties_.type_.first + "\n"
-          " - Color  : " + obj.specific_properties_.specific_color_ + "\n"
-          " - Density: " + std::to_string(obj.specific_properties_.specific_density_) + "\n"
-          " - Volume : " + std::to_string(obj.specific_properties_.specific_volume_) + "\n"
-          " - Mass   : " + std::to_string(obj.specific_properties_.specific_mass_) + "\n"
-          " - Weight : " + std::to_string(obj.specific_properties_.specific_weight_) + "\n"
-          " - Melting point: " + std::to_string(obj.specific_properties_.specific_melting_point_) + "\n"
-          " - Boiling point: " + std::to_string(obj.specific_properties_.specific_boiling_point_) + "\n";
+    os << "  Aluminium object properties: " "\n"
+          "   - Type   : " + obj.specific_properties_.type_.first + "\n"
+          "   - Color  : " + obj.specific_properties_.specific_color_ + "\n"
+          "   - Density: " + std::to_string(obj.specific_properties_.specific_density_) + "\n"
+          "   - Volume : " + std::to_string(obj.specific_properties_.specific_volume_) + "\n"
+          "   - Mass   : " + std::to_string(obj.specific_properties_.specific_mass_) + "\n"
+          "   - Weight : " + std::to_string(obj.specific_properties_.specific_weight_) + "\n"
+          "   - Melting point: " + std::to_string(obj.specific_properties_.specific_melting_point_) + "\n"
+          "   - Boiling point: " + std::to_string(obj.specific_properties_.specific_boiling_point_) + "\n";
     return os;
   }
 }//end namespace MassCalculator
