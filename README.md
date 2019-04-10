@@ -2,6 +2,10 @@
 
 This package includes one library and one executable that opens a GUI for the app. All the calculations are done in the library and the GUI Executable is only a wrapper for user experience. The library can also be integrated in a nother app so that is the reason why it is seperated like this.
 
+TODO: Explain CRTP pattern and why it is used here
+
+TODO: Explain the GUI stuff
+
 ## Dependencies
 
 Below listed packages are required and have to be installed/compiled before:
@@ -60,7 +64,30 @@ There is no current working version, the work is still in progress.
 The application can be started only with one line, and this is the executable after build
 
 ```
-./build/MetalMassCalculatorGUI/MetalMassCalculatorGUI
+./build/MassCalculatorGUI/MassCalculatorGUI
 ```
 
 Everything then can be handled from the GUI.
+
+TODO List:
+Done: Doxyfile for doxygen documentation
+
+Add headers that include all the headers
+Research for inheriting in the object class the two base classes for Shape and Material
+Overload shift operator with the details of the object
+Create a struct for the material properties
+Integrate lua for text properties in resources follder. Also do const string literals if the file is missing or cannot be read
+Find all physical and mechalincal properties that a material has, and finish the Aluminium class so nothing else is needed there \
+then can cantinue to do the other classes.
+Finish the base class with the common functions so you don't have to deal then with the base class Material
+
+Continue with the class shapes
+
+overload shift operator in enum
+
+color (intensive)
+density (intensive)
+volume (extensive)
+mass (extensive)
+boiling point (intensive): the temperature at which a substance boils
+melting point (intensive): the temperature at which a substance melts

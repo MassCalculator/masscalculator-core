@@ -8,8 +8,6 @@
  */
 namespace MassCalculator
 {
-namespace Shape
-{  
   /**
    * @brief 
    * 
@@ -37,6 +35,8 @@ namespace Shape
     bool setSize(const Args&... args)
     {
       static_cast<TShapeType*>(this)->setSize(args...);
+
+      return true;
     }
 
     Shape(void)
@@ -91,6 +91,5 @@ namespace Shape
   //   return os;
   // }
 
-}//end namespace Shape
 }//end namespace MassCalculator
 #endif

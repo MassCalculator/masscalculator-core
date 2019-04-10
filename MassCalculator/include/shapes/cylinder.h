@@ -11,8 +11,6 @@
  */
 namespace MassCalculator
 {
-namespace Shape
-{  
   /**
    * @brief 
    * 
@@ -60,19 +58,5 @@ namespace Shape
      */
     ~Cylinder(void) = default;
   };
-
-  // /**
-  //  * @brief 
-  //  * 
-  //  * @param os 
-  //  * @param val 
-  //  * @return std::ostream& 
-  //  */
-  // std::ostream &operator << (std::ostream &os, const Cylinder &val)
-  // {
-  //   os << "Value from class: ";
-  //   return os;
-  // }
-}//end namespace Shape
 }//end namespace MassCalculator
 #endif

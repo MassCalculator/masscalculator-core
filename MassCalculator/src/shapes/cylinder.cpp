@@ -2,8 +2,6 @@
 
 namespace MassCalculator
 {
-namespace Shape
-{  
 
   Cylinder::Cylinder(double radius, double length)
   {
@@ -19,7 +17,8 @@ namespace Shape
   {
     std::cout << "I just set the size of cylinder\n"
               << radius * length << std::endl;
+
+    return true;
   }
 
-}//end namespace Shape
 }//end namespace MassCalculator

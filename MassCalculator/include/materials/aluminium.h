@@ -6,42 +6,208 @@
 #include "material.h"
 
 /**
- * @brief 
+ * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
-namespace Material
-{  
   /**
-   * @brief 
+   * @brief Class Aluminium, that holds all the nessesary information for Aluminium and it's types therefore we can use in the interface
    * 
    */
   class Aluminium : public Material<Aluminium>
   {
+    public: enum class Type : uint8_t;
+
+    /**
+     * @brief Struct with material specific properties
+     * TODO:Check if this can be moved to the base class
+     */
+    struct Properties
+    {
+
+      /**
+       * @brief Private members of Aluminium class. Values defaulted with brace-enclosed initializer list
+       * and will be set from the constructor.
+       * 
+       * @param type_ Type The parameter to save the specific type
+       * @param specific_color_ string Parameter to save specific color
+       * @param specific_density_ double Parameter to save specific density
+       * @param specific_volume_ double Parameter to save specific volume
+       * @param specific_mass_ double Parameter to save specific mass
+       * @param specific_weight_ double Parameter to save specific weight
+       * @param specific_melting_point_ double Parameter to save specific melting point
+       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * 
+       */
+      std::pair<std::string, Type> type_{"UNSPECIFIED", Aluminium::Type::UNSPECIFIED};
+      std::string specific_color_{0};
+      double specific_density_{0};
+      double specific_volume_{0};
+      double specific_mass_{0};
+      double specific_weight_{0};
+      double specific_melting_point_{0};
+      double specific_boiling_point_{0};
+    }specific_properties_;
+
     public:
+    /**
+     * @brief Enum that holds the aluminium types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
+     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     */
     enum class Type : uint8_t
     {
-      AL_6080 = 0,
-      AL_6030
+      /**
+       * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
+       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
+       * food processing industries.
+       * 
+       */
+      A_1100 = 0,
+
+      /**
+       * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
+       * an excellent choice for projects done on automatic lathes. The high-speed machining of this grade will produce fine chips that are easily removed. 
+       * Alloy 2011 is an excellent choice for production of complex and detailed parts.
+       * 
+       */
+      A_2011,
+
+      /**
+       * @brief A copper based alloy with very high strength and excellent machining capabilities. This alloy is commonly used in many aerospace structural applications 
+       * due to its resistance.
+       * 
+       */
+      A_2014,
+
+      /**
+       * @brief One of the most commonly used high strength aluminum alloys. With its combination of high strength and excellent fatigue resistance, it is commonly used 
+       * where a good strength-to-weight ratio is desired.  This grade can be machined to a high finish and it can be formed in the annealed condition with 
+       * subsequent heat treating, if needed. The corrosion resistance of this grade is relatively low. When this is an issue, 2024 is commonly used in an 
+       * anodized finish or in clad form (thin surface layer of high purity aluminum) known as Alclad.
+       * 
+       */
+      A_2024,
+
+      /**
+       * @brief The most widely used of all aluminum alloys. A commercially pure aluminum with added manganese to increase its strength (20% stronger than the 1100 grade). 
+       * It has excellent corrosion resistance, and workability. This grade can be deep drawn or spun, welded or brazed.
+       * 
+       */
+      A_3003,
+
+      /**
+       * @brief This is the highest strength alloy of the more non heat-treatable grades. Its fatigue strength is higher than most other aluminum grades. 
+       * Alloy 5052 has a good resistance to marine atmosphere and salt water corrosion, and excellent workability. It can be easily drawn or formed into intricate shapes.
+       * 
+       */
+      A_5052,
+
+      /**
+       * @brief The most versatile of the heat-treatable aluminum alloys, while keeping most of the good qualities of aluminum. This grade has a great range of mechanical 
+       * properties and corrosion resistance. It can be fabricated by most of the commonly used techniques and it has good workability in the annealed condition. It is 
+       * welded by all methods and can be furnace brazed. As a result, it is used in a wide variety of products and applications where appearance and better corrosion 
+       * resistance with good strength are required. The Tube and Angle shapes in this grade typically have rounded corners.
+       * 
+       */
+      A_6061,
+
+      /**
+       * @brief Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance 
+       * to corrosion. Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
+       * Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance to corrosion. 
+       * Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
+       * The Tube and Angle shapes in this grade typically have square corners.The Tube and Angle shapes in this grade typically have square corners.
+       * 
+       */
+      A_6063,
+
+      /**
+       * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to weight ratio, and it is ideally used for highly stressed parts. 
+       * This grade can be formed in the annealed condition and subsequently heat treated, if needed. It can also be spot or flash welded (arc and gas not recommended).
+       * 
+       */
+      A_7075,
+
+      UNSPECIFIED
     };
 
     /**
      * @brief Construct a new Aluminium object
      * 
      */
-    Aluminium(Type)
-    {
+    Aluminium(void) = default;
 
-    };
+    /**
+     * @brief Construct a new Aluminium object and specify the type
+     * 
+     */
+    Aluminium(Type type);
 
-    Aluminium(void)
-    {
+    /**
+     * @brief Set the Type object
+     * 
+     * @param type Type of the Aluminium
+     * @return true If the type is set successfully
+     * @return false If the type failed to set
+     */
+    bool setType(Type type);
 
-    };
+    /**
+     * @brief Get the Type object
+     * 
+     * @return const Type 
+     */
+    const std::pair<std::string, Type> getType(void) const;
 
-    double getSpecificMass(void);
+    /**
+     * @brief Get the Specific Color object
+     * 
+     * @return const std::string Color of the material
+     */
+    const std::string getSpecificColor(void) const;
 
+    /**
+     * @brief Get the Specific Density object
+     * 
+     * @return const double Density of the material
+     */
+    const double getSpecificDensity(void) const;
+
+    /**
+     * @brief Get the Specific Volume object
+     * 
+     * @return const double Volume of the material
+     */
+    const double getSpecificVolume(void) const;
+
+    /**
+     * @brief Get the Specific Mass object
+     * 
+     * @return double The specific mass of Aluminium type
+     */
+    const double getSpecificMass(void) const;
+
+    /**
+     * @brief Get the Specific Weight object
+     * 
+     * @return double The specific weight of Aluminium type
+     */
+    const double getSpecificWeight(void) const;
+
+    const double getSpecificMeltingPoint(void) const;
+
+    const double getSpecificBoilingPoint(void) const;
+
+    /**
+     * @brief Destroy the Aluminium object
+     * 
+     */
+    ~Aluminium(void) = default;
+
+    friend std::ostream &operator << (std::ostream &os, const Aluminium &obj);
+
+    private:
     /**
      * @brief Delete copy constructor
      * 
@@ -65,25 +231,14 @@ namespace Material
     Aluminium& operator=(Aluminium&&) = default;
 
     /**
-     * @brief Destroy the Aluminium object
+     * @brief Set the Propertie Specs object
      * 
+     * @param type Type of Aluminium
+     * @return true If the specifications of propertie are successfully set
+     * @return false  If the specifications of propertie failed to set
      */
-    ~Aluminium(void) = default;
+    bool setPropertieSpecs(Type type);
+
   };
-
-  // /**
-  //  * @brief 
-  //  * 
-  //  * @param os 
-  //  * @param val 
-  //  * @return std::ostream& 
-  //  */
-  // std::ostream &operator << (std::ostream &os, const Aluminium &val)
-  // {
-  //   os << "Value from class: ";
-  //   return os;
-  // }
-
-}//end namespace Material
 }//end namespace MassCalculator
 #endif
