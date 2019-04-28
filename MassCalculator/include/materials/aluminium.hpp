@@ -1,6 +1,6 @@
 #ifndef ___ALUMINIUM_H___
 #define ___ALUMINIUM_H___
-#include "material.h"
+#include "material.hpp"
 
 /**
  * @brief Default namespace
@@ -38,13 +38,14 @@ namespace MassCalculator
        * 
        */
       std::pair<std::string, Type> type_{"UNSPECIFIED", Aluminium::Type::UNSPECIFIED};
-      std::string specific_color_{0};
-      double specific_density_{0};
-      double specific_volume_{0};
-      double specific_mass_{0};
-      double specific_weight_{0};
-      double specific_melting_point_{0};
-      double specific_boiling_point_{0};
+      std::string color_{0};
+      double density_{0};
+      double gravity_{0};
+      double melting_point_{0};
+      double poissons_ratio_{0};
+      double thermal_conductivity{0};
+      double mod_of_elasticity_tension_{0};
+      double mod_of_elasticity_torsion_{0};
     }specific_properties_;
 
     public:
@@ -153,7 +154,7 @@ namespace MassCalculator
     /**
      * @brief Get the Type object
      * 
-     * @return const Type 
+     * @return const std::pair<std::string, Type> Pair with type name and type enum
      */
     const std::pair<std::string, Type> getType(void) const;
 
@@ -172,25 +173,11 @@ namespace MassCalculator
     const double getSpecificDensity(void) const;
 
     /**
-     * @brief Get the Specific Volume object
+     * @brief Get the Specific Gravity object
      * 
-     * @return const double Volume of the material
+     * @return const double Gravity of the material
      */
-    const double getSpecificVolume(void) const;
-
-    /**
-     * @brief Get the Specific Mass object
-     * 
-     * @return double The specific mass of Aluminium type
-     */
-    const double getSpecificMass(void) const;
-
-    /**
-     * @brief Get the Specific Weight object
-     * 
-     * @return double The specific weight of Aluminium type
-     */
-    const double getSpecificWeight(void) const;
+    const double getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
@@ -200,11 +187,32 @@ namespace MassCalculator
     const double getSpecificMeltingPoint(void) const;
 
     /**
-     * @brief Get the Specific Boiling Point object
+     * @brief Get the Specific PoissonsRatio object
      * 
-     * @return const double The specific boiling point of Aluminium type
+     * @return double The specific poissons ratio of Aluminium type
      */
-    const double getSpecificBoilingPoint(void) const;
+    const double getSpecificPoissonsRatio(void) const;
+
+    /**
+     * @brief Get the Specific Thermal Conductivity object
+     * 
+     * @return double The specific thermal conductivity of Aluminium type
+     */
+    const double getSpecificThermalConductivity(void) const;
+
+    /**
+     * @brief Get the Specific Modulus of Elasticity Tension object
+     * 
+     * @return const double The specific modulus of elasticity tension point of Aluminium type
+     */
+    const double getSpecificModOfElasticityTension(void) const;
+
+    /**
+     * @brief Get the Specific Modulus of Elasticity Torsion object
+     * 
+     * @return const double The specific modulus of elasticity torsion point of Aluminium type
+     */
+    const double getSpecificModOfElasticityTorsion(void) const;
 
     /**
      * @brief Destroy the Aluminium object

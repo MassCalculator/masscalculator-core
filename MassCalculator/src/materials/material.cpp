@@ -9,7 +9,11 @@
  * @copyright Copyright (c) 2019
  * 
  */
-#include "material.h"
+#include "materials/material.hpp"
+
+/*
+#include "materials/aluminium.hpp"
+*/
 
 /**
  * @brief 
@@ -18,6 +22,17 @@
 namespace MassCalculator
 {
 
-  /* Code... */
+  /*
+  //Code example how it can be done in cpp 
+
+  template<typename TMaterialType>
+  const std::string Material<TMaterialType>::getSpecificColor(void)
+  {
+    return{static_cast<TMaterialType*>(this)->getSpecificColor()};
+  }
+  template const std::string Material<Aluminium>::getSpecificColor();
+  template const std::string Material<Steel>::getSpecificColor();
+
+  */
 
 }//end namespace MassCalculator

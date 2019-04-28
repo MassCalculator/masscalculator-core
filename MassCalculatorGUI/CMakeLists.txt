@@ -9,7 +9,8 @@ message(STATUS ${GTEST_BOTH_LIBRARIES})
 
 # Sources
 set(SRC
-  src/main.cpp
+  #src/main.cpp
+  src/MassCalculator.cpp
 )
 
 add_executable(${PROJECT_NAME}

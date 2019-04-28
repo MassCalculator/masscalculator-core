@@ -8,16 +8,19 @@ message(STATUS ${GTEST_INCLUDE_DIRS})
 message(STATUS ${GTEST_BOTH_LIBRARIES})
 
 include_directories(
+  3rdParty/include/
   include/
 )
 
 # Sources
 set(SRC
+  src/shapes/shape.cpp
   src/shapes/cylinder.cpp
 
+  src/materials/material.cpp
   src/materials/aluminium.cpp
-
-  src/object.cpp
+  
+  src/interface/object.cpp
 )
 
 # set libto build itself

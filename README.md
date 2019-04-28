@@ -91,3 +91,9 @@ volume (extensive)
 mass (extensive)
 boiling point (intensive): the temperature at which a substance boils
 melting point (intensive): the temperature at which a substance melts
+
+.hh files are header only to include all the headers
+.hpp files have a .cpp file that is associated with
+
+lambdas
+constexpr

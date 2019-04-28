@@ -1,5 +1,5 @@
 /**
- * @file material.h
+ * @file material.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief TODO add brief
  * @version 0.1
@@ -49,9 +49,9 @@ namespace MassCalculator
     /**
      * @brief Set the Type object
      * 
-     * @param type TODO
-     * @return true TODO
-     * @return false TODO
+     * @param type Type of the Material
+     * @return true If the type is set successfully
+     * @return false If the type failed to set
      */
     bool setType(Type type)
     {
@@ -62,9 +62,9 @@ namespace MassCalculator
     /**
      * @brief Get the Type object
      * 
-     * @return const std::pair<std::string, Type> TODO
+     * @return const std::pair<std::string, Type> Pair with type name and type enum from Derived class
      */
-    const std::pair<std::string, Type> getType(void) const
+    const std::pair<std::string, Type> getType(void)
     {
       return{static_cast<TMaterialType*>(this)->getType()};
     }
@@ -72,7 +72,7 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Color object
      * 
-     * @return const std::string TODO
+     * @return const std::string Color of the material from Derived class
      */
     const std::string getSpecificColor(void)
     {
@@ -82,7 +82,7 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const double TODO
+     * @return const double Density of the material from Derived class
      */
     const double getSpecificDensity(void)
     {
@@ -90,39 +90,19 @@ namespace MassCalculator
     }
 
     /**
-     * @brief Get the Specific Volume object
+     * @brief Get the Specific Gravity object
      * 
-     * @return const double TODO
+     * @return const double Gravity of the material from Derived class
      */
-    const double getSpecificVolume(void)
+    const double getSpecificGravity(void)
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificVolume()};
-    }
-
-    /**
-     * @brief Get the Specific Mass object
-     * 
-     * @return const double TODO
-     */
-    const double getSpecificMass(void)
-    {
-      return{static_cast<TMaterialType*>(this)->getSpecificMass()};
-    }
-
-    /**
-     * @brief Get the Specific Weight object
-     * 
-     * @return const double TODO
-     */
-    const double getSpecificWeight(void)
-    {
-      return{static_cast<TMaterialType*>(this)->getSpecificWeight()};
+      return{static_cast<TMaterialType*>(this)->getSpecificGravity()};
     }
 
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double TODO
+     * @return const double The specific melting point of Material type from Derived class
      */
     const double getSpecificMeltingPoint(void)
     {
@@ -130,20 +110,50 @@ namespace MassCalculator
     }
 
     /**
-     * @brief Get the Specific Boiling Point object
+     * @brief Get the Specific PoissonsRatio object
      * 
-     * @return const double TODO
+     * @return double The specific poissons ratio of Material type from Derived class
      */
-    const double getSpecificBoilingPoint(void)
+    const double getSpecificPoissonsRatio(void)
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificBoilingPoint()};
+      return{static_cast<TMaterialType*>(this)->getSpecificPoissonsRatio()};
+    }
+
+    /**
+     * @brief Get the Specific Thermal Conductivity object
+     * 
+     * @return double The specific thermal conductivity of Material type from Derived class
+     */
+    const double getSpecificThermalConductivity(void)
+    {
+      return{static_cast<TMaterialType*>(this)->getSpecificThermalConductivity()};
+    }
+
+    /**
+     * @brief Get the Specific Modulus of Elasticity Tension object
+     * 
+     * @return const double The specific modulus of elasticity tension point of Material type from Derived class
+     */
+    const double getSpecificModOfElasticityTension(void)
+    {
+      return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTension()};
+    }
+
+    /**
+     * @brief Get the Specific Modulus of Elasticity Torsion object
+     * 
+     * @return const double The specific modulus of elasticity torsion point of Material type from Derived class
+     */
+    const double getSpecificModOfElasticityTorsion(void)
+    {
+      return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTorsion()};
     }
 
     /**
      * @brief Destroy the Material object
      * 
      */
-    virtual ~Material(void) = default;
+    ~Material(void) = default;
 
     /**
      * @brief Shift operator template overload, for the base class Material
@@ -152,7 +162,7 @@ namespace MassCalculator
     template <typename TMaterial>
     friend std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
     {
-      os << "\n" "Material" "\n" << obj.thisT();
+      os << "\n" "Material" "\n" << obj.thisTMaterialType();
       return os;
     }
 
@@ -184,7 +194,7 @@ namespace MassCalculator
      * 
      * @return const TMaterialType& 
      */
-    const TMaterialType& thisT() const { return *static_cast<const TMaterialType*>(this); }
+    const TMaterialType& thisTMaterialType() const { return *static_cast<const TMaterialType*>(this); }
 
   };
 

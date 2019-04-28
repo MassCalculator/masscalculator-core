@@ -1,6 +1,4 @@
-#include "object.h"
-
-#include <memory>
+#include "interface/object.h"
 
 using namespace MassCalculator;
 
@@ -18,9 +16,9 @@ int main(/*int argc, char** argv*/)
   //                                            material);
 
   //Construct a shared pointer for Object while parsing the arguments from above as parameters
-  const auto obj = std::make_shared<Interface::Object<Shape<Cylinder>, 
-                                    Material<Aluminium>>>(shape, 
-                                                          material);
+  const auto obj = std::make_unique<Interface::Object<Shape<Cylinder>, 
+                                                      Material<Aluminium>>>(shape, 
+                                                                            material);
 
   std::cout << "Value: " << *material << std::endl;
 
