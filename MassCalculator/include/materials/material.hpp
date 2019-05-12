@@ -1,7 +1,8 @@
 /**
  * @file material.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief TODO add brief
+ * @brief This class is the base class for the Materials, this will be inherited from all the Material types, and holds the prototypes
+ * so the derived classes can be accessed from it's object pointer
  * @version 0.1
  * @date 2019-04-10
  * 
@@ -13,13 +14,13 @@
 #include <iostream>
 
 /**
- * @brief TODO
+ * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
   /**
-   * @brief TODO
+   * @brief Template base class Material
    * 
    */
   template<typename TMaterialType>
@@ -39,7 +40,7 @@ namespace MassCalculator
     /**
      * @brief Construct a new Material object
      * 
-     * @param type TODO
+     * @param type Type of the Material
      */
     Material(Type type)
     {
@@ -190,7 +191,7 @@ namespace MassCalculator
     Material& operator=(Material&&) = default;
 
     /**
-     * @brief TODO
+     * @brief Function to return "this" derived object
      * 
      * @return const TMaterialType& 
      */

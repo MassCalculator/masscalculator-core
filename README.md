@@ -72,10 +72,10 @@ Everything then can be handled from the GUI.
 TODO List:
 Done: Doxyfile for doxygen documentation
 
-Add headers that include all the headers
+Add headers that include all the headers (done)
 Research for inheriting in the object class the two base classes for Shape and Material
-Overload shift operator with the details of the object
-Create a struct for the material properties
+Overload shift operator with the details of the object (Done, remaining only for ObjectInterface)
+Create a struct for the material properties (Done)
 Integrate lua for text properties in resources follder. Also do const string literals if the file is missing or cannot be read
 Find all physical and mechalincal properties that a material has, and finish the Aluminium class so nothing else is needed there \
 then can cantinue to do the other classes.
@@ -97,3 +97,4 @@ melting point (intensive): the temperature at which a substance melts
 
 lambdas
 constexpr
+std::function

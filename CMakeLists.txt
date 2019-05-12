@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.13)
+#It needs to use VERSION 3.13, but due to new laptop used it was not installed
+#Also check the minimum version of cmake that allows the project to compile without errors
+cmake_minimum_required(VERSION 3.10)
 project(MassCalculatorApp)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}

@@ -1,7 +1,8 @@
 /**
  * @file shape.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief TODO add brief
+ * @brief This class is the base class for the Shapes, this will be inherited from all the Shape types, and holds the prototypes
+ * so the derived classes can be accessed from it's object pointer
  * @version 0.1
  * @date 2019-04-28
  * 
@@ -14,23 +15,29 @@
 #include <iostream>
 #include <cmath>
 
+//TODO: Check the units library, and the include_directories in CMake
 #include "../3rdParty/include/units.h"
 //#include "units.h"
 
 /**
- * @brief 
+ * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
   /**
-   * @brief 
+   * @brief Template base class Shape
    * 
    */
   template<typename TShapeType>
   class Shape 
   {
     public:
+    /**
+     * @brief Enum that holds all the Shapes that are available to use
+     * TODO: Check the shapes, and see how we can use this to set the shape, maybe use a stdLLpair with the shape and shape name
+     * 
+     */
     enum class Type : uint8_t
     {
       Cylinder = 0,
@@ -41,7 +48,9 @@ namespace MassCalculator
 
     Shape(void) = default;
 
-    //Check the other Cylinder constructor
+    //TODO: Check the other Cylinder constructor, and add it here, also use the enum, and if cylinder is selected, allow to use this
+    //Also add this kind of style for other shapes too, so we can choose between constructor with args, or empty constructor and then set the sizes
+    //Cylinder(double diameter, double length);
 
     /**
      * @brief Construct a new Shape object
@@ -55,10 +64,10 @@ namespace MassCalculator
     /**
      * @brief Set the Size object
      * 
-     * @tparam Args 
-     * @param args 
-     * @return true 
-     * @return false 
+     * @tparam Args Variable argument parsing
+     * @param args Arguments parsed to set the size, acording to the shape specified
+     * @return true If the size is set successfully
+     * @return false If the size failed to set
      */
     template<class... Args>
     bool setSize(const Args&... args)
@@ -71,7 +80,7 @@ namespace MassCalculator
     /**
      * @brief Get the Radius object
      * 
-     * @return const double 
+     * @return const double Radius of the Shape from Derived class
      */
     const double getRadius(void)
     {
@@ -81,7 +90,7 @@ namespace MassCalculator
     /**
      * @brief Get the Diameter object
      * 
-     * @return const double 
+     * @return const double Diameter of the Shape from Derived class
      */
     const double getDiameter(void)
     {
@@ -91,7 +100,7 @@ namespace MassCalculator
     /**
      * @brief Get the Length object
      * 
-     * @return const double 
+     * @return const double Length of the Shape from Derived class
      */
     const double getLength(void)
     {
@@ -101,7 +110,7 @@ namespace MassCalculator
     /**
      * @brief Get the Volume object
      * 
-     * @return const double 
+     * @return const double Volume of the Shape from Derived class
      */
     const double getVolume(void)
     {
@@ -111,17 +120,11 @@ namespace MassCalculator
     /**
      * @brief Get the Surface Area object
      * 
-     * @return const double 
+     * @return const double Surface Area of the Shape from Derived class
      */
     const double getSurfaceArea(void)
     {
       return{static_cast<TShapeType*>(this)->getSurfaceArea()};
-    }
-
-    //Leave it for now, it needs to be deleted
-    double getMass()
-    {
-      return{static_cast<TShapeType*>(this)->getMass()};
     }
 
     /**
@@ -165,7 +168,7 @@ namespace MassCalculator
     Shape& operator=(Shape&&) = default;
 
     /**
-     * @brief TODO
+     * @brief Function to return "this" derived object
      * 
      * @return const TShapeType& 
      */

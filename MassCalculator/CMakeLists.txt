@@ -20,7 +20,7 @@ set(SRC
   src/materials/material.cpp
   src/materials/aluminium.cpp
   
-  src/interface/object.cpp
+  src/interface/object_interface.cpp
 )
 
 # set libto build itself
@@ -40,6 +40,12 @@ target_include_directories(
   SYSTEM
   PUBLIC ${EIGEN3_INCLUDE_DIR}
 )
+
+##############
+## EXAMPLES ##
+##############
+
+add_subdirectory(examples)
 
 #############
 ## TESTING ##

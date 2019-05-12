@@ -9,8 +9,8 @@ message(STATUS ${GTEST_BOTH_LIBRARIES})
 
 # Sources
 set(SRC
-  #src/main.cpp
-  src/MassCalculator.cpp
+  src/main.cpp
+  #src/MassCalculator.cpp
 )
 
 add_executable(${PROJECT_NAME}
@@ -49,6 +49,7 @@ target_link_libraries (${PROJECT_NAME}
 # to be discussed, we want to expose data types only!
 install(
   TARGETS ${PROJECT_NAME} EXPORT MassCalculatorGUI-config
+  RUNTIME DESTINATION bin
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   INCLUDES DESTINATION include

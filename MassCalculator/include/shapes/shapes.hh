@@ -1,7 +1,7 @@
 /**
  * @file shapes.hh
- * @author your name (you@domain.com)
- * @brief 
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This header contains all the headers for Materials, if this header is included, you include all the headers
  * @version 0.1
  * @date 2019-04-11
  * 

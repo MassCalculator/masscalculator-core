@@ -15,10 +15,6 @@
 #include "materials/aluminium.hpp"
 */
 
-/**
- * @brief 
- * 
- */
 namespace MassCalculator
 {
 

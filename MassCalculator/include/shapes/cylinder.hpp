@@ -9,7 +9,7 @@
 namespace MassCalculator
 {
   /**
-   * @brief 
+   * @brief Class Cylinder, that holds all the nessesary information for Cylinder and it's details therefore we can use in the interface
    * 
    */
   class Cylinder : public Shape<Cylinder>
@@ -45,37 +45,55 @@ namespace MassCalculator
     /**
      * @brief Construct a new Cylinder object
      * 
-     * @param diameter 
-     * @param length 
+     * @param diameter Diameter of the Cylinder in meter
+     * @param length Length of the Cylinder in meter
      */
     Cylinder(double diameter, double length);
 
     /**
      * @brief Set the Size object
      * 
-     * @param diameter 
-     * @param length 
-     * @return true 
-     * @return false 
+     * @param diameter Diameter of the Cylinder in meter
+     * @param length Length of the Cylinder in meter
+     * @return true If setting the size is successful
+     * @return false If setting the size fails
      */
     bool setSize(double diameter, double length);
 
-    const double getRadius(void);
-
-    const double getDiameter(void);
-
-    const double getLength(void);
-
-    double getVolume(void);
-
-    double getSurfaceArea(void);
+    /**
+     * @brief Get the Radius object
+     * 
+     * @return const double Radius of the Cylinder
+     */
+    const double getRadius(void) const;
 
     /**
-     * @brief Get the Mass object
+     * @brief Get the Diameter object
      * 
-     * @return double 
+     * @return const double Diameter of the Cylinder
      */
-    double getMass(void);
+    const double getDiameter(void) const;
+
+    /**
+     * @brief Get the Length object
+     * 
+     * @return const double Length of the Cylinder
+     */
+    const double getLength(void) const;
+
+    /**
+     * @brief Get the Volume object
+     * 
+     * @return double Volume of the Cylinder
+     */
+    const double getVolume(void) const;
+
+    /**
+     * @brief Get the Surface Area object
+     * 
+     * @return double Surface Are of the Cylinder
+     */
+    const double getSurfaceArea(void) const;
 
     /**
      * @brief Destroy the Cylinder object
@@ -84,7 +102,7 @@ namespace MassCalculator
     ~Cylinder(void) = default;
 
     /**
-     * @brief 
+     * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Cylinder &obj);

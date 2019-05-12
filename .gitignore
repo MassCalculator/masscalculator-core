@@ -1,4 +1,5 @@
 .vscode/
 build/
 doc/
+Testing/
 doxygen_warnings.log

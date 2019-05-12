@@ -12,6 +12,7 @@ class CylinderTest : public ::testing::Test
   CylinderTest() 
   {
     // You can do set-up work for each test here.
+    cylinder_.setSize(0.1, 1);
   }
 
   ~CylinderTest() override 
@@ -35,5 +36,5 @@ class CylinderTest : public ::testing::Test
   }
 
   //Objects declared here can be used by all tests in the test case for Foo.
-  
+  MassCalculator::Cylinder cylinder_;
 };

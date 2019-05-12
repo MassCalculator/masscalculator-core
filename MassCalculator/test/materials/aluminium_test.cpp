@@ -1,7 +1,7 @@
 /**
  * @file aluminium_test.cpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief TODO
+ * @brief This file contains all the tests for the class Aluminium, it tests all the functions and the constructors of the class
  * @version 0.1
  * @date 2019-04-10
  * 
