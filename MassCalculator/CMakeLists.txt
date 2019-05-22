@@ -5,9 +5,11 @@ project(MassCalculator)
 ###########
 
 find_package(Lua51 REQUIRED)
+find_package(DXFLib PATHS 3rdParty/CMakeModules/)
 
 include_directories(
   ${LUA51_INCLUDE_DIR}
+  ${DXFLib_INCLUDE_DIRS}
   3rdParty/include/
   include/
 )
@@ -42,6 +44,7 @@ target_include_directories( ${PROJECT_NAME}
 
 target_link_libraries( ${PROJECT_NAME}
   ${LUA51_LIBRARIES}
+  ${DXFLib_LIBRARIES}
 )
 
 ##############

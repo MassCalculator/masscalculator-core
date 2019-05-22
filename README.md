@@ -1,5 +1,7 @@
 # Metal Mass Calculator
 
+[![Build Status](http://jimmyhalimi.westeurope.cloudapp.azure.com/buildStatus/icon?job=MassCalculator)](http://jimmyhalimi.westeurope.cloudapp.azure.com/job/MassCalculator/)
+
 This package includes one library and one executable that opens a GUI for the app. All the calculations are done in the library and the GUI Executable is only a wrapper for user experience. The library can also be integrated in a nother app so that is the reason why it is seperated like this.
 
 TODO: Explain CRTP pattern and why it is used here
@@ -36,12 +38,12 @@ Below listed packages are required and have to be installed/compiled before:
   $ sudo apt-get install liblua5.1-0-dev
   ```
 
-* freeGlut - **Not used anymore**
+* freeGlut - **Not used anymore, switched to QT**
   ```
   $ sudo apt install freeglut3-dev
   ```
 
-* libGlui - **Not used anymore**
+* libGlui - **Not used anymore, switched to QT**
   ```
   $ git clone https://github.com/libglui/glui
   $ cd ${repo}
@@ -61,7 +63,7 @@ Below listed packages are required and have to be installed/compiled before:
   $ sudo make install
   ```
 
-* Eigen
+* Eigen **Currently not used**
   ```
   $ git clone https://github.com/eigenteam/eigen-git-mirror.git
   $ cd ${repo}
