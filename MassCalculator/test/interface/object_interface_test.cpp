@@ -11,7 +11,7 @@ TEST_F(ObjectInterfaceTest, TypeConstructorTest)
 
 TEST_F(ObjectInterfaceTest, GetWeightTest)
 {
-  EXPECT_NEAR( double{13.55}, obj_->getWeight(), 0.01);
+  EXPECT_NEAR( double{2.12}, obj_->getWeight(), 0.01);
 }
 
 int main(int argc, char **argv) 
