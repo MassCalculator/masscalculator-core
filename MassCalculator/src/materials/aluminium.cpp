@@ -1,4 +1,4 @@
-#include "materials/aluminium.h"
+#include "materials/aluminium.hpp"
 
 namespace MassCalculator
 {
@@ -28,37 +28,42 @@ namespace MassCalculator
 
   const std::string Aluminium::getSpecificColor(void) const
   {
-    return{this->specific_properties_.specific_color_};
+    return{this->specific_properties_.color_};
   }
 
   const double Aluminium::getSpecificDensity(void) const
   {
-    return{this->specific_properties_.specific_density_};
+    return{this->specific_properties_.density_};
   }
 
-  const double Aluminium::getSpecificVolume(void) const
+  const double Aluminium::getSpecificGravity(void) const
   {
-    return{this->specific_properties_.specific_volume_};
-  }
-
-  const double Aluminium::getSpecificMass(void) const
-  {
-    return{this->specific_properties_.specific_mass_};
-  }
-
-  const double Aluminium::getSpecificWeight(void) const
-  {
-    return{this->specific_properties_.specific_weight_};
+    return{this->specific_properties_.gravity_};
   }
 
   const double Aluminium::getSpecificMeltingPoint(void) const
   {
-    return{this->specific_properties_.specific_melting_point_};
+    return{this->specific_properties_.melting_point_};
   }
 
-  const double Aluminium::getSpecificBoilingPoint(void) const
+  const double Aluminium::getSpecificPoissonsRatio(void) const
   {
-    return{this->specific_properties_.specific_boiling_point_};
+    return{this->specific_properties_.poissons_ratio_};
+  }
+
+  const double Aluminium::getSpecificThermalConductivity(void) const
+  {
+    return{this->specific_properties_.thermal_conductivity};
+  }
+
+  const double Aluminium::getSpecificModOfElasticityTension(void) const
+  {
+    return{this->specific_properties_.mod_of_elasticity_tension_};
+  }
+
+  const double Aluminium::getSpecificModOfElasticityTorsion(void) const
+  {
+    return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
   //private TODO set the values correctly
@@ -68,62 +73,128 @@ namespace MassCalculator
     {
       case Aluminium::Type::A_1100 :
       {
-        this->specific_properties_.type_                    = {"A_1100", type};
-        this->specific_properties_.specific_color_          = {"Metallic"};
-        this->specific_properties_.specific_density_        = {1.0};
-        this->specific_properties_.specific_volume_         = {1.0};
-        this->specific_properties_.specific_mass_           = {1.0};
-        this->specific_properties_.specific_weight_         = {1.0};
-        this->specific_properties_.specific_melting_point_  = {1.0};
-        this->specific_properties_.specific_boiling_point_  = {1};
+        this->specific_properties_.type_                       = {"A_1100", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
+      //Data from source: https://suppliersonline.com/propertypages/2011.asp
       case Aluminium::Type::A_2011 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_2011", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_2014 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_2014", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_2024 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_2024", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_3003 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_3003", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_5052 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_5052", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_6061 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_6061", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_6063 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_6063", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
       case Aluminium::Type::A_7075 :
       {
-        this->specific_properties_.specific_mass_ = 1;
+        this->specific_properties_.type_                       = {"A_7075", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
       }
 
@@ -137,21 +208,18 @@ namespace MassCalculator
     return true;
   }
 
-  /**
-   * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
-   * 
-   */
   std::ostream &operator << (std::ostream &os, const Aluminium &obj)
   {
-    os << "Aluminium object properties: " "\n"
-          " - Type   : " + obj.specific_properties_.type_.first + "\n"
-          " - Color  : " + obj.specific_properties_.specific_color_ + "\n"
-          " - Density: " + std::to_string(obj.specific_properties_.specific_density_) + "\n"
-          " - Volume : " + std::to_string(obj.specific_properties_.specific_volume_) + "\n"
-          " - Mass   : " + std::to_string(obj.specific_properties_.specific_mass_) + "\n"
-          " - Weight : " + std::to_string(obj.specific_properties_.specific_weight_) + "\n"
-          " - Melting point: " + std::to_string(obj.specific_properties_.specific_melting_point_) + "\n"
-          " - Boiling point: " + std::to_string(obj.specific_properties_.specific_boiling_point_) + "\n";
+    os << "  Aluminium object properties: " "\n"
+          "   - Type    : " + obj.getType().first + "\n"
+          "   - Color   : " + obj.getSpecificColor() + "\n"
+          "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
+          "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
+          "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
+          "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
+          "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
+          "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
+          "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
     return os;
   }
 }//end namespace MassCalculator

@@ -1,17 +1,9 @@
 # Found this on https://cmake.org/cmake/help/v3.0/module/FindGTest.html
-# Test
-add_executable(
-  first_test
-  cylinder_test.cpp
-)
+#Tests for Object Interface
+add_subdirectory(interface)
 
-target_link_libraries(
-  first_test
-  ${GTEST_BOTH_LIBRARIES}
-  ${PROJECT_NAME}
-)
+#Tests for Materials
+add_subdirectory(materials)
 
-add_test(
-  NAME FirstTest
-  COMMAND first_test
-)
+#Tests for Shapes
+add_subdirectory(shapes)
