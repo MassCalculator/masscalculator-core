@@ -24,7 +24,7 @@ Below listed packages are required and have to be installed/compiled before:
 
 * libQT5 (Need to check which modules are nessesary to install)
   ```
-  $ sudo apt install libqt5*
+  $ sudo apt install qtbase5-dev
   ```
 
 * libDXFlib

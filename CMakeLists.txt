@@ -38,7 +38,7 @@ add_subdirectory(MassCalculatorGUI)
 ###############
 #
 
-#install(
+# install(
 #  EXPORT ${PROJECT_NAME}-config
 #  DESTINATION share/cmake/${PROJECT_NAME}
-#)
+# )
