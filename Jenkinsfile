@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh '''
                 	cd build &&
-                	cmake -D CMAKE_BUILD_TYPE=Debug -D BUILD_TESTING=ON .. &&
+                	cmake .. -D CMAKE_BUILD_TYPE=Debug -D BUILD_TESTING=ON .. &&
                 	make
                 '''
             }
@@ -29,16 +29,16 @@ pipeline {
                 '''
             }
         }
-        stage('Package') {
-            steps {
-                sh '''
-                	cd build &&
-                	cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
-                	make
-                	make install
-                '''
-								archiveArtifacts artifacts: 'local/**', fingerprint: true, onlyIfSuccessful: true
-            }
-        }
+        // stage('Package') {
+        //     steps {
+        //         sh '''
+        //         	cd build &&
+        //         	cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+        //         	make
+        //         	make install
+        //         '''
+		// 						archiveArtifacts artifacts: 'local/**', fingerprint: true, onlyIfSuccessful: true
+        //     }
+        // }
     }
 }
