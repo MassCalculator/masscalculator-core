@@ -1,39 +1,76 @@
 project(MassCalculatorGUI)
 
+set(SRC_DIR ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/src)
+set(FORM_DIR ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/form)
+set(PIC_DIR ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/picture)
+
+# System dependencies
+#find_package(OpenGL REQUIRED)
+
+# Next lines needed for building all Qt projects
+find_package( Qt5 COMPONENTS REQUIRED Core Gui Widgets )
+
 ###########
 ## Build ##
 ###########
 
-message(STATUS ${GTEST_INCLUDE_DIRS})
-message(STATUS ${GTEST_BOTH_LIBRARIES})
+include_directories(
+  ${CMAKE_BINARY_DIR}
+  ${CMAKE_CURRENT_BINARY_DIR}
+  MassCalculator/include/
+  MassCalculatorGUI/include/
+  MassCalculatorGUI/form/
+)
+
+# Forms
+qt5_wrap_ui( MOC_FORMS 
+  ${FORM_DIR}/mainwindow.ui
+)
+
+# Headers
+set ( MOC_HEADERS
+  include/mainwindow.h
+)
+qt5_wrap_cpp(MOC_SOURCES ${MOC_HEADERS})
+
+set ( RESOURCES
+#  ${PIC_DIR}/main.qrc
+)
 
 # Sources
-set(SRC
-  src/main.cpp
+set( SRC
+  ${SRC_DIR}/main.cpp
+  ${SRC_DIR}/mainwindow.cpp
+  ${RESOURCES}
+  ${MOC_SOURCES}
+  ${MOC_FORMS}
+  #src/main.cpp
   #src/MassCalculator.cpp
 )
 
-add_executable(${PROJECT_NAME}
+add_executable( ${PROJECT_NAME}
   ${SRC}
 )
 
-target_include_directories(
-  ${PROJECT_NAME}
+# or use line below instead, if you using Windows ™ Operating System.
+#add_executable( PROJECT_NAME WIN32 ${SOURCES} ${MOC_SRCS} ${RES_SOURCES} ${UI_HEADERS} )
+
+target_include_directories( ${PROJECT_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include/MassCalculatorGUI/>
 )
 
-target_include_directories(
-  ${PROJECT_NAME}
+target_include_directories( ${PROJECT_NAME}
   SYSTEM
   PUBLIC ${EIGEN3_INCLUDE_DIR}
 )
 
-target_link_libraries (${PROJECT_NAME} 
-  ${OPENGL_LIBRARIES}
-  ${GLUT_LIBRARY}
-  glui::glui_static
+target_link_libraries ( ${PROJECT_NAME} 
+  PUBLIC
   MassCalculator
+  Qt5::Core
+  Qt5::Gui 
+  Qt5::Widgets
 )
 
 #############

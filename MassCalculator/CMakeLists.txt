@@ -4,17 +4,18 @@ project(MassCalculator)
 ## Build ##
 ###########
 
-message(STATUS ${GTEST_INCLUDE_DIRS})
-message(STATUS ${GTEST_BOTH_LIBRARIES})
+find_package(Lua51 REQUIRED)
 
 include_directories(
+  ${LUA51_INCLUDE_DIR}
   3rdParty/include/
   include/
 )
 
 # Sources
-set(SRC
+set( SRC
   src/shapes/shape.cpp
+  src/shapes/dxf_shape.cpp
   src/shapes/cylinder.cpp
 
   src/materials/material.cpp
@@ -29,16 +30,18 @@ add_library(
   ${SRC}
 )
 
-target_include_directories(
-  ${PROJECT_NAME}
+target_include_directories( ${PROJECT_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include/MassCalculator/>
 )
 
-target_include_directories(
-  ${PROJECT_NAME}
+target_include_directories( ${PROJECT_NAME}
   SYSTEM
   PUBLIC ${EIGEN3_INCLUDE_DIR}
+)
+
+target_link_libraries( ${PROJECT_NAME}
+  ${LUA51_LIBRARIES}
 )
 
 ##############

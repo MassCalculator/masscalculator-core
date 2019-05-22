@@ -48,16 +48,12 @@ namespace MassCalculator
 
   std::ostream &operator << (std::ostream &os, const Cylinder &obj)
   {
-    os << "  Cylinder object properties: " "\n";
-          // "   - Type    : " + obj.getType().first + "\n"
-          // "   - Color   : " + obj.getSpecificColor() + "\n"
-          // "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
-          // "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
-          // "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
-          // "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          // "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          // "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          // "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    os << "  Cylinder object properties: " "\n"
+          "   - Radius  : " + std::to_string(obj.getRadius()) + "\n"
+          "   - Diameter: " + std::to_string(obj.getDiameter()) + "\n"
+          "   - Length  : " + std::to_string(obj.getLength()) + "\n"
+          "   - Volume  : " + std::to_string(obj.getVolume()) + "\n"
+          "   - Surface area: " + std::to_string(obj.getSurfaceArea()) + "\n";
     return os;
   }
 

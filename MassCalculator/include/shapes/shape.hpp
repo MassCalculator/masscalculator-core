@@ -15,6 +15,8 @@
 #include <iostream>
 #include <cmath>
 
+#include <dxflib/dl_dxf.h>
+
 //TODO: Check the units library, and the include_directories in CMake
 #include "../3rdParty/include/units.h"
 //#include "units.h"
@@ -32,6 +34,7 @@ namespace MassCalculator
   template<typename TShapeType>
   class Shape 
   {
+    //TODO: Add a properties struct, according to the type for a specific shape
     public:
     /**
      * @brief Enum that holds all the Shapes that are available to use

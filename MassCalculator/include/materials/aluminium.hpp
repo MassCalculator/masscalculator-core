@@ -2,6 +2,13 @@
 #define ___ALUMINIUM_H___
 #include "material.hpp"
 
+// Lua is written in C, so compiler needs to know how to link its libraries
+extern "C" {
+  #include "lua5.1/lua.h"
+  #include "lua5.1/lualib.h"
+  #include "lua5.1/lauxlib.h"
+}
+
 /**
  * @brief Default namespace
  * 

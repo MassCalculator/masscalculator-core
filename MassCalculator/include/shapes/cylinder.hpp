@@ -40,7 +40,7 @@ namespace MassCalculator
      * @brief Construct a new Cylinder object
      * 
      */
-    Cylinder() = default;
+    Cylinder(void) = default;
 
     /**
      * @brief Construct a new Cylinder object

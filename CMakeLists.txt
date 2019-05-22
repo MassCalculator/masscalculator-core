@@ -7,26 +7,17 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       /usr/local/share/cmake
                       /usr/share/cmake)
 
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
+
 #-Wextra -pedantic 
 set(CMAKE_CXX_FLAGS "-Wall -O2 -pthread")
-
-# System dependencies
-find_package(OpenGL REQUIRED)
-find_package(GLUT REQUIRED)
-find_package(glui REQUIRED)
 
 #find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(GTest REQUIRED >= 1.8)
 
-include_directories(
-  ${OPENGL_INCLUDE_DIRS}
-  ${GLUT_INCLUDE_DIRS}
-  #${GLUI_INCLUDE_DIRS}
-
-  MassCalculator/include/
-  MassCalculatorGUI/include/
-)
+message(STATUS ${GTEST_INCLUDE_DIRS})
+message(STATUS ${GTEST_BOTH_LIBRARIES})
 
 # Enable testing
 enable_testing()
