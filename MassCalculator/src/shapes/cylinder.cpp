@@ -19,28 +19,28 @@ namespace MassCalculator
     return true;
   }
 
-  const double Cylinder::getRadius(void) const
+  double Cylinder::getRadius(void) const
   {
     return this->properties_.diameter_/2;
   }
 
-  const double Cylinder::getDiameter(void) const
+  double Cylinder::getDiameter(void) const
   {
     return this->properties_.diameter_;
   }
 
-  const double Cylinder::getLength(void) const
+  double Cylinder::getLength(void) const
   {
     return this->properties_.length_;
   }
 
-  const double Cylinder::getVolume(void) const
+  double Cylinder::getVolume(void) const
   {
     //Volume π*r^2*h. Note: diameter = 2 * r	(Note: Check for Eigen if there are build in functions to calculate, and use those instead)
     return (M_PI * std::pow(this->getRadius(), 2) * this->getLength());
   }
 
-  const double Cylinder::getSurfaceArea(void) const
+  double Cylinder::getSurfaceArea(void) const
   {
     //2	π	r	 (	r	+	h	)
     return (2 * M_PI * this->getRadius() * (this->getRadius() + this->getLength()));

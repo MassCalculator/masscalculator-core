@@ -65,7 +65,7 @@ namespace MassCalculator
      * 
      * @return const std::pair<std::string, Type> Pair with type name and type enum from Derived class
      */
-    const std::pair<std::string, Type> getType(void)
+    constexpr std::pair<std::string, Type> getType(void)
     {
       return{static_cast<TMaterialType*>(this)->getType()};
     }
@@ -75,7 +75,7 @@ namespace MassCalculator
      * 
      * @return const std::string Color of the material from Derived class
      */
-    const std::string getSpecificColor(void)
+    constexpr std::string getSpecificColor(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificColor()};
     }
@@ -85,7 +85,7 @@ namespace MassCalculator
      * 
      * @return const double Density of the material from Derived class
      */
-    const double getSpecificDensity(void)
+    constexpr double getSpecificDensity(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificDensity()};
     }
@@ -95,7 +95,7 @@ namespace MassCalculator
      * 
      * @return const double Gravity of the material from Derived class
      */
-    const double getSpecificGravity(void)
+    constexpr double getSpecificGravity(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificGravity()};
     }
@@ -105,7 +105,7 @@ namespace MassCalculator
      * 
      * @return const double The specific melting point of Material type from Derived class
      */
-    const double getSpecificMeltingPoint(void)
+    constexpr double getSpecificMeltingPoint(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificMeltingPoint()};
     }
@@ -115,7 +115,7 @@ namespace MassCalculator
      * 
      * @return double The specific poissons ratio of Material type from Derived class
      */
-    const double getSpecificPoissonsRatio(void)
+    constexpr double getSpecificPoissonsRatio(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificPoissonsRatio()};
     }
@@ -125,7 +125,7 @@ namespace MassCalculator
      * 
      * @return double The specific thermal conductivity of Material type from Derived class
      */
-    const double getSpecificThermalConductivity(void)
+    constexpr double getSpecificThermalConductivity(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificThermalConductivity()};
     }
@@ -135,7 +135,7 @@ namespace MassCalculator
      * 
      * @return const double The specific modulus of elasticity tension point of Material type from Derived class
      */
-    const double getSpecificModOfElasticityTension(void)
+    constexpr double getSpecificModOfElasticityTension(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTension()};
     }
@@ -145,7 +145,7 @@ namespace MassCalculator
      * 
      * @return const double The specific modulus of elasticity torsion point of Material type from Derived class
      */
-    const double getSpecificModOfElasticityTorsion(void)
+    constexpr double getSpecificModOfElasticityTorsion(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTorsion()};
     }

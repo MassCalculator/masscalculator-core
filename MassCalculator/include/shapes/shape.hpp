@@ -18,7 +18,7 @@
 #include <dxflib/dl_dxf.h>
 
 //TODO: Check the units library, and the include_directories in CMake
-#include "../3rdParty/include/units.h"
+//#include "../3rdParty/include/units.h"
 //#include "units.h"
 
 /**
@@ -85,7 +85,7 @@ namespace MassCalculator
      * 
      * @return const double Radius of the Shape from Derived class
      */
-    const double getRadius(void)
+    constexpr double getRadius(void)
     {
       return{static_cast<TShapeType*>(this)->getRadius()}; 
     }
@@ -95,7 +95,7 @@ namespace MassCalculator
      * 
      * @return const double Diameter of the Shape from Derived class
      */
-    const double getDiameter(void)
+    constexpr double getDiameter(void)
     {
       return{static_cast<TShapeType*>(this)->getDiameter()};
     }
@@ -105,7 +105,7 @@ namespace MassCalculator
      * 
      * @return const double Length of the Shape from Derived class
      */
-    const double getLength(void)
+    constexpr double getLength(void)
     {
       return{static_cast<TShapeType*>(this)->getLength()};
     }
@@ -115,7 +115,7 @@ namespace MassCalculator
      * 
      * @return const double Volume of the Shape from Derived class
      */
-    const double getVolume(void)
+    constexpr double getVolume(void)
     {
       return{static_cast<TShapeType*>(this)->getVolume()};
     }
@@ -125,7 +125,7 @@ namespace MassCalculator
      * 
      * @return const double Surface Area of the Shape from Derived class
      */
-    const double getSurfaceArea(void)
+    constexpr double getSurfaceArea(void)
     {
       return{static_cast<TShapeType*>(this)->getSurfaceArea()};
     }

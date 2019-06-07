@@ -10,10 +10,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-#-Wextra -pedantic 
-set(CMAKE_CXX_FLAGS "-Wall -O2 -pthread")
+#-Wmissing-include-dirs
+set(CMAKE_CXX_FLAGS "-O2 -pthread -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused")
 
-#find_package(Eigen3 REQUIRED NO_MODULE)
+find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(GTest REQUIRED >= 1.8)
 
 message(STATUS ${GTEST_INCLUDE_DIRS})
@@ -38,7 +38,4 @@ add_subdirectory(MassCalculatorGUI)
 ###############
 #
 
-# install(
-#  EXPORT ${PROJECT_NAME}-config
-#  DESTINATION share/cmake/${PROJECT_NAME}
-# )
+# Done individualy in the library and in the GUI

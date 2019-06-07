@@ -163,63 +163,63 @@ namespace MassCalculator
      * 
      * @return const std::pair<std::string, Type> Pair with type name and type enum
      */
-    const std::pair<std::string, Type> getType(void) const;
+    std::pair<std::string, Type> getType(void) const;
 
     /**
      * @brief Get the Specific Color object
      * 
      * @return const std::string Color of the material
      */
-    const std::string getSpecificColor(void) const;
+    std::string getSpecificColor(void) const;
 
     /**
      * @brief Get the Specific Density object
      * 
      * @return const double Density of the material
      */
-    const double getSpecificDensity(void) const;
+    double getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
      * @return const double Gravity of the material
      */
-    const double getSpecificGravity(void) const;
+    double getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
      * @return const double The specific melting point of Aluminium type
      */
-    const double getSpecificMeltingPoint(void) const;
+    double getSpecificMeltingPoint(void) const;
 
     /**
      * @brief Get the Specific PoissonsRatio object
      * 
      * @return double The specific poissons ratio of Aluminium type
      */
-    const double getSpecificPoissonsRatio(void) const;
+    double getSpecificPoissonsRatio(void) const;
 
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
      * @return double The specific thermal conductivity of Aluminium type
      */
-    const double getSpecificThermalConductivity(void) const;
+    double getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
      * @return const double The specific modulus of elasticity tension point of Aluminium type
      */
-    const double getSpecificModOfElasticityTension(void) const;
+    double getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
      * @return const double The specific modulus of elasticity torsion point of Aluminium type
      */
-    const double getSpecificModOfElasticityTorsion(void) const;
+    double getSpecificModOfElasticityTorsion(void) const;
 
     /**
      * @brief Destroy the Aluminium object

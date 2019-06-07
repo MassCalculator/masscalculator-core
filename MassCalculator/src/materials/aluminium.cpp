@@ -21,47 +21,47 @@ namespace MassCalculator
       return true;
   }
 
-  const std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
+  std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
   {
     return{this->specific_properties_.type_};
   }
 
-  const std::string Aluminium::getSpecificColor(void) const
+  std::string Aluminium::getSpecificColor(void) const
   {
     return{this->specific_properties_.color_};
   }
 
-  const double Aluminium::getSpecificDensity(void) const
+  double Aluminium::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  const double Aluminium::getSpecificGravity(void) const
+  double Aluminium::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  const double Aluminium::getSpecificMeltingPoint(void) const
+  double Aluminium::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
 
-  const double Aluminium::getSpecificPoissonsRatio(void) const
+  double Aluminium::getSpecificPoissonsRatio(void) const
   {
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  const double Aluminium::getSpecificThermalConductivity(void) const
+  double Aluminium::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity};
   }
 
-  const double Aluminium::getSpecificModOfElasticityTension(void) const
+  double Aluminium::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  const double Aluminium::getSpecificModOfElasticityTorsion(void) const
+  double Aluminium::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }

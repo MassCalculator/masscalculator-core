@@ -17,9 +17,9 @@ find_package( Qt5 COMPONENTS REQUIRED Core Gui Widgets )
 include_directories(
   ${CMAKE_BINARY_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}
-  MassCalculator/include/
-  MassCalculatorGUI/include/
-  MassCalculatorGUI/form/
+  ../MassCalculator/include/
+  include/
+  form/
 )
 
 # Forms
@@ -56,7 +56,7 @@ add_executable( ${PROJECT_NAME}
 #add_executable( PROJECT_NAME WIN32 ${SOURCES} ${MOC_SRCS} ${RES_SOURCES} ${UI_HEADERS} )
 
 target_include_directories( ${PROJECT_NAME}
-  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/MassCalculatorGUI/>
          $<INSTALL_INTERFACE:include/MassCalculatorGUI/>
 )
 
@@ -94,7 +94,22 @@ install(
 
 ## install headers
 install(
-  DIRECTORY include/MassCalculatorGUI
+  DIRECTORY include/
   DESTINATION include/MassCalculatorGUI/
   PATTERN "CMakeLists.txt" EXCLUDE
 )
+
+###############
+## Packaging ##
+###############
+#
+
+install(
+ EXPORT ${PROJECT_NAME}-config
+ DESTINATION share/cmake/${PROJECT_NAME}
+)
+
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mergim Halimi") #required
+
+include(CPack)

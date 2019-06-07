@@ -14,9 +14,43 @@ namespace MassCalculator
    */
   class DxfShape : public Shape<DxfShape>
   {
+
+    public:
+    
+    /**
+     * @brief Construct a new DxfShape object
+     * 
+     */
     DxfShape(void) = default;
 
+    /**
+     * @brief Destroy the DxfShape object
+     * 
+     */
     ~DxfShape(void) = default;
+    
+    private:
+    /**
+     * @brief Delete copy constructor
+     * 
+     */
+    DxfShape(const DxfShape&) = delete;
+
+    /**
+     * @brief Set move constructor to default
+     * 
+     */
+    DxfShape(DxfShape&&) = default;
+
+    /**
+     * @brief Delete assignment operator
+     */
+    DxfShape& operator=(const DxfShape&) = delete;
+
+    /**
+     * @brief Allow move assignment operator
+     */
+    DxfShape& operator=(DxfShape&&) = default;
 
   };
 }//end namespace MassCalculator

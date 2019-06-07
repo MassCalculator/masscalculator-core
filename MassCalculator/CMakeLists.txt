@@ -33,7 +33,7 @@ add_library(
 )
 
 target_include_directories( ${PROJECT_NAME}
-  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/MassCalculator/>
          $<INSTALL_INTERFACE:include/MassCalculator/>
 )
 
@@ -73,7 +73,17 @@ install(
 
 ## install headers
 install(
-  DIRECTORY include/MassCalculator
+  DIRECTORY include/
   DESTINATION include/MassCalculator/
   PATTERN "CMakeLists.txt" EXCLUDE
+)
+
+###############
+## Packaging ##
+###############
+#
+
+install(
+ EXPORT ${PROJECT_NAME}-config
+ DESTINATION share/cmake/${PROJECT_NAME}
 )

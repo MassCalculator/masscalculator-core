@@ -65,35 +65,35 @@ namespace MassCalculator
      * 
      * @return const double Radius of the Cylinder
      */
-    const double getRadius(void) const;
+    double getRadius(void) const;
 
     /**
      * @brief Get the Diameter object
      * 
      * @return const double Diameter of the Cylinder
      */
-    const double getDiameter(void) const;
+    double getDiameter(void) const;
 
     /**
      * @brief Get the Length object
      * 
      * @return const double Length of the Cylinder
      */
-    const double getLength(void) const;
+    double getLength(void) const;
 
     /**
      * @brief Get the Volume object
      * 
      * @return double Volume of the Cylinder
      */
-    const double getVolume(void) const;
+    double getVolume(void) const;
 
     /**
      * @brief Get the Surface Area object
      * 
      * @return double Surface Are of the Cylinder
      */
-    const double getSurfaceArea(void) const;
+    double getSurfaceArea(void) const;
 
     /**
      * @brief Destroy the Cylinder object
