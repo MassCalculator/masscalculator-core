@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <sstream>
 
+#include <sstream>
+
 #include "interface/object_interface.hpp"
 
 namespace Ui {
@@ -14,6 +16,8 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    // MassCalculator::Shape<MassCalculator::Shape>::Type
+    // Q_ENUM(MassCalculator::Aluminium::Type)
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

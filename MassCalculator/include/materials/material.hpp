@@ -199,5 +199,8 @@ namespace MassCalculator
 
   };
 
+  template <>
+  class Material<int> { };
+
 }//end namespace MassCalculator
 #endif

@@ -2,12 +2,8 @@
 #define ___ALUMINIUM_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries
-extern "C" {
-  #include "lua5.1/lua.h"
-  #include "lua5.1/lualib.h"
-  #include "lua5.1/lauxlib.h"
-}
+// Lua is written in C, so compiler needs to know how to link its libraries TODO:
+// #include "lua_handler.hpp"
 
 /**
  * @brief Default namespace
@@ -62,13 +58,14 @@ namespace MassCalculator
      */
     enum class Type : uint8_t
     {
+      BEGIN = 0,
       /**
        * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
        * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
        * food processing industries.
        * 
        */
-      A_1100 = 0,
+      A_1100 = BEGIN,
 
       /**
        * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
@@ -134,8 +131,29 @@ namespace MassCalculator
        */
       A_7075,
 
-      UNSPECIFIED
+      UNSPECIFIED,
+
+      END
     };
+
+    friend std::ostream& operator<<(std::ostream& os, Type type)
+    {
+        switch(type)
+        {
+            case Type::A_1100: os << "A_1100"; break;
+            case Type::A_2011: os << "A_2011"; break;
+            case Type::A_2014: os << "A_2014"; break;
+            case Type::A_2024: os << "A_2024"; break;
+            case Type::A_3003: os << "A_3003"; break;
+            case Type::A_5052: os << "A_5052"; break;
+            case Type::A_6061: os << "A_6061"; break;
+            case Type::A_6063: os << "A_6063"; break;
+            case Type::A_7075: os << "A_7075"; break;
+            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
+            default: os << "Name cannot be found";
+        }
+        return os;
+    }
 
     /**
      * @brief Construct a new Aluminium object
@@ -264,6 +282,17 @@ namespace MassCalculator
      * @return false  If the specifications of propertie failed to set
      */
     bool setPropertieSpecs(Type type);
+
+    //TODO:
+    //HelperClasses::LuaHandler lua_state_;
+
+    bool checkFromLuaConfig(std::string value);
+
+    template<typename TLuaReturnType>
+    constexpr TLuaReturnType getFromLuaConfig(std::string value);
+
+    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
+    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
 
   };
 }//end namespace MassCalculator

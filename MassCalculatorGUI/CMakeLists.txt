@@ -17,7 +17,8 @@ find_package( Qt5 COMPONENTS REQUIRED Core Gui Widgets )
 include_directories(
   ${CMAKE_BINARY_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}
-  ../MassCalculator/include/
+  ${CMAKE_SOURCE_DIR}/MassCalculator/include/
+  ${CMAKE_SOURCE_DIR}/MassCalculator/helper_classes
   include/
   form/
 )
