@@ -1,23 +1,6 @@
 # Found this on https://cmake.org/cmake/help/v3.0/module/FindGTest.html
 # Tests for Materials
 
-#Aluminium test
-add_executable(
-  aluminium_test
-  aluminium_test.cpp
-)
-
-target_link_libraries(
-  aluminium_test
-  ${GTEST_BOTH_LIBRARIES}
-  ${PROJECT_NAME}
-)
-
-add_test(
-  NAME AluminiumTest
-  COMMAND aluminium_test
-)
-
 #AlloySteels test
 add_executable(
   alloy_steels_test
@@ -35,6 +18,23 @@ add_test(
   COMMAND alloy_steels_test
 )
 
+#Aluminium test
+add_executable(
+  aluminium_test
+  aluminium_test.cpp
+)
+
+target_link_libraries(
+  aluminium_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME AluminiumTest
+  COMMAND aluminium_test
+)
+
 #Brass test
 add_executable(
   brass_test
@@ -50,6 +50,23 @@ target_link_libraries(
 add_test(
   NAME BrassTest
   COMMAND brass_test
+)
+
+#Bronz test
+add_executable(
+  bronz_test
+  bronz_test.cpp
+)
+
+target_link_libraries(
+  bronz_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME BronzTest
+  COMMAND bronz_test
 )
 
 #Steel test

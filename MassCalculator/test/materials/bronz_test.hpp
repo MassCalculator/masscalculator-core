@@ -1,21 +1,21 @@
 #include <gtest/gtest.h>
 
-#include "materials/brass.hpp"
+#include "materials/bronz.hpp"
 
-// The fixture for testing class Brass.
-class BrassTest : public ::testing::Test 
+// The fixture for testing class Bronz.
+class BronzTest : public ::testing::Test 
 {
   protected:
   // You can remove any or all of the following functions if its body
   // is empty.
 
-  BrassTest() 
+  BronzTest() 
   {
    // You can do set-up work for each test here.
-   material_B_240Low.setType(MassCalculator::Brass::Type::B_240Low);
+   material_B_18Al.setType(MassCalculator::Bronz::Type::B_18Al);
   }
 
-  ~BrassTest() override 
+  ~BronzTest() override 
   {
    // You can do clean-up work that doesn't throw exceptions here.
   }
@@ -36,5 +36,5 @@ class BrassTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Brass material_B_240Low;
+  MassCalculator::Bronz material_B_18Al;
 };
