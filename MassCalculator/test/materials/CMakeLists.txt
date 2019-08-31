@@ -35,6 +35,23 @@ add_test(
   COMMAND alloy_steels_test
 )
 
+#Brass test
+add_executable(
+  brass_test
+  brass_test.cpp
+)
+
+target_link_libraries(
+  brass_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME BrassTest
+  COMMAND brass_test
+)
+
 #Steel test
 add_executable(
   steel_test
