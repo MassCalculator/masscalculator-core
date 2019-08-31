@@ -18,6 +18,23 @@ add_test(
   COMMAND aluminium_test
 )
 
+#AlloySteels test
+add_executable(
+  alloy_steels_test
+  alloy_steels_test.cpp
+)
+
+target_link_libraries(
+  alloy_steels_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME AlloySteelsTest
+  COMMAND alloy_steels_test
+)
+
 #Steel test
 add_executable(
   steel_test

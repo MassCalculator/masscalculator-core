@@ -1,9 +1,9 @@
 /**
- * @file aluminium_test.cpp
+ * @file steel_test.cpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains all the tests for the class Aluminium, it tests all the functions and the constructors of the class
+ * @brief This file contains all the tests for the class Steel, it tests all the functions and the constructors of the class
  * @version 0.1
- * @date 2019-04-10
+ * @date 2019-08-31
  * 
  * @copyright Copyright (c) 2019
  * 

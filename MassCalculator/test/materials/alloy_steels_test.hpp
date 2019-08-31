@@ -1,21 +1,21 @@
 #include <gtest/gtest.h>
 
-#include "materials/steel.hpp"
+#include "materials/alloy_steels.hpp"
 
-// The fixture for testing class Steel.
-class SteelTest : public ::testing::Test 
+// The fixture for testing class Aluminium.
+class AlloySteelsTest : public ::testing::Test 
 {
   protected:
   // You can remove any or all of the following functions if its body
   // is empty.
 
-  SteelTest() 
+  AlloySteelsTest() 
   {
    // You can do set-up work for each test here.
-   material_S_1010.setType(MassCalculator::Steel::Type::S_1010 );
+   material_AS_4135.setType(MassCalculator::AlloySteels::Type::AS_4135);
   }
 
-  ~SteelTest() override 
+  ~AlloySteelsTest() override 
   {
    // You can do clean-up work that doesn't throw exceptions here.
   }
@@ -36,5 +36,5 @@ class SteelTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Steel material_S_1010;
+  MassCalculator::AlloySteels material_AS_4135;
 };

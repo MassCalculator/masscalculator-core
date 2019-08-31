@@ -2,10 +2,10 @@ HasLuaConfig = {
   UseLuaConfig = true;
 }
 
-Steel = {
+AlloySteels = {
   Type = {
-    S_1010 = {
-      type = "S_1010",
+    AS_4135 = {
+      type = "AS_4135",
       color = "Metallic",
       density = 6,
       gravity = 5,
