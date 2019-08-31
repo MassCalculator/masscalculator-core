@@ -1,8 +1,8 @@
-#include "materials/aluminium.hpp"
+#include "materials/steel.hpp"
 
 namespace MassCalculator
 {
-  Aluminium::Aluminium(Aluminium::Type type)
+  Steel::Steel(Steel::Type type)
   {
     if(!setType(type))
     {
@@ -10,70 +10,70 @@ namespace MassCalculator
     }
   }
 
-  bool Aluminium::setType(Aluminium::Type type)
+  bool Steel::setType(Steel::Type type)
   {
     if(!setPropertieSpecs(type))
     {
-      std::cerr << "Cannot set the aluminium type\n";
+      std::cerr << "Cannot set the Steel type\n";
       return false;
     }
     else 
       return true;
   }
 
-  std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
+  std::pair<std::string, Steel::Type> Steel::getType(void) const
   {
     return{this->specific_properties_.type_};
   }
 
-  std::string Aluminium::getSpecificColor(void) const
+  std::string Steel::getSpecificColor(void) const
   {
     return{this->specific_properties_.color_};
   }
 
-  double Aluminium::getSpecificDensity(void) const
+  double Steel::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Aluminium::getSpecificGravity(void) const
+  double Steel::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Aluminium::getSpecificMeltingPoint(void) const
+  double Steel::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
 
-  double Aluminium::getSpecificPoissonsRatio(void) const
+  double Steel::getSpecificPoissonsRatio(void) const
   {
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Aluminium::getSpecificThermalConductivity(void) const
+  double Steel::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity};
   }
 
-  double Aluminium::getSpecificModOfElasticityTension(void) const
+  double Steel::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Aluminium::getSpecificModOfElasticityTorsion(void) const
+  double Steel::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
   //private TODO set the values correctly
-  bool Aluminium::setPropertieSpecs(Aluminium::Type type)
+  bool Steel::setPropertieSpecs(Steel::Type type)
   {
     switch (type)
     {
-      case Aluminium::Type::A_1100 :
+      case Steel::Type::S_1010 :
       {
-        this->specific_properties_.type_                       = {"A_1100", type};
+        this->specific_properties_.type_                       = {"S_1010", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -82,14 +82,14 @@ namespace MassCalculator
         this->specific_properties_.thermal_conductivity        = {990.0};
         this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
         this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Aluminium.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
+        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Steel.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
         break;
       }
 
       //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Aluminium::Type::A_2011 :
+      case Steel::Type::S_1012 :
       {
-        this->specific_properties_.type_                       = {"A_2011", type};
+        this->specific_properties_.type_                       = {"S_1012", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -101,9 +101,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_2014 :
+      case Steel::Type::S_1015 :
       {
-        this->specific_properties_.type_                       = {"A_2014", type};
+        this->specific_properties_.type_                       = {"S_1015", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -115,9 +115,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_2024 :
+      case Steel::Type::S_1018 :
       {
-        this->specific_properties_.type_                       = {"A_2024", type};
+        this->specific_properties_.type_                       = {"S_1018", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -129,9 +129,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_3003 :
+      case Steel::Type::S_1541 :
       {
-        this->specific_properties_.type_                       = {"A_3003", type};
+        this->specific_properties_.type_                       = {"S_1541", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -143,9 +143,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_5052 :
+      case Steel::Type::S_4140 :
       {
-        this->specific_properties_.type_                       = {"A_5052", type};
+        this->specific_properties_.type_                       = {"S_4140", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -157,37 +157,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_6061 :
+      case Steel::Type::S_A36 :
       {
-        this->specific_properties_.type_                       = {"A_6061", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_6063 :
-      {
-        this->specific_properties_.type_                       = {"A_6063", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_7075 :
-      {
-        this->specific_properties_.type_                       = {"A_7075", type};
+        this->specific_properties_.type_                       = {"S_A36", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -201,7 +173,7 @@ namespace MassCalculator
 
       default:
       {
-        std::cerr << "The type aluminium specified not found, using default aluminium type\n";
+        std::cerr << "The type Steel specified not found, using default Steel type\n";
         break;
       }
     }
@@ -209,8 +181,8 @@ namespace MassCalculator
     return true;
   }
 
-// //TODO: add as a value the filepath for aluminium config
-//   bool Aluminium::checkFromLuaConfig(std::string value)
+// //TODO: add as a value the filepath for Steel config
+//   bool Steel::checkFromLuaConfig(std::string value)
 //   {
 //     if(this->lua_state_.get<bool>(value.c_str()))
 //     {
@@ -223,14 +195,14 @@ namespace MassCalculator
 //   }
 
 //   template<typename TLuaReturnType>
-//   constexpr TLuaReturnType Aluminium::getFromLuaConfig(std::string value)
+//   constexpr TLuaReturnType Steel::getFromLuaConfig(std::string value)
 //   {
 //     return lua_state_.get<TLuaReturnType>(value.c_str());
 //   }
 
-  std::ostream &operator << (std::ostream &os, const Aluminium &obj)
+  std::ostream &operator << (std::ostream &os, const Steel &obj)
   {
-    os << "  Aluminium object properties: " "\n"
+    os << "  Steel object properties: " "\n"
           "   - Type    : " + obj.getType().first + "\n"
           "   - Color   : " + obj.getSpecificColor() + "\n"
           "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"

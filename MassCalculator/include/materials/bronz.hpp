@@ -1,5 +1,5 @@
-#ifndef ___ALUMINIUM_H___
-#define ___ALUMINIUM_H___
+#ifndef ___BRONZ_H___
+#define ___BRONZ_H___
 #include "material.hpp"
 
 // Lua is written in C, so compiler needs to know how to link its libraries TODO:
@@ -12,10 +12,10 @@
 namespace MassCalculator
 {
   /**
-   * @brief Class Aluminium, that holds all the nessesary information for Aluminium and it's types therefore we can use in the interface
+   * @brief Class Bronz, that holds all the nessesary information for Bronz and it's types therefore we can use in the interface
    * 
    */
-  class Aluminium : public Material<Aluminium>
+  class Bronz : public Material<Bronz>
   {
     public: enum class Type : uint8_t;
 
@@ -27,7 +27,7 @@ namespace MassCalculator
     {
 
       /**
-       * @brief Private members of Aluminium class. Values defaulted with brace-enclosed initializer list
+       * @brief Private members of Bronz class. Values defaulted with brace-enclosed initializer list
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
@@ -40,7 +40,7 @@ namespace MassCalculator
        * @param specific_boiling_point_ double Parameter to save specific boiling point
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", Aluminium::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{"UNSPECIFIED", Bronz::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
@@ -53,19 +53,19 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the aluminium types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
+     * @brief Enum that holds the Bronz types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
      * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
      */
     enum class Type : uint8_t
     {
       BEGIN = 0,
       /**
-       * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
+       * @brief This grade is commercially pure Bronz. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
        * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
        * food processing industries.
        * 
        */
-      A_1100 = BEGIN,
+      B_18Al = BEGIN,
 
       /**
        * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
@@ -73,14 +73,14 @@ namespace MassCalculator
        * Alloy 2011 is an excellent choice for production of complex and detailed parts.
        * 
        */
-      A_2011,
+      B_21Al,
 
       /**
        * @brief A copper based alloy with very high strength and excellent machining capabilities. This alloy is commonly used in many aerospace structural applications 
        * due to its resistance.
        * 
        */
-      A_2014,
+      B_314Commercial,
 
       /**
        * @brief One of the most commonly used high strength aluminum alloys. With its combination of high strength and excellent fatigue resistance, it is commonly used 
@@ -89,21 +89,21 @@ namespace MassCalculator
        * anodized finish or in clad form (thin surface layer of high purity aluminum) known as Alclad.
        * 
        */
-      A_2024,
+      B_425Am,
 
       /**
        * @brief The most widely used of all aluminum alloys. A commercially pure aluminum with added manganese to increase its strength (20% stronger than the 1100 grade). 
        * It has excellent corrosion resistance, and workability. This grade can be deep drawn or spun, welded or brazed.
        * 
        */
-      A_3003,
+      B_485Naval,
 
       /**
        * @brief This is the highest strength alloy of the more non heat-treatable grades. Its fatigue strength is higher than most other aluminum grades. 
        * Alloy 5052 has a good resistance to marine atmosphere and salt water corrosion, and excellent workability. It can be easily drawn or formed into intricate shapes.
        * 
        */
-      A_5052,
+      B_510Phos,
 
       /**
        * @brief The most versatile of the heat-treatable aluminum alloys, while keeping most of the good qualities of aluminum. This grade has a great range of mechanical 
@@ -112,7 +112,7 @@ namespace MassCalculator
        * resistance with good strength are required. The Tube and Angle shapes in this grade typically have rounded corners.
        * 
        */
-      A_6061,
+      B_524Phos,
 
       /**
        * @brief Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance 
@@ -122,14 +122,31 @@ namespace MassCalculator
        * The Tube and Angle shapes in this grade typically have square corners.The Tube and Angle shapes in this grade typically have square corners.
        * 
        */
-      A_6063,
+      B_532Phos,
 
-      /**
-       * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to weight ratio, and it is ideally used for highly stressed parts. 
-       * This grade can be formed in the annealed condition and subsequently heat treated, if needed. It can also be spot or flash welded (arc and gas not recommended).
-       * 
-       */
-      A_7075,
+      B_534Phos,
+
+      B_544Phos,
+
+      B_613Al,
+
+      B_614Al,
+
+      B_623Al,
+
+      B_624Al,
+
+      B_625Al,
+
+      B_630NiAl,
+
+      B_642AlSi,
+
+      B_932Bearing,
+
+      B_954Al,
+
+      B_OilLite,
 
       UNSPECIFIED,
 
@@ -140,15 +157,25 @@ namespace MassCalculator
     {
         switch(type)
         {
-            case Type::A_1100: os << "A_1100"; break;
-            case Type::A_2011: os << "A_2011"; break;
-            case Type::A_2014: os << "A_2014"; break;
-            case Type::A_2024: os << "A_2024"; break;
-            case Type::A_3003: os << "A_3003"; break;
-            case Type::A_5052: os << "A_5052"; break;
-            case Type::A_6061: os << "A_6061"; break;
-            case Type::A_6063: os << "A_6063"; break;
-            case Type::A_7075: os << "A_7075"; break;
+            case Type::B_18Al: os << "B_18Al"; break;
+            case Type::B_21Al: os << "B_21Al"; break;
+            case Type::B_314Commercial: os << "B_314Commercial"; break;
+            case Type::B_485Naval: os << "B_485Naval"; break;
+            case Type::B_510Phos: os << "B_510Phos"; break;
+            case Type::B_524Phos: os << "B_524Phos"; break;
+            case Type::B_532Phos: os << "B_532Phos"; break;
+            case Type::B_534Phos: os << "B_534Phos"; break;
+            case Type::B_544Phos: os << "B_544Phos"; break;
+            case Type::B_613Al: os << "B_613Al"; break;
+            case Type::B_614Al: os << "B_614Al"; break;
+            case Type::B_623Al: os << "B_623Al"; break;
+            case Type::B_624Al: os << "B_624Al"; break;
+            case Type::B_625Al: os << "B_625Al"; break;
+            case Type::B_630NiAl: os << "B_630NiAl"; break;
+            case Type::B_642AlSi: os << "B_642AlSi"; break;
+            case Type::B_932Bearing: os << "B_932Bearing"; break;
+            case Type::B_954Al: os << "B_954Al"; break;
+            case Type::B_OilLite: os << "B_OilLite"; break;
             case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
             default: os << "Name cannot be found";
         }
@@ -156,21 +183,21 @@ namespace MassCalculator
     }
 
     /**
-     * @brief Construct a new Aluminium object
+     * @brief Construct a new Bronz object
      * 
      */
-    Aluminium(void) = default;
+    Bronz(void) = default;
 
     /**
-     * @brief Construct a new Aluminium object and specify the type
+     * @brief Construct a new Bronz object and specify the type
      * 
      */
-    Aluminium(Type type);
+    Bronz(Type type);
 
     /**
      * @brief Set the Type object
      * 
-     * @param type Type of the Aluminium
+     * @param type Type of the Bronz
      * @return true If the type is set successfully
      * @return false If the type failed to set
      */
@@ -207,77 +234,77 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double The specific melting point of Aluminium type
+     * @return const double The specific melting point of Bronz type
      */
     double getSpecificMeltingPoint(void) const;
 
     /**
      * @brief Get the Specific PoissonsRatio object
      * 
-     * @return double The specific poissons ratio of Aluminium type
+     * @return double The specific poissons ratio of Bronz type
      */
     double getSpecificPoissonsRatio(void) const;
 
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
-     * @return double The specific thermal conductivity of Aluminium type
+     * @return double The specific thermal conductivity of Bronz type
      */
     double getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const double The specific modulus of elasticity tension point of Aluminium type
+     * @return const double The specific modulus of elasticity tension point of Bronz type
      */
     double getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const double The specific modulus of elasticity torsion point of Aluminium type
+     * @return const double The specific modulus of elasticity torsion point of Bronz type
      */
     double getSpecificModOfElasticityTorsion(void) const;
 
     /**
-     * @brief Destroy the Aluminium object
+     * @brief Destroy the Bronz object
      * 
      */
-    ~Aluminium(void) = default;
+    ~Bronz(void) = default;
 
     /**
-     * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
+     * @brief Shift operator overload for class Bronz, this will print all the nessesery informations
      * 
      */
-    friend std::ostream &operator << (std::ostream &os, const Aluminium &obj);
+    friend std::ostream &operator << (std::ostream &os, const Bronz &obj);
 
     private:
     /**
      * @brief Delete copy constructor
      * 
      */
-    Aluminium(const Aluminium&) = delete;
+    Bronz(const Bronz&) = delete;
 
     /**
      * @brief Set move constructor to default
      * 
      */
-    Aluminium(Aluminium&&) = default;
+    Bronz(Bronz&&) = default;
 
     /**
      * @brief Delete assignment operator
      */
-    Aluminium& operator=(const Aluminium&) = delete;
+    Bronz& operator=(const Bronz&) = delete;
 
     /**
      * @brief Allow move assignment operator
      */
-    Aluminium& operator=(Aluminium&&) = default;
+    Bronz& operator=(Bronz&&) = default;
 
     /**
      * @brief Set the Propertie Specs object
      * 
-     * @param type Type of Aluminium
+     * @param type Type of Bronz
      * @return true If the specifications of propertie are successfully set
      * @return false  If the specifications of propertie failed to set
      */

@@ -1,5 +1,5 @@
-#ifndef ___ALUMINIUM_H___
-#define ___ALUMINIUM_H___
+#ifndef ___STEEL_H___
+#define ___STEEL_H___
 #include "material.hpp"
 
 // Lua is written in C, so compiler needs to know how to link its libraries TODO:
@@ -12,10 +12,10 @@
 namespace MassCalculator
 {
   /**
-   * @brief Class Aluminium, that holds all the nessesary information for Aluminium and it's types therefore we can use in the interface
+   * @brief Class Steel, that holds all the nessesary information for Steel and it's types therefore we can use in the interface
    * 
    */
-  class Aluminium : public Material<Aluminium>
+  class Steel : public Material<Steel>
   {
     public: enum class Type : uint8_t;
 
@@ -27,7 +27,7 @@ namespace MassCalculator
     {
 
       /**
-       * @brief Private members of Aluminium class. Values defaulted with brace-enclosed initializer list
+       * @brief Private members of Steel class. Values defaulted with brace-enclosed initializer list
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
@@ -40,7 +40,7 @@ namespace MassCalculator
        * @param specific_boiling_point_ double Parameter to save specific boiling point
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", Aluminium::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{"UNSPECIFIED", Steel::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
@@ -53,19 +53,19 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the aluminium types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
+     * @brief Enum that holds the Steel types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
      * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
      */
     enum class Type : uint8_t
     {
       BEGIN = 0,
       /**
-       * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
+       * @brief This grade is commercially pure Steel. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
        * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
        * food processing industries.
        * 
        */
-      A_1100 = BEGIN,
+      S_1010 = BEGIN,
 
       /**
        * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
@@ -73,14 +73,14 @@ namespace MassCalculator
        * Alloy 2011 is an excellent choice for production of complex and detailed parts.
        * 
        */
-      A_2011,
+      S_1012,
 
       /**
        * @brief A copper based alloy with very high strength and excellent machining capabilities. This alloy is commonly used in many aerospace structural applications 
        * due to its resistance.
        * 
        */
-      A_2014,
+      S_1015,
 
       /**
        * @brief One of the most commonly used high strength aluminum alloys. With its combination of high strength and excellent fatigue resistance, it is commonly used 
@@ -89,21 +89,21 @@ namespace MassCalculator
        * anodized finish or in clad form (thin surface layer of high purity aluminum) known as Alclad.
        * 
        */
-      A_2024,
+      S_1018,
 
       /**
        * @brief The most widely used of all aluminum alloys. A commercially pure aluminum with added manganese to increase its strength (20% stronger than the 1100 grade). 
        * It has excellent corrosion resistance, and workability. This grade can be deep drawn or spun, welded or brazed.
        * 
        */
-      A_3003,
+      S_1541,
 
       /**
        * @brief This is the highest strength alloy of the more non heat-treatable grades. Its fatigue strength is higher than most other aluminum grades. 
        * Alloy 5052 has a good resistance to marine atmosphere and salt water corrosion, and excellent workability. It can be easily drawn or formed into intricate shapes.
        * 
        */
-      A_5052,
+      S_4140,
 
       /**
        * @brief The most versatile of the heat-treatable aluminum alloys, while keeping most of the good qualities of aluminum. This grade has a great range of mechanical 
@@ -112,24 +112,7 @@ namespace MassCalculator
        * resistance with good strength are required. The Tube and Angle shapes in this grade typically have rounded corners.
        * 
        */
-      A_6061,
-
-      /**
-       * @brief Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance 
-       * to corrosion. Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
-       * Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance to corrosion. 
-       * Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
-       * The Tube and Angle shapes in this grade typically have square corners.The Tube and Angle shapes in this grade typically have square corners.
-       * 
-       */
-      A_6063,
-
-      /**
-       * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to weight ratio, and it is ideally used for highly stressed parts. 
-       * This grade can be formed in the annealed condition and subsequently heat treated, if needed. It can also be spot or flash welded (arc and gas not recommended).
-       * 
-       */
-      A_7075,
+      S_A36,
 
       UNSPECIFIED,
 
@@ -140,15 +123,13 @@ namespace MassCalculator
     {
         switch(type)
         {
-            case Type::A_1100: os << "A_1100"; break;
-            case Type::A_2011: os << "A_2011"; break;
-            case Type::A_2014: os << "A_2014"; break;
-            case Type::A_2024: os << "A_2024"; break;
-            case Type::A_3003: os << "A_3003"; break;
-            case Type::A_5052: os << "A_5052"; break;
-            case Type::A_6061: os << "A_6061"; break;
-            case Type::A_6063: os << "A_6063"; break;
-            case Type::A_7075: os << "A_7075"; break;
+            case Type::S_1010: os << "S_1010"; break;
+            case Type::S_1012: os << "S_1012"; break;
+            case Type::S_1015: os << "S_1015"; break;
+            case Type::S_1018: os << "S_1018"; break;
+            case Type::S_1541: os << "S_1541"; break;
+            case Type::S_4140: os << "S_4140"; break;
+            case Type::S_A36: os << "S_A36"; break;
             case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
             default: os << "Name cannot be found";
         }
@@ -156,21 +137,21 @@ namespace MassCalculator
     }
 
     /**
-     * @brief Construct a new Aluminium object
+     * @brief Construct a new Steel object
      * 
      */
-    Aluminium(void) = default;
+    Steel(void) = default;
 
     /**
-     * @brief Construct a new Aluminium object and specify the type
+     * @brief Construct a new Steel object and specify the type
      * 
      */
-    Aluminium(Type type);
+    Steel(Type type);
 
     /**
      * @brief Set the Type object
      * 
-     * @param type Type of the Aluminium
+     * @param type Type of the Steel
      * @return true If the type is set successfully
      * @return false If the type failed to set
      */
@@ -207,77 +188,77 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double The specific melting point of Aluminium type
+     * @return const double The specific melting point of Steel type
      */
     double getSpecificMeltingPoint(void) const;
 
     /**
      * @brief Get the Specific PoissonsRatio object
      * 
-     * @return double The specific poissons ratio of Aluminium type
+     * @return double The specific poissons ratio of Steel type
      */
     double getSpecificPoissonsRatio(void) const;
 
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
-     * @return double The specific thermal conductivity of Aluminium type
+     * @return double The specific thermal conductivity of Steel type
      */
     double getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const double The specific modulus of elasticity tension point of Aluminium type
+     * @return const double The specific modulus of elasticity tension point of Steel type
      */
     double getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const double The specific modulus of elasticity torsion point of Aluminium type
+     * @return const double The specific modulus of elasticity torsion point of Steel type
      */
     double getSpecificModOfElasticityTorsion(void) const;
 
     /**
-     * @brief Destroy the Aluminium object
+     * @brief Destroy the Steel object
      * 
      */
-    ~Aluminium(void) = default;
+    ~Steel(void) = default;
 
     /**
-     * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
+     * @brief Shift operator overload for class Steel, this will print all the nessesery informations
      * 
      */
-    friend std::ostream &operator << (std::ostream &os, const Aluminium &obj);
+    friend std::ostream &operator << (std::ostream &os, const Steel &obj);
 
     private:
     /**
      * @brief Delete copy constructor
      * 
      */
-    Aluminium(const Aluminium&) = delete;
+    Steel(const Steel&) = delete;
 
     /**
      * @brief Set move constructor to default
      * 
      */
-    Aluminium(Aluminium&&) = default;
+    Steel(Steel&&) = default;
 
     /**
      * @brief Delete assignment operator
      */
-    Aluminium& operator=(const Aluminium&) = delete;
+    Steel& operator=(const Steel&) = delete;
 
     /**
      * @brief Allow move assignment operator
      */
-    Aluminium& operator=(Aluminium&&) = default;
+    Steel& operator=(Steel&&) = default;
 
     /**
      * @brief Set the Propertie Specs object
      * 
-     * @param type Type of Aluminium
+     * @param type Type of Steel
      * @return true If the specifications of propertie are successfully set
      * @return false  If the specifications of propertie failed to set
      */

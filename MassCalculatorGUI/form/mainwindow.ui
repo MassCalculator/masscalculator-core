@@ -82,12 +82,12 @@
         </property>
         <item>
          <property name="text">
-          <string>Import DXF</string>
+          <string>Select from list</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Cylinder</string>
+          <string>Import DXF</string>
          </property>
         </item>
        </widget>
@@ -103,22 +103,17 @@
        <widget class="QComboBox" name="material">
         <item>
          <property name="text">
+          <string>Select from list</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Aluminium</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>New Item</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>New Item</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>New Item</string>
+          <string>Carbon Steel</string>
          </property>
         </item>
        </widget>
@@ -134,22 +129,7 @@
        <widget class="QComboBox" name="material_type">
         <item>
          <property name="text">
-          <string>MaterialType1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>New Item</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>New Item</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>New Item</string>
+          <string>Select from list</string>
          </property>
         </item>
        </widget>

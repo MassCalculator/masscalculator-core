@@ -43,11 +43,28 @@ namespace MassCalculator
      */
     enum class Type : uint8_t
     {
-      Cylinder = 0,
+      BEGIN = 0,
+      Cylinder = BEGIN,
       Pipe,
       Hexagon,
-      Octagon
+      Octagon,
+      UNSPECIFIED,
+      END
     };
+
+    friend std::ostream& operator<<(std::ostream& os, Type type)
+    {
+        switch(type)
+        {
+            case Type::Cylinder: os << "Cylinder"; break;
+            case Type::Pipe: os << "Pipe"; break;
+            case Type::Hexagon: os << "Hexagon"; break;
+            case Type::Octagon: os << "Octagon"; break;
+            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
+            default: os << "Name cannot be found";
+        }
+        return os;
+    }
 
     Shape(void) = default;
 
@@ -177,6 +194,36 @@ namespace MassCalculator
      */
     const TShapeType& thisTShapeType() const { return *static_cast<const TShapeType*>(this); }
 
+  };
+
+  template <>
+  class Shape<int> 
+  { 
+    public:
+      enum class Type : uint8_t
+      {
+        BEGIN = 0,
+        Cylinder = BEGIN,
+        Pipe,
+        Hexagon,
+        Octagon,
+        UNSPECIFIED,
+        END
+      };
+
+      friend std::ostream& operator<<(std::ostream& os, Type type)
+      {
+          switch(type)
+          {
+              case Type::Cylinder: os << "Cylinder"; break;
+              case Type::Pipe: os << "Pipe"; break;
+              case Type::Hexagon: os << "Hexagon"; break;
+              case Type::Octagon: os << "Octagon"; break;
+              case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
+              default: os << "Name cannot be found";
+          }
+          return os;
+      }
   };
 
 }//end namespace MassCalculator
