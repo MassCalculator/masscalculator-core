@@ -12,7 +12,7 @@ class BrassTest : public ::testing::Test
   BrassTest() 
   {
    // You can do set-up work for each test here.
-   material_B_240LowBrass.setType(MassCalculator::Brass::Type::B_240LowBrass);
+   material_B_240LowBrass.setType(MassCalculator::Brass::Type::B_240Low);
   }
 
   ~BrassTest() override 
