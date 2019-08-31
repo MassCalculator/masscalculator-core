@@ -71,9 +71,9 @@ namespace MassCalculator
   {
     switch (type)
     {
-      case Brass::Type::B_240LowBrass :
+      case Brass::Type::B_240Low :
       {
-        this->specific_properties_.type_                       = {"B_240LowBrass", type};
+        this->specific_properties_.type_                       = {"B_240Low", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -90,6 +90,90 @@ namespace MassCalculator
       case Brass::Type::B_260Cartridge :
       {
         this->specific_properties_.type_                       = {"B_260Cartridge", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case Brass::Type::B_353Leaded :
+      {
+        this->specific_properties_.type_                       = {"B_353Leaded", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case Brass::Type::B_360 :
+      {
+        this->specific_properties_.type_                       = {"B_360", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case Brass::Type::B_365 :
+      {
+        this->specific_properties_.type_                       = {"B_365", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case Brass::Type::B_380 :
+      {
+        this->specific_properties_.type_                       = {"B_380", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case Brass::Type::B_385 :
+      {
+        this->specific_properties_.type_                       = {"B_385", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case Brass::Type::B_464 :
+      {
+        this->specific_properties_.type_                       = {"B_464", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};

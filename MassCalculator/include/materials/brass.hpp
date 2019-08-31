@@ -1,5 +1,3 @@
-#define TODO
-
 #ifndef ___BRASS_H___
 #define ___BRASS_H___
 #include "material.hpp"
@@ -67,7 +65,7 @@ namespace MassCalculator
        * food processing industries.
        * 
        */
-      B_240LowBrass = BEGIN,
+      B_240Low = BEGIN,
 
       /**
        * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
@@ -76,6 +74,18 @@ namespace MassCalculator
        * 
        */
       B_260Cartridge,
+
+      B_353Leaded,
+
+      B_360,
+
+      B_365,
+
+      B_380,
+
+      B_385,
+
+      B_464,
 
       UNSPECIFIED,
 
@@ -86,8 +96,14 @@ namespace MassCalculator
     {
         switch(type)
         {
-            case Type::B_240LowBrass: os << "B_240LowBrass"; break;
+            case Type::B_240Low: os << "B_240Low"; break;
             case Type::B_260Cartridge: os << "B_260Cartridge"; break;
+            case Type::B_353Leaded: os << "B_353Leaded"; break;
+            case Type::B_360: os << "B_360"; break;
+            case Type::B_365: os << "B_365"; break;
+            case Type::B_380: os << "B_380"; break;
+            case Type::B_385: os << "B_385"; break;
+            case Type::B_464: os << "B_464"; break;
             case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
             default: os << "Name cannot be found";
         }
