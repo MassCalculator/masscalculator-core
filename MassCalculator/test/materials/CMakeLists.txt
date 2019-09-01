@@ -117,5 +117,22 @@ target_link_libraries(
 
 add_test(
   NAME SteelTest
-  COMMAND steel_test
+  COMMAND zinc_test
+)
+
+#Steel test
+add_executable(
+  zinc_test
+  zinc_test.cpp
+)
+
+target_link_libraries(
+  zinc_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME ZincTest
+  COMMAND zinc_test
 )
