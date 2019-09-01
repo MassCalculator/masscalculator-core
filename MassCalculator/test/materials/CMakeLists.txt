@@ -69,6 +69,23 @@ add_test(
   COMMAND bronz_test
 )
 
+#Copper test
+add_executable(
+  copper_test
+  copper_test.cpp
+)
+
+target_link_libraries(
+  copper_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME CopperTest
+  COMMAND copper_test
+)
+
 #Steel test
 add_executable(
   steel_test
