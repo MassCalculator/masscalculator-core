@@ -86,6 +86,23 @@ add_test(
   COMMAND copper_test
 )
 
+#Magnesium test
+add_executable(
+  magnesium_test
+  magnesium_test.cpp
+)
+
+target_link_libraries(
+  magnesium_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME MagnesiumTest
+  COMMAND magnesium_test
+)
+
 #Steel test
 add_executable(
   steel_test
