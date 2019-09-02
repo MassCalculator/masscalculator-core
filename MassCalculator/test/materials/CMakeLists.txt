@@ -103,6 +103,23 @@ add_test(
   COMMAND magnesium_test
 )
 
+#Nickel test
+add_executable(
+  nickel_test
+  nickel_test.cpp
+)
+
+target_link_libraries(
+  nickel_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME NickelTest
+  COMMAND zinc_test
+)
+
 #Steel test
 add_executable(
   steel_test
@@ -120,7 +137,7 @@ add_test(
   COMMAND zinc_test
 )
 
-#Steel test
+#Zinc test
 add_executable(
   zinc_test
   zinc_test.cpp
