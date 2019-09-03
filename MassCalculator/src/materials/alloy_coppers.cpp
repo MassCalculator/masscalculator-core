@@ -1,8 +1,8 @@
-#include "materials/aluminium.hpp"
+#include "materials/alloy_coppers.hpp"
 
 namespace MassCalculator
 {
-  Aluminium::Aluminium(Aluminium::Type type)
+  AlloyCoppers::AlloyCoppers(AlloyCoppers::Type type)
   {
     if(!setType(type))
     {
@@ -10,70 +10,70 @@ namespace MassCalculator
     }
   }
 
-  bool Aluminium::setType(Aluminium::Type type)
+  bool AlloyCoppers::setType(AlloyCoppers::Type type)
   {
     if(!setPropertieSpecs(type))
     {
-      std::cerr << "Cannot set the aluminium type\n";
+      std::cerr << "Cannot set the AlloyCoppers type\n";
       return false;
     }
     else 
       return true;
   }
 
-  std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
+  std::pair<std::string, AlloyCoppers::Type> AlloyCoppers::getType(void) const
   {
     return{this->specific_properties_.type_};
   }
 
-  std::string Aluminium::getSpecificColor(void) const
+  std::string AlloyCoppers::getSpecificColor(void) const
   {
     return{this->specific_properties_.color_};
   }
 
-  double Aluminium::getSpecificDensity(void) const
+  double AlloyCoppers::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Aluminium::getSpecificGravity(void) const
+  double AlloyCoppers::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Aluminium::getSpecificMeltingPoint(void) const
+  double AlloyCoppers::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
 
-  double Aluminium::getSpecificPoissonsRatio(void) const
+  double AlloyCoppers::getSpecificPoissonsRatio(void) const
   {
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Aluminium::getSpecificThermalConductivity(void) const
+  double AlloyCoppers::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity};
   }
 
-  double Aluminium::getSpecificModOfElasticityTension(void) const
+  double AlloyCoppers::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Aluminium::getSpecificModOfElasticityTorsion(void) const
+  double AlloyCoppers::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
   //private TODO set the values correctly
-  bool Aluminium::setPropertieSpecs(Aluminium::Type type)
+  bool AlloyCoppers::setPropertieSpecs(AlloyCoppers::Type type)
   {
     switch (type)
     {
-      case Aluminium::Type::A_1100 :
+      case AlloyCoppers::Type::AC_145Tellvirum :
       {
-        this->specific_properties_.type_                       = {"A_1100", type};
+        this->specific_properties_.type_                       = {"AC_145Tellvirum", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -82,14 +82,14 @@ namespace MassCalculator
         this->specific_properties_.thermal_conductivity        = {990.0};
         this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
         this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Aluminium.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
+        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("AlloyCoppers.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
         break;
       }
 
       //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Aluminium::Type::A_2011 :
+      case AlloyCoppers::Type::AC_194Iron :
       {
-        this->specific_properties_.type_                       = {"A_2011", type};
+        this->specific_properties_.type_                       = {"AC_194Iron", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -101,9 +101,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_2014 :
+      case AlloyCoppers::Type::AC_195Iron :
       {
-        this->specific_properties_.type_                       = {"A_2014", type};
+        this->specific_properties_.type_                       = {"AC_195Iron", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -115,9 +115,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_2024 :
+      case AlloyCoppers::Type::AC_172Beryllium :
       {
-        this->specific_properties_.type_                       = {"A_2024", type};
+        this->specific_properties_.type_                       = {"AC_172Beryllium", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -129,9 +129,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_3003 :
+      case AlloyCoppers::Type::AC_182Class2 :
       {
-        this->specific_properties_.type_                       = {"A_3003", type};
+        this->specific_properties_.type_                       = {"AC_182Class2", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -143,9 +143,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_5052 :
+      case AlloyCoppers::Type::AC_655Silicon :
       {
-        this->specific_properties_.type_                       = {"A_5052", type};
+        this->specific_properties_.type_                       = {"AC_655Silicon", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -157,9 +157,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_6061 :
+      case AlloyCoppers::Type::AC_706Nickel :
       {
-        this->specific_properties_.type_                       = {"A_6061", type};
+        this->specific_properties_.type_                       = {"AC_706Nickel", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -171,9 +171,9 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_6063 :
+      case AlloyCoppers::Type::AC_715NickelSilver :
       {
-        this->specific_properties_.type_                       = {"A_6063", type};
+        this->specific_properties_.type_                       = {"AC_715NickelSilver", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -185,9 +185,128 @@ namespace MassCalculator
         break;
       }
 
-      case Aluminium::Type::A_7075 :
+      case AlloyCoppers::Type::AC_725NickelSilver :
       {
-        this->specific_properties_.type_                       = {"A_7075", type};
+        this->specific_properties_.type_                       = {"AC_725NickelSilver", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+      case AlloyCoppers::Type::AC_735NickelSilver :
+      {
+        this->specific_properties_.type_                       = {"AC_735NickelSilver", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_752NickelSilver :
+      {
+        this->specific_properties_.type_                       = {"AC_752NickelSilver", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_762NickelSilver :
+      {
+        this->specific_properties_.type_                       = {"AC_762NickelSilver", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_770NickelSilver :
+      {
+        this->specific_properties_.type_                       = {"AC_770NickelSilver", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_1751Class3 :
+      {
+        this->specific_properties_.type_                       = {"AC_1751Class3", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_1758Nickel :
+      {
+        this->specific_properties_.type_                       = {"AC_1758Nickel", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_MoldmaxBeCu :
+      {
+        this->specific_properties_.type_                       = {"AC_MoldmaxBeCu", type};
+        this->specific_properties_.color_                      = {"Metallic"};
+        this->specific_properties_.density_                    = {2.71};
+        this->specific_properties_.gravity_                    = {2.83};
+        this->specific_properties_.melting_point_              = {537.778};
+        this->specific_properties_.poissons_ratio_             = {0.33};
+        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
+        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
+        break;
+      }
+
+
+      case AlloyCoppers::Type::AC_ProthermBeCu :
+      {
+        this->specific_properties_.type_                       = {"AC_ProthermBeCu", type};
         this->specific_properties_.color_                      = {"Metallic"};
         this->specific_properties_.density_                    = {2.71};
         this->specific_properties_.gravity_                    = {2.83};
@@ -201,7 +320,7 @@ namespace MassCalculator
 
       default:
       {
-        std::cerr << "The type aluminium specified not found, using default aluminium type\n";
+        std::cerr << "The type AlloyCoppers specified not found, using default AlloyCoppers type\n";
         break;
       }
     }
@@ -209,8 +328,8 @@ namespace MassCalculator
     return true;
   }
 
-// //TODO: add as a value the filepath for aluminium config
-//   bool Aluminium::checkFromLuaConfig(std::string value)
+// //TODO: add as a value the filepath for AlloyCoppers config
+//   bool AlloyCoppers::checkFromLuaConfig(std::string value)
 //   {
 //     if(this->lua_state_.get<bool>(value.c_str()))
 //     {
@@ -223,14 +342,14 @@ namespace MassCalculator
 //   }
 
 //   template<typename TLuaReturnType>
-//   constexpr TLuaReturnType Aluminium::getFromLuaConfig(std::string value)
+//   constexpr TLuaReturnType AlloyCoppers::getFromLuaConfig(std::string value)
 //   {
 //     return lua_state_.get<TLuaReturnType>(value.c_str());
 //   }
 
-  std::ostream &operator << (std::ostream &os, const Aluminium &obj)
+  std::ostream &operator << (std::ostream &os, const AlloyCoppers &obj)
   {
-    os << "  Aluminium object properties: " "\n"
+    os << "  AlloyCoppers object properties: " "\n"
           "   - Type    : " + obj.getType().first + "\n"
           "   - Color   : " + obj.getSpecificColor() + "\n"
           "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"

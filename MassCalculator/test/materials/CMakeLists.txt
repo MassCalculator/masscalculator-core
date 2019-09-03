@@ -1,6 +1,23 @@
 # Found this on https://cmake.org/cmake/help/v3.0/module/FindGTest.html
 # Tests for Materials
 
+#AlloyCoppers test
+add_executable(
+  alloy_coppers_test
+  alloy_coppers_test.cpp
+)
+
+target_link_libraries(
+  alloy_coppers_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME AlloyCoppers
+  COMMAND alloy_coppers_test
+)
+
 #AlloySteels test
 add_executable(
   alloy_steels_test
