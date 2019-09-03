@@ -154,6 +154,23 @@ add_test(
   COMMAND zinc_test
 )
 
+#Titanium test
+add_executable(
+  titanium_test
+  titanium_test.cpp
+)
+
+target_link_libraries(
+  titanium_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME TitaniumTest
+  COMMAND titanium_test
+)
+
 #Zinc test
 add_executable(
   zinc_test

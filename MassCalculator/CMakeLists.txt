@@ -33,7 +33,7 @@ set( SRC
   #src/materials/plastic.cpp
   #src/materials/stainless_steel.cpp
   src/materials/steel.cpp
-  #src/materials/titanium.cpp
+  src/materials/titanium.cpp
   src/materials/zinc.cpp
   
   src/interface/object_interface.cpp
