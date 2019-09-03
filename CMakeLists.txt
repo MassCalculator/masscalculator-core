@@ -21,6 +21,7 @@ message(STATUS ${GTEST_BOTH_LIBRARIES})
 
 # Enable testing
 enable_testing()
+include(CTest) #To get the info for tests from CTestConfig.cmake
 
 # to include static libraries in shared libraries, they need to be compiled with -fPIC
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)

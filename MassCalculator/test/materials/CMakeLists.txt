@@ -134,7 +134,24 @@ target_link_libraries(
 
 add_test(
   NAME NickelTest
-  COMMAND zinc_test
+  COMMAND nickel_test
+)
+
+#StainlessSteel test
+add_executable(
+  stainless_steel_test
+  stainless_steel_test.cpp
+)
+
+target_link_libraries(
+  stainless_steel_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME StainlessSteel
+  COMMAND stainless_steel_test
 )
 
 #Steel test
@@ -151,7 +168,7 @@ target_link_libraries(
 
 add_test(
   NAME SteelTest
-  COMMAND zinc_test
+  COMMAND steel_test
 )
 
 #Titanium test
