@@ -22,19 +22,19 @@ set( SRC
   src/shapes/cylinder.cpp
 
   src/materials/material.cpp
-  #src/materials/alloy_coppers.cpp
+  src/materials/alloy_coppers.cpp
   src/materials/alloy_steels.cpp
   src/materials/aluminium.cpp
   src/materials/brass.cpp
   src/materials/bronz.cpp
-  #src/materials/copper.cpp
-  #src/materials/magnezium.cpp
-  #src/materials/nickel.cpp
+  src/materials/copper.cpp
+  src/materials/magnesium.cpp
+  src/materials/nickel.cpp
   #src/materials/plastic.cpp
-  #src/materials/stainless_steel.cpp
+  src/materials/stainless_steel.cpp
   src/materials/steel.cpp
-  #src/materials/titanium.cpp
-  #src/materials/zinc.cpp
+  src/materials/titanium.cpp
+  src/materials/zinc.cpp
   
   src/interface/object_interface.cpp
 

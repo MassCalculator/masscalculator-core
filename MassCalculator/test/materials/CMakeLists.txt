@@ -1,6 +1,23 @@
 # Found this on https://cmake.org/cmake/help/v3.0/module/FindGTest.html
 # Tests for Materials
 
+#AlloyCoppers test
+add_executable(
+  alloy_coppers_test
+  alloy_coppers_test.cpp
+)
+
+target_link_libraries(
+  alloy_coppers_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME AlloyCoppers
+  COMMAND alloy_coppers_test
+)
+
 #AlloySteels test
 add_executable(
   alloy_steels_test
@@ -69,6 +86,74 @@ add_test(
   COMMAND bronz_test
 )
 
+#Copper test
+add_executable(
+  copper_test
+  copper_test.cpp
+)
+
+target_link_libraries(
+  copper_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME CopperTest
+  COMMAND copper_test
+)
+
+#Magnesium test
+add_executable(
+  magnesium_test
+  magnesium_test.cpp
+)
+
+target_link_libraries(
+  magnesium_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME MagnesiumTest
+  COMMAND magnesium_test
+)
+
+#Nickel test
+add_executable(
+  nickel_test
+  nickel_test.cpp
+)
+
+target_link_libraries(
+  nickel_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME NickelTest
+  COMMAND nickel_test
+)
+
+#StainlessSteel test
+add_executable(
+  stainless_steel_test
+  stainless_steel_test.cpp
+)
+
+target_link_libraries(
+  stainless_steel_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME StainlessSteel
+  COMMAND stainless_steel_test
+)
+
 #Steel test
 add_executable(
   steel_test
@@ -84,4 +169,38 @@ target_link_libraries(
 add_test(
   NAME SteelTest
   COMMAND steel_test
+)
+
+#Titanium test
+add_executable(
+  titanium_test
+  titanium_test.cpp
+)
+
+target_link_libraries(
+  titanium_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME TitaniumTest
+  COMMAND titanium_test
+)
+
+#Zinc test
+add_executable(
+  zinc_test
+  zinc_test.cpp
+)
+
+target_link_libraries(
+  zinc_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME ZincTest
+  COMMAND zinc_test
 )
