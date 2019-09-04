@@ -1,6 +1,6 @@
 # Metal Mass Calculator
 
-Jenkins CI pipeline: [![Build Status](http://jimmyhalimi.westeurope.cloudapp.azure.com/buildStatus/icon?job=MassCalculator)]
+Jenkins CI pipeline: [![Build Status](https://travis-ci.com/jimmyhalimi/MassCalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=master)](https://travis-ci.com/jimmyhalimi/MassCalculator)
 
 ## What is MetalMassCalculator
 
