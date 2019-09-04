@@ -1,19 +1,41 @@
-sudo: false
 language: cpp
+
 compiler:
   - gcc
-  - clang
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.8
-    packages:
-    - g++-6
-    - clang-3.8
-install:
-- "[ $CXX = g++ ] && export CXX=g++-6 || true"
-- "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
-script:
-  - make
-  - make test
+
+# addons:
+#   apt:
+#     sources:
+#       - ubuntu-toolchain-r-test
+#       - llvm-toolchain-precise-3.8
+#     packages:
+#       - g++-6
+#       - clang-3.8
+# install:
+#   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
+#   - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
+
+before_script:
+  # create a build folder for the out-of-source build
+  - mkdir build
+  # switch to build directory
+  - cd build
+  # run cmake; here we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  - cmake ..
+
+jobs:
+  include:
+    - stage: Compile
+      script:
+        - make
+
+    - stage: Test
+      script:
+        - make test
+
+    - stage: Package
+      script:
+        - cd build &&	cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+        - make
+        - make install
