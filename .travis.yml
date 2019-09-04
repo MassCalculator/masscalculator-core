@@ -47,7 +47,7 @@ jobs:
 
     - stage: Test
       script:
-        - make test
+        - make && make test
 
     - stage: Package
       script:
