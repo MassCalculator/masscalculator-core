@@ -44,10 +44,19 @@ namespace MassCalculator
     enum class Type : uint8_t
     {
       BEGIN = 0,
-      Cylinder = BEGIN,
+      SquareBar = BEGIN,
+      Bar,
+      Cylinder,
+      SquareTubing,
       Pipe,
-      Hexagon,
-      Octagon,
+      Ellipse,
+      TBar,
+      Beam,
+      Channel,
+      Angle,
+      HexagonBar,
+      OctagonBar,
+      Sheet,
       UNSPECIFIED,
       END
     };
@@ -56,10 +65,19 @@ namespace MassCalculator
     {
         switch(type)
         {
+            case Type::SquareBar: os << "SquareBar"; break;
+            case Type::Bar: os << "Bar"; break;
             case Type::Cylinder: os << "Cylinder"; break;
+            case Type::SquareTubing: os << "SquareTubing"; break;
             case Type::Pipe: os << "Pipe"; break;
-            case Type::Hexagon: os << "Hexagon"; break;
-            case Type::Octagon: os << "Octagon"; break;
+            case Type::Ellipse: os << "Ellipse"; break;
+            case Type::TBar: os << "TBar"; break;
+            case Type::Beam: os << "Beam"; break;
+            case Type::Channel: os << "Channel"; break;
+            case Type::Angle: os << "Angle"; break;
+            case Type::HexagonBar: os << "HexagonBar"; break;
+            case Type::OctagonBar: os << "OctagonBar"; break;
+            case Type::Sheet: os << "Sheet"; break;
             case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
             default: os << "Name cannot be found";
         }

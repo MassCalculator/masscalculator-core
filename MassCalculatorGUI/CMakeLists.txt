@@ -6,6 +6,7 @@ set(PIC_DIR ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/picture)
 
 # System dependencies
 #find_package(OpenGL REQUIRED)
+# https://code.qt.io/cgit/qt/qt3d.git/tree/examples/qt3d/basicshapes-cpp?h=5.13
 
 # Next lines needed for building all Qt projects
 find_package( Qt5 COMPONENTS REQUIRED Core Gui Widgets )
