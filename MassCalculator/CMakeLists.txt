@@ -30,7 +30,7 @@ set( SRC
   src/materials/copper.cpp
   src/materials/magnesium.cpp
   src/materials/nickel.cpp
-  #src/materials/plastic.cpp
+  src/materials/plastic.cpp
   src/materials/stainless_steel.cpp
   src/materials/steel.cpp
   src/materials/titanium.cpp

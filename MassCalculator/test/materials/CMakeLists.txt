@@ -137,6 +137,23 @@ add_test(
   COMMAND nickel_test
 )
 
+#Plastic test
+add_executable(
+  plastic_test
+  plastic_test.cpp
+)
+
+target_link_libraries(
+  plastic_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME PlasticTest
+  COMMAND plastic_test
+)
+
 #StainlessSteel test
 add_executable(
   stainless_steel_test
@@ -150,7 +167,7 @@ target_link_libraries(
 )
 
 add_test(
-  NAME StainlessSteel
+  NAME StainlessSteelTest
   COMMAND stainless_steel_test
 )
 
