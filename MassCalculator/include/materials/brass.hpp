@@ -34,7 +34,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -61,7 +61,7 @@ namespace MassCalculator
       double thermal_conductivity_{0};
       double mod_of_elasticity_tension_{0};
       double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+    }Properties_t;
 
     public:
     /**
@@ -255,6 +255,12 @@ namespace MassCalculator
      * @return false  If the specifications of propertie failed to set
      */
     bool setPropertieSpecs(Type type);
+
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
     /**
      * @brief Lua Handler object to get the config for metals from LuaScript is necessary

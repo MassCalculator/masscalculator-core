@@ -27,11 +27,13 @@ int main(/*int argc, char** argv*/)
                                                       Material<Aluminium>>>(shape, 
                                                                             material);
 
-  std::cout << "Object: " << *obj << std::endl;
+  double r, g, b;
 
-  std::cout << "Material: " << *material << std::endl;
+  // std::cout << "Object: " << *obj << std::endl;
 
-  std::cout << "Shape: " << *shape << std::endl;
+  // std::cout << "Material: " << *material << std::endl;
+
+  // std::cout << "Shape: " << *shape << std::endl;
 
   return 0;
 }

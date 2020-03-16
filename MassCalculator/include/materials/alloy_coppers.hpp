@@ -27,7 +27,7 @@ namespace MassCalculator
     const std::string AC_1758Nickel{"AC_1758Nickel"};
     const std::string AC_MoldmaxBeCu{"AC_MoldmaxBeCu"};
     const std::string AC_ProthermBeCu{"AC_ProthermBeCu"};
-    //TODO: Check this, for the paths after install the library
+    // @@TODO: Check this, for the paths after install the library
     #ifdef DEBUG
       const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #else
@@ -45,7 +45,7 @@ namespace MassCalculator
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * @TODO:Check if this can be moved to the base class, the problem is only in the std::pair<T, Type>, Type cannot be deduced from base to derived
      */
     typedef struct Properties
     {
@@ -79,11 +79,12 @@ namespace MassCalculator
     public:
     /**
      * @brief Enum that holds the AlloyCoppers types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
      */
     enum class Type : uint8_t
     {
       BEGIN = 0,
+      
       /**
        * @brief Tellurium copper also referred to as Alloy 145, Alloy C15400, 145 half-hard tellurium, and TeCu—is a copper-based alloy that contains varying amounts of tellurium and phosphorus. 
        * The tellurium content typically ranges between 0.4–0.7%, while the phosphorus content ranges between 0.004–0.12%.
@@ -338,7 +339,10 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO: Check this method, with typedef, and convert in all places like this
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
     Properties_t specific_properties_;
 
     /**

@@ -4,7 +4,7 @@ AlloyCoppers =
   {
     AC_145Tellvirum = 
     {
-      UseLuaConfig = false
+      UseLuaConfig = false,
       type = "AC_145Tellvirum",
       color = "Metallic",
       density = 2.71,
@@ -18,7 +18,7 @@ AlloyCoppers =
 
     AC_194Iron = 
     {
-      UseLuaConfig = false
+      UseLuaConfig = false,
       type = "AC_194Iron",
       color = "Metallic",
       density = 2.71,

@@ -16,5 +16,3 @@ Aluminium = {
     }
   }
 }   
-
--- bool use_blur = lua_state.get<bool>("config.render.effects.blur");
