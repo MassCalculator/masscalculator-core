@@ -2,7 +2,7 @@
 
 namespace MassCalculator
 {
-  namespace HelperClasses
+  namespace HelperFunctions
   {
     bool initLuaConfig(LuaScriptHandler &&lua_state, const std::string &config_path)
     {
@@ -33,5 +33,5 @@ namespace MassCalculator
     {
       lua_state->closeScript();
     }
-  }// End namespace HelperClasses
+  }// End namespace HelperFunctions
 }// End namespace MassCalculator

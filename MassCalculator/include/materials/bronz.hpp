@@ -2,9 +2,6 @@
 #define ___BRONZ_H___
 #include "material.hpp"
 
-#include "helper_functions.hpp"
-using namespace MassCalculator::HelperClasses;
-
 /**
  * @brief Default namespace
  * 

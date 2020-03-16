@@ -4,6 +4,7 @@
 #include <string>
 
 #include "lua_handler.hpp"
+using namespace MassCalculator::HelperClasses;
 
 /**
  * @brief Default namespace
@@ -15,7 +16,7 @@ namespace MassCalculator
    * @brief HelperClasses namespace
    * 
    */
-  namespace HelperClasses
+  namespace HelperFunctions
   {
     bool initLuaConfig(LuaScriptHandler &&lua_state, const std::string &config_path);
 
@@ -31,6 +32,6 @@ namespace MassCalculator
 
     template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
     template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
-  }// End namespace HelperClasses
+  }// End namespace HelperFunctions
 }// End namespace MassCalculator
 #endif

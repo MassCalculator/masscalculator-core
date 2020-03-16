@@ -2,9 +2,6 @@
 #define ___ALLOY_COPPERS_H___
 #include "material.hpp"
 
-#include "helper_functions.hpp"
-using namespace MassCalculator::HelperClasses;
-
 /**
  * @brief Default namespace
  * 
@@ -88,9 +85,9 @@ namespace MassCalculator
     {
       BEGIN = 0,
       /**
-       * @brief This grade is commercially pure AlloyCoppers. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
-       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
-       * food processing industries.
+       * @brief Tellurium copper also referred to as Alloy 145, Alloy C15400, 145 half-hard tellurium, and TeCu—is a copper-based alloy that contains varying amounts of tellurium and phosphorus. 
+       * The tellurium content typically ranges between 0.4–0.7%, while the phosphorus content ranges between 0.004–0.12%.
+       * Tellurium copper demonstrates good electrical and thermal conductivity, good formability and high machinability. These properties make it suitable for a wide range of industrial applications.
        * 
        */
       AC_145Tellvirum = BEGIN,

@@ -10,7 +10,8 @@ find_package(DXFLib PATHS 3rdParty/CMakeModules/)
 include_directories(
   include/
   3rdParty/include/
-  helper_classes
+  helper_classes/
+  helper_functions/
   ${LUA_INCLUDE_DIR}
   ${DXFLib_INCLUDE_DIRS}
 )
@@ -58,7 +59,10 @@ set( interface_src
 
 set ( helper_classes_src
   helper_classes/lua_handler.cpp
-  helper_classes/helper_functions.cpp
+)
+
+set ( helper_functions_src
+  helper_functions/helper_functions.cpp
 )
 
 set( SRC
@@ -66,6 +70,7 @@ set( SRC
   ${material_src}
   ${interface_src}
   ${helper_classes_src}
+  ${helper_functions_src}
 )
 
 # set libto build itself

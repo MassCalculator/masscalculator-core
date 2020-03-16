@@ -2,9 +2,6 @@
 #define ___STAINLESS_STEEL_H___
 #include "material.hpp"
 
-#include "helper_functions.hpp"
-using namespace MassCalculator::HelperClasses;
-
 /**
  * @brief Default namespace
  * 

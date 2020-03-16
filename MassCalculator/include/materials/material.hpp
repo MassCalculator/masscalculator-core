@@ -13,6 +13,12 @@
 #define ___MATERIAL_H___
 #include <iostream>
 
+#include "../../helper_functions/helper_functions.hpp"
+using namespace MassCalculator::HelperFunctions;
+
+#include "../../helper_classes/lua_handler.hpp"
+using namespace MassCalculator::HelperClasses;
+
 /**
  * @brief Default namespace
  * 
