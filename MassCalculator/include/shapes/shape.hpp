@@ -27,6 +27,24 @@
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string  SquareBar{"SquareBar"};
+    const std::string  Bar{"Bar"};
+    const std::string  Cylinder{"Cylinder"};
+    const std::string  SquareTubing{"SquareTubing"};
+    const std::string  Pipe{"Pipe"};
+    const std::string  Ellipse{"Ellipse"};
+    const std::string  TBar{"TBar"};
+    const std::string  Beam{"Beam"};
+    const std::string  Channel{"Channel"};
+    const std::string  Angle{"Angle"};
+    const std::string  HexagonBar{"HexagonBar"};
+    const std::string  OctagonBar{"OctagonBar"};
+    const std::string  Sheet{"Sheet"};
+    const std::string  S_UNSPECIFIED{"S_UNSPECIFIED"};
+  }
+
   /**
    * @brief Template base class Shape
    * 
@@ -65,39 +83,140 @@ namespace MassCalculator
     {
         switch(type)
         {
-            case Type::SquareBar: os << "SquareBar"; break;
-            case Type::Bar: os << "Bar"; break;
-            case Type::Cylinder: os << "Cylinder"; break;
-            case Type::SquareTubing: os << "SquareTubing"; break;
-            case Type::Pipe: os << "Pipe"; break;
-            case Type::Ellipse: os << "Ellipse"; break;
-            case Type::TBar: os << "TBar"; break;
-            case Type::Beam: os << "Beam"; break;
-            case Type::Channel: os << "Channel"; break;
-            case Type::Angle: os << "Angle"; break;
-            case Type::HexagonBar: os << "HexagonBar"; break;
-            case Type::OctagonBar: os << "OctagonBar"; break;
-            case Type::Sheet: os << "Sheet"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
+          case Type::SquareBar: os << Constants::SquareBar; break;
+          case Type::Bar: os << Constants::Bar; break;
+          case Type::Cylinder: os << Constants::Cylinder; break;
+          case Type::SquareTubing: os << Constants::SquareTubing; break;
+          case Type::Pipe: os << Constants::Pipe; break;
+          case Type::Ellipse: os << Constants::Ellipse; break;
+          case Type::TBar: os << Constants::TBar; break;
+          case Type::Beam: os << Constants::Beam; break;
+          case Type::Channel: os << Constants::Channel; break;
+          case Type::Angle: os << Constants::Angle; break;
+          case Type::HexagonBar: os << Constants::HexagonBar; break;
+          case Type::OctagonBar: os << Constants::OctagonBar; break;
+          case Type::Sheet: os << Constants::Sheet; break;
+          case Type::UNSPECIFIED: os << Constants::S_UNSPECIFIED; break;
+          default: os << "Name cannot be found";
         }
         return os;
     }
+#if 0
 
-    Shape(void) = default;
+static_cast<TShapeType*>(this)->getType()
+
+#endif
+    Shape(void)
+    {
+      type_ = formatStringToEnum(thisTShapeType().getType());
+
+      switch(type_)
+      {
+        case Type::SquareBar:
+        {
+          std::cout << "SquareBar Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Bar:
+        {
+          std::cout << "Bar Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Cylinder:
+        {
+          std::cout << "Cylinder Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::SquareTubing:
+        {
+          std::cout << "SquareTubing Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Pipe:
+        {
+          std::cout << "Pipe Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Ellipse:
+        {
+          std::cout << "Ellipse Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::TBar:
+        {
+          std::cout << "TBar Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Beam:
+        {
+          std::cout << "Beam Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Channel:
+        {
+          std::cout << "Channel Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Angle:
+        {
+          std::cout << "Angle Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::HexagonBar:
+        {
+          std::cout << "HexagonBar Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::OctagonBar:
+        {
+          std::cout << "OctagonBar Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::Sheet:
+        {
+          std::cout << "Sheet Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        case Type::UNSPECIFIED:
+        {
+          std::cout << "UNSPECIFIED Set Case\n";
+          break;
+          [[fallthrough]];
+        }
+        default:
+        {
+          std::cout << "Default Set Case: " << type_ << std::endl;
+          break;
+          [[fallthrough]];
+        }
+      }
+    }
 
     //TODO: Check the other Cylinder constructor, and add it here, also use the enum, and if cylinder is selected, allow to use this
     //Also add this kind of style for other shapes too, so we can choose between constructor with args, or empty constructor and then set the sizes
     //Cylinder(double diameter, double length);
 
-    /**
-     * @brief Construct a new Shape object
-     * 
-     */
-    Shape(Type type)
-    {
-      static_cast<TShapeType*>(this)(type);
-    };
+    // /**
+    //  * @brief Construct a new Shape object
+    //  * 
+    //  */
+    // Shape(Type type)
+    // {
+    //   static_cast<TShapeType*>(this)(type);
+    // };
 
     /**
      * @brief Set the Size object
@@ -123,6 +242,16 @@ namespace MassCalculator
     constexpr double getRadius(void)
     {
       return{static_cast<TShapeType*>(this)->getRadius()}; 
+    }
+
+    /**
+     * @brief Get the Type object
+     * 
+     * @return const string Type of the Shape from Derived class
+     */
+    constexpr std::string getType(void)
+    {
+      return{static_cast<TShapeType*>(this)->getType()};
     }
 
     /**
@@ -193,7 +322,7 @@ namespace MassCalculator
      * @brief Set move constructor to default
      * 
      */
-    Shape(Shape&&) = default;
+    public: Shape(Shape&&) = default;
 
     /**
      * @brief Delete assignment operator
@@ -205,12 +334,55 @@ namespace MassCalculator
      */
     Shape& operator=(Shape&&) = default;
 
+    Type formatStringToEnum(std::string format) 
+    {
+      return previewFormatToEnum(format);
+    }
+
+    Type previewFormatToEnum(const std::string format) 
+    {
+      return
+        !format.c_str() ?
+          Type::UNSPECIFIED :
+          !format.compare(Constants::SquareBar) ?
+            Type::SquareBar :
+          !format.compare(Constants::Bar) ?
+            Type::Bar :
+          !format.compare(Constants::Cylinder) ?
+            Type::Cylinder :
+          !format.compare(Constants::SquareTubing) ?
+            Type::SquareTubing :
+          !format.compare(Constants::Pipe) ?
+            Type::Pipe :
+          !format.compare(Constants::Ellipse) ?
+            Type::Ellipse :
+          !format.compare(Constants::TBar) ?
+            Type::TBar :
+          !format.compare(Constants::Beam) ?
+            Type::Beam :
+          !format.compare(Constants::Channel) ?
+            Type::Channel :
+          !format.compare(Constants::Angle) ?
+            Type::Angle :
+          !format.compare(Constants::HexagonBar) ?
+            Type::HexagonBar :
+          !format.compare(Constants::OctagonBar) ?
+            Type::OctagonBar :
+          !format.compare(Constants::Sheet) ?
+            Type::Sheet :
+          !format.compare(Constants::S_UNSPECIFIED) ?
+            Type::UNSPECIFIED : 
+        Type::UNSPECIFIED;
+    }
+
     /**
      * @brief Function to return "this" derived object
      * 
      * @return const TShapeType& 
      */
     const TShapeType& thisTShapeType() const { return *static_cast<const TShapeType*>(this); }
+
+    Type type_;
 
   };
 
@@ -221,26 +393,44 @@ namespace MassCalculator
       enum class Type : uint8_t
       {
         BEGIN = 0,
-        Cylinder = BEGIN,
+        SquareBar = BEGIN,
+        Bar,
+        Cylinder,
+        SquareTubing,
         Pipe,
-        Hexagon,
-        Octagon,
+        Ellipse,
+        TBar,
+        Beam,
+        Channel,
+        Angle,
+        HexagonBar,
+        OctagonBar,
+        Sheet,
         UNSPECIFIED,
         END
       };
 
       friend std::ostream& operator<<(std::ostream& os, Type type)
       {
-          switch(type)
-          {
-              case Type::Cylinder: os << "Cylinder"; break;
-              case Type::Pipe: os << "Pipe"; break;
-              case Type::Hexagon: os << "Hexagon"; break;
-              case Type::Octagon: os << "Octagon"; break;
-              case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-              default: os << "Name cannot be found";
-          }
-          return os;
+        switch(type)
+        {
+          case Type::SquareBar: os << Constants::SquareBar; break;
+          case Type::Bar: os << Constants::Bar; break;
+          case Type::Cylinder: os << Constants::Cylinder; break;
+          case Type::SquareTubing: os << Constants::SquareTubing; break;
+          case Type::Pipe: os << Constants::Pipe; break;
+          case Type::Ellipse: os << Constants::Ellipse; break;
+          case Type::TBar: os << Constants::TBar; break;
+          case Type::Beam: os << Constants::Beam; break;
+          case Type::Channel: os << Constants::Channel; break;
+          case Type::Angle: os << Constants::Angle; break;
+          case Type::HexagonBar: os << Constants::HexagonBar; break;
+          case Type::OctagonBar: os << Constants::OctagonBar; break;
+          case Type::Sheet: os << Constants::Sheet; break;
+          case Type::UNSPECIFIED: os << Constants::S_UNSPECIFIED; break;
+          default: os << "Name cannot be found";
+        }
+        return os;
       }
   };
 

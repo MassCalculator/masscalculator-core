@@ -2,12 +2,25 @@
 
 namespace MassCalculator
 {
+  AlloySteels::AlloySteels(void)
+  {
+    this->initLuaScript();
+  }
+
   AlloySteels::AlloySteels(AlloySteels::Type type)
   {
+    this->initLuaScript();
+
     if(!setType(type))
     {
       std::cerr << "Construction of the object failed\n";
     }
+  }
+
+  bool AlloySteels::initLuaScript(void)
+  {
+    this->lua_state_.openScript(Constants::LuaConfigPath);
+    return true;
   }
 
   bool AlloySteels::setType(AlloySteels::Type type)
@@ -53,7 +66,7 @@ namespace MassCalculator
 
   double AlloySteels::getSpecificThermalConductivity(void) const
   {
-    return{this->specific_properties_.thermal_conductivity};
+    return{this->specific_properties_.thermal_conductivity_};
   }
 
   double AlloySteels::getSpecificModOfElasticityTension(void) const
@@ -79,7 +92,7 @@ namespace MassCalculator
         this->specific_properties_.gravity_                    = {2.83};
         this->specific_properties_.melting_point_              = {537.778};
         this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.thermal_conductivity_       = {990.0};
         this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
         this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("AlloySteels.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
@@ -95,7 +108,7 @@ namespace MassCalculator
         this->specific_properties_.gravity_                    = {2.83};
         this->specific_properties_.melting_point_              = {537.778};
         this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.thermal_conductivity_       = {990.0};
         this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
         this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
@@ -109,7 +122,7 @@ namespace MassCalculator
         this->specific_properties_.gravity_                    = {2.83};
         this->specific_properties_.melting_point_              = {537.778};
         this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity        = {990.0};
+        this->specific_properties_.thermal_conductivity_       = {990.0};
         this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
         this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
         break;
@@ -124,25 +137,6 @@ namespace MassCalculator
 
     return true;
   }
-
-// //TODO: add as a value the filepath for AlloySteels config
-//   bool AlloySteels::checkFromLuaConfig(std::string value)
-//   {
-//     if(this->lua_state_.get<bool>(value.c_str()))
-//     {
-//       return true;
-//     }
-//     else
-//     {
-//       return false;
-//     }
-//   }
-
-//   template<typename TLuaReturnType>
-//   constexpr TLuaReturnType AlloySteels::getFromLuaConfig(std::string value)
-//   {
-//     return lua_state_.get<TLuaReturnType>(value.c_str());
-//   }
 
   std::ostream &operator << (std::ostream &os, const AlloySteels &obj)
   {

@@ -5,6 +5,11 @@
 #include "materials/materials.hh"
 #include "shapes/shapes.hh"
 
+#include "../3rdParty/include/units.h"
+
+using namespace units::literals;
+using namespace units::mass;
+
 /**
  * @brief Default namespace
  * 
@@ -58,6 +63,10 @@ namespace Interface
     {
       object_properties_.object_weight_ = shape->getVolume() * material->getSpecificDensity();
       //Calculate here all the data for the moment, and fill the struct
+
+      //TODO: Mergim, change all types from double to specific type, using units.h library
+      kilogram_t test;
+      test = 5_kg;
 
       shape->setSize(5, 5);
     };

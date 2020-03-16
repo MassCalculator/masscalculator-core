@@ -2,8 +2,8 @@
 #define ___ZINC_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
+#include "helper_functions.hpp"
+using namespace MassCalculator::HelperClasses;
 
 /**
  * @brief Default namespace
@@ -11,6 +11,19 @@
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string  Z_190{"Z_190"};
+    const std::string  Z_310{"Z_310"};
+    const std::string  Z_320{"Z_320"};
+    const std::string  Z_500{"Z_500"};
+    const std::string  Z_700{"Z_700"};
+    const std::string  Z_720{"Z_720"};
+    const std::string  Z_750{"Z_750"};
+
+    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/zinc_config.lua"};
+  }
+
   /**
    * @brief Class Zinc, that holds all the nessesary information for Zinc and it's types therefore we can use in the interface
    * 
@@ -31,22 +44,23 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", Zinc::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Zinc::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
       double melting_point_{0};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
+      double thermal_conductivity_{0};
       double mod_of_elasticity_tension_{0};
       double mod_of_elasticity_torsion_{0};
     }specific_properties_;
@@ -121,32 +135,38 @@ namespace MassCalculator
 
     friend std::ostream& operator<<(std::ostream& os, Type type)
     {
-        switch(type)
-        {
-            case Type::Z_190: os << "Z_190"; break;
-            case Type::Z_310: os << "Z_310"; break;
-            case Type::Z_320: os << "Z_320"; break;
-            case Type::Z_500: os << "Z_500"; break;
-            case Type::Z_700: os << "Z_700"; break;
-            case Type::Z_720: os << "Z_720"; break;
-            case Type::Z_750: os << "Z_750"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
-        }
-        return os;
+      switch(type)
+      {
+        case Type::Z_190: os << Constants::Z_190; break;
+        case Type::Z_310: os << Constants::Z_310; break;
+        case Type::Z_320: os << Constants::Z_320; break;
+        case Type::Z_500: os << Constants::Z_500; break;
+        case Type::Z_700: os << Constants::Z_700; break;
+        case Type::Z_720: os << Constants::Z_720; break;
+        case Type::Z_750: os << Constants::Z_750; break;
+        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        default: os << "Name cannot be found";
+      }
+      return os;
     }
 
     /**
      * @brief Construct a new Zinc object
      * 
      */
-    Zinc(void) = default;
+    Zinc(void);
 
     /**
      * @brief Construct a new Zinc object and specify the type
      * 
      */
     Zinc(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -264,16 +284,11 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
-
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
 
   };
 }//end namespace MassCalculator

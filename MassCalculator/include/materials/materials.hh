@@ -19,7 +19,7 @@
 #define ___MATERIALS_HH___
   // #include "alloy_coppers.hpp"
   // #include "alloy_steels.hpp"
-  #include "aluminium.hpp"
+  // #include "aluminium.hpp"
   // #include "brass.hpp"
   // #include "bronz.hpp"
   // #include "copper.hpp"
@@ -29,6 +29,6 @@
   // #include "stainless_steel.hpp"
   // #include "steel.hpp"
   // #include "titanium.hpp"
-  // #include "aluminium.hpp"
+  #include "aluminium.hpp"
   // #include "zinc.hpp"
 #endif

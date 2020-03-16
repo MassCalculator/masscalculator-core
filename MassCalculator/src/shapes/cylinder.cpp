@@ -46,6 +46,11 @@ namespace MassCalculator
     return (2 * M_PI * this->getRadius() * (this->getRadius() + this->getLength()));
   }
 
+  std::string Cylinder::getType(void) const
+  {
+    return this->properties_.type_.first;
+  }
+
   std::ostream &operator << (std::ostream &os, const Cylinder &obj)
   {
     os << "  Cylinder object properties: " "\n"

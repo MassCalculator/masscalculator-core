@@ -63,7 +63,7 @@ TEST_F(AluminiumTest, GetSpecificTypeTest)
 TEST_F(AluminiumTest, GetSpecificColorTest)
 {
   EXPECT_EQ( std::string{"Metallic"}, material_A_1100.getSpecificColor());
-  EXPECT_EQ( std::string{"Metallic"}, material_A_2011.getSpecificColor());
+  EXPECT_EQ( std::string{"DarkTone"}, material_A_2011.getSpecificColor());
   EXPECT_EQ( std::string{"Metallic"}, material_A_2014.getSpecificColor());
   EXPECT_EQ( std::string{"Metallic"}, material_A_2024.getSpecificColor());
   EXPECT_EQ( std::string{"Metallic"}, material_A_3003.getSpecificColor());
@@ -76,7 +76,7 @@ TEST_F(AluminiumTest, GetSpecificColorTest)
 TEST_F(AluminiumTest, GetSpecificDensityTest)
 {
   EXPECT_EQ( double{2.71}, material_A_1100.getSpecificDensity());
-  EXPECT_EQ( double{2.71}, material_A_2011.getSpecificDensity());
+  EXPECT_EQ( double{2.82}, material_A_2011.getSpecificDensity());
   EXPECT_EQ( double{2.71}, material_A_2014.getSpecificDensity());
   EXPECT_EQ( double{2.71}, material_A_2024.getSpecificDensity());
   EXPECT_EQ( double{2.71}, material_A_3003.getSpecificDensity());
@@ -102,7 +102,7 @@ TEST_F(AluminiumTest, GetSpecificGravityTest)
 TEST_F(AluminiumTest, GetSpecificMeltingPointTest)
 {
   EXPECT_EQ( double{537.778}, material_A_1100.getSpecificMeltingPoint());
-  EXPECT_EQ( double{537.778}, material_A_2011.getSpecificMeltingPoint());
+  EXPECT_EQ( double{1000.0}, material_A_2011.getSpecificMeltingPoint());
   EXPECT_EQ( double{537.778}, material_A_2014.getSpecificMeltingPoint());
   EXPECT_EQ( double{537.778}, material_A_2024.getSpecificMeltingPoint());
   EXPECT_EQ( double{537.778}, material_A_3003.getSpecificMeltingPoint());
@@ -141,7 +141,7 @@ TEST_F(AluminiumTest, GetSpecificThermalConductivityTest)
 TEST_F(AluminiumTest, GetSpecificModOfElasticityTensionTest)
 {
   EXPECT_EQ( double{9.9}, material_A_1100.getSpecificModOfElasticityTension());
-  EXPECT_EQ( double{9.9}, material_A_2011.getSpecificModOfElasticityTension());
+  EXPECT_EQ( double{10.2}, material_A_2011.getSpecificModOfElasticityTension());
   EXPECT_EQ( double{9.9}, material_A_2014.getSpecificModOfElasticityTension());
   EXPECT_EQ( double{9.9}, material_A_2024.getSpecificModOfElasticityTension());
   EXPECT_EQ( double{9.9}, material_A_3003.getSpecificModOfElasticityTension());
@@ -154,7 +154,7 @@ TEST_F(AluminiumTest, GetSpecificModOfElasticityTensionTest)
 TEST_F(AluminiumTest, GetSpecificModOfElasticityTorsionTest)
 {
   EXPECT_EQ( double{3.8}, material_A_1100.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ( double{3.8}, material_A_2011.getSpecificModOfElasticityTorsion());
+  EXPECT_EQ( double{3.85}, material_A_2011.getSpecificModOfElasticityTorsion());
   EXPECT_EQ( double{3.8}, material_A_2014.getSpecificModOfElasticityTorsion());
   EXPECT_EQ( double{3.8}, material_A_2024.getSpecificModOfElasticityTorsion());
   EXPECT_EQ( double{3.8}, material_A_3003.getSpecificModOfElasticityTorsion());

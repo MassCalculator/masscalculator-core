@@ -14,12 +14,12 @@
  * @brief Construct a new TEST object
  * 
  */
-TEST_F(AlloyCoppers, TypeConstructorTest)
+TEST_F(AlloyCoppersTest, TypeConstructorTest)
 {
   EXPECT_DOUBLE_EQ( 5.0, 5.0);
 }
 
-TEST_F(AlloyCoppers, GetSpecificTypeTest)
+TEST_F(AlloyCoppersTest, GetSpecificTypeTest)
 {
   std::pair<std::string, MassCalculator::AlloyCoppers::Type> 
     type{"AC_145Tellvirum", MassCalculator::AlloyCoppers::Type::AC_145Tellvirum};
@@ -28,42 +28,42 @@ TEST_F(AlloyCoppers, GetSpecificTypeTest)
   EXPECT_EQ( type.second, material_AC_145Tellvirum.getType().second);
 }
 
-TEST_F(AlloyCoppers, GetSpecificColorTest)
+TEST_F(AlloyCoppersTest, GetSpecificColorTest)
 {
   EXPECT_EQ( std::string{"Metallic"}, material_AC_145Tellvirum.getSpecificColor());
 }
 
-TEST_F(AlloyCoppers, GetSpecificDensityTest)
+TEST_F(AlloyCoppersTest, GetSpecificDensityTest)
 {
   EXPECT_EQ( double{2.71}, material_AC_145Tellvirum.getSpecificDensity());
 }
 
-TEST_F(AlloyCoppers, GetSpecificGravityTest)
+TEST_F(AlloyCoppersTest, GetSpecificGravityTest)
 {
   EXPECT_EQ( double{2.83}, material_AC_145Tellvirum.getSpecificGravity());
 }
 
-TEST_F(AlloyCoppers, GetSpecificMeltingPointTest)
+TEST_F(AlloyCoppersTest, GetSpecificMeltingPointTest)
 {
   EXPECT_EQ( double{537.778}, material_AC_145Tellvirum.getSpecificMeltingPoint());
 }
 
-TEST_F(AlloyCoppers, GetSpecificPoissonsRatioTest)
+TEST_F(AlloyCoppersTest, GetSpecificPoissonsRatioTest)
 {
   EXPECT_EQ( double{0.33}, material_AC_145Tellvirum.getSpecificPoissonsRatio());
 }
 
-TEST_F(AlloyCoppers, GetSpecificThermalConductivityTest)
+TEST_F(AlloyCoppersTest, GetSpecificThermalConductivityTest)
 {
   EXPECT_EQ( double{990.0}, material_AC_145Tellvirum.getSpecificThermalConductivity());
 }
 
-TEST_F(AlloyCoppers, GetSpecificModOfElasticityTensionTest)
+TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest)
 {
   EXPECT_EQ( double{9.9}, material_AC_145Tellvirum.getSpecificModOfElasticityTension());
 }
 
-TEST_F(AlloyCoppers, GetSpecificModOfElasticityTorsionTest)
+TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTorsionTest)
 {
   EXPECT_EQ( double{3.8}, material_AC_145Tellvirum.getSpecificModOfElasticityTorsion());
 }

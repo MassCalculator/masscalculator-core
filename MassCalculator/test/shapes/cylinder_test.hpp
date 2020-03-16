@@ -12,7 +12,7 @@ class CylinderTest : public ::testing::Test
   CylinderTest() 
   {
     // You can do set-up work for each test here.
-    cylinder_.setSize(0.1, 1);
+    this->cylinder_.setSize(0.1, 1);
   }
 
   ~CylinderTest() override 

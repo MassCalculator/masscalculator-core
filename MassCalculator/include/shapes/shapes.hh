@@ -10,5 +10,6 @@
  */
 #ifndef ___SHAPES_HH___
 #define ___SHAPES_HH___
+  #include "shape.hpp" //The macro inside will exclude the include in all bellow files for this header
   #include "cylinder.hpp"
 #endif

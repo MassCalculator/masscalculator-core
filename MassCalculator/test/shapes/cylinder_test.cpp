@@ -24,6 +24,11 @@ TEST_F(CylinderTest, GetRadiusTest)
   EXPECT_DOUBLE_EQ( double{0.05}, cylinder_.getRadius());
 }
 
+TEST_F(CylinderTest, GetTypeTest)
+{
+  EXPECT_EQ( "Cylinder", cylinder_.getType());
+}
+
 TEST_F(CylinderTest, GetDiameterTest)
 {
   EXPECT_DOUBLE_EQ( double{0.1}, cylinder_.getDiameter());

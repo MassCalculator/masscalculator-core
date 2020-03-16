@@ -19,6 +19,28 @@
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    //Material type constants
+    const std::string  AlloyCoppers{"AlloyCoppers"};
+    const std::string  AlloySteels{"AlloySteels"};
+    const std::string  Aluminium{"Aluminium"};
+    const std::string  Brass{"Brass"};
+    const std::string  Bronz{"Bronz"};
+    const std::string  Copper{"Copper"};
+    const std::string  Magnesium{"Magnesium"};
+    const std::string  Nickel{"Nickel"};
+    const std::string  Plastic{"Plastic"};
+    const std::string  StainlessSteel{"StainlessSteel"};
+    const std::string  Steel{"Steel"};
+    const std::string  Titanium{"Titanium"};
+    const std::string  UNSPECIFIED{"UNSPECIFIED"};
+
+    //Color constants
+    const std::string  Metallic{"Metallic"};
+    const std::string  DarkTone{"DarkTone"};
+  }
+
   /**
    * @brief Template base class Material
    * 
@@ -45,6 +67,16 @@ namespace MassCalculator
     Material(Type type)
     {
       static_cast<TMaterialType*>(this)(type);
+    }
+
+    /**
+     * @brief Init the Lua config file
+     * 
+     */
+    bool initLuaScript()
+    {
+      static_cast<TMaterialType*>(this)->initLuaScript();
+      return true;
     }
 
     /**
@@ -178,7 +210,7 @@ namespace MassCalculator
      * @brief Set move constructor to default
      * 
      */
-    Material(Material&&) = default;
+    public: Material(Material&&) = default;
 
     /**
      * @brief Delete assignment operator
