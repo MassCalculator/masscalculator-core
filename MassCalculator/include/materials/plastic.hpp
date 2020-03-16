@@ -12,7 +12,7 @@ namespace MassCalculator
   {
     const std::string  P_ABS{"ABS"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/plastic_config.lua"};
+    const std::string PlasticLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/plastic_config.lua"};
   }
 
   /**

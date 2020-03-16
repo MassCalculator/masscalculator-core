@@ -16,7 +16,7 @@ namespace MassCalculator
     const std::string  C_110{"C_110"};
     const std::string  C_122{"C_122"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/copper_config.lua"};
+    const std::string CopperLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/copper_config.lua"};
   }
 
   /**

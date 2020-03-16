@@ -16,7 +16,7 @@ namespace MassCalculator
     const std::string  N_230{"N_230"};
     const std::string  N_400{"N_400"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/nickel_config.lua"};
+    const std::string NickelLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/nickel_config.lua"};
   }
 
   /**

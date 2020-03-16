@@ -20,7 +20,7 @@ namespace MassCalculator
     const std::string A_6063{"A_6063"};
     const std::string A_7075{"A_7075"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/aluminium_config.lua"};
+    const std::string AluminiumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/aluminium_config.lua"};
   }
 
   /**

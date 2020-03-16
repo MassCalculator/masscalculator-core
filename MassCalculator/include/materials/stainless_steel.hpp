@@ -24,7 +24,7 @@ namespace MassCalculator
     const std::string  SS_15_5{"SS_15_5"};
     const std::string  SS_17_4{"SS_17_4"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/stainless_steel_config.lua"};
+    const std::string StainlessSteelLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/stainless_steel_config.lua"};
   }
 
   /**

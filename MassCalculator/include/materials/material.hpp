@@ -199,11 +199,7 @@ namespace MassCalculator
      * 
      */
     template <typename TMaterial>
-    friend std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
-    {
-      os << "\n" "Material" "\n" << obj.thisTMaterialType();
-      return os;
-    }
+    friend std::ostream &operator << (std::ostream &os, const Material<TMaterialType> &obj);
 
     private:
     /**
@@ -237,8 +233,17 @@ namespace MassCalculator
 
   };
 
-  template <>
-  class Material<int> { };
+  //Specialisation
+  // template <>
+  // class Material<int> { };
+
+  template <typename TMaterial>
+  std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
+  {
+    //TODO: This causes segmentation fault, it works if you comment out headers in materials.hh and you move implementation in the class
+    os << "\n" "Material" "\n" << obj.thisTMaterialType();
+    return os;
+  }
 
 }//end namespace MassCalculator
 #endif

@@ -19,7 +19,7 @@ namespace MassCalculator
 
   bool AlloyCoppers::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::LuaConfigPath);
+    this->lua_state_.openScript(Constants::AlloyCoppersLuaConfigPath);
     return true;
   }
 

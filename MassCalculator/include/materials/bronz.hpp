@@ -30,7 +30,7 @@ namespace MassCalculator
     const std::string B_954Al{"B_954Al"};
     const std::string B_OilLite{"B_OilLite"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/bronz_config.lua"};
+    const std::string BronzLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/bronz_config.lua"};
   }
 
   /**

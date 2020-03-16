@@ -18,7 +18,7 @@ namespace MassCalculator
     const std::string  Z_720{"Z_720"};
     const std::string  Z_750{"Z_750"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/zinc_config.lua"};
+    const std::string ZincLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/zinc_config.lua"};
   }
 
   /**

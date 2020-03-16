@@ -19,7 +19,7 @@ namespace MassCalculator
 
   bool Plastic::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::LuaConfigPath);
+    this->lua_state_.openScript(Constants::PlasticLuaConfigPath);
     return true;
   }
 

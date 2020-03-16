@@ -18,7 +18,7 @@ namespace MassCalculator
     const std::string  S_4140{"S_4140"};
     const std::string  S_A36{"S_A36"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/steel_config.lua"};
+    const std::string SteelLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/steel_config.lua"};
   }
 
   /**

@@ -14,7 +14,7 @@ namespace MassCalculator
     const std::string AS_4140{"AS_4140"};
     const std::string AS_4340{"AS_4340"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_steels_config.lua"};
+    const std::string AlloySteelsLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_steels_config.lua"};
   }
 
   /**

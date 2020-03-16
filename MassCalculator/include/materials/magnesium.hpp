@@ -12,7 +12,7 @@ namespace MassCalculator
   {
     const std::string  M_AZ31B{"M_AZ31B"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/magnesium_config.lua"};
+    const std::string MagnesiumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/magnesium_config.lua"};
   }
 
   /**

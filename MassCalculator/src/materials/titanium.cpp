@@ -30,7 +30,7 @@ namespace MassCalculator
 
   bool Titanium::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::LuaConfigPath);
+    this->lua_state_.openScript(Constants::TitaniumLuaConfigPath);
     return true;
   }
 

@@ -19,7 +19,7 @@ namespace MassCalculator
     const std::string B_385{"B_385"};
     const std::string B_464{"B_464"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/brass_config.lua"};
+    const std::string BrassLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/brass_config.lua"};
   }
 
   /**

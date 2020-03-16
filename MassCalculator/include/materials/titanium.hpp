@@ -15,7 +15,7 @@ namespace MassCalculator
     const std::string  T_Grade4{"T_Grade4"};
     const std::string  T_Grade5{"T_Grade5"};
 
-    const std::string LuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/titanium_config.lua"};
+    const std::string TitaniumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/titanium_config.lua"};
   }
 
   /**

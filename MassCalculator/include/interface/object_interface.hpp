@@ -6,7 +6,6 @@
 #include "shapes/shapes.hh"
 
 #include "../3rdParty/include/units.h"
-
 using namespace units::literals;
 using namespace units::mass;
 
