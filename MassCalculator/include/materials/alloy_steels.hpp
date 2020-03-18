@@ -2,15 +2,21 @@
 #define ___ALLOY_STEELS_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
-
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string AS_4135{"AS_4135"};
+    const std::string AS_4140{"AS_4140"};
+    const std::string AS_4340{"AS_4340"};
+
+    const std::string AlloySteelsLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_steels_config.lua"};
+  }
+
   /**
    * @brief Class AlloySteels, that holds all the nessesary information for AlloySteels and it's types therefore we can use in the interface
    * 
@@ -23,7 +29,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -31,25 +37,26 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", AlloySteels::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloySteels::Type::UNSPECIFIED};
       std::string color_{0};
-      double density_{0};
-      double gravity_{0};
-      double melting_point_{0};
+      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
+      meters_per_second_squared_t gravity_{0_mps_sq};
+      kelvin_t melting_point_{0_K};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
-      double mod_of_elasticity_tension_{0};
-      double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+      watt_t thermal_conductivity_{0_W};
+      pascal_t mod_of_elasticity_tension_{0_Pa};
+      pascal_t mod_of_elasticity_torsion_{0_Pa};
+    }Properties_t;
 
     public:
     /**
@@ -89,28 +96,34 @@ namespace MassCalculator
 
     friend std::ostream& operator<<(std::ostream& os, Type type)
     {
-        switch(type)
-        {
-            case Type::AS_4135: os << "AS_4135"; break;
-            case Type::AS_4140: os << "AS_4140"; break;
-            case Type::AS_4340: os << "AS_4340"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
-        }
-        return os;
+      switch(type)
+      {
+        case Type::AS_4135: os << Constants::AS_4135; break;
+        case Type::AS_4140: os << Constants::AS_4140; break;
+        case Type::AS_4340: os << Constants::AS_4340; break;
+        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        default: os << "Name cannot be found";
+      }
+      return os;
     }
 
     /**
      * @brief Construct a new AlloySteels object
      * 
      */
-    AlloySteels(void) = default;
+    AlloySteels(void);
 
     /**
      * @brief Construct a new AlloySteels object and specify the type
      * 
      */
     AlloySteels(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -140,21 +153,21 @@ namespace MassCalculator
      * 
      * @return const double Density of the material
      */
-    double getSpecificDensity(void) const;
+    kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
      * @return const double Gravity of the material
      */
-    double getSpecificGravity(void) const;
+    meters_per_second_squared_t getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
      * @return const double The specific melting point of AlloySteels type
      */
-    double getSpecificMeltingPoint(void) const;
+    kelvin_t getSpecificMeltingPoint(void) const;
 
     /**
      * @brief Get the Specific PoissonsRatio object
@@ -168,21 +181,21 @@ namespace MassCalculator
      * 
      * @return double The specific thermal conductivity of AlloySteels type
      */
-    double getSpecificThermalConductivity(void) const;
+    watt_t getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
      * @return const double The specific modulus of elasticity tension point of AlloySteels type
      */
-    double getSpecificModOfElasticityTension(void) const;
+    pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
      * @return const double The specific modulus of elasticity torsion point of AlloySteels type
      */
-    double getSpecificModOfElasticityTorsion(void) const;
+    pascal_t getSpecificModOfElasticityTorsion(void) const;
 
     /**
      * @brief Destroy the AlloySteels object
@@ -228,16 +241,17 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
 
   };
 }//end namespace MassCalculator

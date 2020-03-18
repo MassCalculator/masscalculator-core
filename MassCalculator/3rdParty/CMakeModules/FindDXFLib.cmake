@@ -36,7 +36,7 @@
 include(PrintLibraryStatus)
 include(LibFindMacros)
 
-libfind_lib_with_pkg_config(DXFLib dxflib
+libfind_lib_with_pkg_config( DXFLib dxflib
   HEADERS dl_dxf.h
   LIBRARIES dxflib
-  )
+)

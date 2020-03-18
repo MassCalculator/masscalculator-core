@@ -2,15 +2,31 @@
 #define ___STAINLESS_STEEL_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
-
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string  SS_301{"SS_301"};
+    const std::string  SS_302{"SS_302"};
+    const std::string  SS_303{"SS_303"};
+    const std::string  SS_304{"SS_304"};
+    const std::string  SS_305{"SS_305"};
+    const std::string  SS_316{"SS_316"};
+    const std::string  SS_321{"SS_321"};
+    const std::string  SS_409{"SS_409"};
+    const std::string  SS_410{"SS_410"};
+    const std::string  SS_420{"SS_420"};
+    const std::string  SS_430{"SS_430"};
+    const std::string  SS_15_5{"SS_15_5"};
+    const std::string  SS_17_4{"SS_17_4"};
+
+    const std::string StainlessSteelLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/stainless_steel_config.lua"};
+  }
+
   /**
    * @brief Class StainlessSteel, that holds all the nessesary information for StainlessSteel and it's types therefore we can use in the interface
    * 
@@ -23,7 +39,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -31,25 +47,26 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", StainlessSteel::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, StainlessSteel::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
       double melting_point_{0};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
+      double thermal_conductivity_{0};
       double mod_of_elasticity_tension_{0};
       double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+    }Properties_t;
 
     public:
     /**
@@ -146,38 +163,44 @@ namespace MassCalculator
 
     friend std::ostream& operator<<(std::ostream& os, Type type)
     {
-        switch(type)
-        {
-            case Type::SS_301: os << "SS_301"; break;
-            case Type::SS_302: os << "SS_302"; break;
-            case Type::SS_303: os << "SS_303"; break;
-            case Type::SS_304: os << "SS_304"; break;
-            case Type::SS_305: os << "SS_305"; break;
-            case Type::SS_316: os << "SS_316"; break;
-            case Type::SS_321: os << "SS_321"; break;
-            case Type::SS_409: os << "SS_409"; break;
-            case Type::SS_410: os << "SS_410"; break;
-            case Type::SS_420: os << "SS_420"; break;
-            case Type::SS_430: os << "SS_430"; break;
-            case Type::SS_15_5: os << "SS_15_5"; break;
-            case Type::SS_17_4: os << "SS_17_4"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
-        }
-        return os;
+      switch(type)
+      {
+        case Type::SS_301: os << Constants::SS_301; break;
+        case Type::SS_302: os << Constants::SS_302; break;
+        case Type::SS_303: os << Constants::SS_303; break;
+        case Type::SS_304: os << Constants::SS_304; break;
+        case Type::SS_305: os << Constants::SS_305; break;
+        case Type::SS_316: os << Constants::SS_316; break;
+        case Type::SS_321: os << Constants::SS_321; break;
+        case Type::SS_409: os << Constants::SS_409; break;
+        case Type::SS_410: os << Constants::SS_410; break;
+        case Type::SS_420: os << Constants::SS_420; break;
+        case Type::SS_430: os << Constants::SS_430; break;
+        case Type::SS_15_5: os << Constants::SS_15_5; break;
+        case Type::SS_17_4: os << Constants::SS_17_4; break;
+        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        default: os << "Name cannot be found";
+      }
+      return os;
     }
 
     /**
      * @brief Construct a new StainlessSteel object
      * 
      */
-    StainlessSteel(void) = default;
+    StainlessSteel(void);
 
     /**
      * @brief Construct a new StainlessSteel object and specify the type
      * 
      */
     StainlessSteel(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -295,16 +318,17 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
 
   };
 }//end namespace MassCalculator

@@ -2,15 +2,27 @@
 #define ___ALUMINIUM_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
-
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string A_1100{"A_1100"};
+    const std::string A_2011{"A_2011"};
+    const std::string A_2014{"A_2014"};
+    const std::string A_2024{"A_2024"};
+    const std::string A_3003{"A_3003"};
+    const std::string A_5052{"A_5052"};
+    const std::string A_6061{"A_6061"};
+    const std::string A_6063{"A_6063"};
+    const std::string A_7075{"A_7075"};
+
+    const std::string AluminiumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/aluminium_config.lua"};
+  }
+
   /**
    * @brief Class Aluminium, that holds all the nessesary information for Aluminium and it's types therefore we can use in the interface
    * 
@@ -23,7 +35,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -31,25 +43,26 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", Aluminium::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Aluminium::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
       double melting_point_{0};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
+      double thermal_conductivity_{0};
       double mod_of_elasticity_tension_{0};
       double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+    }Properties_t;
 
     public:
     /**
@@ -138,34 +151,40 @@ namespace MassCalculator
 
     friend std::ostream& operator<<(std::ostream& os, Type type)
     {
-        switch(type)
-        {
-            case Type::A_1100: os << "A_1100"; break;
-            case Type::A_2011: os << "A_2011"; break;
-            case Type::A_2014: os << "A_2014"; break;
-            case Type::A_2024: os << "A_2024"; break;
-            case Type::A_3003: os << "A_3003"; break;
-            case Type::A_5052: os << "A_5052"; break;
-            case Type::A_6061: os << "A_6061"; break;
-            case Type::A_6063: os << "A_6063"; break;
-            case Type::A_7075: os << "A_7075"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
-        }
-        return os;
+      switch(type)
+      {
+        case Type::A_1100: os << Constants::A_1100; break;
+        case Type::A_2011: os << Constants::A_2011; break;
+        case Type::A_2014: os << Constants::A_2014; break;
+        case Type::A_2024: os << Constants::A_2024; break;
+        case Type::A_3003: os << Constants::A_3003; break;
+        case Type::A_5052: os << Constants::A_5052; break;
+        case Type::A_6061: os << Constants::A_6061; break;
+        case Type::A_6063: os << Constants::A_6063; break;
+        case Type::A_7075: os << Constants::A_7075; break;
+        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        default: os << "Name cannot be found";
+      }
+      return os;
     }
 
     /**
      * @brief Construct a new Aluminium object
      * 
      */
-    Aluminium(void) = default;
+    Aluminium(void);
 
     /**
      * @brief Construct a new Aluminium object and specify the type
      * 
      */
     Aluminium(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -283,16 +302,17 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
 
   };
 }//end namespace MassCalculator

@@ -3,19 +3,19 @@
 #include "materials/alloy_coppers.hpp"
 
 // The fixture for testing class Aluminium.
-class AlloyCoppers : public ::testing::Test 
+class AlloyCoppersTest : public ::testing::Test 
 {
   protected:
   // You can remove any or all of the following functions if its body
   // is empty.
 
-  AlloyCoppers() 
+  AlloyCoppersTest() 
   {
    // You can do set-up work for each test here.
    material_AC_145Tellvirum.setType(MassCalculator::AlloyCoppers::Type::AC_145Tellvirum);
   }
 
-  ~AlloyCoppers() override 
+  ~AlloyCoppersTest() override 
   {
    // You can do clean-up work that doesn't throw exceptions here.
   }

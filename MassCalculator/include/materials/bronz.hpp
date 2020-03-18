@@ -2,15 +2,37 @@
 #define ___BRONZ_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
-
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string B_18Al{"B_18Al"};
+    const std::string B_21Al{"B_21Al"};
+    const std::string B_314Commercial{"B_314Commercial"};
+    const std::string B_485Naval{"B_485Naval"};
+    const std::string B_510Phos{"B_510Phos"};
+    const std::string B_524Phos{"B_524Phos"};
+    const std::string B_532Phos{"B_532Phos"};
+    const std::string B_534Phos{"B_534Phos"};
+    const std::string B_544Phos{"B_544Phos"};
+    const std::string B_613Al{"B_613Al"};
+    const std::string B_614Al{"B_614Al"};
+    const std::string B_623Al{"B_623Al"};
+    const std::string B_624Al{"B_624Al"};
+    const std::string B_625Al{"B_625Al"};
+    const std::string B_630NiAl{"B_630NiAl"};
+    const std::string B_642AlSi{"B_642AlSi"};
+    const std::string B_932Bearing{"B_932Bearing"};
+    const std::string B_954Al{"B_954Al"};
+    const std::string B_OilLite{"B_OilLite"};
+
+    const std::string BronzLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/bronz_config.lua"};
+  }
+
   /**
    * @brief Class Bronz, that holds all the nessesary information for Bronz and it's types therefore we can use in the interface
    * 
@@ -23,7 +45,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -31,25 +53,26 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", Bronz::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Bronz::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
       double melting_point_{0};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
+      double thermal_conductivity_{0};
       double mod_of_elasticity_tension_{0};
       double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+    }Properties_t;
 
     public:
     /**
@@ -155,44 +178,50 @@ namespace MassCalculator
 
     friend std::ostream& operator<<(std::ostream& os, Type type)
     {
-        switch(type)
-        {
-            case Type::B_18Al: os << "B_18Al"; break;
-            case Type::B_21Al: os << "B_21Al"; break;
-            case Type::B_314Commercial: os << "B_314Commercial"; break;
-            case Type::B_485Naval: os << "B_485Naval"; break;
-            case Type::B_510Phos: os << "B_510Phos"; break;
-            case Type::B_524Phos: os << "B_524Phos"; break;
-            case Type::B_532Phos: os << "B_532Phos"; break;
-            case Type::B_534Phos: os << "B_534Phos"; break;
-            case Type::B_544Phos: os << "B_544Phos"; break;
-            case Type::B_613Al: os << "B_613Al"; break;
-            case Type::B_614Al: os << "B_614Al"; break;
-            case Type::B_623Al: os << "B_623Al"; break;
-            case Type::B_624Al: os << "B_624Al"; break;
-            case Type::B_625Al: os << "B_625Al"; break;
-            case Type::B_630NiAl: os << "B_630NiAl"; break;
-            case Type::B_642AlSi: os << "B_642AlSi"; break;
-            case Type::B_932Bearing: os << "B_932Bearing"; break;
-            case Type::B_954Al: os << "B_954Al"; break;
-            case Type::B_OilLite: os << "B_OilLite"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
-        }
-        return os;
+      switch(type)
+      {
+        case Type::B_18Al: os << Constants::B_18Al; break;
+        case Type::B_21Al: os << Constants::B_21Al; break;
+        case Type::B_314Commercial: os << Constants::B_314Commercial; break;
+        case Type::B_485Naval: os << Constants::B_485Naval; break;
+        case Type::B_510Phos: os << Constants::B_510Phos; break;
+        case Type::B_524Phos: os << Constants::B_524Phos; break;
+        case Type::B_532Phos: os << Constants::B_532Phos; break;
+        case Type::B_534Phos: os << Constants::B_534Phos; break;
+        case Type::B_544Phos: os << Constants::B_544Phos; break;
+        case Type::B_613Al: os << Constants::B_613Al; break;
+        case Type::B_614Al: os << Constants::B_614Al; break;
+        case Type::B_623Al: os << Constants::B_623Al; break;
+        case Type::B_624Al: os << Constants::B_624Al; break;
+        case Type::B_625Al: os << Constants::B_625Al; break;
+        case Type::B_630NiAl: os << Constants::B_630NiAl; break;
+        case Type::B_642AlSi: os << Constants::B_642AlSi; break;
+        case Type::B_932Bearing: os << Constants::B_932Bearing; break;
+        case Type::B_954Al: os << Constants::B_954Al; break;
+        case Type::B_OilLite: os << Constants::B_OilLite; break;
+        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        default: os << "Name cannot be found";
+      }
+      return os;
     }
 
     /**
      * @brief Construct a new Bronz object
      * 
      */
-    Bronz(void) = default;
+    Bronz(void);
 
     /**
      * @brief Construct a new Bronz object and specify the type
      * 
      */
     Bronz(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -310,16 +339,17 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
 
   };
 }//end namespace MassCalculator

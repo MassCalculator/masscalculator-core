@@ -2,15 +2,19 @@
 #define ___PLASTIC_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
-
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string  P_ABS{"ABS"};
+
+    const std::string PlasticLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/plastic_config.lua"};
+  }
+
   /**
    * @brief Class Plastic, that holds all the nessesary information for Plastic and it's types therefore we can use in the interface
    * 
@@ -23,7 +27,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -31,25 +35,26 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", Plastic::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Plastic::Type::UNSPECIFIED};
       std::string color_{0};
       double density_{0};
       double gravity_{0};
       double melting_point_{0};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
+      double thermal_conductivity_{0};
       double mod_of_elasticity_tension_{0};
       double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+    }Properties_t;
 
     public:
     /**
@@ -159,13 +164,19 @@ namespace MassCalculator
      * @brief Construct a new Plastic object
      * 
      */
-    Plastic(void) = default;
+    Plastic(void);
 
     /**
      * @brief Construct a new Plastic object and specify the type
      * 
      */
     Plastic(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -283,17 +294,18 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
-
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
+    
   };
 }//end namespace MassCalculator
 #endif

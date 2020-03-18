@@ -14,6 +14,8 @@ namespace MassCalculator
    */
   class Cylinder : public Shape<Cylinder>
   {
+    public: enum class Type : uint8_t;
+
     /**
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
@@ -30,12 +32,28 @@ namespace MassCalculator
        * @param length_ double Parameter to save length of the cylinder
        * 
        */
-      //std::pair<std::string, Type> type_{"UNSPECIFIED", Aluminium::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{"Cylinder", Cylinder::Type::Cylinder};
+      std::string lagger_;
       double diameter_{1};
       double length_{1};
     }properties_;
 
     public:
+
+    enum class Type : uint8_t
+    {
+      BEGIN = 0,
+      /**
+       * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
+       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
+       * food processing industries.
+       * 
+       */
+      Cylinder = BEGIN,
+
+      END
+    };
+
     /**
      * @brief Construct a new Cylinder object
      * 
@@ -94,6 +112,13 @@ namespace MassCalculator
      * @return double Surface Are of the Cylinder
      */
     double getSurfaceArea(void) const;
+
+    /**
+     * @brief Get the Surface Area object
+     * 
+     * @return double Surface Are of the Cylinder
+     */
+    std::string getType(void) const;
 
     /**
      * @brief Destroy the Cylinder object

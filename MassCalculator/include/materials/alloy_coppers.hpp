@@ -2,15 +2,39 @@
 #define ___ALLOY_COPPERS_H___
 #include "material.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries TODO:
-// #include "lua_handler.hpp"
-
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    const std::string AC_145Tellvirum{"AC_145Tellvirum"};
+    const std::string AC_194Iron{"AC_194Iron"};
+    const std::string AC_195Iron{"AC_195Iron"};
+    const std::string AC_172Beryllium{"AC_172Beryllium"};
+    const std::string AC_182Class2{"AC_182Class2"};
+    const std::string AC_655Silicon{"AC_655Silicon"};
+    const std::string AC_706Nickel{"AC_706Nickel"};
+    const std::string AC_715NickelSilver{"AC_715NickelSilver"};
+    const std::string AC_725NickelSilver{"AC_725NickelSilver"};
+    const std::string AC_735NickelSilver{"AC_735NickelSilver"};
+    const std::string AC_752NickelSilver{"AC_752NickelSilver"};
+    const std::string AC_762NickelSilver{"AC_762NickelSilver"};
+    const std::string AC_770NickelSilver{"AC_770NickelSilver"};
+    const std::string AC_1751Class3{"AC_1751Class3"};
+    const std::string AC_1758Nickel{"AC_1758Nickel"};
+    const std::string AC_MoldmaxBeCu{"AC_MoldmaxBeCu"};
+    const std::string AC_ProthermBeCu{"AC_ProthermBeCu"};
+    // @@TODO: Check this, for the paths after install the library
+    #ifdef DEBUG
+      const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+    #else
+      const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+    #endif
+  }
+
   /**
    * @brief Class AlloyCoppers, that holds all the nessesary information for AlloyCoppers and it's types therefore we can use in the interface
    * 
@@ -21,9 +45,9 @@ namespace MassCalculator
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * @TODO:Check if this can be moved to the base class, the problem is only in the std::pair<T, Type>, Type cannot be deduced from base to derived
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -31,38 +55,40 @@ namespace MassCalculator
        * and will be set from the constructor.
        * 
        * @param type_ Type The parameter to save the specific type
-       * @param specific_color_ string Parameter to save specific color
-       * @param specific_density_ double Parameter to save specific density
-       * @param specific_volume_ double Parameter to save specific volume
-       * @param specific_mass_ double Parameter to save specific mass
-       * @param specific_weight_ double Parameter to save specific weight
-       * @param specific_melting_point_ double Parameter to save specific melting point
-       * @param specific_boiling_point_ double Parameter to save specific boiling point
+       * @param color_ string Parameter to save specific color
+       * @param density_ double Parameter to save specific density
+       * @param gravity_ double Parameter to save specific gravity
+       * @param melting_point_ double Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{"UNSPECIFIED", AlloyCoppers::Type::UNSPECIFIED};
+      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloyCoppers::Type::UNSPECIFIED};
       std::string color_{0};
-      double density_{0};
-      double gravity_{0};
-      double melting_point_{0};
+      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
+      meters_per_second_squared_t gravity_{0_mps_sq};
+      kelvin_t melting_point_{0_K};
       double poissons_ratio_{0};
-      double thermal_conductivity{0};
-      double mod_of_elasticity_tension_{0};
-      double mod_of_elasticity_torsion_{0};
-    }specific_properties_;
+      watt_t thermal_conductivity_{0_W};
+      pascal_t mod_of_elasticity_tension_{0_Pa};
+      pascal_t mod_of_elasticity_torsion_{0_Pa};
+    }Properties_t;
 
     public:
     /**
      * @brief Enum that holds the AlloyCoppers types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
      */
     enum class Type : uint8_t
     {
       BEGIN = 0,
+
       /**
-       * @brief This grade is commercially pure AlloyCoppers. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
-       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
-       * food processing industries.
+       * @brief Tellurium copper also referred to as Alloy 145, Alloy C15400, 145 half-hard tellurium, and TeCu—is a copper-based alloy that contains varying amounts of tellurium and phosphorus. 
+       * The tellurium content typically ranges between 0.4–0.7%, while the phosphorus content ranges between 0.004–0.12%.
+       * Tellurium copper demonstrates good electrical and thermal conductivity, good formability and high machinability. These properties make it suitable for a wide range of industrial applications.
        * 
        */
       AC_145Tellvirum = BEGIN,
@@ -154,42 +180,48 @@ namespace MassCalculator
 
     friend std::ostream& operator<<(std::ostream& os, Type type)
     {
-        switch(type)
-        {
-            case Type::AC_145Tellvirum: os << "AC_145Tellvirum"; break;
-            case Type::AC_194Iron: os << "AC_194Iron"; break;
-            case Type::AC_195Iron: os << "AC_195Iron"; break;
-            case Type::AC_172Beryllium: os << "AC_172Beryllium"; break;
-            case Type::AC_182Class2: os << "AC_182Class2"; break;
-            case Type::AC_655Silicon: os << "AC_655Silicon"; break;
-            case Type::AC_706Nickel: os << "AC_706Nickel"; break;
-            case Type::AC_715NickelSilver: os << "AC_715NickelSilver"; break;
-            case Type::AC_725NickelSilver: os << "AC_725NickelSilver"; break;
-            case Type::AC_735NickelSilver: os << "AC_735NickelSilver"; break;
-            case Type::AC_752NickelSilver: os << "AC_752NickelSilver"; break;
-            case Type::AC_762NickelSilver: os << "AC_762NickelSilver"; break;
-            case Type::AC_770NickelSilver: os << "AC_770NickelSilver"; break;
-            case Type::AC_1751Class3: os << "AC_1751Class3"; break;
-            case Type::AC_1758Nickel: os << "AC_1758Nickel"; break;
-            case Type::AC_MoldmaxBeCu: os << "AC_MoldmaxBeCu"; break;
-            case Type::AC_ProthermBeCu: os << "AC_ProthermBeCu"; break;
-            case Type::UNSPECIFIED: os << "UNSPECIFIED"; break;
-            default: os << "Name cannot be found";
-        }
-        return os;
+      switch(type)
+      {
+        case Type::AC_145Tellvirum: os << Constants::AC_145Tellvirum; break;
+        case Type::AC_194Iron: os << Constants::AC_194Iron; break;
+        case Type::AC_195Iron: os << Constants::AC_195Iron; break;
+        case Type::AC_172Beryllium: os << Constants::AC_172Beryllium; break;
+        case Type::AC_182Class2: os << Constants::AC_182Class2; break;
+        case Type::AC_655Silicon: os << Constants::AC_655Silicon; break;
+        case Type::AC_706Nickel: os << Constants::AC_706Nickel; break;
+        case Type::AC_715NickelSilver: os << Constants::AC_715NickelSilver; break;
+        case Type::AC_725NickelSilver: os << Constants::AC_725NickelSilver; break;
+        case Type::AC_735NickelSilver: os << Constants::AC_735NickelSilver; break;
+        case Type::AC_752NickelSilver: os << Constants::AC_752NickelSilver; break;
+        case Type::AC_762NickelSilver: os << Constants::AC_762NickelSilver; break;
+        case Type::AC_770NickelSilver: os << Constants::AC_770NickelSilver; break;
+        case Type::AC_1751Class3: os << Constants::AC_1751Class3; break;
+        case Type::AC_1758Nickel: os << Constants::AC_1758Nickel; break;
+        case Type::AC_MoldmaxBeCu: os << Constants::AC_MoldmaxBeCu; break;
+        case Type::AC_ProthermBeCu: os << Constants::AC_ProthermBeCu; break;
+        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        default: os << "Name cannot be found";
+      }
+      return os;
     }
 
     /**
      * @brief Construct a new AlloyCoppers object
      * 
      */
-    AlloyCoppers(void) = default;
+    AlloyCoppers(void);
 
     /**
      * @brief Construct a new AlloyCoppers object and specify the type
      * 
      */
     AlloyCoppers(Type type);
+
+    /**
+     * @brief Function to initialize the Lua object
+     * 
+     */
+    bool initLuaScript(void);
 
     /**
      * @brief Set the Type object
@@ -219,21 +251,21 @@ namespace MassCalculator
      * 
      * @return const double Density of the material
      */
-    double getSpecificDensity(void) const;
+    kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
      * @return const double Gravity of the material
      */
-    double getSpecificGravity(void) const;
+    meters_per_second_squared_t getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
      * @return const double The specific melting point of AlloyCoppers type
      */
-    double getSpecificMeltingPoint(void) const;
+    kelvin_t getSpecificMeltingPoint(void) const;
 
     /**
      * @brief Get the Specific PoissonsRatio object
@@ -247,21 +279,21 @@ namespace MassCalculator
      * 
      * @return double The specific thermal conductivity of AlloyCoppers type
      */
-    double getSpecificThermalConductivity(void) const;
+    watt_t getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
      * @return const double The specific modulus of elasticity tension point of AlloyCoppers type
      */
-    double getSpecificModOfElasticityTension(void) const;
+    pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
      * @return const double The specific modulus of elasticity torsion point of AlloyCoppers type
      */
-    double getSpecificModOfElasticityTorsion(void) const;
+    pascal_t getSpecificModOfElasticityTorsion(void) const;
 
     /**
      * @brief Destroy the AlloyCoppers object
@@ -307,17 +339,18 @@ namespace MassCalculator
      */
     bool setPropertieSpecs(Type type);
 
-    //TODO:
-    //HelperClasses::LuaHandler lua_state_;
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t specific_properties_;
 
-    bool checkFromLuaConfig(std::string value);
-
-    template<typename TLuaReturnType>
-    constexpr TLuaReturnType getFromLuaConfig(std::string value);
-
-    template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
-    template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+    /**
+     * @brief Lua Handler object to get the config for metals from LuaScript is necessary
+     * 
+     */
+    LuaScriptHandler lua_state_;
 
   };
 }//end namespace MassCalculator
-#endif
+#endif//___ALLOY_COPPERS_H___

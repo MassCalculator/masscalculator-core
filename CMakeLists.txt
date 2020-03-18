@@ -11,13 +11,37 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
 #-Wmissing-include-dirs
-set(CMAKE_CXX_FLAGS "-O2 -pthread -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused")
+set(CMAKE_CXX_FLAGS 
+    "-O2 \
+    -pthread \
+    -pedantic \
+    -Wall \
+    -Wextra \
+    -Wcast-align \
+    -Wcast-qual \
+    -Wctor-dtor-privacy \
+    -Wdisabled-optimization \
+    -Wformat=2 \
+    -Winit-self \
+    -Wlogical-op \
+    -Wmissing-declarations \
+    -Wnoexcept \
+    -Wold-style-cast \
+    -Woverloaded-virtual \
+    -Wredundant-decls \
+    -Wshadow \
+    -Wsign-conversion \
+    -Wsign-promo \
+    -Wstrict-null-sentinel \
+    -Wstrict-overflow=5 \
+    -Wswitch-default \
+    -Wundef \
+    -Werror \
+    -Wno-unused"
+  )
 
 find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(GTest REQUIRED >= 1.8)
-
-message(STATUS ${GTEST_INCLUDE_DIRS})
-message(STATUS ${GTEST_BOTH_LIBRARIES})
 
 # Enable testing
 enable_testing()
@@ -25,8 +49,6 @@ include(CTest) #To get the info for tests from CTestConfig.cmake
 
 # to include static libraries in shared libraries, they need to be compiled with -fPIC
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-# Include subproject...
 
 # TODO refactor cmake config to be "modern cmake":
 # https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1

@@ -13,12 +13,49 @@
 #define ___MATERIAL_H___
 #include <iostream>
 
+#include "../../3rdParty/include/units.h"
+using namespace units::literals;
+using namespace units::mass;
+using namespace units::density;
+using namespace units::acceleration;
+using namespace units::temperature;
+using namespace units::power;
+using namespace units::pressure;
+
+#include "../../helper_functions/helper_functions.hpp"
+using namespace MassCalculator::HelperFunctions;
+
+#include "../../helper_classes/lua_handler.hpp"
+using namespace MassCalculator::HelperClasses;
+
 /**
  * @brief Default namespace
  * 
  */
 namespace MassCalculator
 {
+  namespace Constants
+  {
+    //Material type constants
+    const std::string  AlloyCoppers{"AlloyCoppers"};
+    const std::string  AlloySteels{"AlloySteels"};
+    const std::string  Aluminium{"Aluminium"};
+    const std::string  Brass{"Brass"};
+    const std::string  Bronz{"Bronz"};
+    const std::string  Copper{"Copper"};
+    const std::string  Magnesium{"Magnesium"};
+    const std::string  Nickel{"Nickel"};
+    const std::string  Plastic{"Plastic"};
+    const std::string  StainlessSteel{"StainlessSteel"};
+    const std::string  Steel{"Steel"};
+    const std::string  Titanium{"Titanium"};
+    const std::string  UNSPECIFIED{"UNSPECIFIED"};
+
+    //Color constants
+    const std::string  Metallic{"Metallic"};
+    const std::string  DarkTone{"DarkTone"};
+  }
+
   /**
    * @brief Template base class Material
    * 
@@ -27,8 +64,6 @@ namespace MassCalculator
   class Material 
   {
     public: enum class Type : uint8_t;
-
-    struct Properties;
 
     public:
     /**
@@ -45,6 +80,16 @@ namespace MassCalculator
     Material(Type type)
     {
       static_cast<TMaterialType*>(this)(type);
+    }
+
+    /**
+     * @brief Init the Lua config file
+     * 
+     */
+    bool initLuaScript()
+    {
+      static_cast<TMaterialType*>(this)->initLuaScript();
+      return true;
     }
 
     /**
@@ -85,7 +130,7 @@ namespace MassCalculator
      * 
      * @return const double Density of the material from Derived class
      */
-    constexpr double getSpecificDensity(void)
+    constexpr kilograms_per_cubic_meter_t getSpecificDensity(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificDensity()};
     }
@@ -95,7 +140,7 @@ namespace MassCalculator
      * 
      * @return const double Gravity of the material from Derived class
      */
-    constexpr double getSpecificGravity(void)
+    constexpr meters_per_second_squared_t getSpecificGravity(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificGravity()};
     }
@@ -105,7 +150,7 @@ namespace MassCalculator
      * 
      * @return const double The specific melting point of Material type from Derived class
      */
-    constexpr double getSpecificMeltingPoint(void)
+    constexpr kelvin_t getSpecificMeltingPoint(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificMeltingPoint()};
     }
@@ -125,7 +170,7 @@ namespace MassCalculator
      * 
      * @return double The specific thermal conductivity of Material type from Derived class
      */
-    constexpr double getSpecificThermalConductivity(void)
+    constexpr watt_t getSpecificThermalConductivity(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificThermalConductivity()};
     }
@@ -135,7 +180,7 @@ namespace MassCalculator
      * 
      * @return const double The specific modulus of elasticity tension point of Material type from Derived class
      */
-    constexpr double getSpecificModOfElasticityTension(void)
+    constexpr pascal_t getSpecificModOfElasticityTension(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTension()};
     }
@@ -145,7 +190,7 @@ namespace MassCalculator
      * 
      * @return const double The specific modulus of elasticity torsion point of Material type from Derived class
      */
-    constexpr double getSpecificModOfElasticityTorsion(void)
+    constexpr pascal_t getSpecificModOfElasticityTorsion(void)
     {
       return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTorsion()};
     }
@@ -161,11 +206,7 @@ namespace MassCalculator
      * 
      */
     template <typename TMaterial>
-    friend std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
-    {
-      os << "\n" "Material" "\n" << obj.thisTMaterialType();
-      return os;
-    }
+    friend std::ostream &operator << (std::ostream &os, const Material<TMaterialType> &obj);
 
     private:
     /**
@@ -178,7 +219,7 @@ namespace MassCalculator
      * @brief Set move constructor to default
      * 
      */
-    Material(Material&&) = default;
+    public: Material(Material&&) = default;
 
     /**
      * @brief Delete assignment operator
@@ -199,8 +240,17 @@ namespace MassCalculator
 
   };
 
-  template <>
-  class Material<int> { };
+  //@TODO: Specialisation
+  // template <>
+  // class Material<int> { };
+
+  template <typename TMaterial>
+  std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
+  {
+    //TODO: This causes segmentation fault, it works if you comment out headers in materials.hh and you move implementation in the class
+    os << "\n" "Material" "\n" << obj.thisTMaterialType();
+    return os;
+  }
 
 }//end namespace MassCalculator
 #endif

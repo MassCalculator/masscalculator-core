@@ -92,8 +92,8 @@ void MainWindow::on_material_currentIndexChanged(int index)
 
 void MainWindow::on_material_type_currentIndexChanged(int index)
 {
-        std::unique_ptr<MassCalculator::Shape<MassCalculator::Cylinder>> shape(new MassCalculator::Cylinder(10.0, 10.0));
-       //qDebug() << "Shape: " << *shape << std::endl;
+  std::unique_ptr<MassCalculator::Shape<MassCalculator::Cylinder>> shape(new MassCalculator::Cylinder(10.0, 10.0));
+  //qDebug() << "Shape: " << *shape << std::endl;
 }
 
 void MainWindow::on_calculate_btn_clicked()
@@ -104,5 +104,5 @@ void MainWindow::on_calculate_btn_clicked()
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+  delete ui;
 }

@@ -167,3 +167,5 @@ What I also want to have in the app:
 * **(todo)** lambdas
 * **(done)** constexpr
 * **(todo)** std::function
+* **(todo)** Posibility to import DXF and extude while in app
+* **(todo)** Posibility to import STL and calculate the mass of the model

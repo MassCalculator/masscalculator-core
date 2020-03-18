@@ -10,17 +10,14 @@ find_package(DXFLib PATHS 3rdParty/CMakeModules/)
 include_directories(
   include/
   3rdParty/include/
-  helper_classes
-  ${LUA51_INCLUDE_DIR}
+  helper_classes/
+  helper_functions/
+  ${LUA_INCLUDE_DIR}
   ${DXFLib_INCLUDE_DIRS}
 )
 
 # Sources
-set( SRC
-  src/shapes/shape.cpp
-  src/shapes/dxf_shape.cpp
-  src/shapes/cylinder.cpp
-
+set( material_src
   src/materials/material.cpp
   src/materials/alloy_coppers.cpp
   src/materials/alloy_steels.cpp
@@ -35,10 +32,45 @@ set( SRC
   src/materials/steel.cpp
   src/materials/titanium.cpp
   src/materials/zinc.cpp
-  
-  src/interface/object_interface.cpp
+)
 
+set( shape_src
+  src/shapes/shape.cpp
+  src/shapes/angle.cpp
+  src/shapes/bar.cpp
+  src/shapes/beam.cpp
+  src/shapes/channel.cpp
+  src/shapes/cylinder.cpp
+  src/shapes/dxf_shape.cpp
+  src/shapes/elipse.cpp
+  src/shapes/hexagon_bar.cpp
+  src/shapes/octagon_bar.cpp
+  src/shapes/pipe.cpp
+  src/shapes/sheet.cpp
+  src/shapes/square_bar.cpp
+  src/shapes/square_tubing.cpp
+  src/shapes/stl_shape.cpp
+  src/shapes/t_bar.cpp
+)
+
+set( interface_src
+  src/interface/object_interface.cpp
+)
+
+set ( helper_classes_src
   helper_classes/lua_handler.cpp
+)
+
+set ( helper_functions_src
+  helper_functions/helper_functions.cpp
+)
+
+set( SRC
+  ${shape_src}
+  ${material_src}
+  ${interface_src}
+  ${helper_classes_src}
+  ${helper_functions_src}
 )
 
 # set libto build itself
@@ -58,7 +90,7 @@ target_include_directories( ${PROJECT_NAME}
 )
 
 target_link_libraries( ${PROJECT_NAME}
-  ${LUA51_LIBRARIES}
+  ${LUA_LIBRARIES}
   ${DXFLib_LIBRARIES}
 )
 

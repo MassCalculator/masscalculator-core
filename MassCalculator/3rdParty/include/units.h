@@ -96,7 +96,7 @@
 			template <typename T> std::string to_string(const T& t)
 			{
 				std::string str{ std::to_string(t) };
-				int offset{ 1 };
+				unsigned int offset{ 1 };
 
 				// remove trailing decimal points for integer value units. Locale aware!
 				struct lconv * lc;
@@ -2968,11 +2968,12 @@ namespace units
 	template<typename Units, std::uintmax_t Num, std::uintmax_t Denom = 1>
 	struct unit_value_t : units::detail::_unit_value_t<Units>
 	{
+		//TODO: Uncoment and get rid of the warnings
 		typedef Units unit_type;
-		typedef std::ratio<Num, Denom> ratio;
+		// typedef std::ratio<Num, Denom> ratio;
 
-		static_assert(traits::is_unit<Units>::value, "Template parameter `Units` must be a unit type.");
-		static constexpr const unit_t<Units> value() { return unit_t<Units>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den); }
+		// static_assert(traits::is_unit<Units>::value, "Template parameter `Units` must be a unit type.");
+		// static constexpr const unit_t<Units> value() { return unit_t<Units>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)); }
 	};
 
 	namespace traits
@@ -3062,14 +3063,14 @@ namespace units
 		// value if PI isn't involved
 		static constexpr const unit_t<unit_type> value(std::false_type) noexcept
 		{ 
-			return unit_t<unit_type>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den);
+			return unit_t<unit_type>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den));
 		}
 
 		// value if PI *is* involved
 		static constexpr const unit_t<unit_type> value(std::true_type) noexcept
 		{
-			return unit_t<unit_type>(((UNIT_LIB_DEFAULT_TYPE)Base::_RATIO1::num / Base::_RATIO1::den) +
-			((UNIT_LIB_DEFAULT_TYPE)Base::_RATIO2CONV::num / Base::_RATIO2CONV::den) * std::pow(units::constants::detail::PI_VAL, ((UNIT_LIB_DEFAULT_TYPE)Base::_PI_EXP::num / Base::_PI_EXP::den)));
+			return unit_t<unit_type>((static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_RATIO1::num / Base::_RATIO1::den)) +
+			(static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_RATIO2CONV::num / Base::_RATIO2CONV::den)) * std::pow(units::constants::detail::PI_VAL, (static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_PI_EXP::num / Base::_PI_EXP::den))));
 		}
 		/** @endcond */	// END DOXYGEN IGNORE
 	};
@@ -3112,14 +3113,14 @@ namespace units
 		// value if PI isn't involved
 		static constexpr const unit_t<unit_type> value(std::false_type) noexcept
 		{
-			return unit_t<unit_type>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den);
+			return unit_t<unit_type>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den));
 		}
 
 		// value if PI *is* involved
 		static constexpr const unit_t<unit_type> value(std::true_type) noexcept
 		{
-			return unit_t<unit_type>(((UNIT_LIB_DEFAULT_TYPE)Base::_RATIO1::num / Base::_RATIO1::den) - ((UNIT_LIB_DEFAULT_TYPE)Base::_RATIO2CONV::num / Base::_RATIO2CONV::den)
-				* std::pow(units::constants::detail::PI_VAL, ((UNIT_LIB_DEFAULT_TYPE)Base::_PI_EXP::num / Base::_PI_EXP::den)));
+			return unit_t<unit_type>((static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_RATIO1::num / Base::_RATIO1::den)) - (static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_RATIO2CONV::num / Base::_RATIO2CONV::den))
+				* std::pow(units::constants::detail::PI_VAL, (static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_PI_EXP::num / Base::_PI_EXP::den))));
 		}
 		/** @endcond */	// END DOXYGEN IGNORE	};
 	};
@@ -3163,13 +3164,13 @@ namespace units
 		// value if PI isn't involved
 		static constexpr const unit_t<unit_type> value(std::false_type) noexcept
 		{
-			return unit_t<unit_type>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den);
+			return unit_t<unit_type>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den));
 		}
 
 		// value if PI *is* involved
 		static constexpr const unit_t<unit_type> value(std::true_type) noexcept
 		{
-			return unit_t<unit_type>(((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den) * std::pow(units::constants::detail::PI_VAL, ((UNIT_LIB_DEFAULT_TYPE)Base::_PI_EXP::num / Base::_PI_EXP::den)));
+			return unit_t<unit_type>((static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)) * std::pow(units::constants::detail::PI_VAL, (static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_PI_EXP::num / Base::_PI_EXP::den))));
 		}
 		/** @endcond */	// END DOXYGEN IGNORE
 	};
@@ -3213,13 +3214,13 @@ namespace units
 		// value if PI isn't involved
 		static constexpr const unit_t<unit_type> value(std::false_type) noexcept
 		{
-			return unit_t<unit_type>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den);
+			return unit_t<unit_type>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den));
 		}
 
 		// value if PI *is* involved
 		static constexpr const unit_t<unit_type> value(std::true_type) noexcept
 		{
-			return unit_t<unit_type>(((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den) * std::pow(units::constants::detail::PI_VAL, ((UNIT_LIB_DEFAULT_TYPE)Base::_PI_EXP::num / Base::_PI_EXP::den)));
+			return unit_t<unit_type>((static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)) * std::pow(units::constants::detail::PI_VAL, (static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_PI_EXP::num / Base::_PI_EXP::den))));
 		}
 		/** @endcond */	// END DOXYGEN IGNORE
 	};
@@ -3260,13 +3261,13 @@ namespace units
 		// value if PI isn't involved
 		static constexpr const unit_t<unit_type> value(std::false_type) noexcept
 		{
-			return unit_t<unit_type>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den);
+			return unit_t<unit_type>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den));
 		}
 
 		// value if PI *is* involved
 		static constexpr const unit_t<unit_type> value(std::true_type) noexcept
 		{
-			return unit_t<unit_type>(((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den) * std::pow(units::constants::detail::PI_VAL, ((UNIT_LIB_DEFAULT_TYPE)pi_exponent::num / pi_exponent::den)));
+			return unit_t<unit_type>((static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)) * std::pow(units::constants::detail::PI_VAL, (static_cast<UNIT_LIB_DEFAULT_TYPE>(pi_exponent::num / pi_exponent::den))));
 		}
 		/** @endcond */	// END DOXYGEN IGNORE	};
 	};
@@ -3307,13 +3308,13 @@ namespace units
 		// value if PI isn't involved
 		static constexpr const unit_t<unit_type> value(std::false_type) noexcept
 		{
-			return unit_t<unit_type>((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den);
+			return unit_t<unit_type>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den));
 		}
 
 		// value if PI *is* involved
 		static constexpr const unit_t<unit_type> value(std::true_type) noexcept
 		{
-			return unit_t<unit_type>(((UNIT_LIB_DEFAULT_TYPE)ratio::num / ratio::den) * std::pow(units::constants::detail::PI_VAL, ((UNIT_LIB_DEFAULT_TYPE)pi_exponent::num / pi_exponent::den)));
+			return unit_t<unit_type>((static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)) * std::pow(units::constants::detail::PI_VAL, (static_cast<UNIT_LIB_DEFAULT_TYPE>(Base::_PI_EXP::num / Base::_PI_EXP::den))));
 		}
 		/** @endcond */	// END DOXYGEN IGNORE
 	};
