@@ -35,17 +35,17 @@ TEST_F(AlloySteelsTest, GetSpecificColorTest)
 
 TEST_F(AlloySteelsTest, GetSpecificDensityTest)
 {
-  EXPECT_EQ( double{2.71}, material_AS_4135.getSpecificDensity());
+  EXPECT_EQ( kilograms_per_cubic_meter_t{2.71_kg_per_cu_m}, material_AS_4135.getSpecificDensity());
 }
 
 TEST_F(AlloySteelsTest, GetSpecificGravityTest)
 {
-  EXPECT_EQ( double{2.83}, material_AS_4135.getSpecificGravity());
+  EXPECT_EQ( meters_per_second_squared_t{2.83_mps_sq}, material_AS_4135.getSpecificGravity());
 }
 
 TEST_F(AlloySteelsTest, GetSpecificMeltingPointTest)
 {
-  EXPECT_EQ( double{537.778}, material_AS_4135.getSpecificMeltingPoint());
+  EXPECT_EQ( kelvin_t{537.778_K}, material_AS_4135.getSpecificMeltingPoint());
 }
 
 TEST_F(AlloySteelsTest, GetSpecificPoissonsRatioTest)
@@ -55,17 +55,17 @@ TEST_F(AlloySteelsTest, GetSpecificPoissonsRatioTest)
 
 TEST_F(AlloySteelsTest, GetSpecificThermalConductivityTest)
 {
-  EXPECT_EQ( double{990.0}, material_AS_4135.getSpecificThermalConductivity());
+  EXPECT_EQ( watt_t{990.0_W}, material_AS_4135.getSpecificThermalConductivity());
 }
 
 TEST_F(AlloySteelsTest, GetSpecificModOfElasticityTensionTest)
 {
-  EXPECT_EQ( double{9.9}, material_AS_4135.getSpecificModOfElasticityTension());
+  EXPECT_EQ( pascal_t{9.9_Pa}, material_AS_4135.getSpecificModOfElasticityTension());
 }
 
 TEST_F(AlloySteelsTest, GetSpecificModOfElasticityTorsionTest)
 {
-  EXPECT_EQ( double{3.8}, material_AS_4135.getSpecificModOfElasticityTorsion());
+  EXPECT_EQ( pascal_t{3.8_Pa}, material_AS_4135.getSpecificModOfElasticityTorsion());
 }
 
 int main(int argc, char **argv) 

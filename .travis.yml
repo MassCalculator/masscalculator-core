@@ -1,7 +1,11 @@
-language: cpp
+language: 
+  - cpp
 
 compiler:
   - gcc
+
+dist:
+  - bionic
 
 addons:
   apt:
@@ -16,9 +20,6 @@ addons:
       - libdxflib-dev
       - lua5.1-0
       - liblua5.1-0-dev
-# install:
-#   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
-#   - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
 
 before_script:
   #Install googletest
@@ -28,13 +29,15 @@ before_script:
 
   #Install Eigen
   - git clone https://github.com/eigenteam/eigen-git-mirror.git && cd eigen-git-mirror
-  - mkdir build && cd build && cmake ..
+  - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
   - make && sudo make install && cd ../../
 
   # create a build folder for the out-of-source build
   - mkdir build
+
   # switch to build directory
   - cd build
+
   # run cmake; here we assume that the project's
   # top-level CMakeLists.txt is located at '..'
   - cmake ..
@@ -42,15 +45,24 @@ before_script:
 jobs:
   include:
     - stage: Compile
-      script:
-        - make
+        script:
+          - make
 
     - stage: Test
-      script:
-        - make && make test
+        script:
+          - make && make test
 
     - stage: Package
-      script:
-        - cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
-        - make
-        - make install
+        script:
+          - cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+          - make
+          - make install
+
+after_script:
+  # - ls
+
+after_success:
+  - echo "Success"
+  
+after_failure:
+  - echo "Failure"

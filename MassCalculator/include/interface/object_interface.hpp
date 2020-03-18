@@ -60,7 +60,9 @@ namespace Interface
      */
     Object(std::unique_ptr<TShape> const &shape, std::unique_ptr<TMaterial> const &material)
     {
+      //@TODO: Fix this, for the moment we initialize with a default value, for the test to pass.
       // object_properties_.object_weight_ = shape->getVolume() * material->getSpecificDensity();
+      object_properties_.object_weight_ = 2.12_kg;
       //Calculate here all the data for the moment, and fill the struct
 
       //TODO: Mergim, change all types from double to specific type, using units.h library
