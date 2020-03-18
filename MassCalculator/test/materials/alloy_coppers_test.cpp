@@ -35,17 +35,17 @@ TEST_F(AlloyCoppersTest, GetSpecificColorTest)
 
 TEST_F(AlloyCoppersTest, GetSpecificDensityTest)
 {
-  EXPECT_EQ( double{2.71}, material_AC_145Tellvirum.getSpecificDensity());
+  EXPECT_EQ( kilograms_per_cubic_meter_t{2.71_kg_per_cu_m}, material_AC_145Tellvirum.getSpecificDensity());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificGravityTest)
 {
-  EXPECT_EQ( double{2.83}, material_AC_145Tellvirum.getSpecificGravity());
+  EXPECT_EQ( meters_per_second_squared_t{2.83_mps_sq}, material_AC_145Tellvirum.getSpecificGravity());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificMeltingPointTest)
 {
-  EXPECT_EQ( double{537.778}, material_AC_145Tellvirum.getSpecificMeltingPoint());
+  EXPECT_EQ( kelvin_t{537.778_K}, material_AC_145Tellvirum.getSpecificMeltingPoint());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificPoissonsRatioTest)
@@ -55,17 +55,17 @@ TEST_F(AlloyCoppersTest, GetSpecificPoissonsRatioTest)
 
 TEST_F(AlloyCoppersTest, GetSpecificThermalConductivityTest)
 {
-  EXPECT_EQ( double{990.0}, material_AC_145Tellvirum.getSpecificThermalConductivity());
+  EXPECT_EQ( watt_t{990.0_W}, material_AC_145Tellvirum.getSpecificThermalConductivity());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest)
 {
-  EXPECT_EQ( double{9.9}, material_AC_145Tellvirum.getSpecificModOfElasticityTension());
+  EXPECT_EQ( pascal_t{9.9_Pa}, material_AC_145Tellvirum.getSpecificModOfElasticityTension());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTorsionTest)
 {
-  EXPECT_EQ( double{3.8}, material_AC_145Tellvirum.getSpecificModOfElasticityTorsion());
+  EXPECT_EQ( pascal_t{3.8_Pa}, material_AC_145Tellvirum.getSpecificModOfElasticityTorsion());
 }
 
 int main(int argc, char **argv) 

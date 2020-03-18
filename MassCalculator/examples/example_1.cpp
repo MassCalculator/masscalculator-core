@@ -29,11 +29,11 @@ int main(/*int argc, char** argv*/)
 
   double r, g, b;
 
-  // std::cout << "Object: " << *obj << std::endl;
+  std::cout << "Object: " << *obj << std::endl;
 
-  // std::cout << "Material: " << *material << std::endl;
+  std::cout << "Material: " << *material << std::endl;
 
-  // std::cout << "Shape: " << *shape << std::endl;
+  std::cout << "Shape: " << *shape << std::endl;
 
   return 0;
 }
