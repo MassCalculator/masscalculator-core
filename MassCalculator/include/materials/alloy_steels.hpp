@@ -1,3 +1,13 @@
+/**
+ * @file alloy_steels.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Alloy Steels class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-20
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___ALLOY_STEELS_H___
 #define ___ALLOY_STEELS_H___
 #include "material.hpp"
@@ -8,6 +18,10 @@
  */
 namespace MassCalculator
 {
+    /**
+   * @brief String constants that are used through the code
+   * 
+   */
   namespace Constants
   {
     const std::string AS_4135{"AS_4135"};
@@ -38,13 +52,13 @@ namespace MassCalculator
        * 
        * @param type_ Type The parameter to save the specific type
        * @param color_ string Parameter to save specific color
-       * @param density_ double Parameter to save specific density
-       * @param gravity_ double Parameter to save specific gravity
-       * @param melting_point_ double Parameter to save specific melting point
+       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
+       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
+       * @param melting_point_ kelvin_t Parameter to save specific melting point
        * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
+       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
        * 
        */
       std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloySteels::Type::UNSPECIFIED};
@@ -66,29 +80,29 @@ namespace MassCalculator
     enum class Type : uint8_t
     {
       BEGIN = 0,
+
       /**
-       * @brief This grade is commercially pure AlloySteels. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
-       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
-       * food processing industries.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AS_4135 = BEGIN,
 
       /**
-       * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
-       * an excellent choice for projects done on automatic lathes. The high-speed machining of this grade will produce fine chips that are easily removed. 
-       * Alloy 2011 is an excellent choice for production of complex and detailed parts.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AS_4140,
 
       /**
-       * @brief A copper based alloy with very high strength and excellent machining capabilities. This alloy is commonly used in many aerospace structural applications 
-       * due to its resistance.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AS_4340,
 
+      /**
+       * @brief Unspecified metal alloy
+       * 
+       */
       UNSPECIFIED,
 
       END
@@ -151,21 +165,21 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const double Density of the material
+     * @return const kilograms_per_cubic_meter_t Density of the material
      */
     kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
-     * @return const double Gravity of the material
+     * @return const meters_per_second_squared_t Gravity of the material
      */
     meters_per_second_squared_t getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double The specific melting point of AlloySteels type
+     * @return const kelvin_t The specific melting point of AlloySteels type
      */
     kelvin_t getSpecificMeltingPoint(void) const;
 
@@ -179,21 +193,21 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
-     * @return double The specific thermal conductivity of AlloySteels type
+     * @return watt_t The specific thermal conductivity of AlloySteels type
      */
     watt_t getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const double The specific modulus of elasticity tension point of AlloySteels type
+     * @return const pascal_t The specific modulus of elasticity tension point of AlloySteels type
      */
     pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const double The specific modulus of elasticity torsion point of AlloySteels type
+     * @return const pascal_t The specific modulus of elasticity torsion point of AlloySteels type
      */
     pascal_t getSpecificModOfElasticityTorsion(void) const;
 
@@ -255,4 +269,4 @@ namespace MassCalculator
 
   };
 }//end namespace MassCalculator
-#endif
+#endif//___ALLOY_STEELS_H___

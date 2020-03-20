@@ -28,12 +28,17 @@ class ObjectInterfaceTest : public ::testing::Test
   {
    // Code here will be called immediately after the constructor (right
    // before each test).
-    std::unique_ptr<Shape<Cylinder>> shape(new Cylinder(0.1, 1.0));
-    std::unique_ptr<Material<Aluminium>> material(new Aluminium(Aluminium::Type::A_1100));
 
-    obj_ = std::make_unique<Interface::Object<Shape<Cylinder>, 
-                                              Material<Aluminium>>>(shape, 
-                                                                    material);
+    //Create a unique pointer for the shape
+    std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(Cylinder(0.1, 1.0));
+
+    //Create a unique pointer for the material
+    std::unique_ptr<Material<Aluminium>> material = std::make_unique<Material<Aluminium>>(Aluminium(Aluminium::Type::A_1100));
+
+    // Construct a unique pointer for Object while parsing the arguments from above as parameters
+    this->obj_ = std::make_unique<Interface::Object<Shape<Cylinder>, 
+                                                    Material<Aluminium>>>(shape,
+                                                                          material);
   }
 
   void TearDown() override 

@@ -34,6 +34,10 @@ using namespace MassCalculator::HelperClasses;
  */
 namespace MassCalculator
 {
+    /**
+   * @brief String constants that are used through the code
+   * 
+   */
   namespace Constants
   {
     //Material type constants
@@ -239,10 +243,6 @@ namespace MassCalculator
     const TMaterialType& thisTMaterialType() const { return *static_cast<const TMaterialType*>(this); }
 
   };
-
-  //@TODO: Specialisation
-  // template <>
-  // class Material<int> { };
 
   template <typename TMaterial>
   std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)

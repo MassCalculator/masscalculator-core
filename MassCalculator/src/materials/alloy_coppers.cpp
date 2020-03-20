@@ -135,7 +135,6 @@ namespace MassCalculator
         break;
       }
 
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
       case AlloyCoppers::Type::AC_194Iron :
       {
         this->specific_properties_.type_ = {
@@ -956,8 +955,8 @@ namespace MassCalculator
   std::ostream &operator << (std::ostream &os, const AlloyCoppers &obj)
   {
     os << "  AlloyCoppers object properties: " "\n"
-          "   - Type    : " + obj.getType().first + "\n"
-          "   - Color   : " + obj.getSpecificColor() + "\n"
+          // "   - Type    : " + obj.getType().first + "\n"
+          // "   - Color   : " + obj.getSpecificColor() + "\n"
           "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
           "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
           "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"

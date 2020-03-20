@@ -1,3 +1,13 @@
+/**
+ * @file alloy_coppers.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Alloy Coppers class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-20
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___ALLOY_COPPERS_H___
 #define ___ALLOY_COPPERS_H___
 #include "material.hpp"
@@ -8,6 +18,10 @@
  */
 namespace MassCalculator
 {
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
   namespace Constants
   {
     const std::string AC_145Tellvirum{"AC_145Tellvirum"};
@@ -31,6 +45,8 @@ namespace MassCalculator
     #ifdef DEBUG
       const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #else
+      // const std::string home_path_ = getenv("HOME");
+      // const std::string AlloyCoppersLuaConfigPath{home_path_ + "/.MassCalculatorResources/materials/alloy_coppers_config.lua"};
       const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #endif
   }
@@ -56,13 +72,13 @@ namespace MassCalculator
        * 
        * @param type_ Type The parameter to save the specific type
        * @param color_ string Parameter to save specific color
-       * @param density_ double Parameter to save specific density
-       * @param gravity_ double Parameter to save specific gravity
-       * @param melting_point_ double Parameter to save specific melting point
+       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
+       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
+       * @param melting_point_ kelvin_t Parameter to save specific melting point
        * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
+       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
        * 
        */
       std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloyCoppers::Type::UNSPECIFIED};
@@ -94,85 +110,105 @@ namespace MassCalculator
       AC_145Tellvirum = BEGIN,
 
       /**
-       * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
-       * an excellent choice for projects done on automatic lathes. The high-speed machining of this grade will produce fine chips that are easily removed. 
-       * Alloy 2011 is an excellent choice for production of complex and detailed parts.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_194Iron,
 
       /**
-       * @brief A copper based alloy with very high strength and excellent machining capabilities. This alloy is commonly used in many aerospace structural applications 
-       * due to its resistance.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_195Iron,
 
       /**
-       * @brief One of the most commonly used high strength aluminum alloys. With its combination of high strength and excellent fatigue resistance, it is commonly used 
-       * where a good strength-to-weight ratio is desired.  This grade can be machined to a high finish and it can be formed in the annealed condition with 
-       * subsequent heat treating, if needed. The corrosion resistance of this grade is relatively low. When this is an issue, 2024 is commonly used in an 
-       * anodized finish or in clad form (thin surface layer of high purity aluminum) known as Alclad.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_172Beryllium,
 
       /**
-       * @brief The most widely used of all aluminum alloys. A commercially pure aluminum with added manganese to increase its strength (20% stronger than the 1100 grade). 
-       * It has excellent corrosion resistance, and workability. This grade can be deep drawn or spun, welded or brazed.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_182Class2,
 
       /**
-       * @brief This is the highest strength alloy of the more non heat-treatable grades. Its fatigue strength is higher than most other aluminum grades. 
-       * Alloy 5052 has a good resistance to marine atmosphere and salt water corrosion, and excellent workability. It can be easily drawn or formed into intricate shapes.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_655Silicon,
 
       /**
-       * @brief The most versatile of the heat-treatable aluminum alloys, while keeping most of the good qualities of aluminum. This grade has a great range of mechanical 
-       * properties and corrosion resistance. It can be fabricated by most of the commonly used techniques and it has good workability in the annealed condition. It is 
-       * welded by all methods and can be furnace brazed. As a result, it is used in a wide variety of products and applications where appearance and better corrosion 
-       * resistance with good strength are required. The Tube and Angle shapes in this grade typically have rounded corners.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_706Nickel,
 
       /**
-       * @brief Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance 
-       * to corrosion. Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
-       * Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance to corrosion. 
-       * Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
-       * The Tube and Angle shapes in this grade typically have square corners.The Tube and Angle shapes in this grade typically have square corners.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_715NickelSilver,
 
       /**
-       * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to weight ratio, and it is ideally used for highly stressed parts. 
-       * This grade can be formed in the annealed condition and subsequently heat treated, if needed. It can also be spot or flash welded (arc and gas not recommended).
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
        * 
        */
       AC_725NickelSilver,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_735NickelSilver,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_752NickelSilver,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_762NickelSilver,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_770NickelSilver,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_1751Class3,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_1758Nickel,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_MoldmaxBeCu,
 
+      /**
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * 
+       */
       AC_ProthermBeCu,
 
+      /**
+       * @brief Unspecified metal alloy
+       * 
+       */
       UNSPECIFIED,
 
       END
@@ -249,21 +285,21 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const double Density of the material
+     * @return const kilograms_per_cubic_meter_t Density of the material
      */
     kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
-     * @return const double Gravity of the material
+     * @return meters_per_second_squared_t double Gravity of the material
      */
     meters_per_second_squared_t getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double The specific melting point of AlloyCoppers type
+     * @return const kelvin_t The specific melting point of AlloyCoppers type
      */
     kelvin_t getSpecificMeltingPoint(void) const;
 
@@ -277,21 +313,21 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
-     * @return double The specific thermal conductivity of AlloyCoppers type
+     * @return watt_t The specific thermal conductivity of AlloyCoppers type
      */
     watt_t getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const double The specific modulus of elasticity tension point of AlloyCoppers type
+     * @return const pascal_t The specific modulus of elasticity tension point of AlloyCoppers type
      */
     pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const double The specific modulus of elasticity torsion point of AlloyCoppers type
+     * @return const pascal_t The specific modulus of elasticity torsion point of AlloyCoppers type
      */
     pascal_t getSpecificModOfElasticityTorsion(void) const;
 

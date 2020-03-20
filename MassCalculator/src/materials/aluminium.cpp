@@ -227,8 +227,10 @@ namespace MassCalculator
   std::ostream &operator << (std::ostream &os, const Aluminium &obj)
   {
     os << "  Aluminium object properties: " "\n"
-          "   - Type    : " + obj.getType().first + "\n"
-          "   - Color   : " + obj.getSpecificColor() + "\n"
+          //TODO: This throws bad_alloc because of std::string
+          // "   - Type    : " + obj.getType().first + "\n"
+          //TODO: This throws segmentation fault because of std::string
+          // "   - Color   : " + obj.getSpecificColor() + "\n"
           "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
           "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
           "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
