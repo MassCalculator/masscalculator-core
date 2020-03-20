@@ -135,7 +135,6 @@ namespace MassCalculator
         break;
       }
 
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
       case AlloyCoppers::Type::AC_194Iron :
       {
         this->specific_properties_.type_ = {

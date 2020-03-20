@@ -134,7 +134,6 @@ namespace MassCalculator
         break;
       }
 
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
       case AlloySteels::Type::AS_4140 :
       {
         this->specific_properties_.type_ = {

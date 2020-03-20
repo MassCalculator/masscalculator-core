@@ -34,6 +34,10 @@ using namespace MassCalculator::HelperClasses;
  */
 namespace MassCalculator
 {
+    /**
+   * @brief String constants that are used through the code
+   * 
+   */
   namespace Constants
   {
     //Material type constants
