@@ -15,19 +15,16 @@ using namespace MassCalculator;
 
 int main(/*int argc, char** argv*/)
 {
-
   //Create a unique pointer for the shape
   std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(Cylinder(10.0, 10.0));
 
   //Create a unique pointer for the material
-  std::unique_ptr<Material<Aluminium>> material = std::make_unique<Material<Aluminium>>(Aluminium(Aluminium::Type::A_1100));
+  std::unique_ptr<Material<AlloyCoppers>> material = std::make_unique<Material<AlloyCoppers>>(AlloyCoppers(AlloyCoppers::Type::AC_145Tellvirum));
 
   // Construct a unique pointer for Object while parsing the arguments from above as parameters
   const auto obj = std::make_unique<Interface::Object<Shape<Cylinder>, 
-                                                      Material<Aluminium>>>(shape, 
+                                                      Material<AlloyCoppers>>>(shape, 
                                                                             material);
-
-  double r, g, b;
 
   std::cout << "Object: " << *obj << std::endl;
 

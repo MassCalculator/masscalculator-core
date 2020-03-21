@@ -1,3 +1,13 @@
+/**
+ * @file object_interface.hpp
+ * @author your name (you@domain.com)
+ * @brief Interface class, that interacts with all other classes to get the result we need
+ * @version 0.1
+ * @date 2020-03-20
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___OBJECT_H___
 #define ___OBJECT_H___
 #include <memory>
@@ -22,22 +32,25 @@ namespace MassCalculator
 namespace Interface
 {
   /**
-   * @brief 
+   * @brief  Class Object, that holds all the nessesary information from Material and Shape classes
    * 
-   * @tparam TShape 
-   * @tparam TMaterial 
+   * @tparam TShape Shape class object
+   * @tparam TMaterial Material class object
    */
   template<typename TShape, typename TMaterial>
   class Object
   {
     /**
-     * @brief 
+     * @brief Private members of Object class. Values defaulted with brace-enclosed initializer list
+     * and will be set from the constructor.
+     * 
+     * @param object_weight_ kilogram_t Parameter to save the calculated weight
      * 
      */
-    struct ObjectProperties
+    typedef struct ObjectProperties
     {
       kilogram_t object_weight_;
-    }object_properties_;
+    }ObjectProperties_t;
 
     //Create a struct for object properties
     //containing object shape type, object material type, 
@@ -55,8 +68,8 @@ namespace Interface
     /**
      * @brief Construct a new Object object
      * 
-     * @param shape 
-     * @param material 
+     * @param shape Constructed shape object
+     * @param material Constructed material object
      */
     Object(std::unique_ptr<TShape> const &shape, std::unique_ptr<TMaterial> const &material)
     {
@@ -75,7 +88,7 @@ namespace Interface
     /**
      * @brief Get the Weight object
      * 
-     * @return double 
+     * @return kilogram_t  The calculated weight for specific object and shape 
      */
     kilogram_t getWeight(void) const
     {
@@ -89,23 +102,30 @@ namespace Interface
     ~Object() = default;
 
     /**
-     * @brief 
+     * @brief Shift operator overload for class Object, this will print all the calculated properties
      * 
-     * @param os 
-     * @param obj 
-     * @return std::ostream& 
      */
     template<typename TShapeOs, typename TMaterialOs>
-    friend std::ostream &operator << (std::ostream &os, const Object<TShapeOs, TMaterialOs> &obj)
-    {
-      //Here we need to write out in os the objects tshape and tmaterial
-      os << "  Object properties: " "\n"
-            //"   - Name    : " + *TShapeOs + "\n"
-            "   - Weight   : " + units::mass::to_string(obj.getWeight()) + "\n";
-      return os;
-    }
+    friend std::ostream &operator << (std::ostream &os, const Object<TShapeOs, TMaterialOs> &obj);
+
+    private:
+    /**
+     * @brief Properties struct to hold the calculated object properties
+     * 
+     */
+    ObjectProperties_t object_properties_;
 
   };
+
+  template<typename TShapeOs, typename TMaterialOs>
+  std::ostream &operator << (std::ostream &os, const Object<TShapeOs, TMaterialOs> &obj)
+  {
+    //Here we need to write out in os the objects tshape and tmaterial
+    os << "  Object properties: " "\n"
+          //"   - Name    : " + *TShapeOs + "\n"
+          "   - Weight   : " + units::mass::to_string(obj.getWeight()) + "\n";
+    return os;
+  }
 }//end namespace Interface
 }//end namespace MassCalculator
-#endif
+#endif//___OBJECT_H___

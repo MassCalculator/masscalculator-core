@@ -244,10 +244,6 @@ namespace MassCalculator
 
   };
 
-  //@TODO: Specialisation
-  // template <>
-  // class Material<int> { };
-
   template <typename TMaterial>
   std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
   {
