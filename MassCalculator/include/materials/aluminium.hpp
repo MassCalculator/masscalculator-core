@@ -44,24 +44,24 @@ namespace MassCalculator
        * 
        * @param type_ Type The parameter to save the specific type
        * @param color_ string Parameter to save specific color
-       * @param density_ double Parameter to save specific density
-       * @param gravity_ double Parameter to save specific gravity
-       * @param melting_point_ double Parameter to save specific melting point
+       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
+       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
+       * @param melting_point_ kelvin_t Parameter to save specific melting point
        * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ double Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ double Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ double Parameter to save specific modulus of elasticity torsion
+       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
        * 
        */
       std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Aluminium::Type::UNSPECIFIED};
       std::string color_{0};
-      double density_{0};
-      double gravity_{0};
-      double melting_point_{0};
+      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
+      meters_per_second_squared_t gravity_{0_mps_sq};
+      kelvin_t melting_point_{0_K};
       double poissons_ratio_{0};
-      double thermal_conductivity_{0};
-      double mod_of_elasticity_tension_{0};
-      double mod_of_elasticity_torsion_{0};
+      watt_t thermal_conductivity_{0_W};
+      pascal_t mod_of_elasticity_tension_{0_Pa};
+      pascal_t mod_of_elasticity_torsion_{0_Pa};
     }Properties_t;
 
     public:
@@ -212,23 +212,23 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const double Density of the material
+     * @return const kilograms_per_cubic_meter_t Density of the material
      */
-    double getSpecificDensity(void) const;
+    kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
-     * @return const double Gravity of the material
+     * @return const meters_per_second_squared_t Gravity of the material
      */
-    double getSpecificGravity(void) const;
+    meters_per_second_squared_t getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double The specific melting point of Aluminium type
+     * @return const kelvin_t The specific melting point of Aluminium type
      */
-    double getSpecificMeltingPoint(void) const;
+    kelvin_t getSpecificMeltingPoint(void) const;
 
     /**
      * @brief Get the Specific PoissonsRatio object
@@ -240,23 +240,23 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
-     * @return double The specific thermal conductivity of Aluminium type
+     * @return watt_t The specific thermal conductivity of Aluminium type
      */
-    double getSpecificThermalConductivity(void) const;
+    watt_t getSpecificThermalConductivity(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const double The specific modulus of elasticity tension point of Aluminium type
+     * @return const pascal_t The specific modulus of elasticity tension point of Aluminium type
      */
-    double getSpecificModOfElasticityTension(void) const;
+    pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const double The specific modulus of elasticity torsion point of Aluminium type
+     * @return const pascal_t The specific modulus of elasticity torsion point of Aluminium type
      */
-    double getSpecificModOfElasticityTorsion(void) const;
+    pascal_t getSpecificModOfElasticityTorsion(void) const;
 
     /**
      * @brief Destroy the Aluminium object

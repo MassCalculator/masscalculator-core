@@ -1,6 +1,5 @@
-#include <gtest/gtest.h>
-
 #include "materials/aluminium.hpp"
+#include <gtest/gtest.h>
 
 // The fixture for testing class Aluminium.
 class AluminiumTest : public ::testing::Test 

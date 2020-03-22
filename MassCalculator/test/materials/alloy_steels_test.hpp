@@ -1,8 +1,17 @@
+/**
+ * @file alloy_steels_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class AlloySteels, it tests all the functions and the constructors of the class
+ * @version 0.2
+ * @date 2019-03-22
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#include "materials/alloy_steels.hpp"
 #include <gtest/gtest.h>
 
-#include "materials/alloy_steels.hpp"
-
-// The fixture for testing class Aluminium.
+// The fixture for testing class AlloySteels.
 class AlloySteelsTest : public ::testing::Test 
 {
   protected:

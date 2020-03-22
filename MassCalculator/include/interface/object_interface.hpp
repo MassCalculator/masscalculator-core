@@ -92,7 +92,7 @@ namespace Interface
      */
     kilogram_t getWeight(void) const
     {
-      return{object_properties_.object_weight_};
+      return{this->object_properties_.object_weight_};
     };
 
     /**

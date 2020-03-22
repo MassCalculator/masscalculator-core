@@ -1,8 +1,17 @@
+/**
+ * @file alloy_coppers_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class AlloyCoppers, it tests all the functions and the constructors of the class
+ * @version 0.2
+ * @date 2019-03-21
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#include "materials/alloy_coppers.hpp"
 #include <gtest/gtest.h>
 
-#include "materials/alloy_coppers.hpp"
-
-// The fixture for testing class Aluminium.
+// The fixture for testing class AlloyCoppers.
 class AlloyCoppersTest : public ::testing::Test 
 {
   protected:
@@ -35,6 +44,6 @@ class AlloyCoppersTest : public ::testing::Test
    // before the destructor).
   }
 
-  // Objects declared here can be used by all tests in the test case for Foo.
+  // Objects declared here can be used by all tests in the test case for AlloyCoppersTest.
   MassCalculator::AlloyCoppers material_AC_145Tellvirum;
 };
