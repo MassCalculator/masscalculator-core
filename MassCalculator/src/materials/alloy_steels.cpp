@@ -258,4 +258,17 @@ namespace MassCalculator
           "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
     return os;
   }
+
+  std::ostream &operator << (std::ostream& os, AlloySteels::Type type)
+  {
+    switch(type)
+    {
+      case AlloySteels::Type::AS_4135: os << Constants::AS_4135; break;
+      case AlloySteels::Type::AS_4140: os << Constants::AS_4140; break;
+      case AlloySteels::Type::AS_4340: os << Constants::AS_4340; break;
+      case AlloySteels::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
+    return os;
+  }
 }//end namespace MassCalculator

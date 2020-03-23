@@ -955,8 +955,8 @@ namespace MassCalculator
   std::ostream &operator << (std::ostream &os, const AlloyCoppers &obj)
   {
     os << "  AlloyCoppers object properties: " "\n"
-          // "   - Type    : " + obj.getType().first + "\n"
-          // "   - Color   : " + obj.getSpecificColor() + "\n"
+          "   - Type    : " + obj.getType().first + "\n"
+          "   - Color   : " + obj.getSpecificColor() + "\n"
           "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
           "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
           "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
@@ -964,6 +964,33 @@ namespace MassCalculator
           "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
           "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
           "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    return os;
+  }
+
+  std::ostream &operator << (std::ostream& os, const AlloyCoppers::Type type)
+  {
+    switch(type)
+    {
+      case AlloyCoppers::Type::AC_145Tellvirum: os << Constants::AC_145Tellvirum; break;
+      case AlloyCoppers::Type::AC_194Iron: os << Constants::AC_194Iron; break;
+      case AlloyCoppers::Type::AC_195Iron: os << Constants::AC_195Iron; break;
+      case AlloyCoppers::Type::AC_172Beryllium: os << Constants::AC_172Beryllium; break;
+      case AlloyCoppers::Type::AC_182Class2: os << Constants::AC_182Class2; break;
+      case AlloyCoppers::Type::AC_655Silicon: os << Constants::AC_655Silicon; break;
+      case AlloyCoppers::Type::AC_706Nickel: os << Constants::AC_706Nickel; break;
+      case AlloyCoppers::Type::AC_715NickelSilver: os << Constants::AC_715NickelSilver; break;
+      case AlloyCoppers::Type::AC_725NickelSilver: os << Constants::AC_725NickelSilver; break;
+      case AlloyCoppers::Type::AC_735NickelSilver: os << Constants::AC_735NickelSilver; break;
+      case AlloyCoppers::Type::AC_752NickelSilver: os << Constants::AC_752NickelSilver; break;
+      case AlloyCoppers::Type::AC_762NickelSilver: os << Constants::AC_762NickelSilver; break;
+      case AlloyCoppers::Type::AC_770NickelSilver: os << Constants::AC_770NickelSilver; break;
+      case AlloyCoppers::Type::AC_1751Class3: os << Constants::AC_1751Class3; break;
+      case AlloyCoppers::Type::AC_1758Nickel: os << Constants::AC_1758Nickel; break;
+      case AlloyCoppers::Type::AC_MoldmaxBeCu: os << Constants::AC_MoldmaxBeCu; break;
+      case AlloyCoppers::Type::AC_ProthermBeCu: os << Constants::AC_ProthermBeCu; break;
+      case AlloyCoppers::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
     return os;
   }
 }//end namespace MassCalculator

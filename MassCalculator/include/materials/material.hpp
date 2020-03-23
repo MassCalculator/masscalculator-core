@@ -69,6 +69,8 @@ namespace MassCalculator
   {
     public: enum class Type : uint8_t;
 
+    public: struct Properties;
+
     public:
     /**
      * @brief Construct a new Material object
@@ -206,14 +208,6 @@ namespace MassCalculator
     ~Material(void) = default;
 
     /**
-     * @brief Shift operator template overload, for the base class Material
-     * 
-     */
-    template <typename TMaterial>
-    friend std::ostream &operator << (std::ostream &os, const Material<TMaterialType> &obj);
-
-    private:
-    /**
      * @brief Delete copy constructor
      * 
      */
@@ -223,7 +217,7 @@ namespace MassCalculator
      * @brief Set move constructor to default
      * 
      */
-    public: Material(Material&&) = default;
+    Material(Material&&) = default;
 
     /**
      * @brief Delete assignment operator
@@ -242,6 +236,13 @@ namespace MassCalculator
      */
     const TMaterialType& thisTMaterialType() const { return *static_cast<const TMaterialType*>(this); }
 
+    /**
+     * @brief Shift operator template overload, for the base class Material
+     * 
+     */
+    template <typename TMaterial>
+    friend std::ostream &operator << (std::ostream &os, const Material<TMaterialType> &obj);
+    
   };
 
   template <typename TMaterial>

@@ -81,8 +81,8 @@ namespace MassCalculator
        * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloyCoppers::Type::UNSPECIFIED};
-      std::string color_{0};
+      std::pair<std::string, Type> type_{{Constants::UNSPECIFIED}, {AlloyCoppers::Type::UNSPECIFIED}};
+      std::string color_{""};
       kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
       meters_per_second_squared_t gravity_{0_mps_sq};
       kelvin_t melting_point_{0_K};
@@ -214,33 +214,6 @@ namespace MassCalculator
       END
     };
 
-    friend std::ostream& operator<<(std::ostream& os, Type type)
-    {
-      switch(type)
-      {
-        case Type::AC_145Tellvirum: os << Constants::AC_145Tellvirum; break;
-        case Type::AC_194Iron: os << Constants::AC_194Iron; break;
-        case Type::AC_195Iron: os << Constants::AC_195Iron; break;
-        case Type::AC_172Beryllium: os << Constants::AC_172Beryllium; break;
-        case Type::AC_182Class2: os << Constants::AC_182Class2; break;
-        case Type::AC_655Silicon: os << Constants::AC_655Silicon; break;
-        case Type::AC_706Nickel: os << Constants::AC_706Nickel; break;
-        case Type::AC_715NickelSilver: os << Constants::AC_715NickelSilver; break;
-        case Type::AC_725NickelSilver: os << Constants::AC_725NickelSilver; break;
-        case Type::AC_735NickelSilver: os << Constants::AC_735NickelSilver; break;
-        case Type::AC_752NickelSilver: os << Constants::AC_752NickelSilver; break;
-        case Type::AC_762NickelSilver: os << Constants::AC_762NickelSilver; break;
-        case Type::AC_770NickelSilver: os << Constants::AC_770NickelSilver; break;
-        case Type::AC_1751Class3: os << Constants::AC_1751Class3; break;
-        case Type::AC_1758Nickel: os << Constants::AC_1758Nickel; break;
-        case Type::AC_MoldmaxBeCu: os << Constants::AC_MoldmaxBeCu; break;
-        case Type::AC_ProthermBeCu: os << Constants::AC_ProthermBeCu; break;
-        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
-        default: os << "Name cannot be found";
-      }
-      return os;
-    }
-
     /**
      * @brief Construct a new AlloyCoppers object
      * 
@@ -343,7 +316,12 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream &os, const AlloyCoppers &obj);
 
-    private:
+    /**
+     * @brief Shift operator overload for Types of AlloyCoppers, this will print the name in string
+     * 
+     */
+    friend std::ostream &operator << (std::ostream& os, const Type type);
+
     /**
      * @brief Delete copy constructor
      * 
@@ -366,6 +344,7 @@ namespace MassCalculator
      */
     AlloyCoppers& operator=(AlloyCoppers&&) = default;
 
+    private:
     /**
      * @brief Set the Propertie Specs object
      * 

@@ -108,19 +108,6 @@ namespace MassCalculator
       END
     };
 
-    friend std::ostream& operator<<(std::ostream& os, Type type)
-    {
-      switch(type)
-      {
-        case Type::AS_4135: os << Constants::AS_4135; break;
-        case Type::AS_4140: os << Constants::AS_4140; break;
-        case Type::AS_4340: os << Constants::AS_4340; break;
-        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
-        default: os << "Name cannot be found";
-      }
-      return os;
-    }
-
     /**
      * @brief Construct a new AlloySteels object
      * 
@@ -223,7 +210,12 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream &os, const AlloySteels &obj);
 
-    private:
+    /**
+     * @brief Shift operator overload for Types of AlloySteels, this will print the name in string
+     * 
+     */
+    friend std::ostream &operator << (std::ostream& os, Type type);
+
     /**
      * @brief Delete copy constructor
      * 
@@ -246,6 +238,7 @@ namespace MassCalculator
      */
     AlloySteels& operator=(AlloySteels&&) = default;
 
+    private:
     /**
      * @brief Set the Propertie Specs object
      * 

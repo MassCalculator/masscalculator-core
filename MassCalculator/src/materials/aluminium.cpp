@@ -547,10 +547,8 @@ namespace MassCalculator
   std::ostream &operator << (std::ostream &os, const Aluminium &obj)
   {
     os << "  Aluminium object properties: " "\n"
-          //TODO: This throws bad_alloc because of std::string
-          // "   - Type    : " + obj.getType().first + "\n"
-          //TODO: This throws segmentation fault because of std::string
-          // "   - Color   : " + obj.getSpecificColor() + "\n"
+          "   - Type    : " + obj.getType().first + "\n"
+          "   - Color   : " + obj.getSpecificColor() + "\n"
           "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
           "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
           "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
@@ -558,6 +556,25 @@ namespace MassCalculator
           "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
           "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
           "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    return os;
+  }
+
+  std::ostream &operator << (std::ostream& os, Aluminium::Type type)
+  {
+    switch(type)
+    {
+      case Aluminium::Type::A_1100: os << Constants::A_1100; break;
+      case Aluminium::Type::A_2011: os << Constants::A_2011; break;
+      case Aluminium::Type::A_2014: os << Constants::A_2014; break;
+      case Aluminium::Type::A_2024: os << Constants::A_2024; break;
+      case Aluminium::Type::A_3003: os << Constants::A_3003; break;
+      case Aluminium::Type::A_5052: os << Constants::A_5052; break;
+      case Aluminium::Type::A_6061: os << Constants::A_6061; break;
+      case Aluminium::Type::A_6063: os << Constants::A_6063; break;
+      case Aluminium::Type::A_7075: os << Constants::A_7075; break;
+      case Aluminium::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
     return os;
   }
 }//end namespace MassCalculator

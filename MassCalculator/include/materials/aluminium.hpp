@@ -53,8 +53,8 @@ namespace MassCalculator
        * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Aluminium::Type::UNSPECIFIED};
-      std::string color_{0};
+      std::pair<std::string, Type> type_{{Constants::UNSPECIFIED}, {Aluminium::Type::UNSPECIFIED}};
+      std::string color_{""};
       kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
       meters_per_second_squared_t gravity_{0_mps_sq};
       kelvin_t melting_point_{0_K};
@@ -148,25 +148,6 @@ namespace MassCalculator
 
       END
     };
-
-    friend std::ostream& operator<<(std::ostream& os, Type type)
-    {
-      switch(type)
-      {
-        case Type::A_1100: os << Constants::A_1100; break;
-        case Type::A_2011: os << Constants::A_2011; break;
-        case Type::A_2014: os << Constants::A_2014; break;
-        case Type::A_2024: os << Constants::A_2024; break;
-        case Type::A_3003: os << Constants::A_3003; break;
-        case Type::A_5052: os << Constants::A_5052; break;
-        case Type::A_6061: os << Constants::A_6061; break;
-        case Type::A_6063: os << Constants::A_6063; break;
-        case Type::A_7075: os << Constants::A_7075; break;
-        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
-        default: os << "Name cannot be found";
-      }
-      return os;
-    }
 
     /**
      * @brief Construct a new Aluminium object
@@ -270,7 +251,12 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream &os, const Aluminium &obj);
 
-    private:
+    /**
+     * @brief Shift operator overload for Types of Aluminium, this will print the name in string
+     * 
+     */
+    friend std::ostream &operator<<(std::ostream& os, Type type);
+
     /**
      * @brief Delete copy constructor
      * 
@@ -293,6 +279,7 @@ namespace MassCalculator
      */
     Aluminium& operator=(Aluminium&&) = default;
 
+    private:
     /**
      * @brief Set the Propertie Specs object
      * 
