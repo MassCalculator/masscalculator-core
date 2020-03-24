@@ -346,6 +346,47 @@ namespace MassCalculator
 
     private:
     /**
+     * @brief Function to return the class name, not the pointer of the class, I am trying to keep away this function outside of the class
+     * 
+     * @return std::string Class name as a string
+     */
+    inline std::string _getClassName(AlloyCoppers *) { return {"AlloyCoppers"}; };
+
+    /**
+     * @brief Function to set the static propertie values
+     * 
+     * @param _properties Structure of the constant properties
+     * @return true If properties are correctly set
+     * @return false If properties have failed to set
+     */
+    bool _setPropertieSpecs(Properties_t _properties);
+
+    /**
+     * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
+     * Here we set also the values accordingly to SI @todo Set values properly
+     * 
+     */
+    std::unordered_map<Type, std::function<void()>> type2func
+    {
+      {Type::AC_145Tellvirum,    [&](){ return this->_setPropertieSpecs({{Constants::AC_145Tellvirum,    Type::AC_145Tellvirum},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_194Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AC_194Iron,         Type::AC_194Iron},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_195Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AC_195Iron,         Type::AC_195Iron},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_182Class2,       [&](){ return this->_setPropertieSpecs({{Constants::AC_182Class2,       Type::AC_182Class2},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_655Silicon,      [&](){ return this->_setPropertieSpecs({{Constants::AC_655Silicon,      Type::AC_655Silicon},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_706Nickel,       [&](){ return this->_setPropertieSpecs({{Constants::AC_706Nickel,       Type::AC_706Nickel},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_715NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_715NickelSilver, Type::AC_715NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_725NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_725NickelSilver, Type::AC_725NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_735NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_735NickelSilver, Type::AC_735NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_752NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_752NickelSilver, Type::AC_752NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_762NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_762NickelSilver, Type::AC_762NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_770NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_770NickelSilver, Type::AC_770NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_1751Class3,      [&](){ return this->_setPropertieSpecs({{Constants::AC_1751Class3,      Type::AC_1751Class3},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_1758Nickel,      [&](){ return this->_setPropertieSpecs({{Constants::AC_1758Nickel,      Type::AC_1758Nickel},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_MoldmaxBeCu,     [&](){ return this->_setPropertieSpecs({{Constants::AC_MoldmaxBeCu,     Type::AC_MoldmaxBeCu},     {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_ProthermBeCu,    [&](){ return this->_setPropertieSpecs({{Constants::AC_ProthermBeCu,    Type::AC_ProthermBeCu},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+    };
+
+    /**
      * @brief Set the Propertie Specs object
      * 
      * @param type Type of AlloyCoppers

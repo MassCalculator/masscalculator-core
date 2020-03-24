@@ -216,27 +216,27 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream& os, Type type);
 
-    // /**
-    //  * @brief Delete copy constructor
-    //  * 
-    //  */
-    // AlloySteels(const AlloySteels&) = delete;
+    /**
+     * @brief Delete copy constructor
+     * 
+     */
+    AlloySteels(const AlloySteels&) = delete;
 
-    // /**
-    //  * @brief Set move constructor to default
-    //  * 
-    //  */
-    // AlloySteels(AlloySteels&&) = default;
+    /**
+     * @brief Set move constructor to default
+     * 
+     */
+    AlloySteels(AlloySteels&&) = default;
 
-    // /**
-    //  * @brief Delete assignment operator
-    //  */
-    // AlloySteels& operator=(const AlloySteels&) = delete;
+    /**
+     * @brief Delete assignment operator
+     */
+    AlloySteels& operator=(const AlloySteels&) = delete;
 
-    // /**
-    //  * @brief Allow move assignment operator
-    //  */
-    // AlloySteels& operator=(AlloySteels&&) = default;
+    /**
+     * @brief Allow move assignment operator
+     */
+    AlloySteels& operator=(AlloySteels&&) = default;
 
     private:
     /**
