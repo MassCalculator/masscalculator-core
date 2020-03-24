@@ -261,6 +261,39 @@ namespace MassCalculator
 
     private:
     /**
+     * @brief Function to return the class name, not the pointer of the class, I am trying to keep away this function outside of the class
+     * 
+     * @return std::string Class name as a string
+     */
+    inline std::string _getClassName(Brass *) { return {"Brass"}; };
+
+    /**
+     * @brief Function to set the static propertie values
+     * 
+     * @param _properties Structure of the constant properties
+     * @return true If properties are correctly set
+     * @return false If properties have failed to set
+     */
+    bool _setPropertieSpecs(Properties_t _properties);
+
+    /**
+     * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
+     * Here we set also the values accordingly to SI @todo Set values properly
+     * 
+     */
+    std::unordered_map<Type, std::function<void()>> type2func
+    {
+      {Type::B_240Low,       [&](){ return this->_setPropertieSpecs({{Constants::B_240Low,       Type::B_240Low},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_260Cartridge, [&](){ return this->_setPropertieSpecs({{Constants::B_260Cartridge, Type::B_260Cartridge}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_353Leaded,    [&](){ return this->_setPropertieSpecs({{Constants::B_353Leaded,    Type::B_353Leaded},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_360,          [&](){ return this->_setPropertieSpecs({{Constants::B_360,          Type::B_360},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_365,          [&](){ return this->_setPropertieSpecs({{Constants::B_365,          Type::B_365},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_380,          [&](){ return this->_setPropertieSpecs({{Constants::B_380,          Type::B_380},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_385,          [&](){ return this->_setPropertieSpecs({{Constants::B_385,          Type::B_385},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_464,          [&](){ return this->_setPropertieSpecs({{Constants::B_464,          Type::B_464},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
+    };
+
+    /**
      * @brief Set the Propertie Specs object
      * 
      * @param type Type of Brass

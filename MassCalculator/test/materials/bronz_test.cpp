@@ -24,48 +24,48 @@ TEST_F(BronzTest, GetSpecificTypeTest)
   std::pair<std::string, MassCalculator::Bronz::Type> 
     type{"B_18Al", MassCalculator::Bronz::Type::B_18Al};
 
-  EXPECT_EQ( type.first, material_B_18Al.getType().first);
-  EXPECT_EQ( type.second, material_B_18Al.getType().second);
+  EXPECT_EQ(type.first, material_B_18Al.getType().first);
+  EXPECT_EQ(type.second, material_B_18Al.getType().second);
 }
 
 TEST_F(BronzTest, GetSpecificColorTest)
 {
-  EXPECT_EQ( std::string{"Metallic"}, material_B_18Al.getSpecificColor());
+  EXPECT_EQ(std::string{"Metallic"}, material_B_18Al.getSpecificColor());
 }
 
 TEST_F(BronzTest, GetSpecificDensityTest)
 {
-  EXPECT_EQ( double{2.71}, material_B_18Al.getSpecificDensity());
+  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_B_18Al.getSpecificDensity());
 }
 
 TEST_F(BronzTest, GetSpecificGravityTest)
 {
-  EXPECT_EQ( double{2.83}, material_B_18Al.getSpecificGravity());
+  EXPECT_EQ(meters_per_second_squared_t{2.83}, material_B_18Al.getSpecificGravity());
 }
 
 TEST_F(BronzTest, GetSpecificMeltingPointTest)
 {
-  EXPECT_EQ( double{537.778}, material_B_18Al.getSpecificMeltingPoint());
+  EXPECT_EQ(kelvin_t{537.778}, material_B_18Al.getSpecificMeltingPoint());
 }
 
 TEST_F(BronzTest, GetSpecificPoissonsRatioTest)
 {
-  EXPECT_EQ( double{0.33}, material_B_18Al.getSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, material_B_18Al.getSpecificPoissonsRatio());
 }
 
 TEST_F(BronzTest, GetSpecificThermalConductivityTest)
 {
-  EXPECT_EQ( double{990.0}, material_B_18Al.getSpecificThermalConductivity());
+  EXPECT_EQ(watt_t{990.0}, material_B_18Al.getSpecificThermalConductivity());
 }
 
 TEST_F(BronzTest, GetSpecificModOfElasticityTensionTest)
 {
-  EXPECT_EQ( double{9.9}, material_B_18Al.getSpecificModOfElasticityTension());
+  EXPECT_EQ(pascal_t{9.9}, material_B_18Al.getSpecificModOfElasticityTension());
 }
 
 TEST_F(BronzTest, GetSpecificModOfElasticityTorsionTest)
 {
-  EXPECT_EQ( double{3.8}, material_B_18Al.getSpecificModOfElasticityTorsion());
+  EXPECT_EQ(pascal_t{3.8}, material_B_18Al.getSpecificModOfElasticityTorsion());
 }
 
 int main(int argc, char **argv) 

@@ -79,200 +79,67 @@ namespace MassCalculator
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
+  bool Brass::_setPropertieSpecs(Properties_t _properties)
+  {
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
   bool Brass::setPropertieSpecs(Brass::Type type)
   {
-    switch (type)
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case Brass::Type::B_240Low :
-      {
-        this->specific_properties_.type_ = {
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "Brass.Type.B_240Low.type"),
-            {Constants::B_240Low}
-          ), type};
-        this->specific_properties_.color_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "Brass.Type.B_240Low.color"),
-            {Constants::Metallic}
-          );
-        this->specific_properties_.density_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.density")),
-            {2.71_kg_per_cu_m}
-          );
-        this->specific_properties_.gravity_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.gravity")),
-            {2.83_mps_sq}
-          );
-        this->specific_properties_.melting_point_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.melting_point")),
-            {537.778_K}
-          );
-        this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.poissons_ratio"),
-            {0.33}
-          );
-        this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.thermal_conductivity")),
-            {990.0_W}
-          );
-        this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.mod_of_elasticity_tension")),
-            {9.9_Pa}
-          );
-        this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_240Low.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_240Low.mod_of_elasticity_torsion")),
-            {3.8_Pa}
-          );
-        break;
-      }
-
-      case Brass::Type::B_260Cartridge :
-      {
-        this->specific_properties_.type_ = {
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.type"),
-            {Constants::B_260Cartridge}
-          ), type};
-        this->specific_properties_.color_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.color"),
-            {Constants::Metallic}
-          );
-        this->specific_properties_.density_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.density")),
-            {2.71_kg_per_cu_m}
-          );
-        this->specific_properties_.gravity_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.gravity")),
-            {2.83_mps_sq}
-          );
-        this->specific_properties_.melting_point_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.melting_point")),
-            {537.778_K}
-          );
-        this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.poissons_ratio"),
-            {0.33}
-          );
-        this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.thermal_conductivity")),
-            {990.0_W}
-          );
-        this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.mod_of_elasticity_tension")),
-            {9.9_Pa}
-          );
-        this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Brass.Type.B_260Cartridge.mod_of_elasticity_torsion")),
-            {3.8_Pa}
-          );
-        break;
-      }
-
-      // case Brass::Type::B_353Leaded :
-      // {
-      //   this->specific_properties_.type_                       = {"B_353Leaded", type};
-      //   this->specific_properties_.color_                      = {"Metallic"};
-      //   this->specific_properties_.density_                    = {2.71};
-      //   this->specific_properties_.gravity_                    = {2.83};
-      //   this->specific_properties_.melting_point_              = {537.778};
-      //   this->specific_properties_.poissons_ratio_             = {0.33};
-      //   this->specific_properties_.thermal_conductivity_       = {990.0};
-      //   this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-      //   this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-      //   break;
-      // }
-
-      // case Brass::Type::B_360 :
-      // {
-      //   this->specific_properties_.type_                       = {"B_360", type};
-      //   this->specific_properties_.color_                      = {"Metallic"};
-      //   this->specific_properties_.density_                    = {2.71};
-      //   this->specific_properties_.gravity_                    = {2.83};
-      //   this->specific_properties_.melting_point_              = {537.778};
-      //   this->specific_properties_.poissons_ratio_             = {0.33};
-      //   this->specific_properties_.thermal_conductivity_       = {990.0};
-      //   this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-      //   this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-      //   break;
-      // }
-
-      // case Brass::Type::B_365 :
-      // {
-      //   this->specific_properties_.type_                       = {"B_365", type};
-      //   this->specific_properties_.color_                      = {"Metallic"};
-      //   this->specific_properties_.density_                    = {2.71};
-      //   this->specific_properties_.gravity_                    = {2.83};
-      //   this->specific_properties_.melting_point_              = {537.778};
-      //   this->specific_properties_.poissons_ratio_             = {0.33};
-      //   this->specific_properties_.thermal_conductivity_       = {990.0};
-      //   this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-      //   this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-      //   break;
-      // }
-
-      // case Brass::Type::B_380 :
-      // {
-      //   this->specific_properties_.type_                       = {"B_380", type};
-      //   this->specific_properties_.color_                      = {"Metallic"};
-      //   this->specific_properties_.density_                    = {2.71};
-      //   this->specific_properties_.gravity_                    = {2.83};
-      //   this->specific_properties_.melting_point_              = {537.778};
-      //   this->specific_properties_.poissons_ratio_             = {0.33};
-      //   this->specific_properties_.thermal_conductivity_       = {990.0};
-      //   this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-      //   this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-      //   break;
-      // }
-
-      // case Brass::Type::B_385 :
-      // {
-      //   this->specific_properties_.type_                       = {"B_385", type};
-      //   this->specific_properties_.color_                      = {"Metallic"};
-      //   this->specific_properties_.density_                    = {2.71};
-      //   this->specific_properties_.gravity_                    = {2.83};
-      //   this->specific_properties_.melting_point_              = {537.778};
-      //   this->specific_properties_.poissons_ratio_             = {0.33};
-      //   this->specific_properties_.thermal_conductivity_       = {990.0};
-      //   this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-      //   this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-      //   break;
-      // }
-
-      // case Brass::Type::B_464 :
-      // {
-      //   this->specific_properties_.type_                       = {"B_464", type};
-      //   this->specific_properties_.color_                      = {"Metallic"};
-      //   this->specific_properties_.density_                    = {2.71};
-      //   this->specific_properties_.gravity_                    = {2.83};
-      //   this->specific_properties_.melting_point_              = {537.778};
-      //   this->specific_properties_.poissons_ratio_             = {0.33};
-      //   this->specific_properties_.thermal_conductivity_       = {990.0};
-      //   this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-      //   this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-      //   break;
-      // }
-
-      default:
-      {
-        std::cerr << "The type Brass specified not found, using default Brass type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;

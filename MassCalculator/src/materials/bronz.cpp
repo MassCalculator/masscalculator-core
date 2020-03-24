@@ -44,17 +44,17 @@ namespace MassCalculator
     return{this->specific_properties_.color_};
   }
 
-  double Bronz::getSpecificDensity(void) const
+  kilograms_per_cubic_meter_t Bronz::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Bronz::getSpecificGravity(void) const
+  meters_per_second_squared_t Bronz::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Bronz::getSpecificMeltingPoint(void) const
+  kelvin_t Bronz::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
@@ -64,313 +64,82 @@ namespace MassCalculator
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Bronz::getSpecificThermalConductivity(void) const
+  watt_t Bronz::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity_};
   }
 
-  double Bronz::getSpecificModOfElasticityTension(void) const
+  pascal_t Bronz::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Bronz::getSpecificModOfElasticityTorsion(void) const
+  pascal_t Bronz::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
+  bool Bronz::_setPropertieSpecs(Properties_t _properties)
+  {
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
   bool Bronz::setPropertieSpecs(Bronz::Type type)
   {
-    switch (type)
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case Bronz::Type::B_18Al :
-      {
-        this->specific_properties_.type_                       = {"B_18Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Bronz.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
-        break;
-      }
-
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Bronz::Type::B_21Al :
-      {
-        this->specific_properties_.type_                       = {"B_21Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_314Commercial :
-      {
-        this->specific_properties_.type_                       = {"B_314Commercial", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_425Am :
-      {
-        this->specific_properties_.type_                       = {"B_425Am", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_485Naval :
-      {
-        this->specific_properties_.type_                       = {"B_485Naval", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_510Phos :
-      {
-        this->specific_properties_.type_                       = {"B_510Phos", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_524Phos :
-      {
-        this->specific_properties_.type_                       = {"B_524Phos", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_532Phos :
-      {
-        this->specific_properties_.type_                       = {"B_532Phos", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_534Phos :
-      {
-        this->specific_properties_.type_                       = {"B_534Phos", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_544Phos :
-      {
-        this->specific_properties_.type_                       = {"B_544Phos", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_613Al :
-      {
-        this->specific_properties_.type_                       = {"B_613Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_614Al :
-      {
-        this->specific_properties_.type_                       = {"B_614Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_623Al :
-      {
-        this->specific_properties_.type_                       = {"B_623Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_624Al :
-      {
-        this->specific_properties_.type_                       = {"B_624Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_625Al :
-      {
-        this->specific_properties_.type_                       = {"B_625Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_630NiAl :
-      {
-        this->specific_properties_.type_                       = {"B_630NiAl", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_642AlSi :
-      {
-        this->specific_properties_.type_                       = {"B_642AlSi", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_932Bearing :
-      {
-        this->specific_properties_.type_                       = {"B_932Bearing", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Bronz::Type::B_954Al :
-      {
-        this->specific_properties_.type_                       = {"B_954Al", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }      
-
-      case Bronz::Type::B_OilLite :
-      {
-        this->specific_properties_.type_                       = {"B_OilLite", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      default:
-      {
-        std::cerr << "The type Bronz specified not found, using default Bronz type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;
@@ -381,13 +150,42 @@ namespace MassCalculator
     os << "  Bronz object properties: " "\n"
           "   - Type    : " + obj.getType().first + "\n"
           "   - Color   : " + obj.getSpecificColor() + "\n"
-          "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
-          "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
-          "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
+          "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
+          "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
+          "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
           "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+          "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
+          "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
+          "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    return os;
+  }
+
+  std::ostream &operator << (std::ostream& os, Bronz::Type type)
+  {
+    switch(type)
+    {
+      case Bronz::Type::B_18Al: os << Constants::B_18Al; break;
+      case Bronz::Type::B_21Al: os << Constants::B_21Al; break;
+      case Bronz::Type::B_314Commercial: os << Constants::B_314Commercial; break;
+      case Bronz::Type::B_485Naval: os << Constants::B_485Naval; break;
+      case Bronz::Type::B_510Phos: os << Constants::B_510Phos; break;
+      case Bronz::Type::B_524Phos: os << Constants::B_524Phos; break;
+      case Bronz::Type::B_532Phos: os << Constants::B_532Phos; break;
+      case Bronz::Type::B_534Phos: os << Constants::B_534Phos; break;
+      case Bronz::Type::B_544Phos: os << Constants::B_544Phos; break;
+      case Bronz::Type::B_613Al: os << Constants::B_613Al; break;
+      case Bronz::Type::B_614Al: os << Constants::B_614Al; break;
+      case Bronz::Type::B_623Al: os << Constants::B_623Al; break;
+      case Bronz::Type::B_624Al: os << Constants::B_624Al; break;
+      case Bronz::Type::B_625Al: os << Constants::B_625Al; break;
+      case Bronz::Type::B_630NiAl: os << Constants::B_630NiAl; break;
+      case Bronz::Type::B_642AlSi: os << Constants::B_642AlSi; break;
+      case Bronz::Type::B_932Bearing: os << Constants::B_932Bearing; break;
+      case Bronz::Type::B_954Al: os << Constants::B_954Al; break;
+      case Bronz::Type::B_OilLite: os << Constants::B_OilLite; break;
+      case Bronz::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
     return os;
   }
 }//end namespace MassCalculator
