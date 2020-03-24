@@ -286,6 +286,40 @@ namespace MassCalculator
 
     private:
     /**
+     * @brief Function to return the class name, not the pointer of the class, I am trying to keep away this function outside of the class
+     * 
+     * @return std::string Class name as a string
+     */
+    inline std::string _getClassName(Aluminium *) { return {"Aluminium"}; };
+
+    /**
+     * @brief Function to set the static propertie values
+     * 
+     * @param _properties Structure of the constant properties
+     * @return true If properties are correctly set
+     * @return false If properties have failed to set
+     */
+    bool _setPropertieSpecs(Properties_t _properties);
+
+    /**
+     * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
+     * Here we set also the values accordingly to SI @todo Set values properly
+     * 
+     */
+    std::unordered_map<Type, std::function<void()>> type2func
+    {
+      {Type::A_1100, [&](){ return this->_setPropertieSpecs({{Constants::A_1100, Type::A_1100}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_2011, [&](){ return this->_setPropertieSpecs({{Constants::A_2011, Type::A_2011}, {Constants::Metallic}, {2.82_kg_per_cu_m}, {2.83_mps_sq}, {1000.00_K}, (0.33), {990.0_W}, {10.2_Pa}, {3.85_Pa}}); }},
+      {Type::A_2014, [&](){ return this->_setPropertieSpecs({{Constants::A_2014, Type::A_2014}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_2024, [&](){ return this->_setPropertieSpecs({{Constants::A_2024, Type::A_2024}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_3003, [&](){ return this->_setPropertieSpecs({{Constants::A_3003, Type::A_3003}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_5052, [&](){ return this->_setPropertieSpecs({{Constants::A_5052, Type::A_5052}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_6061, [&](){ return this->_setPropertieSpecs({{Constants::A_6061, Type::A_6061}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_6063, [&](){ return this->_setPropertieSpecs({{Constants::A_6063, Type::A_6063}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_7075, [&](){ return this->_setPropertieSpecs({{Constants::A_7075, Type::A_7075}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
+    };
+
+    /**
      * @brief Set the Propertie Specs object
      * 
      * @param type Type of Aluminium
