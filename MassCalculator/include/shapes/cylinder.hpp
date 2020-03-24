@@ -20,7 +20,7 @@ namespace MassCalculator
      * @brief Struct with material specific properties
      * TODO:Check if this can be moved to the base class
      */
-    struct Properties
+    typedef struct Properties
     {
 
       /**
@@ -32,11 +32,11 @@ namespace MassCalculator
        * @param length_ double Parameter to save length of the cylinder
        * 
        */
-      std::pair<std::string, Type> type_{"Cylinder", Cylinder::Type::Cylinder};
-      std::string lagger_;
-      double diameter_{1};
-      double length_{1};
-    }properties_;
+      std::pair<std::string, Type> type_;
+      // std::string lagger_;
+      double diameter_;
+      double length_;
+    }Properties_t;
 
     public:
 
@@ -132,7 +132,6 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream &os, const Cylinder &obj);
 
-    private:
     /**
      * @brief Delete copy constructor
      * 
@@ -155,6 +154,9 @@ namespace MassCalculator
      */
     Cylinder& operator=(Cylinder&&) = default;
 
+    private:
+    
+    Properties_t properties_{std::make_pair("Cylinder", Cylinder::Type::Cylinder), 1, 1};
   };
 }//end namespace MassCalculator
 #endif

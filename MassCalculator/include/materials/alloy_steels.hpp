@@ -62,7 +62,7 @@ namespace MassCalculator
        * 
        */
       std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloySteels::Type::UNSPECIFIED};
-      std::string color_{0};
+      std::string color_{""};
       kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
       meters_per_second_squared_t gravity_{0_mps_sq};
       kelvin_t melting_point_{0_K};
@@ -216,29 +216,57 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream& os, Type type);
 
-    /**
-     * @brief Delete copy constructor
-     * 
-     */
-    AlloySteels(const AlloySteels&) = delete;
+    // /**
+    //  * @brief Delete copy constructor
+    //  * 
+    //  */
+    // AlloySteels(const AlloySteels&) = delete;
 
-    /**
-     * @brief Set move constructor to default
-     * 
-     */
-    AlloySteels(AlloySteels&&) = default;
+    // /**
+    //  * @brief Set move constructor to default
+    //  * 
+    //  */
+    // AlloySteels(AlloySteels&&) = default;
 
-    /**
-     * @brief Delete assignment operator
-     */
-    AlloySteels& operator=(const AlloySteels&) = delete;
+    // /**
+    //  * @brief Delete assignment operator
+    //  */
+    // AlloySteels& operator=(const AlloySteels&) = delete;
 
-    /**
-     * @brief Allow move assignment operator
-     */
-    AlloySteels& operator=(AlloySteels&&) = default;
+    // /**
+    //  * @brief Allow move assignment operator
+    //  */
+    // AlloySteels& operator=(AlloySteels&&) = default;
 
     private:
+    /**
+     * @brief Function to return the class name, not the pointer of the class, I am trying to keep away this function outside of the class
+     * 
+     * @return std::string Class name as a string
+     */
+    inline std::string _getClassName(AlloySteels *) { return {"AlloySteels"}; };
+
+    /**
+     * @brief Function to set the static propertie values
+     * 
+     * @param _properties Structure of the constant properties
+     * @return true If properties are correctly set
+     * @return false If properties have failed to set
+     */
+    bool _setPropertieSpecs(Properties_t _properties);
+
+    /**
+     * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
+     * Here we set also the values accordingly to SI @todo Set values properly
+     * 
+     */
+    std::unordered_map<Type, std::function<void()>> type2func
+    {
+      {Type::AS_4135, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AS_4140, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AS_4340, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+    };
+
     /**
      * @brief Set the Propertie Specs object
      * 

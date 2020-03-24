@@ -12,6 +12,8 @@
 #ifndef ___MATERIAL_H___
 #define ___MATERIAL_H___
 #include <iostream>
+#include <functional>
+#include <unordered_map>
 
 #include "../../3rdParty/include/units.h"
 using namespace units::literals;

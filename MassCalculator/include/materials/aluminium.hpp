@@ -72,6 +72,7 @@ namespace MassCalculator
     enum class Type : uint8_t
     {
       BEGIN = 0,
+      
       /**
        * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
        * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
@@ -144,6 +145,10 @@ namespace MassCalculator
        */
       A_7075,
 
+      /**
+       * @brief Unspecified metal alloy
+       * 
+       */
       UNSPECIFIED,
 
       END

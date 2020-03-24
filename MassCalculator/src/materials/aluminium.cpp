@@ -87,47 +87,47 @@ namespace MassCalculator
       case Aluminium::Type::A_1100 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_1100.type"),
             {Constants::A_1100}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_1100.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_1100.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_1100.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -137,47 +137,47 @@ namespace MassCalculator
       case Aluminium::Type::A_2011 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_2011.type"),
             {Constants::A_2011}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_2011.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.density")),
             {2.82_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.melting_point")),
             {1000_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.mod_of_elasticity_tension")),
             {10.2_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2011.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2011.mod_of_elasticity_torsion")),
             {3.85_Pa}
           );
@@ -187,47 +187,47 @@ namespace MassCalculator
       case Aluminium::Type::A_2014 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_2014.type"),
             {Constants::A_2014}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_2014.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2014.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2014.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -237,47 +237,47 @@ namespace MassCalculator
       case Aluminium::Type::A_2024 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_2024.type"),
             {Constants::A_2024}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_2024.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_2024.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_2024.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -287,47 +287,47 @@ namespace MassCalculator
       case Aluminium::Type::A_3003 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_3003.type"),
             {Constants::A_3003}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_3003.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_3003.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_3003.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -337,47 +337,47 @@ namespace MassCalculator
       case Aluminium::Type::A_5052 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_5052.type"),
             {Constants::A_5052}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_5052.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_5052.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_5052.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -387,47 +387,47 @@ namespace MassCalculator
       case Aluminium::Type::A_6061 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_6061.type"),
             {Constants::A_6061}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_6061.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6061.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6061.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -437,47 +437,47 @@ namespace MassCalculator
       case Aluminium::Type::A_6063 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_6063.type"),
             {Constants::A_6063}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_6063.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_6063.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_6063.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
@@ -487,47 +487,47 @@ namespace MassCalculator
       case Aluminium::Type::A_7075 :
       {
         this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_7075.type"),
             {Constants::A_7075}
           ), type};
         this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             getFromLuaConfig<std::string>(std::move(this->lua_state_), "Aluminium.Type.A_7075.color"),
             {Constants::Metallic}
           );
         this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.density")),
             {2.71_kg_per_cu_m}
           );
         this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.gravity")),
             {2.83_mps_sq}
           );
         this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.melting_point")),
             {537.778_K}
           );
         this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.poissons_ratio"),
             {0.33}
           );
         this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.thermal_conductivity")),
             {990.0_W}
           );
         this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.mod_of_elasticity_tension")),
             {9.9_Pa}
           );
         this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
+          TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), "Aluminium.Type.A_7075.UseLuaConfig"),
             static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "Aluminium.Type.A_7075.mod_of_elasticity_torsion")),
             {3.8_Pa}
           );
