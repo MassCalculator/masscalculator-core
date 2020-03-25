@@ -7,7 +7,7 @@ namespace MassCalculator
     this->initLuaScript();
   }
 
-  AlloyCoppers::AlloyCoppers(AlloyCoppers::Type type)
+  AlloyCoppers::AlloyCoppers(const AlloyCoppers::Type &type)
   {
     this->initLuaScript();
 
@@ -23,7 +23,7 @@ namespace MassCalculator
     return true;
   }
 
-  bool AlloyCoppers::setType(AlloyCoppers::Type type)
+  bool AlloyCoppers::setType(const AlloyCoppers::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
@@ -79,7 +79,7 @@ namespace MassCalculator
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  bool AlloyCoppers::_setPropertieSpecs(Properties_t _properties)
+  bool AlloyCoppers::_setPropertieSpecs(const Properties_t &_properties)
   {
     this->specific_properties_.type_ = {
       TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
@@ -129,7 +129,7 @@ namespace MassCalculator
     return true;
   }
 
-  bool AlloyCoppers::setPropertieSpecs(AlloyCoppers::Type type)
+  bool AlloyCoppers::setPropertieSpecs(const AlloyCoppers::Type &type)
   {
     auto _pair = type2func.find(type);
 
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const AlloyCoppers::Type type)
+  std::ostream &operator << (std::ostream& os, const AlloyCoppers::Type &type)
   {
     switch(type)
     {

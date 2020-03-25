@@ -224,7 +224,7 @@ namespace MassCalculator
      * @brief Construct a new AlloyCoppers object and specify the type
      * 
      */
-    AlloyCoppers(Type type);
+    AlloyCoppers(const Type &type);
 
     /**
      * @brief Function to initialize the Lua object
@@ -239,7 +239,7 @@ namespace MassCalculator
      * @return true If the type is set successfully
      * @return false If the type failed to set
      */
-    bool setType(Type type);
+    bool setType(const Type &type);
 
     /**
      * @brief Get the Type object
@@ -320,7 +320,7 @@ namespace MassCalculator
      * @brief Shift operator overload for Types of AlloyCoppers, this will print the name in string
      * 
      */
-    friend std::ostream &operator << (std::ostream& os, const Type type);
+    friend std::ostream &operator << (std::ostream& os, const Type &type);
 
     /**
      * @brief Delete copy constructor
@@ -359,7 +359,7 @@ namespace MassCalculator
      * @return true If properties are correctly set
      * @return false If properties have failed to set
      */
-    bool _setPropertieSpecs(Properties_t _properties);
+    bool _setPropertieSpecs(const Properties_t &_properties);
 
     /**
      * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
@@ -393,7 +393,7 @@ namespace MassCalculator
      * @return true If the specifications of propertie are successfully set
      * @return false  If the specifications of propertie failed to set
      */
-    bool setPropertieSpecs(Type type);
+    bool setPropertieSpecs(const Type &type);
 
     /**
      * @brief Properties struct to hold the specific object properties

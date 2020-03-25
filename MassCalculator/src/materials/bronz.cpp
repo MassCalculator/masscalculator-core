@@ -7,7 +7,7 @@ namespace MassCalculator
     this->initLuaScript();
   }
 
-  Bronz::Bronz(Bronz::Type type)
+  Bronz::Bronz(const Bronz::Type &type)
   {
     this->initLuaScript();
 
@@ -23,7 +23,7 @@ namespace MassCalculator
     return true;
   }
 
-  bool Bronz::setType(Bronz::Type type)
+  bool Bronz::setType(const Bronz::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
@@ -79,7 +79,7 @@ namespace MassCalculator
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  bool Bronz::_setPropertieSpecs(Properties_t _properties)
+  bool Bronz::_setPropertieSpecs(const Properties_t &_properties)
   {
     this->specific_properties_.type_ = {
       TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
@@ -129,7 +129,7 @@ namespace MassCalculator
     return true;
   }
 
-  bool Bronz::setPropertieSpecs(Bronz::Type type)
+  bool Bronz::setPropertieSpecs(const Bronz::Type &type)
   {
     auto _pair = type2func.find(type);
 
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, Bronz::Type type)
+  std::ostream &operator << (std::ostream& os, const Bronz::Type &type)
   {
     switch(type)
     {

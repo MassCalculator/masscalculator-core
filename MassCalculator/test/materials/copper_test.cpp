@@ -16,7 +16,7 @@
  */
 TEST_F(CopperTest, TypeConstructorTest)
 {
-  EXPECT_DOUBLE_EQ( 5.0, 5.0);
+  EXPECT_DOUBLE_EQ(5.0, 5.0);
 }
 
 TEST_F(CopperTest, GetSpecificTypeTest)
@@ -24,48 +24,48 @@ TEST_F(CopperTest, GetSpecificTypeTest)
   std::pair<std::string, MassCalculator::Copper::Type> 
     type{"C_101", MassCalculator::Copper::Type::C_101};
 
-  EXPECT_EQ( type.first, material_C_101.getType().first);
-  EXPECT_EQ( type.second, material_C_101.getType().second);
+  EXPECT_EQ(type.first, material_C_101.getType().first);
+  EXPECT_EQ(type.second, material_C_101.getType().second);
 }
 
 TEST_F(CopperTest, GetSpecificColorTest)
 {
-  EXPECT_EQ( std::string{"Metallic"}, material_C_101.getSpecificColor());
+  EXPECT_EQ(std::string{"Metallic"}, material_C_101.getSpecificColor());
 }
 
 TEST_F(CopperTest, GetSpecificDensityTest)
 {
-  EXPECT_EQ( double{2.71}, material_C_101.getSpecificDensity());
+  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_C_101.getSpecificDensity());
 }
 
 TEST_F(CopperTest, GetSpecificGravityTest)
 {
-  EXPECT_EQ( double{2.83}, material_C_101.getSpecificGravity());
+  EXPECT_EQ(meters_per_second_squared_t{2.83}, material_C_101.getSpecificGravity());
 }
 
 TEST_F(CopperTest, GetSpecificMeltingPointTest)
 {
-  EXPECT_EQ( double{537.778}, material_C_101.getSpecificMeltingPoint());
+  EXPECT_EQ(kelvin_t{537.778}, material_C_101.getSpecificMeltingPoint());
 }
 
 TEST_F(CopperTest, GetSpecificPoissonsRatioTest)
 {
-  EXPECT_EQ( double{0.33}, material_C_101.getSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, material_C_101.getSpecificPoissonsRatio());
 }
 
 TEST_F(CopperTest, GetSpecificThermalConductivityTest)
 {
-  EXPECT_EQ( double{990.0}, material_C_101.getSpecificThermalConductivity());
+  EXPECT_EQ(watt_t{990.0}, material_C_101.getSpecificThermalConductivity());
 }
 
 TEST_F(CopperTest, GetSpecificModOfElasticityTensionTest)
 {
-  EXPECT_EQ( double{9.9}, material_C_101.getSpecificModOfElasticityTension());
+  EXPECT_EQ(pascal_t{9.9}, material_C_101.getSpecificModOfElasticityTension());
 }
 
 TEST_F(CopperTest, GetSpecificModOfElasticityTorsionTest)
 {
-  EXPECT_EQ( double{3.8}, material_C_101.getSpecificModOfElasticityTorsion());
+  EXPECT_EQ(pascal_t{3.8}, material_C_101.getSpecificModOfElasticityTorsion());
 }
 
 int main(int argc, char **argv) 

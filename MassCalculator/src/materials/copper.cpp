@@ -7,7 +7,7 @@ namespace MassCalculator
     this->initLuaScript();
   }
 
-  Copper::Copper(Copper::Type type)
+  Copper::Copper(const Copper::Type &type)
   {
     this->initLuaScript();
 
@@ -23,7 +23,7 @@ namespace MassCalculator
     return true;
   }
 
-  bool Copper::setType(Copper::Type type)
+  bool Copper::setType(const Copper::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
@@ -44,17 +44,17 @@ namespace MassCalculator
     return{this->specific_properties_.color_};
   }
 
-  double Copper::getSpecificDensity(void) const
+  kilograms_per_cubic_meter_t Copper::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Copper::getSpecificGravity(void) const
+  meters_per_second_squared_t Copper::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Copper::getSpecificMeltingPoint(void) const
+  kelvin_t Copper::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
@@ -64,103 +64,82 @@ namespace MassCalculator
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Copper::getSpecificThermalConductivity(void) const
+  watt_t Copper::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity_};
   }
 
-  double Copper::getSpecificModOfElasticityTension(void) const
+  pascal_t Copper::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Copper::getSpecificModOfElasticityTorsion(void) const
+  pascal_t Copper::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
-  bool Copper::setPropertieSpecs(Copper::Type type)
+  bool Copper::_setPropertieSpecs(const Properties_t &_properties)
   {
-    switch (type)
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
+  bool Copper::setPropertieSpecs(const Copper::Type &type)
+  {
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case Copper::Type::C_101 :
-      {
-        this->specific_properties_.type_                       = {"C_101", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Copper.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
-        break;
-      }
-
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Copper::Type::C_102 :
-      {
-        this->specific_properties_.type_                       = {"C_102", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Copper::Type::C_103 :
-      {
-        this->specific_properties_.type_                       = {"C_103", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Copper::Type::C_110 :
-      {
-        this->specific_properties_.type_                       = {"C_110", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Copper::Type::C_122 :
-      {
-        this->specific_properties_.type_                       = {"C_122", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_       = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      default:
-      {
-        std::cerr << "The type Copper specified not found, using default Copper type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;
@@ -171,13 +150,28 @@ namespace MassCalculator
     os << "  Copper object properties: " "\n"
           "   - Type    : " + obj.getType().first + "\n"
           "   - Color   : " + obj.getSpecificColor() + "\n"
-          "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
-          "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
-          "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
+          "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
+          "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
+          "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
           "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+          "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
+          "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
+          "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    return os;
+  }
+
+  std::ostream &operator << (std::ostream& os, const Copper::Type &type)
+  {
+    switch(type)
+    {
+      case Copper::Type::C_101: os << Constants::C_101; break;
+      case Copper::Type::C_102: os << Constants::C_102; break;
+      case Copper::Type::C_103: os << Constants::C_103; break;
+      case Copper::Type::C_110: os << Constants::C_110; break;
+      case Copper::Type::C_122: os << Constants::C_122; break;
+      case Copper::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
     return os;
   }
 }//end namespace MassCalculator
