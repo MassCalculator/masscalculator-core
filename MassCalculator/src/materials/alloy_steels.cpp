@@ -4,14 +4,15 @@ namespace MassCalculator
 {
   AlloySteels::AlloySteels(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
   AlloySteels::AlloySteels(const AlloySteels::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,8 +20,7 @@ namespace MassCalculator
 
   bool AlloySteels::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::AlloySteelsLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::AlloySteelsLuaConfigPath);
   }
 
   bool AlloySteels::setType(const AlloySteels::Type &type)
@@ -30,8 +30,8 @@ namespace MassCalculator
       std::cerr << "Cannot set the AlloySteels type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, AlloySteels::Type> AlloySteels::getType(void) const
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const AlloySteels::Type &type)
+  std::ostream &operator << (std::ostream &os, const AlloySteels::Type &type)
   {
     switch(type)
     {

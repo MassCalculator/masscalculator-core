@@ -244,21 +244,21 @@ namespace MassCalculator
     /**
      * @brief Get the Type object
      * 
-     * @return const std::pair<std::string, Type> Pair with type name and type enum
+     * @return std::pair<std::string, Type> Pair with type name and type enum
      */
     std::pair<std::string, Type> getType(void) const;
 
     /**
      * @brief Get the Specific Color object
      * 
-     * @return const std::string Color of the material
+     * @return std::string Color of the material
      */
     std::string getSpecificColor(void) const;
 
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const kilograms_per_cubic_meter_t Density of the material
+     * @return kilograms_per_cubic_meter_t Density of the material
      */
     kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
@@ -272,7 +272,7 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const kelvin_t The specific melting point of AlloyCoppers type
+     * @return kelvin_t The specific melting point of AlloyCoppers type
      */
     kelvin_t getSpecificMeltingPoint(void) const;
 
@@ -293,14 +293,14 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const pascal_t The specific modulus of elasticity tension point of AlloyCoppers type
+     * @return pascal_t The specific modulus of elasticity tension point of AlloyCoppers type
      */
     pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const pascal_t The specific modulus of elasticity torsion point of AlloyCoppers type
+     * @return pascal_t The specific modulus of elasticity torsion point of AlloyCoppers type
      */
     pascal_t getSpecificModOfElasticityTorsion(void) const;
 
@@ -320,7 +320,7 @@ namespace MassCalculator
      * @brief Shift operator overload for Types of AlloyCoppers, this will print the name in string
      * 
      */
-    friend std::ostream &operator << (std::ostream& os, const Type &type);
+    friend std::ostream &operator << (std::ostream &os, const Type &type);
 
     /**
      * @brief Delete copy constructor

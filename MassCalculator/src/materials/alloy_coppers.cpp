@@ -4,14 +4,15 @@ namespace MassCalculator
 {
   AlloyCoppers::AlloyCoppers(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
   AlloyCoppers::AlloyCoppers(const AlloyCoppers::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,8 +20,7 @@ namespace MassCalculator
 
   bool AlloyCoppers::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::AlloyCoppersLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::AlloyCoppersLuaConfigPath);
   }
 
   bool AlloyCoppers::setType(const AlloyCoppers::Type &type)
@@ -30,8 +30,8 @@ namespace MassCalculator
       std::cerr << "Cannot set the AlloyCoppers type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, AlloyCoppers::Type> AlloyCoppers::getType(void) const
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const AlloyCoppers::Type &type)
+  std::ostream &operator << (std::ostream &os, const AlloyCoppers::Type &type)
   {
     switch(type)
     {

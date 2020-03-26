@@ -4,14 +4,15 @@ namespace MassCalculator
 {
   Bronz::Bronz(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
   Bronz::Bronz(const Bronz::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,8 +20,7 @@ namespace MassCalculator
 
   bool Bronz::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::BronzLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::BronzLuaConfigPath);
   }
 
   bool Bronz::setType(const Bronz::Type &type)
@@ -30,8 +30,8 @@ namespace MassCalculator
       std::cerr << "Cannot set the Bronz type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Bronz::Type> Bronz::getType(void) const
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const Bronz::Type &type)
+  std::ostream &operator << (std::ostream &os, const Bronz::Type &type)
   {
     switch(type)
     {

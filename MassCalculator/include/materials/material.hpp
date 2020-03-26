@@ -63,11 +63,24 @@ namespace MassCalculator
   }
 
   /**
+   * @brief Writing repeated static_casts in CRTP base classes quickly becomes cumbersome, as it does not add much meaning to the code.
+   * With this template struct, I get rid of it and handle both const and non-const cases
+   * 
+   * @tparam T 
+   */
+  template <typename TMaterial>
+  struct crtp
+  {
+    TMaterial& materialType() { return static_cast<TMaterial&>(*this); }
+    TMaterial const& materialType() const { return static_cast<TMaterial const&>(*this); }
+  };
+
+  /**
    * @brief Template base class Material
    * 
    */
   template<typename TMaterialType>
-  class Material 
+  class Material : crtp<TMaterialType>
   {
     public: enum class Type : uint8_t;
 
@@ -85,9 +98,9 @@ namespace MassCalculator
      * 
      * @param type Type of the Material
      */
-    Material(Type type)
+    Material(const Type &type)
     {
-      static_cast<TMaterialType*>(this)(type);
+      this->materialType()(type);
     }
 
     /**
@@ -96,7 +109,7 @@ namespace MassCalculator
      */
     bool initLuaScript()
     {
-      static_cast<TMaterialType*>(this)->initLuaScript();
+      this->materialType()->initLuaScript();
       return true;
     }
 
@@ -107,9 +120,9 @@ namespace MassCalculator
      * @return true If the type is set successfully
      * @return false If the type failed to set
      */
-    bool setType(Type type)
+    bool setType(const Type &type)
     {
-      static_cast<TMaterialType*>(this)->setType(type);
+      this->materialType()->setType(type);
       return true;
     }
 
@@ -118,9 +131,9 @@ namespace MassCalculator
      * 
      * @return const std::pair<std::string, Type> Pair with type name and type enum from Derived class
      */
-    constexpr std::pair<std::string, Type> getType(void)
+    constexpr std::pair<std::string, Type> getType(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getType()};
+      return{this->materialType()->getType()};
     }
 
     /**
@@ -128,39 +141,39 @@ namespace MassCalculator
      * 
      * @return const std::string Color of the material from Derived class
      */
-    constexpr std::string getSpecificColor(void)
+    constexpr std::string getSpecificColor(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificColor()};
+      return{this->materialType()->getSpecificColor()};
     }
 
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const double Density of the material from Derived class
+     * @return kilograms_per_cubic_meter_t Density of the material from Derived class
      */
-    constexpr kilograms_per_cubic_meter_t getSpecificDensity(void)
+    constexpr kilograms_per_cubic_meter_t getSpecificDensity(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificDensity()};
+      return{this->materialType()->getSpecificDensity()};
     }
 
     /**
      * @brief Get the Specific Gravity object
      * 
-     * @return const double Gravity of the material from Derived class
+     * @return meters_per_second_squared_t Gravity of the material from Derived class
      */
-    constexpr meters_per_second_squared_t getSpecificGravity(void)
+    constexpr meters_per_second_squared_t getSpecificGravity(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificGravity()};
+      return{this->materialType()->getSpecificGravity()};
     }
 
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const double The specific melting point of Material type from Derived class
+     * @return kelvin_t The specific melting point of Material type from Derived class
      */
-    constexpr kelvin_t getSpecificMeltingPoint(void)
+    constexpr kelvin_t getSpecificMeltingPoint(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificMeltingPoint()};
+      return{this->materialType()->getSpecificMeltingPoint()};
     }
 
     /**
@@ -168,39 +181,39 @@ namespace MassCalculator
      * 
      * @return double The specific poissons ratio of Material type from Derived class
      */
-    constexpr double getSpecificPoissonsRatio(void)
+    constexpr double getSpecificPoissonsRatio(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificPoissonsRatio()};
+      return{this->materialType()->getSpecificPoissonsRatio()};
     }
 
     /**
      * @brief Get the Specific Thermal Conductivity object
      * 
-     * @return double The specific thermal conductivity of Material type from Derived class
+     * @return watt_t The specific thermal conductivity of Material type from Derived class
      */
-    constexpr watt_t getSpecificThermalConductivity(void)
+    constexpr watt_t getSpecificThermalConductivity(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificThermalConductivity()};
+      return{this->materialType()->getSpecificThermalConductivity()};
     }
 
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const double The specific modulus of elasticity tension point of Material type from Derived class
+     * @return pascal_t The specific modulus of elasticity tension point of Material type from Derived class
      */
-    constexpr pascal_t getSpecificModOfElasticityTension(void)
+    constexpr pascal_t getSpecificModOfElasticityTension(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTension()};
+      return{this->materialType()->getSpecificModOfElasticityTension()};
     }
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const double The specific modulus of elasticity torsion point of Material type from Derived class
+     * @return pascal_t The specific modulus of elasticity torsion point of Material type from Derived class
      */
-    constexpr pascal_t getSpecificModOfElasticityTorsion(void)
+    constexpr pascal_t getSpecificModOfElasticityTorsion(void) const
     {
-      return{static_cast<TMaterialType*>(this)->getSpecificModOfElasticityTorsion()};
+      return{this->materialType()->getSpecificModOfElasticityTorsion()};
     }
 
     /**
@@ -251,9 +264,9 @@ namespace MassCalculator
   std::ostream &operator << (std::ostream &os, const Material<TMaterial> &obj)
   {
     //TODO: This causes segmentation fault, it works if you comment out headers in materials.hh and you move implementation in the class
+    //TODO: Update: The error is caused in interface when calling with make unique base object.
     os << "\n" "Material" "\n" << obj.thisTMaterialType();
     return os;
   }
-
 }//end namespace MassCalculator
 #endif

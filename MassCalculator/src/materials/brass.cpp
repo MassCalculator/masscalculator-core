@@ -4,14 +4,15 @@ namespace MassCalculator
 {
   Brass::Brass(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
   Brass::Brass(const Brass::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,8 +20,7 @@ namespace MassCalculator
 
   bool Brass::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::BrassLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::BrassLuaConfigPath);
   }
 
   bool Brass::setType(const Brass::Type &type)
@@ -30,8 +30,8 @@ namespace MassCalculator
       std::cerr << "Cannot set the Brass type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Brass::Type> Brass::getType(void) const
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const Brass::Type &type)
+  std::ostream &operator << (std::ostream &os, const Brass::Type &type)
   {
     switch(type)
     {

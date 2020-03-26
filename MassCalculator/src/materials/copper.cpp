@@ -4,14 +4,15 @@ namespace MassCalculator
 {
   Copper::Copper(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
   Copper::Copper(const Copper::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,8 +20,7 @@ namespace MassCalculator
 
   bool Copper::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::CopperLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::CopperLuaConfigPath);
   }
 
   bool Copper::setType(const Copper::Type &type)
@@ -30,8 +30,8 @@ namespace MassCalculator
       std::cerr << "Cannot set the Copper type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Copper::Type> Copper::getType(void) const
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const Copper::Type &type)
+  std::ostream &operator << (std::ostream &os, const Copper::Type &type)
   {
     switch(type)
     {

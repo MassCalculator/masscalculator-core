@@ -16,7 +16,7 @@
  */
 TEST_F(MagnesiumTest, TypeConstructorTest)
 {
-  EXPECT_DOUBLE_EQ( 5.0, 5.0);
+  EXPECT_DOUBLE_EQ(5.0, 5.0);
 }
 
 TEST_F(MagnesiumTest, GetSpecificTypeTest)
@@ -24,48 +24,48 @@ TEST_F(MagnesiumTest, GetSpecificTypeTest)
   std::pair<std::string, MassCalculator::Magnesium::Type> 
     type{"M_AZ31B", MassCalculator::Magnesium::Type::M_AZ31B};
 
-  EXPECT_EQ( type.first, material_M_AZ31B.getType().first);
-  EXPECT_EQ( type.second, material_M_AZ31B.getType().second);
+  EXPECT_EQ(type.first, material_M_AZ31B.getType().first);
+  EXPECT_EQ(type.second, material_M_AZ31B.getType().second);
 }
 
 TEST_F(MagnesiumTest, GetSpecificColorTest)
 {
-  EXPECT_EQ( std::string{"Metallic"}, material_M_AZ31B.getSpecificColor());
+  EXPECT_EQ(std::string{"Metallic"}, material_M_AZ31B.getSpecificColor());
 }
 
 TEST_F(MagnesiumTest, GetSpecificDensityTest)
 {
-  EXPECT_EQ( double{2.71}, material_M_AZ31B.getSpecificDensity());
+  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_M_AZ31B.getSpecificDensity());
 }
 
 TEST_F(MagnesiumTest, GetSpecificGravityTest)
 {
-  EXPECT_EQ( double{2.83}, material_M_AZ31B.getSpecificGravity());
+  EXPECT_EQ(meters_per_second_squared_t{2.83}, material_M_AZ31B.getSpecificGravity());
 }
 
 TEST_F(MagnesiumTest, GetSpecificMeltingPointTest)
 {
-  EXPECT_EQ( double{537.778}, material_M_AZ31B.getSpecificMeltingPoint());
+  EXPECT_EQ(kelvin_t{537.778}, material_M_AZ31B.getSpecificMeltingPoint());
 }
 
 TEST_F(MagnesiumTest, GetSpecificPoissonsRatioTest)
 {
-  EXPECT_EQ( double{0.33}, material_M_AZ31B.getSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, material_M_AZ31B.getSpecificPoissonsRatio());
 }
 
 TEST_F(MagnesiumTest, GetSpecificThermalConductivityTest)
 {
-  EXPECT_EQ( double{990.0}, material_M_AZ31B.getSpecificThermalConductivity());
+  EXPECT_EQ(watt_t{990.0}, material_M_AZ31B.getSpecificThermalConductivity());
 }
 
 TEST_F(MagnesiumTest, GetSpecificModOfElasticityTensionTest)
 {
-  EXPECT_EQ( double{9.9}, material_M_AZ31B.getSpecificModOfElasticityTension());
+  EXPECT_EQ(pascal_t{9.9}, material_M_AZ31B.getSpecificModOfElasticityTension());
 }
 
 TEST_F(MagnesiumTest, GetSpecificModOfElasticityTorsionTest)
 {
-  EXPECT_EQ( double{3.8}, material_M_AZ31B.getSpecificModOfElasticityTorsion());
+  EXPECT_EQ(pascal_t{3.8}, material_M_AZ31B.getSpecificModOfElasticityTorsion());
 }
 
 int main(int argc, char **argv) 

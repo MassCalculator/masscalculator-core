@@ -4,14 +4,15 @@ namespace MassCalculator
 {
   Aluminium::Aluminium(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
   Aluminium::Aluminium(const Aluminium::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,8 +20,7 @@ namespace MassCalculator
 
   bool Aluminium::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::AluminiumLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::AluminiumLuaConfigPath);
   }
 
   bool Aluminium::setType(const Aluminium::Type &type)
@@ -30,8 +30,8 @@ namespace MassCalculator
       std::cerr << "Cannot set the aluminium type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
@@ -160,7 +160,7 @@ namespace MassCalculator
     return os;
   }
 
-  std::ostream &operator << (std::ostream& os, const Aluminium::Type &type)
+  std::ostream &operator << (std::ostream &os, const Aluminium::Type &type)
   {
     switch(type)
     {
