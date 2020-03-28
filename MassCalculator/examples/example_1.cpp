@@ -12,19 +12,25 @@
 #include "interface/object_interface.hpp"
 
 using namespace MassCalculator;
+using namespace MassCalculator::Materials;
 
 int main(/*int argc, char** argv*/)
 {
+  //@todo: explanation here, the object created is temporary, and is cleared from unique pointer destructor right after, this is th reason of the errors.
   //Create a unique pointer for the shape
-  std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(Cylinder(10.0, 10.0));
+  Cylinder temp(10.0, 10.0);
+  std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(std::move(temp));
+  // std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(std::move(Cylinder(10.0, 10.0)));
 
   //Create a unique pointer for the material
-  std::unique_ptr<Material<AlloyCoppers>> material = std::make_unique<Material<AlloyCoppers>>(AlloyCoppers(AlloyCoppers::Type::AC_145Tellvirum));
+  AlloySteels tempa(AlloySteels::Type::AS_4135);
+  std::unique_ptr<Material<AlloySteels>> material = std::make_unique<Material<AlloySteels>>(std::move(tempa));
+  // std::unique_ptr<Material<AlloySteels>> material = std::make_unique<Material<AlloySteels>>(std::move(AlloySteels(AlloySteels::Type::AS_4135)));
 
   // Construct a unique pointer for Object while parsing the arguments from above as parameters
   const auto obj = std::make_unique<Interface::Object<Shape<Cylinder>, 
-                                                      Material<AlloyCoppers>>>(shape, 
-                                                                            material);
+                                                      Material<AlloySteels>>>(shape, 
+                                                                              material);
 
   std::cout << "Object: " << *obj << std::endl;
 

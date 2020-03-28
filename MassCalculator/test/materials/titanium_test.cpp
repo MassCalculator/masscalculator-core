@@ -21,8 +21,8 @@ TEST_F(TitaniumTest, TypeConstructorTest)
 
 TEST_F(TitaniumTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Titanium::Type> 
-    type{"T_6Al4V", MassCalculator::Titanium::Type::T_6Al4V};
+  std::pair<std::string, MassCalculator::Materials::Titanium::Type> 
+    type{"T_6Al4V", MassCalculator::Materials::Titanium::Type::T_6Al4V};
 
   EXPECT_EQ( type.first, material_T_6Al4V.getType().first);
   EXPECT_EQ( type.second, material_T_6Al4V.getType().second);

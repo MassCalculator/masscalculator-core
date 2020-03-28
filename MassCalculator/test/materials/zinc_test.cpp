@@ -21,8 +21,8 @@ TEST_F(ZincTest, TypeConstructorTest)
 
 TEST_F(ZincTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Zinc::Type> 
-    type{"Z_190", MassCalculator::Zinc::Type::Z_190};
+  std::pair<std::string, MassCalculator::Materials::Zinc::Type> 
+    type{"Z_190", MassCalculator::Materials::Zinc::Type::Z_190};
 
   EXPECT_EQ( type.first, material_Z_190.getType().first);
   EXPECT_EQ( type.second, material_Z_190.getType().second);

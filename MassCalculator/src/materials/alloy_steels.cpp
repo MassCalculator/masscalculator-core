@@ -1,17 +1,18 @@
 #include "materials/alloy_steels.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   AlloySteels::AlloySteels(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
-  AlloySteels::AlloySteels(AlloySteels::Type type)
+  AlloySteels::AlloySteels(const AlloySteels::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,19 +20,18 @@ namespace MassCalculator
 
   bool AlloySteels::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::AlloySteelsLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::AlloySteelsLuaConfigPath);
   }
 
-  bool AlloySteels::setType(AlloySteels::Type type)
+  bool AlloySteels::setType(const AlloySteels::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
       std::cerr << "Cannot set the AlloySteels type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, AlloySteels::Type> AlloySteels::getType(void) const
@@ -79,166 +79,67 @@ namespace MassCalculator
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
-  bool AlloySteels::setPropertieSpecs(AlloySteels::Type type)
+  bool AlloySteels::_setPropertieSpecs(const Properties_t &_properties)
   {
-    switch (type)
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
+  bool AlloySteels::setPropertieSpecs(const AlloySteels::Type &type)
+  {
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case AlloySteels::Type::AS_4135 :
-      {
-        this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.type"),
-            {Constants::AS_4135}
-          ), type};
-        this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.color"),
-            {Constants::Metallic}
-          );
-        this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.density")),
-            {2.71_kg_per_cu_m}
-          );
-        this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.gravity")),
-            {2.83_mps_sq}
-          );
-        this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.melting_point")),
-            {537.778_K}
-          );
-        this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.poissons_ratio"),
-            {0.33}
-          );
-        this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.thermal_conductivity")),
-            {990.0_W}
-          );
-        this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.mod_of_elasticity_tension")),
-            {9.9_Pa}
-          );
-        this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4135.mod_of_elasticity_torsion")),
-            {3.8_Pa}
-          );
-        break;
-      }
-
-      case AlloySteels::Type::AS_4140 :
-      {
-        this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.type"),
-            {Constants::AS_4140}
-          ), type};
-        this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.color"),
-            {Constants::Metallic}
-          );
-        this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.density")),
-            {2.71_kg_per_cu_m}
-          );
-        this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.gravity")),
-            {2.83_mps_sq}
-          );
-        this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.melting_point")),
-            {537.778_K}
-          );
-        this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.poissons_ratio"),
-            {0.33}
-          );
-        this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.thermal_conductivity")),
-            {990.0_W}
-          );
-        this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.mod_of_elasticity_tension")),
-            {9.9_Pa}
-          );
-        this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4140.mod_of_elasticity_torsion")),
-            {3.8_Pa}
-          );
-        break;
-      }
-
-      case AlloySteels::Type::AS_4340 :
-      {
-        this->specific_properties_.type_ = {
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.type"),
-            {Constants::AS_4340}
-          ), type};
-        this->specific_properties_.color_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            getFromLuaConfig<std::string>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.color"),
-            {Constants::Metallic}
-          );
-        this->specific_properties_.density_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.density")),
-            {2.71_kg_per_cu_m}
-          );
-        this->specific_properties_.gravity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.gravity")),
-            {2.83_mps_sq}
-          );
-        this->specific_properties_.melting_point_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.melting_point")),
-            {537.778_K}
-          );
-        this->specific_properties_.poissons_ratio_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.poissons_ratio"),
-            {0.33}
-          );
-        this->specific_properties_.thermal_conductivity_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.thermal_conductivity")),
-            {990.0_W}
-          );
-        this->specific_properties_.mod_of_elasticity_tension_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.mod_of_elasticity_tension")),
-            {9.9_Pa}
-          );
-        this->specific_properties_.mod_of_elasticity_torsion_ = 
-          TTernaryOperator( checkFromLuaConfig(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.UseLuaConfig"),
-            static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), "AlloySteels.Type.AS_4340.mod_of_elasticity_torsion")),
-            {3.8_Pa}
-          );
-        break;
-      }
-
-      default:
-      {
-        std::cerr << "The type AlloySteels specified not found, using default AlloySteels type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;
@@ -256,6 +157,19 @@ namespace MassCalculator
           "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
           "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
           "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    return os;
+  }
+
+  std::ostream &operator << (std::ostream &os, const AlloySteels::Type &type)
+  {
+    switch(type)
+    {
+      case AlloySteels::Type::AS_4135: os << Constants::AS_4135; break;
+      case AlloySteels::Type::AS_4140: os << Constants::AS_4140; break;
+      case AlloySteels::Type::AS_4340: os << Constants::AS_4340; break;
+      case AlloySteels::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
     return os;
   }
 }//end namespace MassCalculator

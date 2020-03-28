@@ -3,10 +3,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -24,7 +24,7 @@ namespace MassCalculator
     const std::string  SS_15_5{"SS_15_5"};
     const std::string  SS_17_4{"SS_17_4"};
 
-    const std::string StainlessSteelLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/stainless_steel_config.lua"};
+    const std::string StainlessSteelLuaConfigPath{"../MassCalculator/resources/materials/stainless_steel_config.lua"};
   }
 
   /**
@@ -329,7 +329,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
-}//end namespace MassCalculator
-#endif
+}//end namespace MassCalculator::Materials
+#endif//___STAINLESS_STEEL_H___

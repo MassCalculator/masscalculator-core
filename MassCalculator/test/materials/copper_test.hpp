@@ -1,40 +1,59 @@
+/**
+ * @file copper_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class Copper, it tests all the functions and the constructors of the class
+ * @version 0.3
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#ifndef ___COPPER_TEST_H___
+#define ___COPPER_TEST_H___
+#include "materials/copper.hpp"
 #include <gtest/gtest.h>
 
-#include "materials/copper.hpp"
-
-// The fixture for testing class Aluminium.
-class CopperTest : public ::testing::Test 
+/**
+ * @brief Default test namespace
+ * 
+ */
+namespace MassCalculatorTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  CopperTest() 
+    /**
+   * @brief The test fixture for testing class Copper.
+   * 
+   */
+  class CopperTest : public ::testing::Test 
   {
-   // You can do set-up work for each test here.
-   material_C_101.setType(MassCalculator::Copper::Type::C_101);
-  }
+    protected:
+    /**
+     * @brief Construct a new CopperTest object
+     * 
+     */
+    CopperTest() 
+    {
+      material_C_101.setType(MassCalculator::Materials::Copper::Type::C_101);
+      material_C_102.setType(MassCalculator::Materials::Copper::Type::C_102);
+      material_C_103.setType(MassCalculator::Materials::Copper::Type::C_103);
+      material_C_110.setType(MassCalculator::Materials::Copper::Type::C_110);
+      material_C_122.setType(MassCalculator::Materials::Copper::Type::C_122);
+    }
 
-  ~CopperTest() override 
-  {
-   // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the CopperTest object
+     * 
+     */
+    ~CopperTest() = default;
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-   // Code here will be called immediately after the constructor (right
-   // before each test).
-  }
-
-  void TearDown() override 
-  {
-   // Code here will be called immediately after each test (right
-   // before the destructor).
-  }
-
-  // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Copper material_C_101;
-};
+    /**
+     * @brief Member objects for class Copper for each Copper type
+     * 
+     */
+    MassCalculator::Materials::Copper material_C_101,
+                                      material_C_102,
+                                      material_C_103,
+                                      material_C_110,
+                                      material_C_122;
+  };
+}//end namespace MassCalculatorTest
+#endif//___COPPER_TEST_H___

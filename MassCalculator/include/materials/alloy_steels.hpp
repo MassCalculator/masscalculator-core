@@ -1,7 +1,7 @@
 /**
  * @file alloy_steels.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief Alloy Steels class that holds the parameters for all the types
+ * @brief AlloySteels class that holds the parameters for all the types
  * @version 0.1
  * @date 2020-03-20
  * 
@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
     /**
    * @brief String constants that are used through the code
@@ -28,7 +28,7 @@ namespace MassCalculator
     const std::string AS_4140{"AS_4140"};
     const std::string AS_4340{"AS_4340"};
 
-    const std::string AlloySteelsLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_steels_config.lua"};
+    const std::string AlloySteelsLuaConfigPath{"../MassCalculator/resources/materials/alloy_steels_config.lua"};
   }
 
   /**
@@ -62,7 +62,7 @@ namespace MassCalculator
        * 
        */
       std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloySteels::Type::UNSPECIFIED};
-      std::string color_{0};
+      std::string color_{""};
       kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
       meters_per_second_squared_t gravity_{0_mps_sq};
       kelvin_t melting_point_{0_K};
@@ -74,8 +74,8 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the AlloySteels types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the AlloySteels types
+     * 
      */
     enum class Type : uint8_t
     {
@@ -83,18 +83,21 @@ namespace MassCalculator
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AS_4135 = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AS_4140,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AS_4340,
@@ -108,19 +111,6 @@ namespace MassCalculator
       END
     };
 
-    friend std::ostream& operator<<(std::ostream& os, Type type)
-    {
-      switch(type)
-      {
-        case Type::AS_4135: os << Constants::AS_4135; break;
-        case Type::AS_4140: os << Constants::AS_4140; break;
-        case Type::AS_4340: os << Constants::AS_4340; break;
-        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
-        default: os << "Name cannot be found";
-      }
-      return os;
-    }
-
     /**
      * @brief Construct a new AlloySteels object
      * 
@@ -131,7 +121,7 @@ namespace MassCalculator
      * @brief Construct a new AlloySteels object and specify the type
      * 
      */
-    AlloySteels(Type type);
+    AlloySteels(const Type &type);
 
     /**
      * @brief Function to initialize the Lua object
@@ -146,40 +136,40 @@ namespace MassCalculator
      * @return true If the type is set successfully
      * @return false If the type failed to set
      */
-    bool setType(Type type);
+    bool setType(const Type &type);
 
     /**
      * @brief Get the Type object
      * 
-     * @return const std::pair<std::string, Type> Pair with type name and type enum
+     * @return std::pair<std::string, Type> Pair with type name and type enum
      */
     std::pair<std::string, Type> getType(void) const;
 
     /**
      * @brief Get the Specific Color object
      * 
-     * @return const std::string Color of the material
+     * @return std::string Color of the material
      */
     std::string getSpecificColor(void) const;
 
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const kilograms_per_cubic_meter_t Density of the material
+     * @return kilograms_per_cubic_meter_t Density of the material
      */
     kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
     /**
      * @brief Get the Specific Gravity object
      * 
-     * @return const meters_per_second_squared_t Gravity of the material
+     * @return meters_per_second_squared_t Gravity of the material
      */
     meters_per_second_squared_t getSpecificGravity(void) const;
 
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const kelvin_t The specific melting point of AlloySteels type
+     * @return kelvin_t The specific melting point of AlloySteels type
      */
     kelvin_t getSpecificMeltingPoint(void) const;
 
@@ -200,14 +190,14 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const pascal_t The specific modulus of elasticity tension point of AlloySteels type
+     * @return pascal_t The specific modulus of elasticity tension point of AlloySteels type
      */
     pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const pascal_t The specific modulus of elasticity torsion point of AlloySteels type
+     * @return pascal_t The specific modulus of elasticity torsion point of AlloySteels type
      */
     pascal_t getSpecificModOfElasticityTorsion(void) const;
 
@@ -223,7 +213,12 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream &os, const AlloySteels &obj);
 
-    private:
+    /**
+     * @brief Shift operator overload for Types of AlloySteels, this will print the name in string
+     * 
+     */
+    friend std::ostream &operator << (std::ostream &os, const Type &type);
+
     /**
      * @brief Delete copy constructor
      * 
@@ -246,6 +241,35 @@ namespace MassCalculator
      */
     AlloySteels& operator=(AlloySteels&&) = default;
 
+    private:
+    /**
+     * @brief Function to return the class name, not the pointer of the class, I am trying to keep away this function outside of the class
+     * 
+     * @return std::string Class name as a string
+     */
+    inline std::string _getClassName(AlloySteels *) { return {"AlloySteels"}; };
+
+    /**
+     * @brief Function to set the static propertie values
+     * 
+     * @param _properties Structure of the constant properties
+     * @return true If properties are correctly set
+     * @return false If properties have failed to set
+     */
+    bool _setPropertieSpecs(const Properties_t &_properties);
+
+    /**
+     * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
+     * Here we set also the values accordingly to SI @todo Set values properly
+     * 
+     */
+    std::unordered_map<Type, std::function<void()>> type2func
+    {
+      {Type::AS_4135, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AS_4140, [&](){ return this->_setPropertieSpecs({{Constants::AS_4140, Type::AS_4140}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AS_4340, [&](){ return this->_setPropertieSpecs({{Constants::AS_4340, Type::AS_4340}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+    };
+
     /**
      * @brief Set the Propertie Specs object
      * 
@@ -253,7 +277,7 @@ namespace MassCalculator
      * @return true If the specifications of propertie are successfully set
      * @return false  If the specifications of propertie failed to set
      */
-    bool setPropertieSpecs(Type type);
+    bool setPropertieSpecs(const Type &type);
 
     /**
      * @brief Properties struct to hold the specific object properties
@@ -266,7 +290,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___ALLOY_STEELS_H___

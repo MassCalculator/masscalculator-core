@@ -68,9 +68,9 @@ void MainWindow::on_material_currentIndexChanged(int index)
     case 1 :
       {
         ui->material_type->setDisabled(false);
-        for(auto type = static_cast<int>(MassCalculator::Aluminium::Type::BEGIN); type < static_cast<int>(MassCalculator::Aluminium::Type::END); type++)
+        for(auto type = static_cast<int>(MassCalculator::Materials::Aluminium::Type::BEGIN); type < static_cast<int>(MassCalculator::Materials::Aluminium::Type::END); type++)
         {
-          std::stringstream ss; ss << static_cast<MassCalculator::Aluminium::Type>(type);
+          std::stringstream ss; ss << static_cast<MassCalculator::Materials::Aluminium::Type>(type);
           ui->material_type->addItem(ss.str().c_str());
           // ui->material_type->insertItem(type, ss.str().c_str());
         }

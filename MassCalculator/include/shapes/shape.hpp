@@ -108,101 +108,102 @@ static_cast<TShapeType*>(this)->getType()
 #endif
     Shape(void)
     {
-      type_ = formatStringToEnum(thisTShapeType().getType());
+      // thisTShapeType();
+      // type_ = formatStringToEnum(thisTShapeType().getType());
 
-      switch(type_)
-      {
-        case Type::SquareBar:
-        {
-          std::cout << "SquareBar Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Bar:
-        {
-          std::cout << "Bar Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Cylinder:
-        {
-          std::cout << "Cylinder Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::SquareTubing:
-        {
-          std::cout << "SquareTubing Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Pipe:
-        {
-          std::cout << "Pipe Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Ellipse:
-        {
-          std::cout << "Ellipse Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::TBar:
-        {
-          std::cout << "TBar Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Beam:
-        {
-          std::cout << "Beam Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Channel:
-        {
-          std::cout << "Channel Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Angle:
-        {
-          std::cout << "Angle Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::HexagonBar:
-        {
-          std::cout << "HexagonBar Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::OctagonBar:
-        {
-          std::cout << "OctagonBar Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::Sheet:
-        {
-          std::cout << "Sheet Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        case Type::UNSPECIFIED:
-        {
-          std::cout << "UNSPECIFIED Set Case\n";
-          break;
-          [[fallthrough]];
-        }
-        default:
-        {
-          std::cout << "Default Set Case: " << type_ << std::endl;
-          break;
-          [[fallthrough]];
-        }
-      }
+      // switch(type_)
+      // {
+      //   case Type::SquareBar:
+      //   {
+      //     std::cout << "SquareBar Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Bar:
+      //   {
+      //     std::cout << "Bar Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Cylinder:
+      //   {
+      //     std::cout << "Cylinder Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::SquareTubing:
+      //   {
+      //     std::cout << "SquareTubing Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Pipe:
+      //   {
+      //     std::cout << "Pipe Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Ellipse:
+      //   {
+      //     std::cout << "Ellipse Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::TBar:
+      //   {
+      //     std::cout << "TBar Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Beam:
+      //   {
+      //     std::cout << "Beam Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Channel:
+      //   {
+      //     std::cout << "Channel Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Angle:
+      //   {
+      //     std::cout << "Angle Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::HexagonBar:
+      //   {
+      //     std::cout << "HexagonBar Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::OctagonBar:
+      //   {
+      //     std::cout << "OctagonBar Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::Sheet:
+      //   {
+      //     std::cout << "Sheet Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   case Type::UNSPECIFIED:
+      //   {
+      //     std::cout << "UNSPECIFIED Set Case\n";
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      //   default:
+      //   {
+      //     std::cout << "Default Set Case: " << type_ << std::endl;
+      //     break;
+      //     [[fallthrough]];
+      //   }
+      // }
     }
 
     //TODO: Check the other Cylinder constructor, and add it here, also use the enum, and if cylinder is selected, allow to use this
@@ -239,7 +240,7 @@ static_cast<TShapeType*>(this)->getType()
      * 
      * @return const double Radius of the Shape from Derived class
      */
-    constexpr double getRadius(void)
+    double getRadius(void)
     {
       return{static_cast<TShapeType*>(this)->getRadius()}; 
     }
@@ -249,7 +250,7 @@ static_cast<TShapeType*>(this)->getType()
      * 
      * @return const string Type of the Shape from Derived class
      */
-    constexpr std::string getType(void)
+    std::string getType(void)
     {
       return{static_cast<TShapeType*>(this)->getType()};
     }
@@ -259,7 +260,7 @@ static_cast<TShapeType*>(this)->getType()
      * 
      * @return const double Diameter of the Shape from Derived class
      */
-    constexpr double getDiameter(void)
+    double getDiameter(void)
     {
       return{static_cast<TShapeType*>(this)->getDiameter()};
     }
@@ -269,7 +270,7 @@ static_cast<TShapeType*>(this)->getType()
      * 
      * @return const double Length of the Shape from Derived class
      */
-    constexpr double getLength(void)
+    double getLength(void)
     {
       return{static_cast<TShapeType*>(this)->getLength()};
     }
@@ -279,7 +280,7 @@ static_cast<TShapeType*>(this)->getType()
      * 
      * @return const double Volume of the Shape from Derived class
      */
-    constexpr double getVolume(void)
+    double getVolume(void)
     {
       return{static_cast<TShapeType*>(this)->getVolume()};
     }
@@ -289,7 +290,7 @@ static_cast<TShapeType*>(this)->getType()
      * 
      * @return const double Surface Area of the Shape from Derived class
      */
-    constexpr double getSurfaceArea(void)
+    double getSurfaceArea(void)
     {
       return{static_cast<TShapeType*>(this)->getSurfaceArea()};
     }
@@ -311,7 +312,7 @@ static_cast<TShapeType*>(this)->getType()
       return os;
     }
 
-    private:
+    public:
     /**
      * @brief Delete copy constructor
      * 

@@ -1,8 +1,18 @@
+/**
+ * @file object_interface_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class ObjectInterface, it tests all the functions and the constructors of the class
+ * @version 0.1
+ * @date 2020-03-22
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#include "interface/object_interface.hpp"
 #include <gtest/gtest.h>
 
-#include "interface/object_interface.hpp"
-
 using namespace MassCalculator;
+using namespace MassCalculator::Materials;
 
 // The fixture for testing class Aluminium.
 class ObjectInterfaceTest : public ::testing::Test 
@@ -14,6 +24,17 @@ class ObjectInterfaceTest : public ::testing::Test
   ObjectInterfaceTest() 
   {
    // You can do set-up work for each test here.
+   
+    //Create a unique pointer for the shape
+    std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(Cylinder(0.1, 1.0));
+
+    //Create a unique pointer for the material
+    std::unique_ptr<Material<Aluminium>> material = std::make_unique<Material<Aluminium>>(Aluminium(Aluminium::Type::A_1100));
+
+    // Construct a unique pointer for Object while parsing the arguments from above as parameters
+    this->obj_ = std::make_unique<Interface::Object<Shape<Cylinder>, 
+                                                    Material<Aluminium>>>(shape,
+                                                                          material);
   }
 
   ~ObjectInterfaceTest() override 
@@ -28,17 +49,6 @@ class ObjectInterfaceTest : public ::testing::Test
   {
    // Code here will be called immediately after the constructor (right
    // before each test).
-
-    //Create a unique pointer for the shape
-    std::unique_ptr<Shape<Cylinder>> shape = std::make_unique<Shape<Cylinder>>(Cylinder(0.1, 1.0));
-
-    //Create a unique pointer for the material
-    std::unique_ptr<Material<Aluminium>> material = std::make_unique<Material<Aluminium>>(Aluminium(Aluminium::Type::A_1100));
-
-    // Construct a unique pointer for Object while parsing the arguments from above as parameters
-    this->obj_ = std::make_unique<Interface::Object<Shape<Cylinder>, 
-                                                    Material<Aluminium>>>(shape,
-                                                                          material);
   }
 
   void TearDown() override 

@@ -53,7 +53,7 @@ namespace MassCalculator
 
   std::ostream &operator << (std::ostream &os, const Cylinder &obj)
   {
-    os << "  Cylinder object properties: " "\n"
+    os << "  Cylinder object properties: " "\n";
           "   - Radius  : " + std::to_string(obj.getRadius()) + "\n"
           "   - Diameter: " + std::to_string(obj.getDiameter()) + "\n"
           "   - Length  : " + std::to_string(obj.getLength()) + "\n"

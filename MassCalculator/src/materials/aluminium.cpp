@@ -1,17 +1,18 @@
 #include "materials/aluminium.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Aluminium::Aluminium(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
-  Aluminium::Aluminium(Aluminium::Type type)
+  Aluminium::Aluminium(const Aluminium::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,19 +20,18 @@ namespace MassCalculator
 
   bool Aluminium::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::AluminiumLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::AluminiumLuaConfigPath);
   }
 
-  bool Aluminium::setType(Aluminium::Type type)
+  bool Aluminium::setType(const Aluminium::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
       std::cerr << "Cannot set the aluminium type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
@@ -44,17 +44,17 @@ namespace MassCalculator
     return{this->specific_properties_.color_};
   }
 
-  double Aluminium::getSpecificDensity(void) const
+  kilograms_per_cubic_meter_t Aluminium::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Aluminium::getSpecificGravity(void) const
+  meters_per_second_squared_t Aluminium::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Aluminium::getSpecificMeltingPoint(void) const
+  kelvin_t Aluminium::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
@@ -64,161 +64,82 @@ namespace MassCalculator
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Aluminium::getSpecificThermalConductivity(void) const
+  watt_t Aluminium::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity_};
   }
 
-  double Aluminium::getSpecificModOfElasticityTension(void) const
+  pascal_t Aluminium::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Aluminium::getSpecificModOfElasticityTorsion(void) const
+  pascal_t Aluminium::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
-  bool Aluminium::setPropertieSpecs(Aluminium::Type type)
+  bool Aluminium::_setPropertieSpecs(const Properties_t &_properties)
   {
-    switch (type)
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
+  bool Aluminium::setPropertieSpecs(const Aluminium::Type &type)
+  {
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case Aluminium::Type::A_1100 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_1100, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Aluminium.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
-        break;
-      }
-
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Aluminium::Type::A_2011 :
-      {
-        // this->specific_properties_ = {{"A_2011", type}, {"Metallic"}, {2.71}, {2.83}, {537.778}, {0.33}, {990.0}, {9.9}, {3.8}};
-
-        this->specific_properties_.type_                       = {Constants::A_2011, type};
-        this->specific_properties_.color_                      = {Constants::DarkTone};
-        this->specific_properties_.density_                    = {2.82}; //g/cm3
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {1000};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {10.2};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.85};
-        break;
-      }
-
-      case Aluminium::Type::A_2014 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_2014, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_2024 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_2024, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_3003 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_3003, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_5052 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_5052, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_6061 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_6061, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_6063 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_6063, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Aluminium::Type::A_7075 :
-      {
-        this->specific_properties_.type_                       = {Constants::A_7075, type};
-        this->specific_properties_.color_                      = {Constants::Metallic};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      default:
-      {
-        std::cerr << "The type aluminium specified not found, using default aluminium type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;
@@ -227,17 +148,34 @@ namespace MassCalculator
   std::ostream &operator << (std::ostream &os, const Aluminium &obj)
   {
     os << "  Aluminium object properties: " "\n"
-          //TODO: This throws bad_alloc because of std::string
-          // "   - Type    : " + obj.getType().first + "\n"
-          //TODO: This throws segmentation fault because of std::string
-          // "   - Color   : " + obj.getSpecificColor() + "\n"
-          "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
-          "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
-          "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
+          "   - Type    : " + obj.getType().first + "\n"
+          "   - Color   : " + obj.getSpecificColor() + "\n"
+          "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
+          "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
+          "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
           "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+          "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
+          "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
+          "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+    return os;
+  }
+
+  std::ostream &operator << (std::ostream &os, const Aluminium::Type &type)
+  {
+    switch(type)
+    {
+      case Aluminium::Type::A_1100: os << Constants::A_1100; break;
+      case Aluminium::Type::A_2011: os << Constants::A_2011; break;
+      case Aluminium::Type::A_2014: os << Constants::A_2014; break;
+      case Aluminium::Type::A_2024: os << Constants::A_2024; break;
+      case Aluminium::Type::A_3003: os << Constants::A_3003; break;
+      case Aluminium::Type::A_5052: os << Constants::A_5052; break;
+      case Aluminium::Type::A_6061: os << Constants::A_6061; break;
+      case Aluminium::Type::A_6063: os << Constants::A_6063; break;
+      case Aluminium::Type::A_7075: os << Constants::A_7075; break;
+      case Aluminium::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
     return os;
   }
 }//end namespace MassCalculator

@@ -12,7 +12,7 @@ class PlasticTest : public ::testing::Test
   PlasticTest() 
   {
    // You can do set-up work for each test here.
-   material_P_ABS.setType(MassCalculator::Plastic::Type::P_ABS);
+   material_P_ABS.setType(MassCalculator::Materials::Plastic::Type::P_ABS);
   }
 
   ~PlasticTest() override 
@@ -36,5 +36,5 @@ class PlasticTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Plastic material_P_ABS;
+  MassCalculator::Materials::Plastic material_P_ABS;
 };

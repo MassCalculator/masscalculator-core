@@ -11,7 +11,7 @@ TEST_F(ObjectInterfaceTest, TypeConstructorTest)
 
 TEST_F(ObjectInterfaceTest, GetWeightTest)
 {
-  EXPECT_NEAR( static_cast<double>(kilogram_t{2.12_kg}), static_cast<double>(obj_->getWeight()), static_cast<double>(kilogram_t{1_g}));
+  EXPECT_NEAR( static_cast<double>(kilogram_t{2.12_kg}), static_cast<double>(this->obj_->getWeight()), static_cast<double>(kilogram_t{1_g}));
 }
 
 int main(int argc, char **argv) 

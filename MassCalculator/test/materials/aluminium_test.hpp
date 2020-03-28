@@ -1,56 +1,68 @@
+/**
+ * @file aluminium_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class Aluminium, it tests all the functions and the constructors of the class
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#ifndef ___ALUMINIUM_TEST_H___
+#define ___ALUMINIUM_TEST_H___
+#include "materials/aluminium.hpp"
 #include <gtest/gtest.h>
 
-#include "materials/aluminium.hpp"
-
-// The fixture for testing class Aluminium.
-class AluminiumTest : public ::testing::Test 
+/**
+ * @brief Default test namespace
+ * 
+ */
+namespace MassCalculatorTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  AluminiumTest() 
+  /**
+   * @brief The test fixture for testing class AlloySteels.
+   * 
+   */
+  class AluminiumTest : public ::testing::Test 
   {
-   // You can do set-up work for each test here.
-   material_A_1100.setType(MassCalculator::Aluminium::Type::A_1100);
-   material_A_2011.setType(MassCalculator::Aluminium::Type::A_2011);
-   material_A_2014.setType(MassCalculator::Aluminium::Type::A_2014);
-   material_A_2024.setType(MassCalculator::Aluminium::Type::A_2024);
-   material_A_3003.setType(MassCalculator::Aluminium::Type::A_3003);
-   material_A_5052.setType(MassCalculator::Aluminium::Type::A_5052);
-   material_A_6061.setType(MassCalculator::Aluminium::Type::A_6061);
-   material_A_6063.setType(MassCalculator::Aluminium::Type::A_6063);
-   material_A_7075.setType(MassCalculator::Aluminium::Type::A_7075);
-  }
+    protected:
+    /**
+     * @brief Construct a new AluminiumTest object
+     * 
+     */
+    AluminiumTest() 
+    {
+    // You can do set-up work for each test here.
+    material_A_1100.setType(MassCalculator::Materials::Aluminium::Type::A_1100);
+    material_A_2011.setType(MassCalculator::Materials::Aluminium::Type::A_2011);
+    material_A_2014.setType(MassCalculator::Materials::Aluminium::Type::A_2014);
+    material_A_2024.setType(MassCalculator::Materials::Aluminium::Type::A_2024);
+    material_A_3003.setType(MassCalculator::Materials::Aluminium::Type::A_3003);
+    material_A_5052.setType(MassCalculator::Materials::Aluminium::Type::A_5052);
+    material_A_6061.setType(MassCalculator::Materials::Aluminium::Type::A_6061);
+    material_A_6063.setType(MassCalculator::Materials::Aluminium::Type::A_6063);
+    material_A_7075.setType(MassCalculator::Materials::Aluminium::Type::A_7075);
+    }
 
-  ~AluminiumTest() override 
-  {
-   // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the AluminiumTest object
+     * 
+     */
+    ~AluminiumTest() = default;
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-   // Code here will be called immediately after the constructor (right
-   // before each test).
-  }
-
-  void TearDown() override 
-  {
-   // Code here will be called immediately after each test (right
-   // before the destructor).
-  }
-
-  // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Aluminium material_A_1100,
-                            material_A_2011,
-                            material_A_2014,
-                            material_A_2024,
-                            material_A_3003,
-                            material_A_5052,
-                            material_A_6061,
-                            material_A_6063,
-                            material_A_7075;
-};
+    /**
+     * @brief Member objects for class Aluminium for each Aluminium type
+     * 
+     */
+    MassCalculator::Materials::Aluminium material_A_1100,
+                                         material_A_2011,
+                                         material_A_2014,
+                                         material_A_2024,
+                                         material_A_3003,
+                                         material_A_5052,
+                                         material_A_6061,
+                                         material_A_6063,
+                                         material_A_7075;
+  };
+}//end namespace MassCalculatorTest
+#endif//___ALUMINIUM_TEST_H___

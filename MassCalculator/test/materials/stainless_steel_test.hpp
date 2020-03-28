@@ -12,7 +12,7 @@ class StainlessSteelTest : public ::testing::Test
   StainlessSteelTest() 
   {
    // You can do set-up work for each test here.
-   material_SS_301.setType(MassCalculator::StainlessSteel::Type::SS_301);
+   material_SS_301.setType(MassCalculator::Materials::StainlessSteel::Type::SS_301);
   }
 
   ~StainlessSteelTest() override 
@@ -36,5 +36,5 @@ class StainlessSteelTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::StainlessSteel material_SS_301;
+  MassCalculator::Materials::StainlessSteel material_SS_301;
 };

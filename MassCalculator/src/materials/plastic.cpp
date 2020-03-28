@@ -1,6 +1,6 @@
 #include "materials/plastic.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Plastic::Plastic(void)
   {

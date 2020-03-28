@@ -1,73 +1,106 @@
-/**
- * @file magnesium_test.cpp
- * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains all the tests for the class Magnesium, it tests all the functions and the constructors of the class
- * @version 0.1
- * @date 2019-04-10
- * 
- * @copyright Copyright (c) 2019
- * 
- */
 #include "magnesium_test.hpp"
 
+namespace MassCalculatorTest
+{
+  /**
+   * @brief Construct a new Magnesium object
+   * 
+   */
+  TEST_F(MagnesiumTest, TypeConstructorTest)
+  {
+    EXPECT_DOUBLE_EQ(5.0, 5.0);
+  }
+
+  /**
+   * @brief Get Specific Type for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificTypeTest)
+  {
+    std::pair<std::string, MassCalculator::Materials::Magnesium::Type> 
+      type{"M_AZ31B", MassCalculator::Materials::Magnesium::Type::M_AZ31B};
+
+    EXPECT_EQ(type.first, material_M_AZ31B.getType().first);
+    EXPECT_EQ(type.second, material_M_AZ31B.getType().second);
+  }
+
+  /**
+   * @brief Get Specific Color for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificColorTest)
+  {
+    EXPECT_EQ(std::string{"Metallic"}, material_M_AZ31B.getSpecificColor());
+  }
+
+  /**
+   * @brief Get Specific Density for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificDensityTest)
+  {
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_M_AZ31B.getSpecificDensity());
+  }
+
+  /**
+   * @brief Get Specific Gravity for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificGravityTest)
+  {
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_M_AZ31B.getSpecificGravity());
+  }
+
+  /**
+   * @brief Get Specific Melting Point for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificMeltingPointTest)
+  {
+    EXPECT_EQ(kelvin_t{537.778}, material_M_AZ31B.getSpecificMeltingPoint());
+  }
+
+  /**
+   * @brief Get Specific Poissons Ratio for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificPoissonsRatioTest)
+  {
+    EXPECT_EQ(double{0.33}, material_M_AZ31B.getSpecificPoissonsRatio());
+  }
+
+  /**
+   * @brief Get Specific Thermal Conductivity for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificThermalConductivityTest)
+  {
+    EXPECT_EQ(watt_t{990.0}, material_M_AZ31B.getSpecificThermalConductivity());
+  }
+
+  /**
+   * @brief Get Specific Modulus of Elasticity Tension for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificModOfElasticityTensionTest)
+  {
+    EXPECT_EQ(pascal_t{9.9}, material_M_AZ31B.getSpecificModOfElasticityTension());
+  }
+
+  /**
+   * @brief Get Specific Modulus of Elasticity Torsion for specific material
+   * 
+   */
+  TEST_F(MagnesiumTest, GetSpecificModOfElasticityTorsionTest)
+  {
+    EXPECT_EQ(pascal_t{3.8}, material_M_AZ31B.getSpecificModOfElasticityTorsion());
+  }
+}//end namespace MassCalculatorTest
+
 /**
- * @brief Construct a new TEST object
+ * @brief Main function to run these tests
  * 
  */
-TEST_F(MagnesiumTest, TypeConstructorTest)
-{
-  EXPECT_DOUBLE_EQ( 5.0, 5.0);
-}
-
-TEST_F(MagnesiumTest, GetSpecificTypeTest)
-{
-  std::pair<std::string, MassCalculator::Magnesium::Type> 
-    type{"M_AZ31B", MassCalculator::Magnesium::Type::M_AZ31B};
-
-  EXPECT_EQ( type.first, material_M_AZ31B.getType().first);
-  EXPECT_EQ( type.second, material_M_AZ31B.getType().second);
-}
-
-TEST_F(MagnesiumTest, GetSpecificColorTest)
-{
-  EXPECT_EQ( std::string{"Metallic"}, material_M_AZ31B.getSpecificColor());
-}
-
-TEST_F(MagnesiumTest, GetSpecificDensityTest)
-{
-  EXPECT_EQ( double{2.71}, material_M_AZ31B.getSpecificDensity());
-}
-
-TEST_F(MagnesiumTest, GetSpecificGravityTest)
-{
-  EXPECT_EQ( double{2.83}, material_M_AZ31B.getSpecificGravity());
-}
-
-TEST_F(MagnesiumTest, GetSpecificMeltingPointTest)
-{
-  EXPECT_EQ( double{537.778}, material_M_AZ31B.getSpecificMeltingPoint());
-}
-
-TEST_F(MagnesiumTest, GetSpecificPoissonsRatioTest)
-{
-  EXPECT_EQ( double{0.33}, material_M_AZ31B.getSpecificPoissonsRatio());
-}
-
-TEST_F(MagnesiumTest, GetSpecificThermalConductivityTest)
-{
-  EXPECT_EQ( double{990.0}, material_M_AZ31B.getSpecificThermalConductivity());
-}
-
-TEST_F(MagnesiumTest, GetSpecificModOfElasticityTensionTest)
-{
-  EXPECT_EQ( double{9.9}, material_M_AZ31B.getSpecificModOfElasticityTension());
-}
-
-TEST_F(MagnesiumTest, GetSpecificModOfElasticityTorsionTest)
-{
-  EXPECT_EQ( double{3.8}, material_M_AZ31B.getSpecificModOfElasticityTorsion());
-}
-
 int main(int argc, char **argv) 
 {
   ::testing::InitGoogleTest(&argc, argv);

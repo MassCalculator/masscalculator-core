@@ -1,6 +1,6 @@
 #include "materials/titanium.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Titanium::Titanium(void)
   {

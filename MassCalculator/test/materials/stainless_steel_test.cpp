@@ -21,8 +21,8 @@ TEST_F(StainlessSteelTest, TypeConstructorTest)
 
 TEST_F(StainlessSteelTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::StainlessSteel::Type> 
-    type{"SS_301", MassCalculator::StainlessSteel::Type::SS_301};
+  std::pair<std::string, MassCalculator::Materials::StainlessSteel::Type> 
+    type{"SS_301", MassCalculator::Materials::StainlessSteel::Type::SS_301};
 
   EXPECT_EQ( type.first, material_SS_301.getType().first);
   EXPECT_EQ( type.second, material_SS_301.getType().second);

@@ -1,7 +1,7 @@
 /**
  * @file alloy_coppers.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief Alloy Coppers class that holds the parameters for all the types
+ * @brief AlloyCoppers class that holds the parameters for all the types
  * @version 0.1
  * @date 2020-03-20
  * 
@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   /**
    * @brief String constants that are used through the code
@@ -43,11 +43,11 @@ namespace MassCalculator
     const std::string AC_ProthermBeCu{"AC_ProthermBeCu"};
     // @@TODO: Check this, for the paths after install the library
     #ifdef DEBUG
-      const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      const std::string AlloyCoppersLuaConfigPath{"../MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #else
       // const std::string home_path_ = getenv("HOME");
       // const std::string AlloyCoppersLuaConfigPath{home_path_ + "/.MassCalculatorResources/materials/alloy_coppers_config.lua"};
-      const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      const std::string AlloyCoppersLuaConfigPath{"../MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #endif
   }
 
@@ -81,8 +81,8 @@ namespace MassCalculator
        * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, AlloyCoppers::Type::UNSPECIFIED};
-      std::string color_{0};
+      std::pair<std::string, Type> type_{{Constants::UNSPECIFIED}, {AlloyCoppers::Type::UNSPECIFIED}};
+      std::string color_{""};
       kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
       meters_per_second_squared_t gravity_{0_mps_sq};
       kelvin_t melting_point_{0_K};
@@ -94,8 +94,8 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the AlloyCoppers types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * @TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the AlloyCoppers types
+     * 
      */
     enum class Type : uint8_t
     {
@@ -105,102 +105,119 @@ namespace MassCalculator
        * @brief Tellurium copper also referred to as Alloy 145, Alloy C15400, 145 half-hard tellurium, and TeCu—is a copper-based alloy that contains varying amounts of tellurium and phosphorus. 
        * The tellurium content typically ranges between 0.4–0.7%, while the phosphorus content ranges between 0.004–0.12%.
        * Tellurium copper demonstrates good electrical and thermal conductivity, good formability and high machinability. These properties make it suitable for a wide range of industrial applications.
+       * @todo: Add source
        * 
        */
       AC_145Tellvirum = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_194Iron,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_195Iron,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_172Beryllium,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_182Class2,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_655Silicon,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_706Nickel,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_715NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_725NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_735NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_752NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_762NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_770NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_1751Class3,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_1758Nickel,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_MoldmaxBeCu,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_ProthermBeCu,
@@ -214,33 +231,6 @@ namespace MassCalculator
       END
     };
 
-    friend std::ostream& operator<<(std::ostream& os, Type type)
-    {
-      switch(type)
-      {
-        case Type::AC_145Tellvirum: os << Constants::AC_145Tellvirum; break;
-        case Type::AC_194Iron: os << Constants::AC_194Iron; break;
-        case Type::AC_195Iron: os << Constants::AC_195Iron; break;
-        case Type::AC_172Beryllium: os << Constants::AC_172Beryllium; break;
-        case Type::AC_182Class2: os << Constants::AC_182Class2; break;
-        case Type::AC_655Silicon: os << Constants::AC_655Silicon; break;
-        case Type::AC_706Nickel: os << Constants::AC_706Nickel; break;
-        case Type::AC_715NickelSilver: os << Constants::AC_715NickelSilver; break;
-        case Type::AC_725NickelSilver: os << Constants::AC_725NickelSilver; break;
-        case Type::AC_735NickelSilver: os << Constants::AC_735NickelSilver; break;
-        case Type::AC_752NickelSilver: os << Constants::AC_752NickelSilver; break;
-        case Type::AC_762NickelSilver: os << Constants::AC_762NickelSilver; break;
-        case Type::AC_770NickelSilver: os << Constants::AC_770NickelSilver; break;
-        case Type::AC_1751Class3: os << Constants::AC_1751Class3; break;
-        case Type::AC_1758Nickel: os << Constants::AC_1758Nickel; break;
-        case Type::AC_MoldmaxBeCu: os << Constants::AC_MoldmaxBeCu; break;
-        case Type::AC_ProthermBeCu: os << Constants::AC_ProthermBeCu; break;
-        case Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
-        default: os << "Name cannot be found";
-      }
-      return os;
-    }
-
     /**
      * @brief Construct a new AlloyCoppers object
      * 
@@ -251,7 +241,7 @@ namespace MassCalculator
      * @brief Construct a new AlloyCoppers object and specify the type
      * 
      */
-    AlloyCoppers(Type type);
+    AlloyCoppers(const Type &type);
 
     /**
      * @brief Function to initialize the Lua object
@@ -266,26 +256,26 @@ namespace MassCalculator
      * @return true If the type is set successfully
      * @return false If the type failed to set
      */
-    bool setType(Type type);
+    bool setType(const Type &type);
 
     /**
      * @brief Get the Type object
      * 
-     * @return const std::pair<std::string, Type> Pair with type name and type enum
+     * @return std::pair<std::string, Type> Pair with type name and type enum
      */
     std::pair<std::string, Type> getType(void) const;
 
     /**
      * @brief Get the Specific Color object
      * 
-     * @return const std::string Color of the material
+     * @return std::string Color of the material
      */
     std::string getSpecificColor(void) const;
 
     /**
      * @brief Get the Specific Density object
      * 
-     * @return const kilograms_per_cubic_meter_t Density of the material
+     * @return kilograms_per_cubic_meter_t Density of the material
      */
     kilograms_per_cubic_meter_t getSpecificDensity(void) const;
 
@@ -299,7 +289,7 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Melting Point object
      * 
-     * @return const kelvin_t The specific melting point of AlloyCoppers type
+     * @return kelvin_t The specific melting point of AlloyCoppers type
      */
     kelvin_t getSpecificMeltingPoint(void) const;
 
@@ -320,14 +310,14 @@ namespace MassCalculator
     /**
      * @brief Get the Specific Modulus of Elasticity Tension object
      * 
-     * @return const pascal_t The specific modulus of elasticity tension point of AlloyCoppers type
+     * @return pascal_t The specific modulus of elasticity tension point of AlloyCoppers type
      */
     pascal_t getSpecificModOfElasticityTension(void) const;
 
     /**
      * @brief Get the Specific Modulus of Elasticity Torsion object
      * 
-     * @return const pascal_t The specific modulus of elasticity torsion point of AlloyCoppers type
+     * @return pascal_t The specific modulus of elasticity torsion point of AlloyCoppers type
      */
     pascal_t getSpecificModOfElasticityTorsion(void) const;
 
@@ -343,7 +333,12 @@ namespace MassCalculator
      */
     friend std::ostream &operator << (std::ostream &os, const AlloyCoppers &obj);
 
-    private:
+    /**
+     * @brief Shift operator overload for Types of AlloyCoppers, this will print the name in string
+     * 
+     */
+    friend std::ostream &operator << (std::ostream &os, const Type &type);
+
     /**
      * @brief Delete copy constructor
      * 
@@ -366,6 +361,48 @@ namespace MassCalculator
      */
     AlloyCoppers& operator=(AlloyCoppers&&) = default;
 
+    private:
+    /**
+     * @brief Function to return the class name, not the pointer of the class, I am trying to keep away this function outside of the class
+     * 
+     * @return std::string Class name as a string
+     */
+    inline std::string _getClassName(AlloyCoppers *) { return {"AlloyCoppers"}; };
+
+    /**
+     * @brief Function to set the static propertie values
+     * 
+     * @param _properties Structure of the constant properties
+     * @return true If properties are correctly set
+     * @return false If properties have failed to set
+     */
+    bool _setPropertieSpecs(const Properties_t &_properties);
+
+    /**
+     * @brief Unordered map, and a lambda parsed as std::function. This is all done to eliminate the switch statement
+     * Here we set also the values accordingly to SI @todo Set values properly
+     * 
+     */
+    std::unordered_map<Type, std::function<void()>> type2func
+    {
+      {Type::AC_145Tellvirum,    [&](){ return this->_setPropertieSpecs({{Constants::AC_145Tellvirum,    Type::AC_145Tellvirum},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_194Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AC_194Iron,         Type::AC_194Iron},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_195Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AC_195Iron,         Type::AC_195Iron},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_182Class2,       [&](){ return this->_setPropertieSpecs({{Constants::AC_182Class2,       Type::AC_182Class2},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_655Silicon,      [&](){ return this->_setPropertieSpecs({{Constants::AC_655Silicon,      Type::AC_655Silicon},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_706Nickel,       [&](){ return this->_setPropertieSpecs({{Constants::AC_706Nickel,       Type::AC_706Nickel},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_715NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_715NickelSilver, Type::AC_715NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_725NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_725NickelSilver, Type::AC_725NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_735NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_735NickelSilver, Type::AC_735NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_752NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_752NickelSilver, Type::AC_752NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_762NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_762NickelSilver, Type::AC_762NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_770NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_770NickelSilver, Type::AC_770NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_1751Class3,      [&](){ return this->_setPropertieSpecs({{Constants::AC_1751Class3,      Type::AC_1751Class3},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_1758Nickel,      [&](){ return this->_setPropertieSpecs({{Constants::AC_1758Nickel,      Type::AC_1758Nickel},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_MoldmaxBeCu,     [&](){ return this->_setPropertieSpecs({{Constants::AC_MoldmaxBeCu,     Type::AC_MoldmaxBeCu},     {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_ProthermBeCu,    [&](){ return this->_setPropertieSpecs({{Constants::AC_ProthermBeCu,    Type::AC_ProthermBeCu},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+    };
+
     /**
      * @brief Set the Propertie Specs object
      * 
@@ -373,7 +410,7 @@ namespace MassCalculator
      * @return true If the specifications of propertie are successfully set
      * @return false  If the specifications of propertie failed to set
      */
-    bool setPropertieSpecs(Type type);
+    bool setPropertieSpecs(const Type &type);
 
     /**
      * @brief Properties struct to hold the specific object properties
@@ -386,7 +423,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___ALLOY_COPPERS_H___
