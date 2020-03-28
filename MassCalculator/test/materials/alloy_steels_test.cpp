@@ -15,17 +15,17 @@ TEST_F(AlloySteelsTest, TypeConstructorTest)
  */
 TEST_F(AlloySteelsTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::AlloySteels::Type> 
-    type{"AS_4135", MassCalculator::AlloySteels::Type::AS_4135};
+  std::pair<std::string, MassCalculator::Materials::AlloySteels::Type> 
+    type{"AS_4135", MassCalculator::Materials::AlloySteels::Type::AS_4135};
 
   EXPECT_EQ(type.first, material_AS_4135.getType().first);
   EXPECT_EQ(type.second, material_AS_4135.getType().second);
 
-  type = {"AS_4140", MassCalculator::AlloySteels::Type::AS_4140};
+  type = {"AS_4140", MassCalculator::Materials::AlloySteels::Type::AS_4140};
   EXPECT_EQ(type.first, material_AS_4140.getType().first);
   EXPECT_EQ(type.second, material_AS_4140.getType().second);
 
-  type = {"AS_4340", MassCalculator::AlloySteels::Type::AS_4340};
+  type = {"AS_4340", MassCalculator::Materials::AlloySteels::Type::AS_4340};
   EXPECT_EQ(type.first, material_AS_4340.getType().first);
   EXPECT_EQ(type.second, material_AS_4340.getType().second);
 }

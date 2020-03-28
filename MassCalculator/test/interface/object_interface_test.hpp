@@ -12,6 +12,7 @@
 #include <gtest/gtest.h>
 
 using namespace MassCalculator;
+using namespace MassCalculator::Materials;
 
 // The fixture for testing class Aluminium.
 class ObjectInterfaceTest : public ::testing::Test 

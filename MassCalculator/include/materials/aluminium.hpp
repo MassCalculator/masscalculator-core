@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -30,7 +30,7 @@ namespace MassCalculator
     const std::string A_6063{"A_6063"};
     const std::string A_7075{"A_7075"};
 
-    const std::string AluminiumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/aluminium_config.lua"};
+    const std::string AluminiumLuaConfigPath{"../MassCalculator/resources/materials/aluminium_config.lua"};
   }
 
   /**
@@ -359,5 +359,5 @@ namespace MassCalculator
      */
     LuaScriptHandler lua_state_;
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___ALUMINIUM_H___

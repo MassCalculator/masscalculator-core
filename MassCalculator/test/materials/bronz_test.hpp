@@ -12,7 +12,7 @@ class BronzTest : public ::testing::Test
   BronzTest() 
   {
    // You can do set-up work for each test here.
-   material_B_18Al.setType(MassCalculator::Bronz::Type::B_18Al);
+   material_B_18Al.setType(MassCalculator::Materials::Bronz::Type::B_18Al);
   }
 
   ~BronzTest() override 
@@ -36,5 +36,5 @@ class BronzTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Bronz material_B_18Al;
+  MassCalculator::Materials::Bronz material_B_18Al;
 };

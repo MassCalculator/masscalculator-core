@@ -12,7 +12,7 @@ class ZincTest : public ::testing::Test
   ZincTest() 
   {
    // You can do set-up work for each test here.
-   material_Z_190.setType(MassCalculator::Zinc::Type::Z_190);
+   material_Z_190.setType(MassCalculator::Materials::Zinc::Type::Z_190);
   }
 
   ~ZincTest() override 
@@ -36,5 +36,5 @@ class ZincTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Zinc material_Z_190;
+  MassCalculator::Materials::Zinc material_Z_190;
 };

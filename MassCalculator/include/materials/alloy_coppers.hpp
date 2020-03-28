@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   /**
    * @brief String constants that are used through the code
@@ -43,11 +43,11 @@ namespace MassCalculator
     const std::string AC_ProthermBeCu{"AC_ProthermBeCu"};
     // @@TODO: Check this, for the paths after install the library
     #ifdef DEBUG
-      const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      const std::string AlloyCoppersLuaConfigPath{"../MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #else
       // const std::string home_path_ = getenv("HOME");
       // const std::string AlloyCoppersLuaConfigPath{home_path_ + "/.MassCalculatorResources/materials/alloy_coppers_config.lua"};
-      const std::string AlloyCoppersLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      const std::string AlloyCoppersLuaConfigPath{"../MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #endif
   }
 
@@ -424,5 +424,5 @@ namespace MassCalculator
      */
     LuaScriptHandler lua_state_;
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___ALLOY_COPPERS_H___

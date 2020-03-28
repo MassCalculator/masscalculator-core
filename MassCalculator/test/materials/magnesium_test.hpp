@@ -12,7 +12,7 @@ class MagnesiumTest : public ::testing::Test
   MagnesiumTest() 
   {
    // You can do set-up work for each test here.
-   material_M_AZ31B.setType(MassCalculator::Magnesium::Type::M_AZ31B);
+   material_M_AZ31B.setType(MassCalculator::Materials::Magnesium::Type::M_AZ31B);
   }
 
   ~MagnesiumTest() override 
@@ -36,5 +36,5 @@ class MagnesiumTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Magnesium material_M_AZ31B;
+  MassCalculator::Materials::Magnesium material_M_AZ31B;
 };

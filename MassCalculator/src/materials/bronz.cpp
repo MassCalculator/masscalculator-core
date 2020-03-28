@@ -1,6 +1,6 @@
 #include "materials/bronz.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Bronz::Bronz(void)
   {

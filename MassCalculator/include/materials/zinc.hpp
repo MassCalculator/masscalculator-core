@@ -3,10 +3,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -18,7 +18,7 @@ namespace MassCalculator
     const std::string  Z_720{"Z_720"};
     const std::string  Z_750{"Z_750"};
 
-    const std::string ZincLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/zinc_config.lua"};
+    const std::string ZincLuaConfigPath{"../MassCalculator/resources/materials/zinc_config.lua"};
   }
 
   /**
@@ -292,7 +292,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
-}//end namespace MassCalculator
-#endif
+}//end namespace MassCalculator::Materials
+#endif//___ZINC_H___

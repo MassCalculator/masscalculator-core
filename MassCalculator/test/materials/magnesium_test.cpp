@@ -21,8 +21,8 @@ TEST_F(MagnesiumTest, TypeConstructorTest)
 
 TEST_F(MagnesiumTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Magnesium::Type> 
-    type{"M_AZ31B", MassCalculator::Magnesium::Type::M_AZ31B};
+  std::pair<std::string, MassCalculator::Materials::Magnesium::Type> 
+    type{"M_AZ31B", MassCalculator::Materials::Magnesium::Type::M_AZ31B};
 
   EXPECT_EQ(type.first, material_M_AZ31B.getType().first);
   EXPECT_EQ(type.second, material_M_AZ31B.getType().second);

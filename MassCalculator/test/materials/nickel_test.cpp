@@ -21,8 +21,8 @@ TEST_F(NickelTest, TypeConstructorTest)
 
 TEST_F(NickelTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Nickel::Type> 
-    type{"N_201", MassCalculator::Nickel::Type::N_201};
+  std::pair<std::string, MassCalculator::Materials::Nickel::Type> 
+    type{"N_201", MassCalculator::Materials::Nickel::Type::N_201};
 
   EXPECT_EQ( type.first, material_N_201.getType().first);
   EXPECT_EQ( type.second, material_N_201.getType().second);

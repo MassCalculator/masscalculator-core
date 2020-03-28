@@ -25,15 +25,15 @@ class AluminiumTest : public ::testing::Test
   AluminiumTest() 
   {
    // You can do set-up work for each test here.
-   material_A_1100.setType(MassCalculator::Aluminium::Type::A_1100);
-   material_A_2011.setType(MassCalculator::Aluminium::Type::A_2011);
-   material_A_2014.setType(MassCalculator::Aluminium::Type::A_2014);
-   material_A_2024.setType(MassCalculator::Aluminium::Type::A_2024);
-   material_A_3003.setType(MassCalculator::Aluminium::Type::A_3003);
-   material_A_5052.setType(MassCalculator::Aluminium::Type::A_5052);
-   material_A_6061.setType(MassCalculator::Aluminium::Type::A_6061);
-   material_A_6063.setType(MassCalculator::Aluminium::Type::A_6063);
-   material_A_7075.setType(MassCalculator::Aluminium::Type::A_7075);
+   material_A_1100.setType(MassCalculator::Materials::Aluminium::Type::A_1100);
+   material_A_2011.setType(MassCalculator::Materials::Aluminium::Type::A_2011);
+   material_A_2014.setType(MassCalculator::Materials::Aluminium::Type::A_2014);
+   material_A_2024.setType(MassCalculator::Materials::Aluminium::Type::A_2024);
+   material_A_3003.setType(MassCalculator::Materials::Aluminium::Type::A_3003);
+   material_A_5052.setType(MassCalculator::Materials::Aluminium::Type::A_5052);
+   material_A_6061.setType(MassCalculator::Materials::Aluminium::Type::A_6061);
+   material_A_6063.setType(MassCalculator::Materials::Aluminium::Type::A_6063);
+   material_A_7075.setType(MassCalculator::Materials::Aluminium::Type::A_7075);
   }
 
   /**
@@ -46,7 +46,7 @@ class AluminiumTest : public ::testing::Test
    * @brief Member objects for class Aluminium for each Aluminium type
    * 
    */
-  MassCalculator::Aluminium material_A_1100,
+  MassCalculator::Materials::Aluminium material_A_1100,
                             material_A_2011,
                             material_A_2014,
                             material_A_2024,

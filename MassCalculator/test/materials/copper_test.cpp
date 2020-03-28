@@ -21,8 +21,8 @@ TEST_F(CopperTest, TypeConstructorTest)
 
 TEST_F(CopperTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Copper::Type> 
-    type{"C_101", MassCalculator::Copper::Type::C_101};
+  std::pair<std::string, MassCalculator::Materials::Copper::Type> 
+    type{"C_101", MassCalculator::Materials::Copper::Type::C_101};
 
   EXPECT_EQ(type.first, material_C_101.getType().first);
   EXPECT_EQ(type.second, material_C_101.getType().second);

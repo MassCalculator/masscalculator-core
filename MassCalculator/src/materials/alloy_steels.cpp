@@ -1,6 +1,6 @@
 #include "materials/alloy_steels.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   AlloySteels::AlloySteels(void)
   {

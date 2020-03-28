@@ -3,10 +3,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -15,7 +15,7 @@ namespace MassCalculator
     const std::string  T_Grade4{"T_Grade4"};
     const std::string  T_Grade5{"T_Grade5"};
 
-    const std::string TitaniumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/titanium_config.lua"};
+    const std::string TitaniumLuaConfigPath{"../MassCalculator/resources/materials/titanium_config.lua"};
   }
 
   /**
@@ -263,7 +263,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
-}//end namespace MassCalculator
-#endif
+}//end namespace MassCalculator::Materials
+#endif//___TITANIUM_H___

@@ -12,7 +12,7 @@ class CopperTest : public ::testing::Test
   CopperTest() 
   {
    // You can do set-up work for each test here.
-   material_C_101.setType(MassCalculator::Copper::Type::C_101);
+   material_C_101.setType(MassCalculator::Materials::Copper::Type::C_101);
   }
 
   ~CopperTest() override 
@@ -36,5 +36,5 @@ class CopperTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Copper material_C_101;
+  MassCalculator::Materials::Copper material_C_101;
 };

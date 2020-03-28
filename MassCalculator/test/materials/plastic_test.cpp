@@ -21,8 +21,8 @@ TEST_F(PlasticTest, TypeConstructorTest)
 
 TEST_F(PlasticTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Plastic::Type> 
-    type{"P_ABS", MassCalculator::Plastic::Type::P_ABS};
+  std::pair<std::string, MassCalculator::Materials::Plastic::Type> 
+    type{"P_ABS", MassCalculator::Materials::Plastic::Type::P_ABS};
 
   EXPECT_EQ( type.first, material_P_ABS.getType().first);
   EXPECT_EQ( type.second, material_P_ABS.getType().second);

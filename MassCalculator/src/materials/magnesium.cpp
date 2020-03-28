@@ -1,6 +1,6 @@
 #include "materials/magnesium.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Magnesium::Magnesium(void)
   {

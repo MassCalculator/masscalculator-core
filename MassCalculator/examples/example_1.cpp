@@ -12,6 +12,7 @@
 #include "interface/object_interface.hpp"
 
 using namespace MassCalculator;
+using namespace MassCalculator::Materials;
 
 int main(/*int argc, char** argv*/)
 {

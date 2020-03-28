@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
     /**
    * @brief String constants that are used through the code
@@ -28,7 +28,7 @@ namespace MassCalculator
     const std::string AS_4140{"AS_4140"};
     const std::string AS_4340{"AS_4340"};
 
-    const std::string AlloySteelsLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/alloy_steels_config.lua"};
+    const std::string AlloySteelsLuaConfigPath{"../MassCalculator/resources/materials/alloy_steels_config.lua"};
   }
 
   /**
@@ -291,5 +291,5 @@ namespace MassCalculator
      */
     LuaScriptHandler lua_state_;
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___ALLOY_STEELS_H___

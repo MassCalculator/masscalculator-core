@@ -24,9 +24,9 @@ class AlloySteelsTest : public ::testing::Test
    */
   AlloySteelsTest() 
   {
-    material_AS_4135.setType(MassCalculator::AlloySteels::Type::AS_4135);
-    material_AS_4140.setType(MassCalculator::AlloySteels::Type::AS_4140);
-    material_AS_4340.setType(MassCalculator::AlloySteels::Type::AS_4340);
+    material_AS_4135.setType(MassCalculator::Materials::AlloySteels::Type::AS_4135);
+    material_AS_4140.setType(MassCalculator::Materials::AlloySteels::Type::AS_4140);
+    material_AS_4340.setType(MassCalculator::Materials::AlloySteels::Type::AS_4340);
   }
 
   /**
@@ -39,7 +39,7 @@ class AlloySteelsTest : public ::testing::Test
    * @brief Member objects for class AlloyCoppers for each AlloyCopper type
    * 
    */
-  MassCalculator::AlloySteels material_AS_4135,
+  MassCalculator::Materials::AlloySteels material_AS_4135,
                               material_AS_4140,
                               material_AS_4340;
 };

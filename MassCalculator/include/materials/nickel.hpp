@@ -3,10 +3,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -16,7 +16,7 @@ namespace MassCalculator
     const std::string  N_230{"N_230"};
     const std::string  N_400{"N_400"};
 
-    const std::string NickelLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/nickel_config.lua"};
+    const std::string NickelLuaConfigPath{"../MassCalculator/resources/materials/nickel_config.lua"};
   }
 
   /**
@@ -272,7 +272,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
-}//end namespace MassCalculator
-#endif
+}//end namespace MassCalculator::Materials
+#endif//___NICKEL_H___

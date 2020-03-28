@@ -11,8 +11,8 @@ TEST_F(BrassTest, TypeConstructorTest)
 
 TEST_F(BrassTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Brass::Type> 
-    type{"B_240Low", MassCalculator::Brass::Type::B_240Low};
+  std::pair<std::string, MassCalculator::Materials::Brass::Type> 
+    type{"B_240Low", MassCalculator::Materials::Brass::Type::B_240Low};
 
   EXPECT_EQ(type.first, material_B_240Low.getType().first);
   EXPECT_EQ(type.second, material_B_240Low.getType().second);

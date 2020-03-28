@@ -12,7 +12,7 @@ class NickelTest : public ::testing::Test
   NickelTest() 
   {
    // You can do set-up work for each test here.
-   material_N_201.setType(MassCalculator::Nickel::Type::N_201);
+   material_N_201.setType(MassCalculator::Materials::Nickel::Type::N_201);
   }
 
   ~NickelTest() override 
@@ -36,5 +36,5 @@ class NickelTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Nickel material_N_201;
+  MassCalculator::Materials::Nickel material_N_201;
 };

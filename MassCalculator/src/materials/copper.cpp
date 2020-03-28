@@ -1,6 +1,6 @@
 #include "materials/copper.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Copper::Copper(void)
   {

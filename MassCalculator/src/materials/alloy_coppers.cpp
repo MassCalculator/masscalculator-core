@@ -1,6 +1,6 @@
 #include "materials/alloy_coppers.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   AlloyCoppers::AlloyCoppers(void)
   {

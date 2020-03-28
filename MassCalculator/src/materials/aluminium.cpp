@@ -1,6 +1,6 @@
 #include "materials/aluminium.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Aluminium::Aluminium(void)
   {

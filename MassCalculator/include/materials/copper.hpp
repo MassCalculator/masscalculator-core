@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -26,7 +26,7 @@ namespace MassCalculator
     const std::string  C_110{"C_110"};
     const std::string  C_122{"C_122"};
 
-    const std::string CopperLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/copper_config.lua"};
+    const std::string CopperLuaConfigPath{"../MassCalculator/resources/materials/copper_config.lua"};
   }
 
   /**
@@ -305,5 +305,5 @@ namespace MassCalculator
      */
     LuaScriptHandler lua_state_;
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___COPPER_H___

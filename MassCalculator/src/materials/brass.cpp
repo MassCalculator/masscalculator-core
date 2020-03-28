@@ -1,6 +1,6 @@
 #include "materials/brass.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Brass::Brass(void)
   {

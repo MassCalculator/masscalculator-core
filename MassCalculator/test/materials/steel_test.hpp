@@ -12,7 +12,7 @@ class SteelTest : public ::testing::Test
   SteelTest() 
   {
    // You can do set-up work for each test here.
-   material_S_1010.setType(MassCalculator::Steel::Type::S_1010 );
+   material_S_1010.setType(MassCalculator::Materials::Steel::Type::S_1010 );
   }
 
   ~SteelTest() override 
@@ -36,5 +36,5 @@ class SteelTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Steel material_S_1010;
+  MassCalculator::Materials::Steel material_S_1010;
 };

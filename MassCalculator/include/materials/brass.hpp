@@ -13,10 +13,10 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
@@ -29,7 +29,7 @@ namespace MassCalculator
     const std::string B_385{"B_385"};
     const std::string B_464{"B_464"};
 
-    const std::string BrassLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/brass_config.lua"};
+    const std::string BrassLuaConfigPath{"../MassCalculator/resources/materials/brass_config.lua"};
   }
 
   /**
@@ -332,5 +332,5 @@ namespace MassCalculator
      */
     LuaScriptHandler lua_state_;
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___BRASS_H___

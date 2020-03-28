@@ -13,16 +13,16 @@
 #include "material.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   namespace Constants
   {
     const std::string  M_AZ31B{"M_AZ31B"};
 
-    const std::string MagnesiumLuaConfigPath{"/home/jimmyhalimi/ws/prototype_ws/MassCalculator/MassCalculator/resources/materials/magnesium_config.lua"};
+    const std::string MagnesiumLuaConfigPath{"../MassCalculator/resources/materials/magnesium_config.lua"};
   }
 
   /**
@@ -265,5 +265,5 @@ namespace MassCalculator
      */
     LuaScriptHandler lua_state_;
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___MAGNESIUM_H___

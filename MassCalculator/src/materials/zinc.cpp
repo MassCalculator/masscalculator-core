@@ -1,6 +1,6 @@
 #include "materials/zinc.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Zinc::Zinc(void)
   {

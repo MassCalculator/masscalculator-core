@@ -31,10 +31,10 @@ using namespace MassCalculator::HelperFunctions;
 using namespace MassCalculator::HelperClasses;
 
 /**
- * @brief Default namespace
+ * @brief Default Materials namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
     /**
    * @brief String constants that are used through the code
@@ -265,5 +265,5 @@ namespace MassCalculator
     os << "\n" "Material" "\n" << obj.thisTMaterialType();
     return os;
   }
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
 #endif//___MATERIAL_H___

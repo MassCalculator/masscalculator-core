@@ -21,8 +21,8 @@ TEST_F(BronzTest, TypeConstructorTest)
 
 TEST_F(BronzTest, GetSpecificTypeTest)
 {
-  std::pair<std::string, MassCalculator::Bronz::Type> 
-    type{"B_18Al", MassCalculator::Bronz::Type::B_18Al};
+  std::pair<std::string, MassCalculator::Materials::Bronz::Type> 
+    type{"B_18Al", MassCalculator::Materials::Bronz::Type::B_18Al};
 
   EXPECT_EQ(type.first, material_B_18Al.getType().first);
   EXPECT_EQ(type.second, material_B_18Al.getType().second);

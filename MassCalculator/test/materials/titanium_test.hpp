@@ -12,7 +12,7 @@ class TitaniumTest : public ::testing::Test
   TitaniumTest() 
   {
    // You can do set-up work for each test here.
-   material_T_6Al4V.setType(MassCalculator::Titanium::Type::T_6Al4V);
+   material_T_6Al4V.setType(MassCalculator::Materials::Titanium::Type::T_6Al4V);
   }
 
   ~TitaniumTest() override 
@@ -36,5 +36,5 @@ class TitaniumTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Titanium material_T_6Al4V;
+  MassCalculator::Materials::Titanium material_T_6Al4V;
 };

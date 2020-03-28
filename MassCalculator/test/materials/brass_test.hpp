@@ -21,7 +21,7 @@ class BrassTest : public ::testing::Test
   BrassTest() 
   {
    // You can do set-up work for each test here.
-   material_B_240Low.setType(MassCalculator::Brass::Type::B_240Low);
+   material_B_240Low.setType(MassCalculator::Materials::Brass::Type::B_240Low);
   }
 
   ~BrassTest() override 
@@ -45,5 +45,5 @@ class BrassTest : public ::testing::Test
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Brass material_B_240Low;
+  MassCalculator::Materials::Brass material_B_240Low;
 };

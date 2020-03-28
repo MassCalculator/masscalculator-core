@@ -1,6 +1,6 @@
 #include "materials/nickel.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Materials
 {
   Nickel::Nickel(void)
   {
