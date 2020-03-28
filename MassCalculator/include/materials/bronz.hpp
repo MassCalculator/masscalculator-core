@@ -1,3 +1,13 @@
+/**
+ * @file bronz.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Bronz class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___BRONZ_H___
 #define ___BRONZ_H___
 #include "material.hpp"
@@ -85,121 +95,140 @@ namespace MassCalculator
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_18Al = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_21Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_314Commercial,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_425Am,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_485Naval,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_510Phos,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_524Phos,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_532Phos,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_534Phos,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_544Phos,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_613Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_614Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_623Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_624Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_625Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_630NiAl,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_642AlSi,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_932Bearing,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_954Al,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
-       * 
+       * @todo: Add source
        */
       B_OilLite,
 
@@ -407,7 +436,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___BRONZ_H___

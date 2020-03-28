@@ -3,10 +3,10 @@
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This class is the base class for the Materials, this will be inherited from all the Material types, and holds the prototypes
  * so the derived classes can be accessed from it's object pointer
- * @version 0.1
- * @date 2019-04-10
+ * @version 0.2
+ * @date 2020-03-28
  * 
- * @copyright Copyright (c) 2019
+ * @copyright Copyright (c) 2020
  * 
  */
 #ifndef ___MATERIAL_H___
@@ -64,9 +64,9 @@ namespace MassCalculator
 
   /**
    * @brief Writing repeated static_casts in CRTP base classes quickly becomes cumbersome, as it does not add much meaning to the code.
-   * With this template struct, I get rid of it and handle both const and non-const cases
+   * With this template struct, I get rid of it and handled both const and non-const cases
    * 
-   * @tparam T 
+   * @tparam TMaterial Material type template argument
    */
   template <typename TMaterial>
   struct crtp
@@ -83,8 +83,6 @@ namespace MassCalculator
   class Material : crtp<TMaterialType>
   {
     public: enum class Type : uint8_t;
-
-    public: struct Properties;
 
     public:
     /**
@@ -257,7 +255,6 @@ namespace MassCalculator
      */
     template <typename TMaterial>
     friend std::ostream &operator << (std::ostream &os, const Material<TMaterialType> &obj);
-    
   };
 
   template <typename TMaterial>
@@ -269,4 +266,4 @@ namespace MassCalculator
     return os;
   }
 }//end namespace MassCalculator
-#endif
+#endif//___MATERIAL_H___

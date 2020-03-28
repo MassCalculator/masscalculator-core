@@ -1,17 +1,7 @@
-/**
- * @file aluminium_test.cpp
- * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains all the tests for the class Aluminium, it tests all the functions and the constructors of the class
- * @version 0.1
- * @date 2019-09-03
- * 
- * @copyright Copyright (c) 2019
- * 
- */
 #include "aluminium_test.hpp"
 
 /**
- * @brief Construct a new TEST object
+ * @brief Construct a new AluminiumTest object
  * 
  */
 TEST_F(AluminiumTest, TypeConstructorTest)
@@ -19,6 +9,10 @@ TEST_F(AluminiumTest, TypeConstructorTest)
   EXPECT_DOUBLE_EQ(5.0, 5.0);
 }
 
+/**
+ * @brief Get Specific Type for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificTypeTest)
 {
   std::pair<std::string, MassCalculator::Aluminium::Type> 
@@ -60,6 +54,10 @@ TEST_F(AluminiumTest, GetSpecificTypeTest)
   EXPECT_EQ(type.second, material_A_7075.getType().second);
 }
 
+/**
+ * @brief Get Specific Color for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificColorTest)
 {
   EXPECT_EQ(std::string{"Metallic"}, material_A_1100.getSpecificColor());
@@ -73,6 +71,10 @@ TEST_F(AluminiumTest, GetSpecificColorTest)
   EXPECT_EQ(std::string{"Metallic"}, material_A_7075.getSpecificColor());
 }
 
+/**
+ * @brief Get Specific Density for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificDensityTest)
 {
   EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_1100.getSpecificDensity());
@@ -86,6 +88,10 @@ TEST_F(AluminiumTest, GetSpecificDensityTest)
   EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_7075.getSpecificDensity());
 }
 
+/**
+ * @brief Get Specific Gravity for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificGravityTest)
 {
   EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_1100.getSpecificGravity());
@@ -99,6 +105,10 @@ TEST_F(AluminiumTest, GetSpecificGravityTest)
   EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_7075.getSpecificGravity());
 }
 
+/**
+ * @brief Get Specific Melting Point for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificMeltingPointTest)
 {
   EXPECT_EQ(kelvin_t{537.778}, material_A_1100.getSpecificMeltingPoint());
@@ -112,6 +122,10 @@ TEST_F(AluminiumTest, GetSpecificMeltingPointTest)
   EXPECT_EQ(kelvin_t{537.778}, material_A_7075.getSpecificMeltingPoint());
 }
 
+/**
+ * @brief Get Specific Poissons Ratio for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificPoissonsRatioTest)
 {
   EXPECT_EQ(double{0.33}, material_A_1100.getSpecificPoissonsRatio());
@@ -125,6 +139,10 @@ TEST_F(AluminiumTest, GetSpecificPoissonsRatioTest)
   EXPECT_EQ(double{0.33}, material_A_7075.getSpecificPoissonsRatio());
 }
 
+/**
+ * @brief Get Specific Thermal Conductivity for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificThermalConductivityTest)
 {
   EXPECT_EQ(watt_t{990.0}, material_A_1100.getSpecificThermalConductivity());
@@ -138,6 +156,10 @@ TEST_F(AluminiumTest, GetSpecificThermalConductivityTest)
   EXPECT_EQ(watt_t{990.0}, material_A_7075.getSpecificThermalConductivity());
 }
 
+/**
+ * @brief Get Specific Modulus of Elasticity Tension for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificModOfElasticityTensionTest)
 {
   EXPECT_EQ(pascal_t{9.9}, material_A_1100.getSpecificModOfElasticityTension());
@@ -151,6 +173,10 @@ TEST_F(AluminiumTest, GetSpecificModOfElasticityTensionTest)
   EXPECT_EQ(pascal_t{9.9}, material_A_7075.getSpecificModOfElasticityTension());
 }
 
+/**
+ * @brief Get Specific Modulus of Elasticity Torsion for specific material
+ * 
+ */
 TEST_F(AluminiumTest, GetSpecificModOfElasticityTorsionTest)
 {
   EXPECT_EQ(pascal_t{3.8}, material_A_1100.getSpecificModOfElasticityTorsion());
@@ -164,6 +190,10 @@ TEST_F(AluminiumTest, GetSpecificModOfElasticityTorsionTest)
   EXPECT_EQ(pascal_t{3.8}, material_A_7075.getSpecificModOfElasticityTorsion());
 }
 
+/**
+ * @brief Main function to run these tests
+ * 
+ */
 int main(int argc, char **argv) 
 {
   ::testing::InitGoogleTest(&argc, argv);

@@ -1,13 +1,27 @@
+/**
+ * @file aluminium_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class Aluminium, it tests all the functions and the constructors of the class
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #include "materials/aluminium.hpp"
 #include <gtest/gtest.h>
 
-// The fixture for testing class Aluminium.
+/**
+ * @brief The test fixture for testing class AlloySteels.
+ * 
+ */
 class AluminiumTest : public ::testing::Test 
 {
   protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
+  /**
+   * @brief Construct a new AluminiumTest object
+   * 
+   */
   AluminiumTest() 
   {
    // You can do set-up work for each test here.
@@ -22,27 +36,16 @@ class AluminiumTest : public ::testing::Test
    material_A_7075.setType(MassCalculator::Aluminium::Type::A_7075);
   }
 
-  ~AluminiumTest() override 
-  {
-   // You can do clean-up work that doesn't throw exceptions here.
-  }
+  /**
+   * @brief Destroy the AluminiumTest object
+   * 
+   */
+  ~AluminiumTest() = default;
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-   // Code here will be called immediately after the constructor (right
-   // before each test).
-  }
-
-  void TearDown() override 
-  {
-   // Code here will be called immediately after each test (right
-   // before the destructor).
-  }
-
-  // Objects declared here can be used by all tests in the test case for Foo.
+  /**
+   * @brief Member objects for class Aluminium for each Aluminium type
+   * 
+   */
   MassCalculator::Aluminium material_A_1100,
                             material_A_2011,
                             material_A_2014,

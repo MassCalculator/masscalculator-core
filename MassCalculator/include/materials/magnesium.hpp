@@ -1,3 +1,13 @@
+/**
+ * @file magnesium.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Magnesium class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___MAGNESIUM_H___
 #define ___MAGNESIUM_H___
 #include "material.hpp"
@@ -254,7 +264,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___MAGNESIUM_H___

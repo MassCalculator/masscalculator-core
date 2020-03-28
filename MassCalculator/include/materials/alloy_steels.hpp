@@ -1,7 +1,7 @@
 /**
  * @file alloy_steels.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief Alloy Steels class that holds the parameters for all the types
+ * @brief AlloySteels class that holds the parameters for all the types
  * @version 0.1
  * @date 2020-03-20
  * 
@@ -74,8 +74,8 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the AlloySteels types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the AlloySteels types
+     * 
      */
     enum class Type : uint8_t
     {
@@ -83,18 +83,21 @@ namespace MassCalculator
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AS_4135 = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AS_4140,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AS_4340,
@@ -263,8 +266,8 @@ namespace MassCalculator
     std::unordered_map<Type, std::function<void()>> type2func
     {
       {Type::AS_4135, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AS_4140, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AS_4340, [&](){ return this->_setPropertieSpecs({{Constants::AS_4135, Type::AS_4135}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+      {Type::AS_4140, [&](){ return this->_setPropertieSpecs({{Constants::AS_4140, Type::AS_4140}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AS_4340, [&](){ return this->_setPropertieSpecs({{Constants::AS_4340, Type::AS_4340}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
     };
 
     /**
@@ -287,7 +290,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___ALLOY_STEELS_H___

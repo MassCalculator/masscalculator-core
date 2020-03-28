@@ -1,3 +1,13 @@
+/**
+ * @file aluminium.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Aluminium class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___ALUMINIUM_H___
 #define ___ALUMINIUM_H___
 #include "material.hpp"
@@ -66,7 +76,7 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the aluminium types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
+     * @brief Enum that holds the aluminium types
      * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
      */
     enum class Type : uint8_t
@@ -77,6 +87,7 @@ namespace MassCalculator
        * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
        * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
        * food processing industries.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/ 
        * 
        */
       A_1100 = BEGIN,
@@ -85,6 +96,7 @@ namespace MassCalculator
        * @brief High mechanical strength and excellent machining capabilities are the highlights of this grade. It is often called – Free Machining Alloy (FMA), 
        * an excellent choice for projects done on automatic lathes. The high-speed machining of this grade will produce fine chips that are easily removed. 
        * Alloy 2011 is an excellent choice for production of complex and detailed parts.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_2011,
@@ -92,6 +104,7 @@ namespace MassCalculator
       /**
        * @brief A copper based alloy with very high strength and excellent machining capabilities. This alloy is commonly used in many aerospace structural applications 
        * due to its resistance.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_2014,
@@ -101,6 +114,7 @@ namespace MassCalculator
        * where a good strength-to-weight ratio is desired.  This grade can be machined to a high finish and it can be formed in the annealed condition with 
        * subsequent heat treating, if needed. The corrosion resistance of this grade is relatively low. When this is an issue, 2024 is commonly used in an 
        * anodized finish or in clad form (thin surface layer of high purity aluminum) known as Alclad.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_2024,
@@ -108,6 +122,7 @@ namespace MassCalculator
       /**
        * @brief The most widely used of all aluminum alloys. A commercially pure aluminum with added manganese to increase its strength (20% stronger than the 1100 grade). 
        * It has excellent corrosion resistance, and workability. This grade can be deep drawn or spun, welded or brazed.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_3003,
@@ -115,6 +130,7 @@ namespace MassCalculator
       /**
        * @brief This is the highest strength alloy of the more non heat-treatable grades. Its fatigue strength is higher than most other aluminum grades. 
        * Alloy 5052 has a good resistance to marine atmosphere and salt water corrosion, and excellent workability. It can be easily drawn or formed into intricate shapes.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_5052,
@@ -124,6 +140,7 @@ namespace MassCalculator
        * properties and corrosion resistance. It can be fabricated by most of the commonly used techniques and it has good workability in the annealed condition. It is 
        * welded by all methods and can be furnace brazed. As a result, it is used in a wide variety of products and applications where appearance and better corrosion 
        * resistance with good strength are required. The Tube and Angle shapes in this grade typically have rounded corners.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_6061,
@@ -134,6 +151,7 @@ namespace MassCalculator
        * Commonly known as an architectural alloy. It has reasonably high tensile properties, excellent finishing characteristics and a high degree of resistance to corrosion. 
        * Most often found in various interior and exterior architectural applications and trim. It is very well suited for anodizing applications. 
        * The Tube and Angle shapes in this grade typically have square corners.The Tube and Angle shapes in this grade typically have square corners.
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_6063,
@@ -141,6 +159,7 @@ namespace MassCalculator
       /**
        * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to weight ratio, and it is ideally used for highly stressed parts. 
        * This grade can be formed in the annealed condition and subsequently heat treated, if needed. It can also be spot or flash welded (arc and gas not recommended).
+       * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 
        */
       A_7075,
@@ -339,7 +358,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___ALUMINIUM_H___

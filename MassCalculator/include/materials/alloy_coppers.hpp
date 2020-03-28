@@ -1,7 +1,7 @@
 /**
  * @file alloy_coppers.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief Alloy Coppers class that holds the parameters for all the types
+ * @brief AlloyCoppers class that holds the parameters for all the types
  * @version 0.1
  * @date 2020-03-20
  * 
@@ -94,8 +94,8 @@ namespace MassCalculator
 
     public:
     /**
-     * @brief Enum that holds the AlloyCoppers types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * @TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the AlloyCoppers types
+     * 
      */
     enum class Type : uint8_t
     {
@@ -105,102 +105,119 @@ namespace MassCalculator
        * @brief Tellurium copper also referred to as Alloy 145, Alloy C15400, 145 half-hard tellurium, and TeCu—is a copper-based alloy that contains varying amounts of tellurium and phosphorus. 
        * The tellurium content typically ranges between 0.4–0.7%, while the phosphorus content ranges between 0.004–0.12%.
        * Tellurium copper demonstrates good electrical and thermal conductivity, good formability and high machinability. These properties make it suitable for a wide range of industrial applications.
+       * @todo: Add source
        * 
        */
       AC_145Tellvirum = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_194Iron,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_195Iron,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_172Beryllium,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_182Class2,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_655Silicon,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_706Nickel,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_715NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_725NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_735NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_752NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_762NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_770NickelSilver,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_1751Class3,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_1758Nickel,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_MoldmaxBeCu,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       AC_ProthermBeCu,
@@ -406,7 +423,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___ALLOY_COPPERS_H___

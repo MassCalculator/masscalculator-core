@@ -1,3 +1,13 @@
+/**
+ * @file brass.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Brass class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___BRASS_H___
 #define ___BRASS_H___
 #include "material.hpp"
@@ -74,48 +84,56 @@ namespace MassCalculator
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_240Low = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_260Cartridge,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_353Leaded,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_360,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_365,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_380,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_385,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       B_464,
@@ -313,7 +331,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___BRASS_H___

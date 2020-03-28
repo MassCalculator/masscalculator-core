@@ -1,3 +1,13 @@
+/**
+ * @file copper.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Copper class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-28
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___COPPER_H___
 #define ___COPPER_H___
 #include "material.hpp"
@@ -71,30 +81,35 @@ namespace MassCalculator
       
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       C_101 = BEGIN,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       C_102,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       C_103,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       C_110,
 
       /**
        * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       C_122,
@@ -289,7 +304,6 @@ namespace MassCalculator
      * 
      */
     LuaScriptHandler lua_state_;
-
   };
 }//end namespace MassCalculator
 #endif//___COPPER_H___

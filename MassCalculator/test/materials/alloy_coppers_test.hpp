@@ -19,7 +19,7 @@ class AlloyCoppersTest : public ::testing::Test
 {
   protected:
   /**
-   * @brief Construct a new Alloy Coppers Test object
+   * @brief Construct a new AlloyCoppersTest object
    * 
    */
   AlloyCoppersTest() 
@@ -43,12 +43,15 @@ class AlloyCoppersTest : public ::testing::Test
   }
 
   /**
-   * @brief Destroy the Alloy Coppers Test object
+   * @brief Destroy the AlloyCoppersTest object
    * 
    */
   ~AlloyCoppersTest() = default;
 
-  // Objects declared here can be used by all tests in the test case for AlloyCoppersTest.
+  /**
+   * @brief Member objects for class AlloyCoppers for each AlloyCopper type
+   * 
+   */
   MassCalculator::AlloyCoppers material_AC_145Tellvirum,
                                material_AC_194Iron,
                                material_AC_195Iron,
