@@ -8,7 +8,7 @@ namespace MassCalculatorTest
    */
   TEST_F(AlloyCoppersTest, TypeConstructorTest)
   {
-    EXPECT_DOUBLE_EQ( 5.0, 5.0);
+    EXPECT_DOUBLE_EQ(5.0, 5.0);
   }
 
   /**

@@ -2,48 +2,64 @@
  * @file brass_test.hpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains all the tests for the class Brass, it tests all the functions and the constructors of the class
- * @version 0.1
- * @date 2019-08-31
+ * @version 0.3
+ * @date 2020-03-28
  * 
- * @copyright Copyright (c) 2019
+ * @copyright Copyright (c) 2020
  * 
  */
+#ifndef ___BRASS_TEST_H___
+#define ___BRASS_TEST_H___
 #include "materials/brass.hpp"
 #include <gtest/gtest.h>
 
-// The fixture for testing class Brass.
-class BrassTest : public ::testing::Test 
+/**
+ * @brief Default test namespace
+ * 
+ */
+namespace MassCalculatorTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  BrassTest() 
+    /**
+   * @brief The test fixture for testing class Brass.
+   * 
+   */
+  class BrassTest : public ::testing::Test 
   {
-   // You can do set-up work for each test here.
-   material_B_240Low.setType(MassCalculator::Materials::Brass::Type::B_240Low);
-  }
+    protected:
+    /**
+     * @brief Construct a new BrassTest object
+     * 
+     */
+    BrassTest() 
+    {
+      material_B_240Low.setType(MassCalculator::Materials::Brass::Type::B_240Low);
+      material_B_260Cartridge.setType(MassCalculator::Materials::Brass::Type::B_260Cartridge);
+      material_B_353Leaded.setType(MassCalculator::Materials::Brass::Type::B_353Leaded);
+      material_B_360.setType(MassCalculator::Materials::Brass::Type::B_360);
+      material_B_365.setType(MassCalculator::Materials::Brass::Type::B_365);
+      material_B_380.setType(MassCalculator::Materials::Brass::Type::B_380);
+      material_B_385.setType(MassCalculator::Materials::Brass::Type::B_385);
+      material_B_464.setType(MassCalculator::Materials::Brass::Type::B_464);
+    }
 
-  ~BrassTest() override 
-  {
-   // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the BrassTest object
+     * 
+     */
+    ~BrassTest() = default;
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-   // Code here will be called immediately after the constructor (right
-   // before each test).
-  }
-
-  void TearDown() override 
-  {
-   // Code here will be called immediately after each test (right
-   // before the destructor).
-  }
-
-  // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Materials::Brass material_B_240Low;
-};
+    /**
+     * @brief Member objects for class Brass for each Brass type
+     * 
+     */
+    MassCalculator::Materials::Brass material_B_240Low,
+                                     material_B_260Cartridge,
+                                     material_B_353Leaded,
+                                     material_B_360,
+                                     material_B_365,
+                                     material_B_380,
+                                     material_B_385,
+                                     material_B_464;
+  };
+}//end namespace MassCalculatorTest
+#endif//___BRASS_TEST_H___

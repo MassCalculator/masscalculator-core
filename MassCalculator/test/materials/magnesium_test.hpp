@@ -1,40 +1,51 @@
+/**
+ * @file magnesium_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class Magnesium, it tests all the functions and the constructors of the class
+ * @version 0.3
+ * @date 2020-03-26
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#ifndef ___MAGNESIUM_TEST_H___
+#define ___MAGNESIUM_TEST_H___
+#include "materials/magnesium.hpp"
 #include <gtest/gtest.h>
 
-#include "materials/magnesium.hpp"
-
-// The fixture for testing class Aluminium.
-class MagnesiumTest : public ::testing::Test 
+/**
+ * @brief Default test namespace
+ * 
+ */
+namespace MassCalculatorTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  MagnesiumTest() 
+  /**
+   * @brief The test fixture for testing class Magnesium.
+   * 
+   */
+  class MagnesiumTest : public ::testing::Test 
   {
-   // You can do set-up work for each test here.
-   material_M_AZ31B.setType(MassCalculator::Materials::Magnesium::Type::M_AZ31B);
-  }
+    protected:
+    /**
+     * @brief Construct a new MagnesiumTest object
+     * 
+     */
+    MagnesiumTest() 
+    {
+      material_M_AZ31B.setType(MassCalculator::Materials::Magnesium::Type::M_AZ31B);
+    }
 
-  ~MagnesiumTest() override 
-  {
-   // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the MagnesiumTest object
+     * 
+     */
+    ~MagnesiumTest() = default;
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-   // Code here will be called immediately after the constructor (right
-   // before each test).
-  }
-
-  void TearDown() override 
-  {
-   // Code here will be called immediately after each test (right
-   // before the destructor).
-  }
-
-  // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Materials::Magnesium material_M_AZ31B;
-};
+    /**
+     * @brief Member objects for class AlloyCoppers for each AlloyCopper type
+     * 
+     */
+    MassCalculator::Materials::Magnesium material_M_AZ31B;
+  };
+}//end namespace MassCalculatorTest
+#endif//___MAGNESIUM_TEST_H___
