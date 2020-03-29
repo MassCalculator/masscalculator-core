@@ -190,7 +190,7 @@ namespace MassCalculator::Materials
     friend std::ostream &operator << (std::ostream &os, const Magnesium &obj);
 
     /**
-     * @brief Shift operator overload for Types of AlloySteels, this will print the name in string
+     * @brief Shift operator overload for Types of Magnesium, this will print the name in string
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Type &type);

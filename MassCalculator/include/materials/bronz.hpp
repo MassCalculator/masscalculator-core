@@ -344,7 +344,7 @@ namespace MassCalculator::Materials
     friend std::ostream &operator << (std::ostream &os, const Bronz &obj);
 
     /**
-     * @brief Shift operator overload for Types of Brass, this will print the name in string
+     * @brief Shift operator overload for Types of Bronz, this will print the name in string
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Type &type);

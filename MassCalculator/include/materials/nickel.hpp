@@ -60,7 +60,7 @@ namespace MassCalculator::Materials
        * 
        */
       std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Nickel::Type::UNSPECIFIED};
-      std::string color_{0};
+      std::string color_{""};
       kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
       meters_per_second_squared_t gravity_{0_mps_sq};
       kelvin_t melting_point_{0_K};
@@ -226,7 +226,7 @@ namespace MassCalculator::Materials
     friend std::ostream &operator << (std::ostream &os, const Nickel &obj);
 
     /**
-     * @brief Shift operator overload for Types of Aluminium, this will print the name in string
+     * @brief Shift operator overload for Types of Nickel, this will print the name in string
      * 
      */
     friend std::ostream &operator<<(std::ostream &os, const Type &type);

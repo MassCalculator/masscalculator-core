@@ -170,4 +170,4 @@ namespace MassCalculator::Materials
     }
     return os;
   }
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials
