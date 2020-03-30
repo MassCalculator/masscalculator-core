@@ -40,7 +40,11 @@ namespace MassCalculator::Materials
     const std::string B_954Al{"B_954Al"};
     const std::string B_OilLite{"B_OilLite"};
 
-    const std::string BronzLuaConfigPath{"../MassCalculator/resources/materials/bronz_config.lua"};
+    #ifdef DEBUG
+      const std::string BronzLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/bronz_config.lua"};
+    #else
+      const std::string BronzLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/bronz_config.lua"};
+    #endif
   }
 
   /**

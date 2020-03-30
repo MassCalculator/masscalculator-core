@@ -30,7 +30,11 @@ namespace MassCalculator::Materials
     const std::string A_6063{"A_6063"};
     const std::string A_7075{"A_7075"};
 
-    const std::string AluminiumLuaConfigPath{"../MassCalculator/resources/materials/aluminium_config.lua"};
+    #ifdef DEBUG
+      const std::string AluminiumLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/aluminium_config.lua"};
+    #else
+      const std::string AluminiumLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/aluminium_config.lua"};
+    #endif
   }
 
   /**

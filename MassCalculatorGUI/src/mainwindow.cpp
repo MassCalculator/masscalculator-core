@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 
-#define stringify( name ) # name
+// #define stringify( name ) # name
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

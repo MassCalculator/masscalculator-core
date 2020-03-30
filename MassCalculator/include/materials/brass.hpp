@@ -29,7 +29,11 @@ namespace MassCalculator::Materials
     const std::string B_385{"B_385"};
     const std::string B_464{"B_464"};
 
-    const std::string BrassLuaConfigPath{"../MassCalculator/resources/materials/brass_config.lua"};
+    #ifdef DEBUG
+      const std::string BrassLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/brass_config.lua"};
+    #else
+      const std::string BrassLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/brass_config.lua"};
+    #endif
   }
 
   /**

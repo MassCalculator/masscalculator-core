@@ -1,9 +1,18 @@
+/**
+ * @file lua_handler.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief LuaScriptHandler Class that holds all the nessesary functions and specialisations to get from lua files
+ * @version 0.1
+ * @date 2020-03-30
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___HELPER_CLASSES_H___
 #define ___HELPER_CLASSES_H___
-
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 // Lua is written in C, so compiler needs to know how to link its libraries
 extern "C" 
@@ -27,27 +36,82 @@ namespace MassCalculator
   {
     /**
      * @brief Class LuaScriptHandler, that holds all the nessesary functions and specialisations to get from lua files
+     * @todo Refactor the class, check the names and add documentation
      * 
      */
     class LuaScriptHandler 
     {
       public:
+        /**
+         * @brief Construct a new Lua Script Handler object
+         * 
+         */
         LuaScriptHandler(void) = default;
+
+        /**
+         * @brief Destroy the Lua Script Handler object
+         * 
+         */
         ~LuaScriptHandler();
         
+        /**
+         * @brief @todo add documentation
+         * 
+         * @param filename 
+         * @return true 
+         * @return false 
+         */
         bool openScript(const std::string &filename);
+
+        /**
+         * @brief @todo add documentation
+         * 
+         * @return true 
+         * @return false 
+         */
         bool isInitialized(void);
+
+        /**
+         * @brief @todo add documentation
+         * 
+         * @return true 
+         * @return false 
+         */
         bool closeScript(void);
 
+        /**
+         * @brief @todo add documentation
+         * 
+         * @param variableName 
+         * @param reason 
+         */
         void printError(const std::string& variableName, const std::string& reason);
+
+        /**
+         * @brief Get the Int Vector object
+         * 
+         * @param name 
+         * @return std::vector<int> 
+         */
         std::vector<int> getIntVector(const std::string& name);
         
+        /**
+         * @brief @todo add documentation
+         * 
+         */
         inline void clean() 
         {
           int n = lua_gettop(L);
           lua_pop(L, n);
         }
 
+        /**
+         * @brief @todo add documentation
+         * 
+         * @tparam T 
+         * @param variableName 
+         * @return T 
+         */
         template<typename T>
         T get(const std::string& variableName) 
         {
@@ -71,6 +135,13 @@ namespace MassCalculator
           return result;
         }
 
+        /**
+         * @brief @todo add documentation
+         * 
+         * @param variableName 
+         * @return true 
+         * @return false 
+         */
         bool lua_gettostack(const std::string& variableName) 
         {
           level = 0;
@@ -124,30 +195,74 @@ namespace MassCalculator
           return true;       
         }
 
-        // Generic get
+        /**
+         * @brief Generic get function
+         * 
+         * @tparam T 
+         * @param variableName 
+         * @return T 
+         */
         template<typename T>
-        T lua_get(const std::string& variableName) {
+        T lua_get(const std::string& variableName)
+        {
           return 0;
         }
 
+        /**
+         * @brief @todo add documentation
+         * 
+         * @tparam T 
+         * @return T 
+         */
         template<typename T>
-        T lua_getdefault() {
+        T lua_getdefault()
+        {
           return 0;
         }
 
       private:
+        /**
+         * @brief @todo add documentation
+         * 
+         */
         lua_State* L;
+
+        /**
+         * @brief @todo add documentation
+         * 
+         */
         std::string filename_;
+
+        /**
+         * @brief @todo add documentation
+         * 
+         */
         int level;
     };
 
     //Specialisations
+
+    /**
+     * @brief @todo add documentation
+     * 
+     * @tparam  
+     * @param variableName 
+     * @return true 
+     * @return false 
+     */
     template <> 
     inline bool LuaScriptHandler::lua_get<bool>(const std::string& variableName) 
     {
       return static_cast<bool>(lua_toboolean(L, -1));
     }
 
+    /**
+     * @brief @todo add documentation
+     * 
+     * @tparam  
+     * @param variableName 
+     * @return float 
+     */
     template <> 
     inline float LuaScriptHandler::lua_get<float>(const std::string& variableName) 
     {
@@ -159,6 +274,13 @@ namespace MassCalculator
       return static_cast<float>(lua_tonumber(L, -1));
     }
 
+    /**
+     * @brief @todo add documentation
+     * 
+     * @tparam  
+     * @param variableName 
+     * @return double 
+     */
     template <>
     inline double LuaScriptHandler::lua_get<double>(const std::string& variableName) 
     {
@@ -170,6 +292,13 @@ namespace MassCalculator
       return static_cast<double>(lua_tonumber(L, -1));
     }
 
+    /**
+     * @brief @todo add documentation
+     * 
+     * @tparam  
+     * @param variableName 
+     * @return int 
+     */
     template <>
     inline int LuaScriptHandler::lua_get<int>(const std::string& variableName) 
     {
@@ -181,6 +310,13 @@ namespace MassCalculator
       return static_cast<int>(lua_tonumber(L, -1));
     }
 
+    /**
+     * @brief @todo add documentation
+     * 
+     * @tparam  
+     * @param variableName 
+     * @return std::string 
+     */
     template <>
     inline std::string LuaScriptHandler::lua_get<std::string>(const std::string& variableName) 
     {
@@ -197,6 +333,12 @@ namespace MassCalculator
       return s;
     }
 
+    /**
+     * @brief @todo add documentation
+     * 
+     * @tparam  
+     * @return std::string 
+     */
     template<>
     inline std::string LuaScriptHandler::lua_getdefault<std::string>() 
     {
@@ -205,4 +347,4 @@ namespace MassCalculator
 
   }// End namespace HelperClasses
 }// End namespace MassCalculator
-#endif
+#endif//___HELPER_CLASSES_H___

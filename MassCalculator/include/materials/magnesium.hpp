@@ -22,7 +22,11 @@ namespace MassCalculator::Materials
   {
     const std::string  M_AZ31B{"M_AZ31B"};
 
-    const std::string MagnesiumLuaConfigPath{"../MassCalculator/resources/materials/magnesium_config.lua"};
+    #ifdef DEBUG
+      const std::string MagnesiumLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/magnesium_config.lua"};
+    #else
+      const std::string MagnesiumLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/magnesium_config.lua"};
+    #endif
   }
 
   /**

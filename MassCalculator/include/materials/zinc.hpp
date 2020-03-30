@@ -18,7 +18,11 @@ namespace MassCalculator::Materials
     const std::string  Z_720{"Z_720"};
     const std::string  Z_750{"Z_750"};
 
-    const std::string ZincLuaConfigPath{"../MassCalculator/resources/materials/zinc_config.lua"};
+    #ifdef DEBUG
+      const std::string ZincLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/zinc_config.lua"};
+    #else
+      const std::string ZincLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/zinc_config.lua"};
+    #endif
   }
 
   /**

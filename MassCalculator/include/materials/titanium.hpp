@@ -15,7 +15,11 @@ namespace MassCalculator::Materials
     const std::string  T_Grade4{"T_Grade4"};
     const std::string  T_Grade5{"T_Grade5"};
 
-    const std::string TitaniumLuaConfigPath{"../MassCalculator/resources/materials/titanium_config.lua"};
+    #ifdef DEBUG
+      const std::string TitaniumLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/titanium_config.lua"};
+    #else
+      const std::string TitaniumLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/titanium_config.lua"};
+    #endif
   }
 
   /**

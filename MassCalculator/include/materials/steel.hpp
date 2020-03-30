@@ -18,7 +18,11 @@ namespace MassCalculator::Materials
     const std::string  S_4140{"S_4140"};
     const std::string  S_A36{"S_A36"};
 
-    const std::string SteelLuaConfigPath{"../MassCalculator/resources/materials/steel_config.lua"};
+    #ifdef DEBUG
+      const std::string SteelLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/steel_config.lua"};
+    #else
+      const std::string SteelLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/steel_config.lua"};
+    #endif
   }
 
   /**

@@ -26,7 +26,11 @@ namespace MassCalculator::Materials
     const std::string  C_110{"C_110"};
     const std::string  C_122{"C_122"};
 
-    const std::string CopperLuaConfigPath{"../MassCalculator/resources/materials/copper_config.lua"};
+    #ifdef DEBUG
+      const std::string CopperLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/copper_config.lua"};
+    #else
+      const std::string CopperLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/copper_config.lua"};
+    #endif
   }
 
   /**

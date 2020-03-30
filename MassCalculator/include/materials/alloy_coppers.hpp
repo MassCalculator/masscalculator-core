@@ -41,13 +41,12 @@ namespace MassCalculator::Materials
     const std::string AC_1758Nickel{"AC_1758Nickel"};
     const std::string AC_MoldmaxBeCu{"AC_MoldmaxBeCu"};
     const std::string AC_ProthermBeCu{"AC_ProthermBeCu"};
-    // @@TODO: Check this, for the paths after install the library
+
+    // @todo It will come a time that we will cross_compile, add a Windows tag to.
     #ifdef DEBUG
-      const std::string AlloyCoppersLuaConfigPath{"../MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      const std::string AlloyCoppersLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #else
-      // const std::string home_path_ = getenv("HOME");
-      // const std::string AlloyCoppersLuaConfigPath{home_path_ + "/.MassCalculatorResources/materials/alloy_coppers_config.lua"};
-      const std::string AlloyCoppersLuaConfigPath{"../MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      const std::string AlloyCoppersLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #endif
   }
 

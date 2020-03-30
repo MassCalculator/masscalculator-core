@@ -22,7 +22,11 @@ namespace MassCalculator::Materials
   {
     const std::string  P_ABS{"P_ABS"};
 
-    const std::string PlasticLuaConfigPath{"../MassCalculator/resources/materials/plastic_config.lua"};
+    #ifdef DEBUG
+      const std::string PlasticLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/plastic_config.lua"};
+    #else
+      const std::string PlasticLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/plastic_config.lua"};
+    #endif
   }
 
   /**
