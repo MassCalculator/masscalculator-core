@@ -8,7 +8,7 @@ namespace MassCalculatorTest
    */
   TEST_F(TitaniumTest, TypeConstructorTest)
   {
-    EXPECT_DOUBLE_EQ( 5.0, 5.0);
+    EXPECT_DOUBLE_EQ(5.0, 5.0);
   }
 
   /**
@@ -20,8 +20,8 @@ namespace MassCalculatorTest
     std::pair<std::string, MassCalculator::Materials::Titanium::Type> 
       type{"T_6Al4V", MassCalculator::Materials::Titanium::Type::T_6Al4V};
 
-    EXPECT_EQ( type.first, material_T_6Al4V.getType().first);
-    EXPECT_EQ( type.second, material_T_6Al4V.getType().second);
+    EXPECT_EQ(type.first, material_T_6Al4V.getType().first);
+    EXPECT_EQ(type.second, material_T_6Al4V.getType().second);
 
     type = {"T_Grade2", MassCalculator::Materials::Titanium::Type::T_Grade2};
     EXPECT_EQ(type.first, material_T_Grade2.getType().first);

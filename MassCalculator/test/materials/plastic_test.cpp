@@ -20,8 +20,8 @@ namespace MassCalculatorTest
     std::pair<std::string, MassCalculator::Materials::Plastic::Type> 
       type{"P_ABS", MassCalculator::Materials::Plastic::Type::P_ABS};
 
-    EXPECT_EQ( type.first, material_P_ABS.getType().first);
-    EXPECT_EQ( type.second, material_P_ABS.getType().second);
+    EXPECT_EQ(type.first, material_P_ABS.getType().first);
+    EXPECT_EQ(type.second, material_P_ABS.getType().second);
   }
 
   /**

@@ -20,8 +20,8 @@ namespace MassCalculatorTest
     std::pair<std::string, MassCalculator::Materials::StainlessSteel::Type> 
       type{"SS_301", MassCalculator::Materials::StainlessSteel::Type::SS_301};
 
-    EXPECT_EQ( type.first, material_SS_301.getType().first);
-    EXPECT_EQ( type.second, material_SS_301.getType().second);
+    EXPECT_EQ(type.first, material_SS_301.getType().first);
+    EXPECT_EQ(type.second, material_SS_301.getType().second);
 
     type = {"SS_302", MassCalculator::Materials::StainlessSteel::Type::SS_302};
     EXPECT_EQ(type.first, material_SS_302.getType().first);
