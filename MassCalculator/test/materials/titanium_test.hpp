@@ -1,40 +1,57 @@
+/**
+ * @file titanium_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class Aluminium, it tests all the functions and the constructors of the class
+ * @version 0.1
+ * @date 2020-03-30
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#ifndef ___TITANIUM_TEST_H___
+#define ___TITANIUM_TEST_H___
+#include "materials/titanium.hpp"
 #include <gtest/gtest.h>
 
-#include "materials/titanium.hpp"
-
-// The fixture for testing class Aluminium.
-class TitaniumTest : public ::testing::Test 
+/**
+ * @brief Default test namespace
+ * 
+ */
+namespace MassCalculatorTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  TitaniumTest() 
+  /**
+   * @brief The test fixture for testing class Titanium.
+   * 
+   */
+  class TitaniumTest : public ::testing::Test 
   {
-   // You can do set-up work for each test here.
-   material_T_6Al4V.setType(MassCalculator::Materials::Titanium::Type::T_6Al4V);
-  }
+    protected:
+    /**
+     * @brief Construct a new TitaniumTest object
+     * 
+     */
+    TitaniumTest() 
+    {
+      material_T_6Al4V.setType(MassCalculator::Materials::Titanium::Type::T_6Al4V);
+      material_T_Grade2.setType(MassCalculator::Materials::Titanium::Type::T_Grade2);
+      material_T_Grade4.setType(MassCalculator::Materials::Titanium::Type::T_Grade4);
+      material_T_Grade5.setType(MassCalculator::Materials::Titanium::Type::T_Grade5);
+    }
 
-  ~TitaniumTest() override 
-  {
-   // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the TitaniumTest object
+     * 
+     */
+    ~TitaniumTest() = default;
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-   // Code here will be called immediately after the constructor (right
-   // before each test).
-  }
-
-  void TearDown() override 
-  {
-   // Code here will be called immediately after each test (right
-   // before the destructor).
-  }
-
-  // Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Materials::Titanium material_T_6Al4V;
-};
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Titanium material_T_6Al4V,
+                                        material_T_Grade2,
+                                        material_T_Grade4,
+                                        material_T_Grade5;
+  };
+}//end namespace MassCalculatorTest
+#endif//___TITANIUM_TEST_H___

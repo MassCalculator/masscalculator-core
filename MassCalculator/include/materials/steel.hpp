@@ -1,3 +1,13 @@
+/**
+ * @file steel.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Steel class that holds the parameters for all the types
+ * @version 0.1
+ * @date 2020-03-29
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___STEEL_H___
 #define ___STEEL_H___
 #include "material.hpp"

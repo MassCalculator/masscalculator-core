@@ -55,12 +55,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificColorTest)
   {
     EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_S_1010.getSpecificColor());
+    EXPECT_EQ(std::string{"Metallic"}, material_S_1012.getSpecificColor());
+    EXPECT_EQ(std::string{"Metallic"}, material_S_1015.getSpecificColor());
+    EXPECT_EQ(std::string{"Metallic"}, material_S_1018.getSpecificColor());
+    EXPECT_EQ(std::string{"Metallic"}, material_S_1541.getSpecificColor());
+    EXPECT_EQ(std::string{"Metallic"}, material_S_4140.getSpecificColor());
+    EXPECT_EQ(std::string{"Metallic"}, material_S_A36.getSpecificColor());
   }
 
   /**
@@ -70,12 +70,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificDensityTest)
   {
     EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1010.getSpecificDensity());
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1012.getSpecificDensity());
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1015.getSpecificDensity());
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1018.getSpecificDensity());
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_1541.getSpecificDensity());
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_4140.getSpecificDensity());
+    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_S_A36.getSpecificDensity());
   }
 
   /**
@@ -85,12 +85,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificGravityTest)
   {
     EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1010.getSpecificGravity());
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1012.getSpecificGravity());
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1015.getSpecificGravity());
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1018.getSpecificGravity());
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_1541.getSpecificGravity());
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_4140.getSpecificGravity());
+    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_S_A36.getSpecificGravity());
   }
 
   /**
@@ -100,12 +100,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificMeltingPointTest)
   {
     EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_S_1010.getSpecificMeltingPoint());
+    EXPECT_EQ(kelvin_t{537.778}, material_S_1012.getSpecificMeltingPoint());
+    EXPECT_EQ(kelvin_t{537.778}, material_S_1015.getSpecificMeltingPoint());
+    EXPECT_EQ(kelvin_t{537.778}, material_S_1018.getSpecificMeltingPoint());
+    EXPECT_EQ(kelvin_t{537.778}, material_S_1541.getSpecificMeltingPoint());
+    EXPECT_EQ(kelvin_t{537.778}, material_S_4140.getSpecificMeltingPoint());
+    EXPECT_EQ(kelvin_t{537.778}, material_S_A36.getSpecificMeltingPoint());
   }
 
   /**
@@ -115,12 +115,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificPoissonsRatioTest)
   {
     EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_S_1010.getSpecificPoissonsRatio());
+    EXPECT_EQ(double{0.33}, material_S_1012.getSpecificPoissonsRatio());
+    EXPECT_EQ(double{0.33}, material_S_1015.getSpecificPoissonsRatio());
+    EXPECT_EQ(double{0.33}, material_S_1018.getSpecificPoissonsRatio());
+    EXPECT_EQ(double{0.33}, material_S_1541.getSpecificPoissonsRatio());
+    EXPECT_EQ(double{0.33}, material_S_4140.getSpecificPoissonsRatio());
+    EXPECT_EQ(double{0.33}, material_S_A36.getSpecificPoissonsRatio());
   }
 
   /**
@@ -130,12 +130,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificThermalConductivityTest)
   {
     EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_S_1010.getSpecificThermalConductivity());
+    EXPECT_EQ(watt_t{990.0}, material_S_1012.getSpecificThermalConductivity());
+    EXPECT_EQ(watt_t{990.0}, material_S_1015.getSpecificThermalConductivity());
+    EXPECT_EQ(watt_t{990.0}, material_S_1018.getSpecificThermalConductivity());
+    EXPECT_EQ(watt_t{990.0}, material_S_1541.getSpecificThermalConductivity());
+    EXPECT_EQ(watt_t{990.0}, material_S_4140.getSpecificThermalConductivity());
+    EXPECT_EQ(watt_t{990.0}, material_S_A36.getSpecificThermalConductivity());
   }
 
   /**
@@ -145,12 +145,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificModOfElasticityTensionTest)
   {
     EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_S_1010.getSpecificModOfElasticityTension());
+    EXPECT_EQ(pascal_t{9.9}, material_S_1012.getSpecificModOfElasticityTension());
+    EXPECT_EQ(pascal_t{9.9}, material_S_1015.getSpecificModOfElasticityTension());
+    EXPECT_EQ(pascal_t{9.9}, material_S_1018.getSpecificModOfElasticityTension());
+    EXPECT_EQ(pascal_t{9.9}, material_S_1541.getSpecificModOfElasticityTension());
+    EXPECT_EQ(pascal_t{9.9}, material_S_4140.getSpecificModOfElasticityTension());
+    EXPECT_EQ(pascal_t{9.9}, material_S_A36.getSpecificModOfElasticityTension());
   }
 
   /**
@@ -160,12 +160,12 @@ namespace MassCalculatorTest
   TEST_F(SteelTest, GetSpecificModOfElasticityTorsionTest)
   {
     EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_S_1010.getSpecificModOfElasticityTorsion());
+    EXPECT_EQ(pascal_t{3.8}, material_S_1012.getSpecificModOfElasticityTorsion());
+    EXPECT_EQ(pascal_t{3.8}, material_S_1015.getSpecificModOfElasticityTorsion());
+    EXPECT_EQ(pascal_t{3.8}, material_S_1018.getSpecificModOfElasticityTorsion());
+    EXPECT_EQ(pascal_t{3.8}, material_S_1541.getSpecificModOfElasticityTorsion());
+    EXPECT_EQ(pascal_t{3.8}, material_S_4140.getSpecificModOfElasticityTorsion());
+    EXPECT_EQ(pascal_t{3.8}, material_S_A36.getSpecificModOfElasticityTorsion());
   }
 }//end namespace MassCalculatorTest
 
