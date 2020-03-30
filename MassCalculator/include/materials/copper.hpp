@@ -76,8 +76,8 @@ namespace MassCalculator::Materials
 
     public:
     /**
-     * @brief Enum that holds the Copper types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the Copper types
+     * 
      */
     enum class Type : uint8_t
     {

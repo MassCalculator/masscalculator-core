@@ -72,6 +72,10 @@ namespace MassCalculatorTest
     EXPECT_EQ(type.second, material_SS_17_4.getType().second);
   }
 
+  /**
+   * @brief Get Specific Color for specific material
+   * 
+   */
   TEST_F(StainlessSteelTest, GetSpecificColorTest)
   {
     EXPECT_EQ( std::string{"Metallic"}, material_SS_301.getSpecificColor());

@@ -3,7 +3,7 @@
 namespace MassCalculatorTest
 {
   /**
-   * @brief Construct a new TEST object
+   * @brief Construct a new Bronz object
    * 
    */
   TEST_F(BronzTest, TypeConstructorTest)

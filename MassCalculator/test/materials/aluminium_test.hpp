@@ -20,7 +20,7 @@
 namespace MassCalculatorTest
 {
   /**
-   * @brief The test fixture for testing class AlloySteels.
+   * @brief The test fixture for testing class Aluminium.
    * 
    */
   class AluminiumTest : public ::testing::Test 

@@ -80,7 +80,7 @@ namespace MassCalculator::Materials
 
     public:
     /**
-     * @brief Enum that holds the aluminium types
+     * @brief Enum that holds the Aluminium types
      * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
      */
     enum class Type : uint8_t

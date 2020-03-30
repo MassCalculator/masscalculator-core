@@ -20,7 +20,7 @@
 namespace MassCalculatorTest
 {
   /**
-   * @brief The test fixture for testing class Plastic.
+   * @brief The test fixture for testing class StainlessSteel.
    * 
    */
   class StainlessSteelTest : public ::testing::Test 
@@ -54,7 +54,7 @@ namespace MassCalculatorTest
     ~StainlessSteelTest() = default;
 
     /**
-     * @brief Member objects for class Plastic for each Plastic type
+     * @brief Member objects for class Stainless Steel for each Stainless Steel type
      * 
      */
     MassCalculator::Materials::StainlessSteel material_SS_301,
