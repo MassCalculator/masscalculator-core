@@ -17,15 +17,13 @@
 
 #include <dxflib/dl_dxf.h>
 
-//TODO: Check the units library, and the include_directories in CMake
-//#include "../3rdParty/include/units.h"
-//#include "units.h"
+#include "../../3rdParty/include/units.h"
 
 /**
- * @brief Default namespace
+ * @brief Default Shapes namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   namespace Constants
   {
@@ -46,11 +44,24 @@ namespace MassCalculator
   }
 
   /**
+   * @brief Writing repeated static_casts in CRTP base classes quickly becomes cumbersome, as it does not add much meaning to the code.
+   * With this template struct, I get rid of it and handled both const and non-const cases
+   * 
+   * @tparam TMaterial Material type template argument
+   */
+  template <typename TMaterial>
+  struct crtp
+  {
+    TMaterial& materialType() { return static_cast<TMaterial&>(*this); }
+    TMaterial const& materialType() const { return static_cast<TMaterial const&>(*this); }
+  };
+
+  /**
    * @brief Template base class Shape
    * 
    */
   template<typename TShapeType>
-  class Shape 
+  class Shape : crtp<TShapeType>
   {
     //TODO: Add a properties struct, according to the type for a specific shape
     public:
@@ -79,33 +90,11 @@ namespace MassCalculator
       END
     };
 
-    friend std::ostream& operator<<(std::ostream& os, Type type)
-    {
-        switch(type)
-        {
-          case Type::SquareBar: os << Constants::SquareBar; break;
-          case Type::Bar: os << Constants::Bar; break;
-          case Type::Cylinder: os << Constants::Cylinder; break;
-          case Type::SquareTubing: os << Constants::SquareTubing; break;
-          case Type::Pipe: os << Constants::Pipe; break;
-          case Type::Ellipse: os << Constants::Ellipse; break;
-          case Type::TBar: os << Constants::TBar; break;
-          case Type::Beam: os << Constants::Beam; break;
-          case Type::Channel: os << Constants::Channel; break;
-          case Type::Angle: os << Constants::Angle; break;
-          case Type::HexagonBar: os << Constants::HexagonBar; break;
-          case Type::OctagonBar: os << Constants::OctagonBar; break;
-          case Type::Sheet: os << Constants::Sheet; break;
-          case Type::UNSPECIFIED: os << Constants::S_UNSPECIFIED; break;
-          default: os << "Name cannot be found";
-        }
-        return os;
-    }
-#if 0
+  #if 0
 
-static_cast<TShapeType*>(this)->getType()
+  this->materialType()->getType()
 
-#endif
+  #endif
     Shape(void)
     {
       // thisTShapeType();
@@ -216,7 +205,7 @@ static_cast<TShapeType*>(this)->getType()
     //  */
     // Shape(Type type)
     // {
-    //   static_cast<TShapeType*>(this)(type);
+    //   this->materialType()(type);
     // };
 
     /**
@@ -230,7 +219,7 @@ static_cast<TShapeType*>(this)->getType()
     template<class... Args>
     bool setSize(const Args&... args)
     {
-      static_cast<TShapeType*>(this)->setSize(args...);
+      this->materialType()->setSize(args...);
 
       return true;
     }
@@ -242,7 +231,7 @@ static_cast<TShapeType*>(this)->getType()
      */
     double getRadius(void)
     {
-      return{static_cast<TShapeType*>(this)->getRadius()}; 
+      return{this->materialType()->getRadius()}; 
     }
 
     /**
@@ -252,7 +241,7 @@ static_cast<TShapeType*>(this)->getType()
      */
     std::string getType(void)
     {
-      return{static_cast<TShapeType*>(this)->getType()};
+      return{this->materialType()->getType()};
     }
 
     /**
@@ -262,7 +251,7 @@ static_cast<TShapeType*>(this)->getType()
      */
     double getDiameter(void)
     {
-      return{static_cast<TShapeType*>(this)->getDiameter()};
+      return{this->materialType()->getDiameter()};
     }
 
     /**
@@ -272,7 +261,7 @@ static_cast<TShapeType*>(this)->getType()
      */
     double getLength(void)
     {
-      return{static_cast<TShapeType*>(this)->getLength()};
+      return{this->materialType()->getLength()};
     }
 
     /**
@@ -282,7 +271,7 @@ static_cast<TShapeType*>(this)->getType()
      */
     double getVolume(void)
     {
-      return{static_cast<TShapeType*>(this)->getVolume()};
+      return{this->materialType()->getVolume()};
     }
 
     /**
@@ -292,7 +281,7 @@ static_cast<TShapeType*>(this)->getType()
      */
     double getSurfaceArea(void)
     {
-      return{static_cast<TShapeType*>(this)->getSurfaceArea()};
+      return{this->materialType()->getSurfaceArea()};
     }
 
     /**
@@ -301,18 +290,6 @@ static_cast<TShapeType*>(this)->getType()
      */
     ~Shape(void) = default;
 
-    /**
-     * @brief Shift operator template overload, for the base class Shape
-     * 
-     */
-    template <typename TShape>
-    friend std::ostream &operator << (std::ostream &os, const Shape<TShape> &obj)
-    {
-      os << "\n" "Shape" "\n" << obj.thisTShapeType();
-      return os;
-    }
-
-    public:
     /**
      * @brief Delete copy constructor
      * 
@@ -334,6 +311,25 @@ static_cast<TShapeType*>(this)->getType()
      * @brief Allow move assignment operator
      */
     Shape& operator=(Shape&&) = default;
+
+    /**
+     * @brief Function to return "this" derived object
+     * 
+     * @return const TShapeType& 
+     */
+    const TShapeType& thisTShapeType() const { return *static_cast<const TShapeType*>(this); }
+
+    /**
+     * @brief Shift operator template overload, for the base class Shape
+     * 
+     */
+    template <typename TShape>
+    friend std::ostream &operator << (std::ostream &os, const Shape<TShape> &obj);
+
+    template <typename TShape>
+    friend std::ostream &operator << (std::ostream& os, const typename Shape<TShape>:: Type &type);
+
+    Type type_;
 
     Type formatStringToEnum(std::string format) 
     {
@@ -376,64 +372,37 @@ static_cast<TShapeType*>(this)->getType()
         Type::UNSPECIFIED;
     }
 
-    /**
-     * @brief Function to return "this" derived object
-     * 
-     * @return const TShapeType& 
-     */
-    const TShapeType& thisTShapeType() const { return *static_cast<const TShapeType*>(this); }
-
-    Type type_;
-
   };
 
-  template <>
-  class Shape<int> 
-  { 
-    public:
-      enum class Type : uint8_t
-      {
-        BEGIN = 0,
-        SquareBar = BEGIN,
-        Bar,
-        Cylinder,
-        SquareTubing,
-        Pipe,
-        Ellipse,
-        TBar,
-        Beam,
-        Channel,
-        Angle,
-        HexagonBar,
-        OctagonBar,
-        Sheet,
-        UNSPECIFIED,
-        END
-      };
+  template <typename TShape>
+  std::ostream &operator << (std::ostream &os, const Shape<TShape> &obj)
+  {
+    os << "\n" "Shape" "\n" << obj.thisTShapeType();
+    return os;
+  }
 
-      friend std::ostream& operator<<(std::ostream& os, Type type)
+  template <typename TShape>
+  std::ostream &operator << (std::ostream& os, const typename Shape<TShape>:: Type &type)
+  {
+      switch(type)
       {
-        switch(type)
-        {
-          case Type::SquareBar: os << Constants::SquareBar; break;
-          case Type::Bar: os << Constants::Bar; break;
-          case Type::Cylinder: os << Constants::Cylinder; break;
-          case Type::SquareTubing: os << Constants::SquareTubing; break;
-          case Type::Pipe: os << Constants::Pipe; break;
-          case Type::Ellipse: os << Constants::Ellipse; break;
-          case Type::TBar: os << Constants::TBar; break;
-          case Type::Beam: os << Constants::Beam; break;
-          case Type::Channel: os << Constants::Channel; break;
-          case Type::Angle: os << Constants::Angle; break;
-          case Type::HexagonBar: os << Constants::HexagonBar; break;
-          case Type::OctagonBar: os << Constants::OctagonBar; break;
-          case Type::Sheet: os << Constants::Sheet; break;
-          case Type::UNSPECIFIED: os << Constants::S_UNSPECIFIED; break;
-          default: os << "Name cannot be found";
-        }
-        return os;
+        case Shape<TShape>::Type::SquareBar: os << Constants::SquareBar; break;
+        case Shape<TShape>::Type::Bar: os << Constants::Bar; break;
+        case Shape<TShape>::Type::Cylinder: os << Constants::Cylinder; break;
+        case Shape<TShape>::Type::SquareTubing: os << Constants::SquareTubing; break;
+        case Shape<TShape>::Type::Pipe: os << Constants::Pipe; break;
+        case Shape<TShape>::Type::Ellipse: os << Constants::Ellipse; break;
+        case Shape<TShape>::Type::TBar: os << Constants::TBar; break;
+        case Shape<TShape>::Type::Beam: os << Constants::Beam; break;
+        case Shape<TShape>::Type::Channel: os << Constants::Channel; break;
+        case Shape<TShape>::Type::Angle: os << Constants::Angle; break;
+        case Shape<TShape>::Type::HexagonBar: os << Constants::HexagonBar; break;
+        case Shape<TShape>::Type::OctagonBar: os << Constants::OctagonBar; break;
+        case Shape<TShape>::Type::Sheet: os << Constants::Sheet; break;
+        case Shape<TShape>::Type::UNSPECIFIED: os << Constants::S_UNSPECIFIED; break;
+        default: os << "Name cannot be found";
       }
-  };
-
-}//end namespace MassCalculator
-#endif
+      return os;
+  }
+}//end namespace MassCalculator::Shapes
+#endif//___SHAPE_H___

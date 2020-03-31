@@ -15,13 +15,14 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->material->setDisabled(true);
   ui->material_type->setDisabled(true);
 
-  // ui->material_type->setDisabled(false);
-  for(auto type = static_cast<int>(MassCalculator::Shape<decltype(42)>::Type::BEGIN); type < static_cast<int>(MassCalculator::Shape<decltype(42)>::Type::END); type++)
-  {
-    std::stringstream ss; ss << static_cast<MassCalculator::Shape<decltype(42)>::Type>(type);
-    ui->shape->addItem(ss.str().c_str());
-    // ui->material_type->insertItem(type, ss.str().c_str());
-  }
+  //todo: uncomment and fix the error
+  // // ui->material_type->setDisabled(false);
+  // for(auto type = static_cast<int>(MassCalculator::Shape<decltype(42)>::Type::BEGIN); type < static_cast<int>(MassCalculator::Shape<decltype(42)>::Type::END); type++)
+  // {
+  //   std::stringstream ss; ss << static_cast<MassCalculator::Shape<decltype(42)>::Type>(type);
+  //   ui->shape->addItem(ss.str().c_str());
+  //   // ui->material_type->insertItem(type, ss.str().c_str());
+  // }
 
 }
 
