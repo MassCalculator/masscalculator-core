@@ -1,6 +1,6 @@
 #include "shapes/elipse.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   Elipse::Elipse(double side, double length)
@@ -64,4 +64,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

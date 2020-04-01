@@ -13,6 +13,7 @@
 
 using namespace MassCalculator;
 using namespace MassCalculator::Materials;
+using namespace MassCalculator::Shapes;
 
 int main(/*int argc, char** argv*/)
 {

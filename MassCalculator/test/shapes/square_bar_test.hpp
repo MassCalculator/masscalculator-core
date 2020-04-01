@@ -36,5 +36,5 @@ class SquareBarTest : public ::testing::Test
   }
 
   //Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::SquareBar square_bar_;
+  MassCalculator::Shapes::SquareBar square_bar_;
 };

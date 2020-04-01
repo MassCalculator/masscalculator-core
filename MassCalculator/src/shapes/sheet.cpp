@@ -1,6 +1,6 @@
 #include "shapes/sheet.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   Sheet::Sheet(double side, double length)
@@ -64,4 +64,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

@@ -1,6 +1,6 @@
 #include "shapes/cylinder.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   Cylinder::Cylinder(double diameter, double length)
@@ -62,4 +62,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

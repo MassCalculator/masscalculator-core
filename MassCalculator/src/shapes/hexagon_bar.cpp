@@ -1,6 +1,6 @@
 #include "shapes/hexagon_bar.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   HexagonBar::HexagonBar(double side, double length)
@@ -64,4 +64,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

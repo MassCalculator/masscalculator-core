@@ -47,13 +47,13 @@ namespace MassCalculator::Shapes
    * @brief Writing repeated static_casts in CRTP base classes quickly becomes cumbersome, as it does not add much meaning to the code.
    * With this template struct, I get rid of it and handled both const and non-const cases
    * 
-   * @tparam TMaterial Material type template argument
+   * @tparam TShapes Material type template argument
    */
-  template <typename TMaterial>
+  template <typename TShape>
   struct crtp
   {
-    TMaterial& materialType() { return static_cast<TMaterial&>(*this); }
-    TMaterial const& materialType() const { return static_cast<TMaterial const&>(*this); }
+    TShape& shapeType() { return static_cast<TShape&>(*this); }
+    TShape const& shapeType() const { return static_cast<TShape const&>(*this); }
   };
 
   /**
@@ -63,7 +63,50 @@ namespace MassCalculator::Shapes
   template<typename TShapeType>
   class Shape : crtp<TShapeType>
   {
+    // public: enum class Type : uint8_t;
     //TODO: Add a properties struct, according to the type for a specific shape
+
+    // public: typedef struct Properties
+    // {
+
+    //   /**
+    //    * @brief 
+    //    * @todo This won't work, but leaving here so I don't forget. Try to deduce enumeration type from derived class in compile time
+    //    * 
+    //    * @param type_ Type The parameter to save the specific type
+    //    * @param color_ string Parameter to save specific color
+    //    * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
+    //    * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
+    //    * @param melting_point_ kelvin_t Parameter to save specific melting point
+    //    * @param poissons_ratio_ double Parameter to save specific poissons ratio
+    //    * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
+    //    * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
+    //    * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+    //    * 
+    //    */
+    //   std::pair<std::string, Type> type_;
+    //   std::string color_;
+    //   kilograms_per_cubic_meter_t density_;
+    //   meters_per_second_squared_t gravity_;
+    //   kelvin_t melting_point_;
+    //   double poissons_ratio_;
+    //   watt_t thermal_conductivity_;
+    //   pascal_t mod_of_elasticity_tension_;
+    //   pascal_t mod_of_elasticity_torsion_;
+
+    //   Properties() : type_{{Constants::UNSPECIFIED}, { }},
+    //                       // type_{{Constants::UNSPECIFIED}, {TShapesType::Type::UNSPECIFIED}}, //I would love to do this
+    //                       color_{""},
+    //                       density_{0_kg_per_cu_m},
+    //                       gravity_{0_mps_sq},
+    //                       melting_point_{0_K},
+    //                       poissons_ratio_{0},
+    //                       thermal_conductivity_{0_W},
+    //                       mod_of_elasticity_tension_{0_Pa},
+    //                       mod_of_elasticity_torsion_{0_Pa} { }
+
+    // }Properties_t;
+
     public:
     /**
      * @brief Enum that holds all the Shapes that are available to use
@@ -92,7 +135,7 @@ namespace MassCalculator::Shapes
 
   #if 0
 
-  this->materialType()->getType()
+  this->shapeType()->getType()
 
   #endif
     Shape(void)
@@ -205,7 +248,7 @@ namespace MassCalculator::Shapes
     //  */
     // Shape(Type type)
     // {
-    //   this->materialType()(type);
+    //   this->shapeType()(type);
     // };
 
     /**
@@ -217,9 +260,11 @@ namespace MassCalculator::Shapes
      * @return false If the size failed to set
      */
     template<class... Args>
-    bool setSize(const Args&... args)
+    constexpr bool setSize(const Args&... args)
     {
-      this->materialType()->setSize(args...);
+      //todo fix this
+      // this->shapeType()->setSize(args...);
+      static_cast<TShapeType*>(this)->setSize(args...);
 
       return true;
     }
@@ -229,9 +274,9 @@ namespace MassCalculator::Shapes
      * 
      * @return const double Radius of the Shape from Derived class
      */
-    double getRadius(void)
+    constexpr double getRadius(void)
     {
-      return{this->materialType()->getRadius()}; 
+      return{this->shapeType()->getRadius()}; 
     }
 
     /**
@@ -239,9 +284,9 @@ namespace MassCalculator::Shapes
      * 
      * @return const string Type of the Shape from Derived class
      */
-    std::string getType(void)
+    constexpr std::string getType(void)
     {
-      return{this->materialType()->getType()};
+      return{this->shapeType()->getType()};
     }
 
     /**
@@ -249,9 +294,9 @@ namespace MassCalculator::Shapes
      * 
      * @return const double Diameter of the Shape from Derived class
      */
-    double getDiameter(void)
+    constexpr double getDiameter(void)
     {
-      return{this->materialType()->getDiameter()};
+      return{this->shapeType()->getDiameter()};
     }
 
     /**
@@ -259,9 +304,9 @@ namespace MassCalculator::Shapes
      * 
      * @return const double Length of the Shape from Derived class
      */
-    double getLength(void)
+    constexpr double getLength(void)
     {
-      return{this->materialType()->getLength()};
+      return{this->shapeType()->getLength()};
     }
 
     /**
@@ -269,9 +314,9 @@ namespace MassCalculator::Shapes
      * 
      * @return const double Volume of the Shape from Derived class
      */
-    double getVolume(void)
+    constexpr double getVolume(void)
     {
-      return{this->materialType()->getVolume()};
+      return{this->shapeType()->getVolume()};
     }
 
     /**
@@ -279,9 +324,9 @@ namespace MassCalculator::Shapes
      * 
      * @return const double Surface Area of the Shape from Derived class
      */
-    double getSurfaceArea(void)
+    constexpr double getSurfaceArea(void)
     {
-      return{this->materialType()->getSurfaceArea()};
+      return{this->shapeType()->getSurfaceArea()};
     }
 
     /**
@@ -300,7 +345,7 @@ namespace MassCalculator::Shapes
      * @brief Set move constructor to default
      * 
      */
-    public: Shape(Shape&&) = default;
+    Shape(Shape&&) = default;
 
     /**
      * @brief Delete assignment operator
@@ -329,6 +374,7 @@ namespace MassCalculator::Shapes
     template <typename TShape>
     friend std::ostream &operator << (std::ostream& os, const typename Shape<TShape>:: Type &type);
 
+    private:
     Type type_;
 
     Type formatStringToEnum(std::string format) 

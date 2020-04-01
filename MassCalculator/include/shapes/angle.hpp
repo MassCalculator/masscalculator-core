@@ -6,7 +6,7 @@
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   /**
    * @brief Class Angle, that holds all the nessesary information for Angle and it's details therefore we can use in the interface
@@ -156,5 +156,5 @@ namespace MassCalculator
     Angle& operator=(Angle&&) = default;
 
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes
 #endif //___ANGLE_H___

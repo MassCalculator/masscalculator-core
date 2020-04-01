@@ -6,7 +6,7 @@
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   /**
    * @brief Class OctagonBar, that holds all the nessesary information for OctagonBar and it's details therefore we can use in the interface
@@ -156,5 +156,5 @@ namespace MassCalculator
     OctagonBar& operator=(OctagonBar&&) = default;
 
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes
 #endif//___OCTAGON_BAR_H___

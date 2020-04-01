@@ -1,6 +1,6 @@
 #include "shapes/pipe.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   Pipe::Pipe(double side, double length)
@@ -64,4 +64,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

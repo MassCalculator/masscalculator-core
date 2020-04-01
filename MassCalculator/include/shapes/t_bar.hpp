@@ -6,7 +6,7 @@
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   /**
    * @brief Class TBar, that holds all the nessesary information for TBar and it's details therefore we can use in the interface
@@ -156,5 +156,5 @@ namespace MassCalculator
     TBar& operator=(TBar&&) = default;
 
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes
 #endif//___T_BAR_H___

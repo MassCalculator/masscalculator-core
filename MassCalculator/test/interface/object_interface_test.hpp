@@ -13,6 +13,7 @@
 
 using namespace MassCalculator;
 using namespace MassCalculator::Materials;
+using namespace MassCalculator::Shapes;
 
 // The fixture for testing class Aluminium.
 class ObjectInterfaceTest : public ::testing::Test 

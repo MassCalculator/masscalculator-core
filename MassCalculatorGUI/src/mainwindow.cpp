@@ -35,20 +35,20 @@ void MainWindow::on_shape_currentIndexChanged(int index)
 
       break;
     }
-    case 1 :
-    {
-      ui->material->setDisabled(true);
-      ui->material_type->setDisabled(true);
-      break;
-    }
-    case static_cast<int>(MassCalculator::Shape<decltype(42)>::Type::Cylinder) + 2 :
-    {
-      ui->material->setDisabled(false);
-      std::unique_ptr<MassCalculator::Shape<MassCalculator::Cylinder>> shape(new MassCalculator::Cylinder(10.0, 10.0));
-      std::stringstream from_ostream; from_ostream << *shape;
-      ui->shape_res->setText(QString::fromStdString(from_ostream.str()));
-      break;
-    }
+    // case 1 :
+    // {
+    //   ui->material->setDisabled(true);
+    //   ui->material_type->setDisabled(true);
+    //   break;
+    // }
+    // case static_cast<int>(MassCalculator::Shape<decltype(42)>::Type::Cylinder) + 2 :
+    // {
+    //   ui->material->setDisabled(false);
+    //   std::unique_ptr<MassCalculator::Shape<MassCalculator::Cylinder>> shape(new MassCalculator::Cylinder(10.0, 10.0));
+    //   std::stringstream from_ostream; from_ostream << *shape;
+    //   ui->shape_res->setText(QString::fromStdString(from_ostream.str()));
+    //   break;
+    // }
 
     default:
       break;
@@ -93,7 +93,7 @@ void MainWindow::on_material_currentIndexChanged(int index)
 
 void MainWindow::on_material_type_currentIndexChanged(int index)
 {
-  std::unique_ptr<MassCalculator::Shape<MassCalculator::Cylinder>> shape(new MassCalculator::Cylinder(10.0, 10.0));
+  // std::unique_ptr<MassCalculator::Shape<MassCalculator::Cylinder>> shape(new MassCalculator::Cylinder(10.0, 10.0));
   //qDebug() << "Shape: " << *shape << std::endl;
 }
 
