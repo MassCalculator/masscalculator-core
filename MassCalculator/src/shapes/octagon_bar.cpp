@@ -1,6 +1,6 @@
 #include "shapes/octagon_bar.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   OctagonBar::OctagonBar(double side, double length)
@@ -64,4 +64,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

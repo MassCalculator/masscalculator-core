@@ -1,6 +1,6 @@
 #include "shapes/beam.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
 
   Beam::Beam(double side, double length)
@@ -64,4 +64,4 @@ namespace MassCalculator
     return os;
   }
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

@@ -6,7 +6,7 @@
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   /**
    * @brief Class Channel, that holds all the nessesary information for Channel and it's details therefore we can use in the interface
@@ -156,5 +156,5 @@ namespace MassCalculator
     Channel& operator=(Channel&&) = default;
 
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes
 #endif//___CHANNEL_H___

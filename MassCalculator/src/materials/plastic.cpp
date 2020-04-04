@@ -4,14 +4,15 @@ namespace MassCalculator::Materials
 {
   Plastic::Plastic(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
-  Plastic::Plastic(Plastic::Type type)
+  Plastic::Plastic(const Plastic::Type &type)
   {
-    this->initLuaScript();
-
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,19 +20,18 @@ namespace MassCalculator::Materials
 
   bool Plastic::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::PlasticLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::PlasticLuaConfigPath);
   }
 
-  bool Plastic::setType(Plastic::Type type)
+  bool Plastic::setType(const Plastic::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
       std::cerr << "Cannot set the Plastic type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Plastic::Type> Plastic::getType(void) const
@@ -44,17 +44,17 @@ namespace MassCalculator::Materials
     return{this->specific_properties_.color_};
   }
 
-  double Plastic::getSpecificDensity(void) const
+  kilograms_per_cubic_meter_t Plastic::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Plastic::getSpecificGravity(void) const
+  meters_per_second_squared_t Plastic::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Plastic::getSpecificMeltingPoint(void) const
+  kelvin_t Plastic::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
@@ -64,159 +64,82 @@ namespace MassCalculator::Materials
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Plastic::getSpecificThermalConductivity(void) const
+  watt_t Plastic::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity_};
   }
 
-  double Plastic::getSpecificModOfElasticityTension(void) const
+  pascal_t Plastic::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Plastic::getSpecificModOfElasticityTorsion(void) const
+  pascal_t Plastic::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
-  bool Plastic::setPropertieSpecs(Plastic::Type type)
+  bool Plastic::_setPropertieSpecs(const Properties_t &_properties)
   {
-    switch (type)
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
+  bool Plastic::setPropertieSpecs(const Plastic::Type &type)
+  {
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case Plastic::Type::P_ABS :
-      {
-        this->specific_properties_.type_                       = {"P_ABS", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Plastic.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
-        break;
-      }
-
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Plastic::Type::A_2011 :
-      {
-        this->specific_properties_.type_                       = {"A_2011", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_2014 :
-      {
-        this->specific_properties_.type_                       = {"A_2014", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_2024 :
-      {
-        this->specific_properties_.type_                       = {"A_2024", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_3003 :
-      {
-        this->specific_properties_.type_                       = {"A_3003", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_5052 :
-      {
-        this->specific_properties_.type_                       = {"A_5052", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_6061 :
-      {
-        this->specific_properties_.type_                       = {"A_6061", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_6063 :
-      {
-        this->specific_properties_.type_                       = {"A_6063", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Plastic::Type::A_7075 :
-      {
-        this->specific_properties_.type_                       = {"A_7075", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      default:
-      {
-        std::cerr << "The type Plastic specified not found, using default Plastic type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;
@@ -227,13 +150,24 @@ namespace MassCalculator::Materials
     os << "  Plastic object properties: " "\n"
           "   - Type    : " + obj.getType().first + "\n"
           "   - Color   : " + obj.getSpecificColor() + "\n"
-          "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
-          "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
-          "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
+          "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
+          "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
+          "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
           "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+          "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
+          "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
+          "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
     return os;
   }
-}//end namespace MassCalculator
+
+  std::ostream &operator << (std::ostream &os, const Plastic::Type &type)
+  {
+    switch(type)
+    {
+      case Plastic::Type::P_ABS: os << Constants::P_ABS; break;
+      case Plastic::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
+    return os;
+  }
+}//end namespace MassCalculator::Materials

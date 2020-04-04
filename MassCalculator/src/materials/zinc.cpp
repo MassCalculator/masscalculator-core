@@ -4,14 +4,15 @@ namespace MassCalculator::Materials
 {
   Zinc::Zinc(void)
   {
-    this->initLuaScript();
+    if(!this->initLuaScript())
+    {
+      std::cerr << "Construction of the object failed\n";
+    }
   }
 
-  Zinc::Zinc(Zinc::Type type)
+  Zinc::Zinc(const Zinc::Type &type)
   {
-    this->initLuaScript();
-    
-    if(!setType(type))
+    if(!setType(type) || !this->initLuaScript())
     {
       std::cerr << "Construction of the object failed\n";
     }
@@ -19,19 +20,18 @@ namespace MassCalculator::Materials
 
   bool Zinc::initLuaScript(void)
   {
-    this->lua_state_.openScript(Constants::ZincLuaConfigPath);
-    return true;
+    return this->lua_state_.openScript(Constants::ZincLuaConfigPath);
   }
 
-  bool Zinc::setType(Zinc::Type type)
+  bool Zinc::setType(const Zinc::Type &type)
   {
     if(!setPropertieSpecs(type))
     {
       std::cerr << "Cannot set the Zinc type\n";
       return false;
     }
-    else 
-      return true;
+    
+    return true;
   }
 
   std::pair<std::string, Zinc::Type> Zinc::getType(void) const
@@ -44,17 +44,17 @@ namespace MassCalculator::Materials
     return{this->specific_properties_.color_};
   }
 
-  double Zinc::getSpecificDensity(void) const
+  kilograms_per_cubic_meter_t Zinc::getSpecificDensity(void) const
   {
     return{this->specific_properties_.density_};
   }
 
-  double Zinc::getSpecificGravity(void) const
+  meters_per_second_squared_t Zinc::getSpecificGravity(void) const
   {
     return{this->specific_properties_.gravity_};
   }
 
-  double Zinc::getSpecificMeltingPoint(void) const
+  kelvin_t Zinc::getSpecificMeltingPoint(void) const
   {
     return{this->specific_properties_.melting_point_};
   }
@@ -64,131 +64,82 @@ namespace MassCalculator::Materials
     return{this->specific_properties_.poissons_ratio_};
   }
 
-  double Zinc::getSpecificThermalConductivity(void) const
+  watt_t Zinc::getSpecificThermalConductivity(void) const
   {
     return{this->specific_properties_.thermal_conductivity_};
   }
 
-  double Zinc::getSpecificModOfElasticityTension(void) const
+  pascal_t Zinc::getSpecificModOfElasticityTension(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_tension_};
   }
 
-  double Zinc::getSpecificModOfElasticityTorsion(void) const
+  pascal_t Zinc::getSpecificModOfElasticityTorsion(void) const
   {
     return{this->specific_properties_.mod_of_elasticity_torsion_};
   }
 
-  //private TODO set the values correctly
-  bool Zinc::setPropertieSpecs(Zinc::Type type)
+  bool Zinc::_setPropertieSpecs(const Properties_t &_properties)
   {
-    switch (type)
+    this->specific_properties_.type_ = {
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
+        {_properties.type_.first}
+      ), _properties.type_.second};
+    this->specific_properties_.color_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
+        {_properties.color_}
+      );
+    this->specific_properties_.density_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
+        {_properties.density_}
+      );
+    this->specific_properties_.gravity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
+        {_properties.gravity_}
+      );
+    this->specific_properties_.melting_point_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
+        {_properties.melting_point_}
+      );
+    this->specific_properties_.poissons_ratio_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
+        {_properties.poissons_ratio_}
+      );
+    this->specific_properties_.thermal_conductivity_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
+        {_properties.thermal_conductivity_}
+      );
+    this->specific_properties_.mod_of_elasticity_tension_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
+        {_properties.mod_of_elasticity_tension_}
+      );
+    this->specific_properties_.mod_of_elasticity_torsion_ = 
+      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
+        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
+        {_properties.mod_of_elasticity_torsion_}
+      );
+    return true;
+  }
+
+  bool Zinc::setPropertieSpecs(const Zinc::Type &type)
+  {
+    auto _pair = type2func.find(type);
+
+    if(_pair != type2func.end())
     {
-      case Zinc::Type::Z_190 :
-      {
-        this->specific_properties_.type_                       = {"Z_190", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        // this->specific_properties_.mod_of_elasticity_torsion_  = TTernaryOperator(checkFromLuaConfig("HasLuaConfig.UseLuaConfig"), getFromLuaConfig<double>("Zinc.Type.A_1100.mod_of_elasticity_torsion"), {3.8});
-        break;
-      }
-
-      //Data from source: https://suppliersonline.com/propertypages/2011.asp
-      case Zinc::Type::Z_310 :
-      {
-        this->specific_properties_.type_                       = {"Z_310", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Zinc::Type::Z_320 :
-      {
-        this->specific_properties_.type_                       = {"Z_320", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Zinc::Type::Z_500 :
-      {
-        this->specific_properties_.type_                       = {"Z_500", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Zinc::Type::Z_700 :
-      {
-        this->specific_properties_.type_                       = {"Z_700", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Zinc::Type::Z_720 :
-      {
-        this->specific_properties_.type_                       = {"Z_720", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      case Zinc::Type::Z_750 :
-      {
-        this->specific_properties_.type_                       = {"Z_750", type};
-        this->specific_properties_.color_                      = {"Metallic"};
-        this->specific_properties_.density_                    = {2.71};
-        this->specific_properties_.gravity_                    = {2.83};
-        this->specific_properties_.melting_point_              = {537.778};
-        this->specific_properties_.poissons_ratio_             = {0.33};
-        this->specific_properties_.thermal_conductivity_        = {990.0};
-        this->specific_properties_.mod_of_elasticity_tension_  = {9.9};
-        this->specific_properties_.mod_of_elasticity_torsion_  = {3.8};
-        break;
-      }
-
-      default:
-      {
-        std::cerr << "The type Zinc specified not found, using default Zinc type\n";
-        break;
-      }
+      _pair->second();
+    }
+    else
+    {
+      std::cerr << "Could not set the values for type: " << type << std::endl;
     }
 
     return true;
@@ -199,13 +150,30 @@ namespace MassCalculator::Materials
     os << "  Zinc object properties: " "\n"
           "   - Type    : " + obj.getType().first + "\n"
           "   - Color   : " + obj.getSpecificColor() + "\n"
-          "   - Density : " + std::to_string(obj.getSpecificDensity()) + "\n"
-          "   - Gravity : " + std::to_string(obj.getSpecificGravity()) + "\n"
-          "   - Melting point : " + std::to_string(obj.getSpecificMeltingPoint()) + "\n"
+          "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
+          "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
+          "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
           "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          "   - Thermal conductivity         : " + std::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          "   - Modulus of elasticity tension: " + std::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          "   - Modulus of elasticity torsion: " + std::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
+          "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
+          "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
+          "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
     return os;
   }
-}//end namespace MassCalculator
+
+  std::ostream &operator << (std::ostream &os, const Zinc::Type &type)
+  {
+    switch(type)
+    {
+      case Zinc::Type::Z_190: os << Constants::Z_190; break;
+      case Zinc::Type::Z_310: os << Constants::Z_310; break;
+      case Zinc::Type::Z_320: os << Constants::Z_320; break;
+      case Zinc::Type::Z_500: os << Constants::Z_500; break;
+      case Zinc::Type::Z_700: os << Constants::Z_700; break;
+      case Zinc::Type::Z_720: os << Constants::Z_720; break;
+      case Zinc::Type::Z_750: os << Constants::Z_750; break;
+      case Zinc::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      default: os << "Name cannot be found";
+    }
+    return os;
+  }
+}//end namespace MassCalculator::Materials

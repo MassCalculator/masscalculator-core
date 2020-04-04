@@ -6,7 +6,7 @@
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   /**
    * @brief Class SquareBar, that holds all the nessesary information for SquareBar and it's details therefore we can use in the interface
@@ -156,5 +156,5 @@ namespace MassCalculator
     SquareBar& operator=(SquareBar&&) = default;
 
   };
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes
 #endif

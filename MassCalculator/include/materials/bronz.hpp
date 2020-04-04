@@ -40,7 +40,11 @@ namespace MassCalculator::Materials
     const std::string B_954Al{"B_954Al"};
     const std::string B_OilLite{"B_OilLite"};
 
-    const std::string BronzLuaConfigPath{"../MassCalculator/resources/materials/bronz_config.lua"};
+    #ifdef DEBUG
+      const std::string BronzLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/bronz_config.lua"};
+    #else
+      const std::string BronzLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/bronz_config.lua"};
+    #endif
   }
 
   /**
@@ -86,8 +90,8 @@ namespace MassCalculator::Materials
 
     public:
     /**
-     * @brief Enum that holds the Bronz types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the Bronz types
+     * 
      */
     enum class Type : uint8_t
     {
@@ -344,7 +348,7 @@ namespace MassCalculator::Materials
     friend std::ostream &operator << (std::ostream &os, const Bronz &obj);
 
     /**
-     * @brief Shift operator overload for Types of Brass, this will print the name in string
+     * @brief Shift operator overload for Types of Bronz, this will print the name in string
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Type &type);

@@ -29,7 +29,11 @@ namespace MassCalculator::Materials
     const std::string B_385{"B_385"};
     const std::string B_464{"B_464"};
 
-    const std::string BrassLuaConfigPath{"../MassCalculator/resources/materials/brass_config.lua"};
+    #ifdef DEBUG
+      const std::string BrassLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/brass_config.lua"};
+    #else
+      const std::string BrassLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/brass_config.lua"};
+    #endif
   }
 
   /**
@@ -75,8 +79,8 @@ namespace MassCalculator::Materials
 
     public:
     /**
-     * @brief Enum that holds the Brass types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the Brass types
+     * 
      */
     enum class Type : uint8_t
     {

@@ -36,5 +36,5 @@ class CylinderTest : public ::testing::Test
   }
 
   //Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Cylinder cylinder_;
+  MassCalculator::Shapes::Cylinder cylinder_;
 };

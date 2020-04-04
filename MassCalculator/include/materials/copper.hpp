@@ -26,7 +26,11 @@ namespace MassCalculator::Materials
     const std::string  C_110{"C_110"};
     const std::string  C_122{"C_122"};
 
-    const std::string CopperLuaConfigPath{"../MassCalculator/resources/materials/copper_config.lua"};
+    #ifdef DEBUG
+      const std::string CopperLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/copper_config.lua"};
+    #else
+      const std::string CopperLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/copper_config.lua"};
+    #endif
   }
 
   /**
@@ -72,8 +76,8 @@ namespace MassCalculator::Materials
 
     public:
     /**
-     * @brief Enum that holds the Copper types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the Copper types
+     * 
      */
     enum class Type : uint8_t
     {
@@ -226,7 +230,7 @@ namespace MassCalculator::Materials
     friend std::ostream &operator << (std::ostream &os, const Copper &obj);
 
     /**
-     * @brief Shift operator overload for Types of AlloySteels, this will print the name in string
+     * @brief Shift operator overload for Types of Copper, this will print the name in string
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Type &type);

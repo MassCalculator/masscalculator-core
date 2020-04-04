@@ -33,5 +33,16 @@ namespace MassCalculator
     {
       lua_state->closeScript();
     }
+
+    const std::string getDebugLuaRootPath(void)
+    {
+      return std::string(xstr(ROOT_PATH));
+    }
+
+    unsigned int getLibInterfaceVersion(void)
+    {
+      return 0;
+      // return LIBINTERFACE_VERSION;
+    }
   }// End namespace HelperFunctions
 }// End namespace MassCalculator

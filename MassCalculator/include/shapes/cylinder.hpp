@@ -6,7 +6,7 @@
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   /**
    * @brief Class Cylinder, that holds all the nessesary information for Cylinder and it's details therefore we can use in the interface
@@ -158,5 +158,5 @@ namespace MassCalculator
     
     Properties_t properties_{std::make_pair("Cylinder", Cylinder::Type::Cylinder), 1, 1};
   };
-}//end namespace MassCalculator
-#endif
+}//end namespace MassCalculator::Shapes
+#endif//___CYLINDER_H___

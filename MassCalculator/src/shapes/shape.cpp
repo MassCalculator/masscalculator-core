@@ -11,7 +11,7 @@
  */
 #include "shapes/shape.hpp"
 
-namespace MassCalculator
+namespace MassCalculator::Shapes
 {
   
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Shapes

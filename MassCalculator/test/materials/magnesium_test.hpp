@@ -42,7 +42,7 @@ namespace MassCalculatorTest
     ~MagnesiumTest() = default;
 
     /**
-     * @brief Member objects for class AlloyCoppers for each AlloyCopper type
+     * @brief Member objects for class Magnesium for each Magnesium type
      * 
      */
     MassCalculator::Materials::Magnesium material_M_AZ31B;

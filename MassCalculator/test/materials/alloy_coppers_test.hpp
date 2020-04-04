@@ -57,7 +57,7 @@ namespace MassCalculatorTest
     ~AlloyCoppersTest() = default;
 
     /**
-     * @brief Member objects for class AlloyCoppers for each AlloyCopper type
+     * @brief Member objects for class AlloyCopper for each AlloyCopper type
      * 
      */
     MassCalculator::Materials::AlloyCoppers material_AC_145Tellvirum,

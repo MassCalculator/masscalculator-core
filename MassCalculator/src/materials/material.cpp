@@ -31,4 +31,4 @@ namespace MassCalculator::Materials
 
   */
 
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Materials

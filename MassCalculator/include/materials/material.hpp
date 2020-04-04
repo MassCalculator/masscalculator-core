@@ -84,6 +84,47 @@ namespace MassCalculator::Materials
   {
     public: enum class Type : uint8_t;
 
+    public: typedef struct Properties_base
+    {
+
+      /**
+       * @brief 
+       * @todo This won't work, but leaving here so I don't forget. Try to deduce enumeration type from derived class in compile time
+       * 
+       * @param type_ Type The parameter to save the specific type
+       * @param color_ string Parameter to save specific color
+       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
+       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
+       * @param melting_point_ kelvin_t Parameter to save specific melting point
+       * @param poissons_ratio_ double Parameter to save specific poissons ratio
+       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
+       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
+       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      std::pair<std::string, Type> type_;
+      std::string color_;
+      kilograms_per_cubic_meter_t density_;
+      meters_per_second_squared_t gravity_;
+      kelvin_t melting_point_;
+      double poissons_ratio_;
+      watt_t thermal_conductivity_;
+      pascal_t mod_of_elasticity_tension_;
+      pascal_t mod_of_elasticity_torsion_;
+
+      Properties_base() : type_{{Constants::UNSPECIFIED}, { }},
+                          // type_{{Constants::UNSPECIFIED}, {TMaterialType::Type::UNSPECIFIED}}, //I would love to do this
+                          color_{""},
+                          density_{0_kg_per_cu_m},
+                          gravity_{0_mps_sq},
+                          melting_point_{0_K},
+                          poissons_ratio_{0},
+                          thermal_conductivity_{0_W},
+                          mod_of_elasticity_tension_{0_Pa},
+                          mod_of_elasticity_torsion_{0_Pa} { }
+
+    }Properties_base_t;
+
     public:
     /**
      * @brief Construct a new Material object

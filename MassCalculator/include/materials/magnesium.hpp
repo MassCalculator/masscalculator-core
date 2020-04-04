@@ -22,7 +22,11 @@ namespace MassCalculator::Materials
   {
     const std::string  M_AZ31B{"M_AZ31B"};
 
-    const std::string MagnesiumLuaConfigPath{"../MassCalculator/resources/materials/magnesium_config.lua"};
+    #ifdef DEBUG
+      const std::string MagnesiumLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/magnesium_config.lua"};
+    #else
+      const std::string MagnesiumLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/magnesium_config.lua"};
+    #endif
   }
 
   /**
@@ -68,20 +72,24 @@ namespace MassCalculator::Materials
 
     public:
     /**
-     * @brief Enum that holds the Magnesium types Source: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
-     * TODO: Maybe add the documentation also in a string, in setPropertySpecs so we can use in the app to show some information about the alloy selected
+     * @brief Enum that holds the Steel types
+     * 
      */
     enum class Type : uint8_t
     {
       BEGIN = 0,
+
       /**
-       * @brief This grade is commercially pure Magnesium. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
-       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
-       * food processing industries.
+       * @brief @todo Add a short summary brief for this type of metal alloy. 
+       * @todo: Add source
        * 
        */
       M_AZ31B = BEGIN,
 
+      /**
+       * @brief Unspecified metal alloy
+       * 
+       */
       UNSPECIFIED,
 
       END
@@ -190,7 +198,7 @@ namespace MassCalculator::Materials
     friend std::ostream &operator << (std::ostream &os, const Magnesium &obj);
 
     /**
-     * @brief Shift operator overload for Types of AlloySteels, this will print the name in string
+     * @brief Shift operator overload for Types of Magnesium, this will print the name in string
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Type &type);
