@@ -1,0 +1,68 @@
+language: 
+  - cpp
+
+compiler:
+  - gcc
+
+dist:
+  - bionic
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.8
+    packages:
+      - g++-6
+      - cmake
+      - mesa-utils
+      - qtbase5-dev
+      - libdxflib-dev
+      - lua5.1-0
+      - liblua5.1-0-dev
+
+before_script:
+  #Install googletest
+  - git clone https://github.com/google/googletest.git && cd googletest
+  - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
+  - make && sudo make install && cd ../../
+
+  #Install Eigen
+  - git clone https://github.com/eigenteam/eigen-git-mirror.git && cd eigen-git-mirror
+  - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
+  - make && sudo make install && cd ../../
+
+  # create a build folder for the out-of-source build
+  - mkdir build
+
+  # switch to build directory
+  - cd build
+
+  # run cmake; here we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  - cmake ..
+
+jobs:
+  include:
+    - stage: Compile
+        script:
+          - make
+
+    - stage: Test
+        script:
+          - make && make test
+
+    - stage: Package
+        script:
+          - cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+          - make
+          - make install
+
+after_script:
+  # - ls
+
+after_success:
+  - echo "Success"
+  
+after_failure:
+  - echo "Failure"
