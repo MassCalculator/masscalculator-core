@@ -41,6 +41,10 @@ set(CMAKE_CXX_FLAGS
   -Wno-unused"
 )
 
+# Enable testing
+enable_testing()
+include(CTest) #To get the info for tests from CTestConfig.cmake
+
 # add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 
 include_directories(
