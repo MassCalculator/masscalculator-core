@@ -1,89 +1,136 @@
-#It needs to use VERSION 3.13, but due to new laptop used it was not installed
-#Also check the minimum version of cmake that allows the project to compile without errors
-cmake_minimum_required(VERSION 3.10)
-project(MassCalculatorApp
-  VERSION 0.1
-  DESCRIPTION "MassCalculator with GUI"
-  LANGUAGES CXX
+project(MassCalculator)
+
+###########
+## Build ##
+###########
+
+find_package(Lua51 REQUIRED)
+find_package(DXFLib PATHS 3rdParty/CMakeModules/)
+
+include_directories(
+  include/
+  3rdParty/include/
+  helper_classes/
+  helper_functions/
+  ${LUA_INCLUDE_DIR}
+  ${DXFLib_INCLUDE_DIRS}
 )
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-                      /usr/local/share/cmake
-                      /usr/share/cmake)
+# Sources
+set( material_src
+  src/materials/material.cpp
+  src/materials/alloy_coppers.cpp
+  src/materials/alloy_steels.cpp
+  src/materials/aluminium.cpp
+  src/materials/brass.cpp
+  src/materials/bronz.cpp
+  src/materials/copper.cpp
+  src/materials/magnesium.cpp
+  src/materials/nickel.cpp
+  src/materials/plastic.cpp
+  src/materials/stainless_steel.cpp
+  src/materials/steel.cpp
+  src/materials/titanium.cpp
+  src/materials/zinc.cpp
+)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
+set( shape_src
+  src/shapes/shape.cpp
+  src/shapes/angle.cpp
+  src/shapes/bar.cpp
+  src/shapes/beam.cpp
+  src/shapes/channel.cpp
+  src/shapes/cylinder.cpp
+  src/shapes/dxf_shape.cpp
+  src/shapes/elipse.cpp
+  src/shapes/hexagon_bar.cpp
+  src/shapes/octagon_bar.cpp
+  src/shapes/pipe.cpp
+  src/shapes/sheet.cpp
+  src/shapes/square_bar.cpp
+  src/shapes/square_tubing.cpp
+  src/shapes/stl_shape.cpp
+  src/shapes/t_bar.cpp
+)
 
-#-Wmissing-include-dirs
-set(CMAKE_CXX_FLAGS 
-    "-O2 \
-    -pthread \
-    -pedantic \
-    -Wall \
-    -Wextra \
-    -Wcast-align \
-    -Wcast-qual \
-    -Wctor-dtor-privacy \
-    -Wdisabled-optimization \
-    -Wformat=2 \
-    -Winit-self \
-    -Wlogical-op \
-    -Wmissing-declarations \
-    -Wnoexcept \
-    -Wold-style-cast \
-    -Woverloaded-virtual \
-    -Wredundant-decls \
-    -Wshadow \
-    -Wsign-conversion \
-    -Wsign-promo \
-    -Wstrict-null-sentinel \
-    -Wstrict-overflow=5 \
-    -Wswitch-default \
-    -Wundef \
-    -Werror \
-    -Wno-unused"
-  )
+set( interface_src
+  src/interface/object_interface.cpp
+)
 
-find_package(Eigen3 REQUIRED NO_MODULE)
-find_package(GTest REQUIRED >= 1.8)
+set ( helper_classes_src
+  helper_classes/lua_handler.cpp
+)
 
-# Enable testing
-enable_testing()
-include(CTest) #To get the info for tests from CTestConfig.cmake
+set ( helper_functions_src
+  helper_functions/helper_functions.cpp
+)
 
-# to include static libraries in shared libraries, they need to be compiled with -fPIC
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set( SRC
+  ${shape_src}
+  ${material_src}
+  ${interface_src}
+  ${helper_classes_src}
+  ${helper_functions_src}
+)
+
+# set libto build itself
+add_library(
+  ${PROJECT_NAME} STATIC
+  ${SRC}
+)
+
+target_include_directories( ${PROJECT_NAME}
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/MassCalculator/>
+         $<INSTALL_INTERFACE:include/MassCalculator/>
+)
+
+target_include_directories( ${PROJECT_NAME}
+  SYSTEM
+  PUBLIC ${EIGEN3_INCLUDE_DIR}
+)
+
+target_link_libraries( ${PROJECT_NAME}
+  ${LUA_LIBRARIES}
+  ${DXFLib_LIBRARIES}
+)
 
 ##############
-##  Targets ##
+## EXAMPLES ##
 ##############
-#
 
-#@todo check the CMake structure to modern CMake
-# add_custom_target(debug
-#   COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=Debug ${CMAKE_SOURCE_DIR}
-#   COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target all
-#   COMMAND ${CMAKE_COMMAND} add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
-#   COMMENT "Switch CMAKE_BUILD_TYPE to Debug"
-#   )
+add_subdirectory(examples)
 
-# add_custom_target(release
-#   COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=Release ${CMAKE_SOURCE_DIR}
-#   COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target all
-#   COMMENT "Switch CMAKE_BUILD_TYPE to Release"
-#   )
+#############
+## TESTING ##
+#############
 
-add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
+add_subdirectory(test)
 
-add_subdirectory(MassCalculator)
-add_subdirectory(MassCalculatorGUI)
+#############
+## Install ##
+#############
+
+# to be discussed, we want to expose data types only!
+install(
+  TARGETS ${PROJECT_NAME} EXPORT MassCalculator-config
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  INCLUDES DESTINATION include
+)
+
+## install headers
+install(
+  DIRECTORY include/
+  DESTINATION include/MassCalculator/
+  PATTERN "CMakeLists.txt" EXCLUDE
+)
 
 ###############
 ## Packaging ##
 ###############
 #
 
-# Done individualy in the library and in the GUI
-
-# TODO refactor cmake config to be "modern cmake":
-# https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
+install(
+ EXPORT ${PROJECT_NAME}-config
+ DESTINATION share/cmake/${PROJECT_NAME}
+)
