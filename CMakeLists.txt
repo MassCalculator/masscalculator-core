@@ -1,11 +1,47 @@
+cmake_minimum_required(VERSION 3.10...3.15)
 project(MassCalculator)
 
 ###########
 ## Build ##
 ###########
 
+find_package(GTest REQUIRED >= 1.8)
 find_package(Lua51 REQUIRED)
 find_package(DXFLib PATHS 3rdParty/CMakeModules/)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_CXX_FLAGS 
+  "-O2 \
+  -pthread \
+  -pedantic \
+  -Wall \
+  -Wextra \
+  -Wcast-align \
+  -Wcast-qual \
+  -Wctor-dtor-privacy \
+  -Wdisabled-optimization \
+  -Wformat=2 \
+  -Winit-self \
+  -Wlogical-op \
+  -Wmissing-declarations \
+  -Wnoexcept \
+  -Wold-style-cast \
+  -Woverloaded-virtual \
+  -Wredundant-decls \
+  -Wshadow \
+  -Wsign-conversion \
+  -Wsign-promo \
+  -Wstrict-null-sentinel \
+  -Wstrict-overflow=5 \
+  -Wswitch-default \
+  -Wundef \
+  -Werror \
+  -Wno-unused"
+)
+
+# add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 
 include_directories(
   include/
@@ -84,21 +120,15 @@ target_include_directories( ${PROJECT_NAME}
          $<INSTALL_INTERFACE:include/MassCalculator/>
 )
 
-target_include_directories( ${PROJECT_NAME}
-  SYSTEM
-  PUBLIC ${EIGEN3_INCLUDE_DIR}
-)
+# target_include_directories( ${PROJECT_NAME}
+#   SYSTEM
+#   PUBLIC ${EIGEN3_INCLUDE_DIR}
+# )
 
 target_link_libraries( ${PROJECT_NAME}
   ${LUA_LIBRARIES}
   ${DXFLib_LIBRARIES}
 )
-
-##############
-## EXAMPLES ##
-##############
-
-add_subdirectory(examples)
 
 #############
 ## TESTING ##
@@ -134,3 +164,5 @@ install(
  EXPORT ${PROJECT_NAME}-config
  DESTINATION share/cmake/${PROJECT_NAME}
 )
+
+# todo: copy resources to .MassCalculator/resources/*
