@@ -51,13 +51,13 @@ jobs:
 
     - stage: Test
       script: make
-        - && make test
+        && make test
 
     - stage: Package
       script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
         -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
-        - && make
-        - && make install
+        && make
+        && make install
 
 after_script:
   - ls
