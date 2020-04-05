@@ -1,8 +1,10 @@
 # libmasscalculator
 
-Travis CI pipeline : master: [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=master)](https://travis-ci.com/masscalculator/libmasscalculator) | devel: [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=devel)](https://travis-ci.com/masscalculator/libmasscalculator) 
+Travis CI pipeline : 
 
+master: [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=master)](https://travis-ci.com/masscalculator/libmasscalculator)
 
+devel: [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=devel)](https://travis-ci.com/masscalculator/libmasscalculator) 
 
 ## What is libmasscalculator
 
