@@ -1,4 +1,5 @@
-language: 
+---
+language:
   - cpp
 
 compiler:
@@ -22,13 +23,14 @@ addons:
       - liblua5.1-0-dev
 
 before_script:
-  #Install googletest
+  # Install googletest
   - git clone https://github.com/google/googletest.git && cd googletest
   - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
   - make && sudo make install && cd ../../
 
-  #Install Eigen
-  - git clone https://github.com/eigenteam/eigen-git-mirror.git && cd eigen-git-mirror
+  # Install Eigen
+  - git clone https://github.com/eigenteam/eigen-git-mirror.git
+  - cd eigen-git-mirror
   - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
   - make && sudo make install && cd ../../
 
@@ -45,24 +47,23 @@ before_script:
 jobs:
   include:
     - stage: Compile
-        script:
-          - make
+      script: make
 
     # - stage: Test
     #     script:
     #       - make && make test
 
     - stage: Package
-        script:
-          - cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
-          - make
-          - make install
+      script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
+        -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+        - make
+        - make install
 
 after_script:
-  # - ls
+  - ls
 
 after_success:
   - echo "Success"
-  
+
 after_failure:
   - echo "Failure"
