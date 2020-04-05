@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.10...3.15)
-project(MassCalculator)
+project(MassCalculator
+        VERSION 0.1
+        DESCRIPTION "MassCalculator base library"
+        LANGUAGES CXX
+)
 
 ###########
 ## Build ##
@@ -40,6 +44,10 @@ set(CMAKE_CXX_FLAGS
   -Werror \
   -Wno-unused"
 )
+
+# Enable testing
+enable_testing()
+include(CTest) #To get the info for tests from CTestConfig.cmake
 
 # add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 

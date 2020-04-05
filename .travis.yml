@@ -40,9 +40,6 @@ before_script:
   # switch to build directory
   - cd build
 
-  # create an install folder for the out-of-source install
-  - mkdir install
-
   # run cmake; here we assume that the project's
   # top-level CMakeLists.txt is located at '..'
   - cmake ..
@@ -52,15 +49,15 @@ jobs:
     - stage: Compile
       script: make
 
-    # - stage: Test
-    #     script:
-    #       - make && make test
+    - stage: Test
+      script: make
+        && make test
 
     - stage: Package
       script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
         -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
-        - make
-        - make install
+        && make
+        && make install
 
 after_script:
   - ls
