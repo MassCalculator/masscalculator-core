@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.10...3.15)
-project(MassCalculator)
+project(MassCalculator
+        VERSION 0.1
+        DESCRIPTION "MassCalculator base library"
+        LANGUAGES CXX
+)
 
 ###########
 ## Build ##
