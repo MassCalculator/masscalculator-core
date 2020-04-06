@@ -1,6 +1,6 @@
 #include "bronz_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Bronz object
@@ -311,7 +311,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_B_954Al.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_B_OilLite.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

@@ -14,10 +14,10 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief The test fixture for testing class Zinc.
@@ -59,5 +59,5 @@ namespace MassCalculatorTest
                                     material_Z_720,
                                     material_Z_750;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___ZINC_TEST_H___

@@ -1,6 +1,6 @@
 #include "alloy_steels_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new AlloySteels object
@@ -119,7 +119,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8_Pa}, material_AS_4140.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8_Pa}, material_AS_4340.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

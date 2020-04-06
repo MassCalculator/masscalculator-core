@@ -18,6 +18,10 @@
 #include <dxflib/dl_dxf.h>
 
 #include "../../3rdParty/include/units.h"
+using namespace units::literals;
+using namespace units::length;
+using namespace units::volume;
+using namespace units::area;
 
 /**
  * @brief Default Shapes namespace

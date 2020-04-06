@@ -1,6 +1,6 @@
 #include "nickel_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Nickel object
@@ -143,7 +143,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_N_230.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_N_400.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

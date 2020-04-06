@@ -1,6 +1,6 @@
 #include "brass_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Brass object
@@ -179,7 +179,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8_Pa}, material_B_385.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8_Pa}, material_B_464.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

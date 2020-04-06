@@ -1,9 +1,19 @@
+/**
+ * @file cylinder.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Cylinder class that holds the parameters for the shape
+ * @version 0.1
+ * @date 2020-04-05
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #ifndef ___CYLINDER_H___
 #define ___CYLINDER_H___
 #include "shape.hpp"
 
 /**
- * @brief Default namespace
+ * @brief Default Shapes namespace
  * 
  */
 namespace MassCalculator::Shapes
@@ -14,46 +24,48 @@ namespace MassCalculator::Shapes
    */
   class Cylinder : public Shape<Cylinder>
   {
-    public: enum class Type : uint8_t;
-
     /**
-     * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * @brief Struct with shape specific properties
+     * 
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of Cylinder class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type (Need to check for this TODO)
-       * @param diameter_ double Parameter to save diameter of the cylinder
-       * @param length_ double Parameter to save length of the cylinder
+       * @brief Parameter to save the specific Enum type and name
        * 
        */
       std::pair<std::string, Type> type_;
-      // std::string lagger_;
-      double diameter_;
-      double length_;
+
+      /**
+       * @brief meter_t Parameter to save diameter of the cylinder
+       * 
+       */
+      meter_t diameter_;
+
+      /**
+       * @brief meter_t Parameter to save length of the cylinder
+       * 
+       */
+      meter_t length_;
+
+      /**
+       * @brief Construct a new Properties object with all three parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::Cylinder, Cylinder::Type::Cylinder)},
+                     diameter_{1},
+                     length_{1} { }
+
+      /**
+       * @brief Construct a new Properties object and set diameter and length
+       * 
+       */
+      Properties(meter_t diameter, meter_t length) : type_{std::make_pair(Constants::Cylinder, Cylinder::Type::Cylinder)},
+                                                     diameter_{diameter},
+                                                     length_{length} { }
     }Properties_t;
 
     public:
-
-    enum class Type : uint8_t
-    {
-      BEGIN = 0,
-      /**
-       * @brief This grade is commercially pure aluminum. It is soft and ductile and has excellent workability, making it ideal for applications with difficult forming. 
-       * It can be welded using any method, but it is non heat-treatable. It has an excellent resistance to corrosion and is commonly used in the chemical and 
-       * food processing industries.
-       * 
-       */
-      Cylinder = BEGIN,
-
-      END
-    };
-
     /**
      * @brief Construct a new Cylinder object
      * 
@@ -66,7 +78,7 @@ namespace MassCalculator::Shapes
      * @param diameter Diameter of the Cylinder in meter
      * @param length Length of the Cylinder in meter
      */
-    Cylinder(double diameter, double length);
+    Cylinder(meter_t diameter, meter_t length);
 
     /**
      * @brief Set the Size object
@@ -76,42 +88,42 @@ namespace MassCalculator::Shapes
      * @return true If setting the size is successful
      * @return false If setting the size fails
      */
-    bool setSize(double diameter, double length);
+    bool setSize(meter_t diameter, meter_t length);
 
     /**
      * @brief Get the Radius object
      * 
-     * @return const double Radius of the Cylinder
+     * @return meter_t Radius of the Cylinder
      */
-    double getRadius(void) const;
+    meter_t getRadius(void) const;
 
     /**
      * @brief Get the Diameter object
      * 
-     * @return const double Diameter of the Cylinder
+     * @return meter_t Diameter of the Cylinder
      */
-    double getDiameter(void) const;
+    meter_t getDiameter(void) const;
 
     /**
      * @brief Get the Length object
      * 
-     * @return const double Length of the Cylinder
+     * @return meter_t Length of the Cylinder
      */
-    double getLength(void) const;
+    meter_t getLength(void) const;
 
     /**
      * @brief Get the Volume object
      * 
-     * @return double Volume of the Cylinder
+     * @return cubic_meter Volume of the Cylinder
      */
-    double getVolume(void) const;
+    cubic_meter_t getVolume(void) const;
 
     /**
      * @brief Get the Surface Area object
      * 
-     * @return double Surface Are of the Cylinder
+     * @return square_meter Surface Are of the Cylinder
      */
-    double getSurfaceArea(void) const;
+    square_meter_t getSurfaceArea(void) const;
 
     /**
      * @brief Get the Surface Area object
@@ -155,8 +167,11 @@ namespace MassCalculator::Shapes
     Cylinder& operator=(Cylinder&&) = default;
 
     private:
-    
-    Properties_t properties_{std::make_pair("Cylinder", Cylinder::Type::Cylinder), 1, 1};
+    /**
+     * @brief Properties struct to hold the specific object properties
+     * 
+     */
+    Properties_t properties_;
   };
 }//end namespace MassCalculator::Shapes
 #endif//___CYLINDER_H___

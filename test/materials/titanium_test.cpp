@@ -1,6 +1,6 @@
 #include "titanium_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Titanium object
@@ -131,7 +131,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_T_Grade4.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_T_Grade5.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

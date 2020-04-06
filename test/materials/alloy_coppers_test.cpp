@@ -1,6 +1,6 @@
 #include "alloy_coppers_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new AlloyCoppers object
@@ -18,7 +18,7 @@ namespace MassCalculatorTest
   TEST_F(AlloyCoppersTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::AlloyCoppers::Type> 
-      type{"AC_145Tellvirum", MassCalculator::Materials::AlloyCoppers::Type::AC_145Tellvirum};
+      type{MassCalculator::Materials::Constants::AC_145Tellvirum, MassCalculator::Materials::AlloyCoppers::Type::AC_145Tellvirum};
 
     EXPECT_EQ(type.first, material_AC_145Tellvirum.getType().first);
     EXPECT_EQ(type.second, material_AC_145Tellvirum.getType().second);
@@ -275,7 +275,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8_Pa}, material_AC_MoldmaxBeCu.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8_Pa}, material_AC_ProthermBeCu.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

@@ -1,6 +1,6 @@
 #include "magnesium_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Magnesium object
@@ -95,7 +95,7 @@ namespace MassCalculatorTest
   {
     EXPECT_EQ(pascal_t{3.8}, material_M_AZ31B.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests
