@@ -1,6 +1,6 @@
 #include "aluminium_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new AluminiumTest object
@@ -191,7 +191,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_A_6063.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_A_7075.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

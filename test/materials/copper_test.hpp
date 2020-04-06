@@ -14,10 +14,10 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
     /**
    * @brief The test fixture for testing class Copper.
@@ -55,5 +55,5 @@ namespace MassCalculatorTest
                                       material_C_110,
                                       material_C_122;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___COPPER_TEST_H___

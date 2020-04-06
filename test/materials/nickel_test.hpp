@@ -14,10 +14,10 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief The test fixture for testing class Nickel.
@@ -55,5 +55,5 @@ namespace MassCalculatorTest
                                       material_N_230,
                                       material_N_400;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___NICKEL_TEST_H___

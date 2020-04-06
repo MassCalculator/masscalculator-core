@@ -14,10 +14,10 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief The test fixture for testing class Magnesium.
@@ -47,5 +47,5 @@ namespace MassCalculatorTest
      */
     MassCalculator::Materials::Magnesium material_M_AZ31B;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___MAGNESIUM_TEST_H___
