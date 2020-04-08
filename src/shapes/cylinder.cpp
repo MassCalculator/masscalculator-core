@@ -40,13 +40,11 @@ namespace MassCalculator::Shapes
 
   cubic_meter_t Cylinder::getVolume(void) const
   {
-    //Volume π*r^2*h. Note: diameter = 2 * r	(Note: Check for Eigen if there are build in functions to calculate, and use those instead)
     return{M_PI * units::math::pow<2>(this->getRadius()) * this->getLength()};
   }
 
   square_meter_t Cylinder::getSurfaceArea(void) const
   {
-    //2	π	r	 (	r	+	h	)
     return{2 * M_PI * this->getRadius() * (this->getRadius() + this->getLength())};
   }
 

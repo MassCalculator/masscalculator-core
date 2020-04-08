@@ -22,31 +22,78 @@ namespace MassCalculator::Materials
    * @brief String constants that are used through the code
    * 
    */
-  namespace Constants
+  namespace Constants::AlloyCoppers
   {
+    /** @brief String constant for AC_145Tellvirum type */
     const std::string AC_145Tellvirum{"AC_145Tellvirum"};
+
+    /** @brief String constant for AC_194Iron type */
     const std::string AC_194Iron{"AC_194Iron"};
+
+    /** @brief String constant for AC_195Iron type */
     const std::string AC_195Iron{"AC_195Iron"};
+
+    /** @brief String constant for AC_172Beryllium type */
     const std::string AC_172Beryllium{"AC_172Beryllium"};
+
+    /** @brief String constant for AC_182Class2 type */
     const std::string AC_182Class2{"AC_182Class2"};
+
+    /** @brief String constant for AC_655Silicon type */
     const std::string AC_655Silicon{"AC_655Silicon"};
+
+    /** @brief String constant for AC_706Nickel type */
     const std::string AC_706Nickel{"AC_706Nickel"};
+
+    /** @brief String constant for AC_715NickelSilver type */
     const std::string AC_715NickelSilver{"AC_715NickelSilver"};
+
+    /** @brief String constant for AC_725NickelSilver type */
     const std::string AC_725NickelSilver{"AC_725NickelSilver"};
+
+    /** @brief String constant for AC_735NickelSilver type */
     const std::string AC_735NickelSilver{"AC_735NickelSilver"};
+
+    /** @brief String constant for AC_752NickelSilver type */
     const std::string AC_752NickelSilver{"AC_752NickelSilver"};
+
+    /** @brief String constant for AC_762NickelSilver type */
     const std::string AC_762NickelSilver{"AC_762NickelSilver"};
+
+     /** @brief String constant for AC_770NickelSilver type */
     const std::string AC_770NickelSilver{"AC_770NickelSilver"};
+
+    /** @brief String constant for AC_1751Class3 type */
     const std::string AC_1751Class3{"AC_1751Class3"};
+
+    /** @brief String constant for AC_1758Nickel type */
     const std::string AC_1758Nickel{"AC_1758Nickel"};
+
+    /** @brief String constant for AC_MoldmaxBeCu type */
     const std::string AC_MoldmaxBeCu{"AC_MoldmaxBeCu"};
+
+    /** @brief String constant for AC_ProthermBeCu type */
     const std::string AC_ProthermBeCu{"AC_ProthermBeCu"};
 
-    // @todo It will come a time that we will cross_compile, add a Windows tag to.
+    /** @brief String constant for UNSPECIFIED type */
+    const std::string UNSPECIFIED{"UNSPECIFIED"};
+
+    /**
+     * @brief @todo It will come a time that we will cross_compile, add a Windows tag to.
+     * 
+     */
     #ifdef DEBUG
-      const std::string AlloyCoppersLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      /**
+       * @brief Lua config path when we are in debug mode, it will get the resources from source directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #else
-      const std::string AlloyCoppersLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/alloy_coppers_config.lua"};
+      /**
+       * @brief Lua config path when we are in release mode, it will get the resources from the install directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/alloy_coppers_config.lua"};
     #endif
   }
 
@@ -60,35 +107,99 @@ namespace MassCalculator::Materials
 
     /**
      * @brief Struct with material specific properties
-     * @TODO:Check if this can be moved to the base class, the problem is only in the std::pair<T, Type>, Type cannot be deduced from base to derived
+     * @todo: Check if this can be moved to the base class, the problem is only in the std::pair<T, Type>, Type cannot be deduced from base to derived
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of AlloyCoppers class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * @brief Type The parameter to save the specific type
        * 
        */
-      std::pair<std::string, Type> type_{{Constants::UNSPECIFIED}, {AlloyCoppers::Type::UNSPECIFIED}};
-      std::string color_{""};
-      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
-      meters_per_second_squared_t gravity_{0_mps_sq};
-      kelvin_t melting_point_{0_K};
-      double poissons_ratio_{0};
-      watt_t thermal_conductivity_{0_W};
-      pascal_t mod_of_elasticity_tension_{0_Pa};
-      pascal_t mod_of_elasticity_torsion_{0_Pa};
+      std::pair<std::string, Type> type_;
+
+      /**
+       * @brief string Parameter to save specific color
+       * 
+       */
+      std::string color_;
+
+      /**
+       * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+       * 
+       */
+      kilograms_per_cubic_meter_t density_;
+
+      /**
+       * @brief meters_per_second_squared_t Parameter to save specific gravity
+       * 
+       */
+      meters_per_second_squared_t gravity_;
+
+      /**
+       * @brief kelvin_t Parameter to save specific melting point
+       * 
+       */
+      kelvin_t melting_point_;
+
+      /**
+       * @brief double Parameter to save specific poissons ratio
+       * 
+       */
+      double poissons_ratio_;
+
+      /**
+       * @brief watt_t Parameter to save specific thermal conductivity
+       * 
+       */
+      watt_t thermal_conductivity_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity tension
+       * 
+       */
+      pascal_t mod_of_elasticity_tension_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      pascal_t mod_of_elasticity_torsion_;
+
+      /**
+       * @brief Construct a new Properties object with all parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::AlloyCoppers::UNSPECIFIED, AlloyCoppers::Type::UNSPECIFIED)},
+                     color_{""},
+                     density_{0_kg_per_cu_m},
+                     gravity_{0_mps_sq},
+                     melting_point_{0_K},
+                     poissons_ratio_{0},
+                     thermal_conductivity_{0_W},
+                     mod_of_elasticity_tension_{0_Pa},
+                     mod_of_elasticity_torsion_{0_Pa} { }
+
+      /**
+       * @brief Construct a new Properties object through initializer list
+       * 
+       */
+      Properties(std::pair<std::string, Type> type,
+                 std::string color,
+                 kilograms_per_cubic_meter_t density,
+                 meters_per_second_squared_t gravity,
+                 kelvin_t melting_point,
+                 double poissons_ratio,
+                 watt_t thermal_conductivity,
+                 pascal_t mod_of_elasticity_tension,
+                 pascal_t mod_of_elasticity_torsion) : type_{type},
+                                                       color_{color},
+                                                       density_{density},
+                                                       gravity_{gravity},
+                                                       melting_point_{melting_point},
+                                                       poissons_ratio_{poissons_ratio},
+                                                       thermal_conductivity_{thermal_conductivity},
+                                                       mod_of_elasticity_tension_{mod_of_elasticity_tension},
+                                                       mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
     }Properties_t;
 
     public:
@@ -366,7 +477,7 @@ namespace MassCalculator::Materials
      * 
      * @return std::string Class name as a string
      */
-    inline std::string _getClassName(AlloyCoppers *) { return {"AlloyCoppers"}; };
+    inline std::string _getClassName(AlloyCoppers *) { return {Constants::Material::AlloyCoppers}; };
 
     /**
      * @brief Function to set the static propertie values
@@ -384,22 +495,22 @@ namespace MassCalculator::Materials
      */
     std::unordered_map<Type, std::function<void()>> type2func
     {
-      {Type::AC_145Tellvirum,    [&](){ return this->_setPropertieSpecs({{Constants::AC_145Tellvirum,    Type::AC_145Tellvirum},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_194Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AC_194Iron,         Type::AC_194Iron},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_195Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AC_195Iron,         Type::AC_195Iron},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_182Class2,       [&](){ return this->_setPropertieSpecs({{Constants::AC_182Class2,       Type::AC_182Class2},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_655Silicon,      [&](){ return this->_setPropertieSpecs({{Constants::AC_655Silicon,      Type::AC_655Silicon},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_706Nickel,       [&](){ return this->_setPropertieSpecs({{Constants::AC_706Nickel,       Type::AC_706Nickel},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_715NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_715NickelSilver, Type::AC_715NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_725NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_725NickelSilver, Type::AC_725NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_735NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_735NickelSilver, Type::AC_735NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_752NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_752NickelSilver, Type::AC_752NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_762NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_762NickelSilver, Type::AC_762NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_770NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AC_770NickelSilver, Type::AC_770NickelSilver}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_1751Class3,      [&](){ return this->_setPropertieSpecs({{Constants::AC_1751Class3,      Type::AC_1751Class3},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_1758Nickel,      [&](){ return this->_setPropertieSpecs({{Constants::AC_1758Nickel,      Type::AC_1758Nickel},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_MoldmaxBeCu,     [&](){ return this->_setPropertieSpecs({{Constants::AC_MoldmaxBeCu,     Type::AC_MoldmaxBeCu},     {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::AC_ProthermBeCu,    [&](){ return this->_setPropertieSpecs({{Constants::AC_ProthermBeCu,    Type::AC_ProthermBeCu},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+      {Type::AC_145Tellvirum,    [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_145Tellvirum,    Type::AC_145Tellvirum},    {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_194Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_194Iron,         Type::AC_194Iron},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_195Iron,         [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_195Iron,         Type::AC_195Iron},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_182Class2,       [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_182Class2,       Type::AC_182Class2},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_655Silicon,      [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_655Silicon,      Type::AC_655Silicon},      {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_706Nickel,       [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_706Nickel,       Type::AC_706Nickel},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_715NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_715NickelSilver, Type::AC_715NickelSilver}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_725NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_725NickelSilver, Type::AC_725NickelSilver}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_735NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_735NickelSilver, Type::AC_735NickelSilver}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_752NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_752NickelSilver, Type::AC_752NickelSilver}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_762NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_762NickelSilver, Type::AC_762NickelSilver}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_770NickelSilver, [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_770NickelSilver, Type::AC_770NickelSilver}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_1751Class3,      [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_1751Class3,      Type::AC_1751Class3},      {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_1758Nickel,      [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_1758Nickel,      Type::AC_1758Nickel},      {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_MoldmaxBeCu,     [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_MoldmaxBeCu,     Type::AC_MoldmaxBeCu},     {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::AC_ProthermBeCu,    [&](){ return this->_setPropertieSpecs({{Constants::AlloyCoppers::AC_ProthermBeCu,    Type::AC_ProthermBeCu},    {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
     };
 
     /**

@@ -112,13 +112,15 @@ Below listed packages are required and have to be installed/compiled before:
 
 There is no current working version, the work is still in progress.
 
-## Docker container
-
-TODO: Add build commands and launch commands for the Dockerfile
-
-## PPA and getting the app via apt
-
-TODO: In progress
+* libmasscalculator
+  ```bash
+  $ git clone https://github.com/MassCalculator/libmasscalculator.git
+  $ cd libmasscalculator
+  $ mkdir build && cd build
+  $ cmake ..
+  $ make 
+  $ sudo make install
+  ```
 
 ## TODO List
 

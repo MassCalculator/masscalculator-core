@@ -51,13 +51,43 @@ namespace MassCalculatorTest::MaterialsTest
      * @brief Member objects for class Titanium for each Titanium type
      * 
      */
-    MassCalculator::Materials::Zinc material_Z_190,
-                                    material_Z_310,
-                                    material_Z_320,
-                                    material_Z_500,
-                                    material_Z_700,
-                                    material_Z_720,
-                                    material_Z_750;
+    MassCalculator::Materials::Zinc material_Z_190;
+
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Zinc material_Z_310;
+
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Zinc material_Z_320;
+
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Zinc material_Z_500;
+
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Zinc material_Z_700;
+
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Zinc material_Z_720;
+
+    /**
+     * @brief Member objects for class Titanium for each Titanium type
+     * 
+     */
+    MassCalculator::Materials::Zinc material_Z_750;
   };
 }//end namespace MassCalculatorTest::MaterialsTest
 #endif//___ZINC_TEST_H___

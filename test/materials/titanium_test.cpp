@@ -18,20 +18,20 @@ namespace MassCalculatorTest::MaterialsTest
   TEST_F(TitaniumTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Titanium::Type> 
-      type{"T_6Al4V", MassCalculator::Materials::Titanium::Type::T_6Al4V};
+      type{MassCalculator::Materials::Constants::Titanium::T_6Al4V, MassCalculator::Materials::Titanium::Type::T_6Al4V};
 
     EXPECT_EQ(type.first, material_T_6Al4V.getType().first);
     EXPECT_EQ(type.second, material_T_6Al4V.getType().second);
 
-    type = {"T_Grade2", MassCalculator::Materials::Titanium::Type::T_Grade2};
+    type = {MassCalculator::Materials::Constants::Titanium::T_Grade2, MassCalculator::Materials::Titanium::Type::T_Grade2};
     EXPECT_EQ(type.first, material_T_Grade2.getType().first);
     EXPECT_EQ(type.second, material_T_Grade2.getType().second);
 
-    type = {"T_Grade4", MassCalculator::Materials::Titanium::Type::T_Grade4};
+    type = {MassCalculator::Materials::Constants::Titanium::T_Grade4, MassCalculator::Materials::Titanium::Type::T_Grade4};
     EXPECT_EQ(type.first, material_T_Grade4.getType().first);
     EXPECT_EQ(type.second, material_T_Grade4.getType().second);
 
-    type = {"T_Grade5", MassCalculator::Materials::Titanium::Type::T_Grade5};
+    type = {MassCalculator::Materials::Constants::Titanium::T_Grade5, MassCalculator::Materials::Titanium::Type::T_Grade5};
     EXPECT_EQ(type.first, material_T_Grade5.getType().first);
     EXPECT_EQ(type.second, material_T_Grade5.getType().second);
   }
@@ -42,10 +42,10 @@ namespace MassCalculatorTest::MaterialsTest
    */
   TEST_F(TitaniumTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_T_6Al4V.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_T_Grade2.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_T_Grade4.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_T_Grade5.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_T_6Al4V.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_T_Grade2.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_T_Grade4.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_T_Grade5.getSpecificColor());
   }
 
   /**

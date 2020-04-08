@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool AlloySteels::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::AlloySteelsLuaConfigPath);
+    return this->lua_state_.openScript(Constants::AlloySteels::LuaConfigPath);
   }
 
   bool AlloySteels::setType(const AlloySteels::Type &type)
@@ -164,10 +164,10 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case AlloySteels::Type::AS_4135: os << Constants::AS_4135; break;
-      case AlloySteels::Type::AS_4140: os << Constants::AS_4140; break;
-      case AlloySteels::Type::AS_4340: os << Constants::AS_4340; break;
-      case AlloySteels::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case AlloySteels::Type::AS_4135: os << Constants::AlloySteels::AS_4135; break;
+      case AlloySteels::Type::AS_4140: os << Constants::AlloySteels::AS_4140; break;
+      case AlloySteels::Type::AS_4340: os << Constants::AlloySteels::AS_4340; break;
+      case AlloySteels::Type::UNSPECIFIED: os << Constants::AlloySteels::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

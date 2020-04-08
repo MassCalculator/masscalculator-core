@@ -52,7 +52,7 @@ namespace MassCalculator::Shapes
        * @brief Construct a new Properties object with all three parameters initialized
        * 
        */
-      Properties() : type_{std::make_pair(Constants::Cylinder, Cylinder::Type::Cylinder)},
+      Properties() : type_{std::make_pair(Constants::Shape::Cylinder, Cylinder::Type::Cylinder)},
                      diameter_{1},
                      length_{1} { }
 
@@ -60,7 +60,7 @@ namespace MassCalculator::Shapes
        * @brief Construct a new Properties object and set diameter and length
        * 
        */
-      Properties(meter_t diameter, meter_t length) : type_{std::make_pair(Constants::Cylinder, Cylinder::Type::Cylinder)},
+      Properties(meter_t diameter, meter_t length) : type_{std::make_pair(Constants::Shape::Cylinder, Cylinder::Type::Cylinder)},
                                                      diameter_{diameter},
                                                      length_{length} { }
     }Properties_t;
@@ -128,7 +128,7 @@ namespace MassCalculator::Shapes
     /**
      * @brief Get the Surface Area object
      * 
-     * @return double Surface Are of the Cylinder
+     * @return std::string Surface Are of the Cylinder
      */
     std::string getType(void) const;
 

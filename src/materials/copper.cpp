@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Copper::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::CopperLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Copper::LuaConfigPath);
   }
 
   bool Copper::setType(const Copper::Type &type)
@@ -164,12 +164,12 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Copper::Type::C_101: os << Constants::C_101; break;
-      case Copper::Type::C_102: os << Constants::C_102; break;
-      case Copper::Type::C_103: os << Constants::C_103; break;
-      case Copper::Type::C_110: os << Constants::C_110; break;
-      case Copper::Type::C_122: os << Constants::C_122; break;
-      case Copper::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Copper::Type::C_101: os << Constants::Copper::C_101; break;
+      case Copper::Type::C_102: os << Constants::Copper::C_102; break;
+      case Copper::Type::C_103: os << Constants::Copper::C_103; break;
+      case Copper::Type::C_110: os << Constants::Copper::C_110; break;
+      case Copper::Type::C_122: os << Constants::Copper::C_122; break;
+      case Copper::Type::UNSPECIFIED: os << Constants::Copper::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

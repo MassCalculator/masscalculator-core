@@ -18,21 +18,51 @@
  */
 namespace MassCalculator::Materials
 {
-  namespace Constants
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
+  namespace Constants::Brass
   {
+    /** @brief String constant for B_240Low type */
     const std::string B_240Low{"B_240Low"};
+
+    /** @brief String constant for B_260Cartridge type */
     const std::string B_260Cartridge{"B_260Cartridge"};
+
+    /** @brief String constant for B_353Leaded type */
     const std::string B_353Leaded{"B_353Leaded"};
+
+    /** @brief String constant for B_360 type */
     const std::string B_360{"B_360"};
+
+    /** @brief String constant for B_365 type */
     const std::string B_365{"B_365"};
+
+    /** @brief String constant for B_380 type */
     const std::string B_380{"B_380"};
+
+    /** @brief String constant for B_385 type */
     const std::string B_385{"B_385"};
+
+    /** @brief String constant for B_464 type */
     const std::string B_464{"B_464"};
 
+    /** @brief String constant for UNSPECIFIED type */
+    const std::string UNSPECIFIED{"UNSPECIFIED"};
+
     #ifdef DEBUG
-      const std::string BrassLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/brass_config.lua"};
+      /**
+       * @brief Lua config path when we are in debug mode, it will get the resources from source directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/brass_config.lua"};
     #else
-      const std::string BrassLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/brass_config.lua"};
+      /**
+       * @brief Lua config path when we are in release mode, it will get the resources from the install directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/brass_config.lua"};
     #endif
   }
 
@@ -46,35 +76,99 @@ namespace MassCalculator::Materials
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * 
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of Brass class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * @brief Type The parameter to save the specific type
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Brass::Type::UNSPECIFIED};
-      std::string color_{""};
-      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
-      meters_per_second_squared_t gravity_{0_mps_sq};
-      kelvin_t melting_point_{0_K};
-      double poissons_ratio_{0};
-      watt_t thermal_conductivity_{0_W};
-      pascal_t mod_of_elasticity_tension_{0_Pa};
-      pascal_t mod_of_elasticity_torsion_{0_Pa};
+      std::pair<std::string, Type> type_;
+
+      /**
+       * @brief string Parameter to save specific color
+       * 
+       */
+      std::string color_;
+
+      /**
+       * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+       * 
+       */
+      kilograms_per_cubic_meter_t density_;
+
+      /**
+       * @brief meters_per_second_squared_t Parameter to save specific gravity
+       * 
+       */
+      meters_per_second_squared_t gravity_;
+
+      /**
+       * @brief kelvin_t Parameter to save specific melting point
+       * 
+       */
+      kelvin_t melting_point_;
+
+      /**
+       * @brief double Parameter to save specific poissons ratio
+       * 
+       */
+      double poissons_ratio_;
+
+      /**
+       * @brief watt_t Parameter to save specific thermal conductivity
+       * 
+       */
+      watt_t thermal_conductivity_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity tension
+       * 
+       */
+      pascal_t mod_of_elasticity_tension_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      pascal_t mod_of_elasticity_torsion_;
+
+      /**
+       * @brief Construct a new Properties object with all parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::Brass::UNSPECIFIED, Brass::Type::UNSPECIFIED)},
+                     color_{""},
+                     density_{0_kg_per_cu_m},
+                     gravity_{0_mps_sq},
+                     melting_point_{0_K},
+                     poissons_ratio_{0},
+                     thermal_conductivity_{0_W},
+                     mod_of_elasticity_tension_{0_Pa},
+                     mod_of_elasticity_torsion_{0_Pa} { }
+
+      /**
+       * @brief Construct a new Properties object through initializer list
+       * 
+       */
+      Properties(std::pair<std::string, Type> type,
+                 std::string color,
+                 kilograms_per_cubic_meter_t density,
+                 meters_per_second_squared_t gravity,
+                 kelvin_t melting_point,
+                 double poissons_ratio,
+                 watt_t thermal_conductivity,
+                 pascal_t mod_of_elasticity_tension,
+                 pascal_t mod_of_elasticity_torsion) : type_{type},
+                                                       color_{color},
+                                                       density_{density},
+                                                       gravity_{gravity},
+                                                       melting_point_{melting_point},
+                                                       poissons_ratio_{poissons_ratio},
+                                                       thermal_conductivity_{thermal_conductivity},
+                                                       mod_of_elasticity_tension_{mod_of_elasticity_tension},
+                                                       mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
     }Properties_t;
 
     public:
@@ -287,7 +381,7 @@ namespace MassCalculator::Materials
      * 
      * @return std::string Class name as a string
      */
-    inline std::string _getClassName(Brass *) { return {"Brass"}; };
+    inline std::string _getClassName(Brass *) { return {Constants::Material::Brass}; };
 
     /**
      * @brief Function to set the static propertie values
@@ -305,14 +399,14 @@ namespace MassCalculator::Materials
      */
     std::unordered_map<Type, std::function<void()>> type2func
     {
-      {Type::B_240Low,       [&](){ return this->_setPropertieSpecs({{Constants::B_240Low,       Type::B_240Low},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_260Cartridge, [&](){ return this->_setPropertieSpecs({{Constants::B_260Cartridge, Type::B_260Cartridge}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_353Leaded,    [&](){ return this->_setPropertieSpecs({{Constants::B_353Leaded,    Type::B_353Leaded},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_360,          [&](){ return this->_setPropertieSpecs({{Constants::B_360,          Type::B_360},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_365,          [&](){ return this->_setPropertieSpecs({{Constants::B_365,          Type::B_365},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_380,          [&](){ return this->_setPropertieSpecs({{Constants::B_380,          Type::B_380},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_385,          [&](){ return this->_setPropertieSpecs({{Constants::B_385,          Type::B_385},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_464,          [&](){ return this->_setPropertieSpecs({{Constants::B_464,          Type::B_464},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
+      {Type::B_240Low,       [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_240Low,       Type::B_240Low},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_260Cartridge, [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_260Cartridge, Type::B_260Cartridge}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_353Leaded,    [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_353Leaded,    Type::B_353Leaded},    {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_360,          [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_360,          Type::B_360},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_365,          [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_365,          Type::B_365},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_380,          [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_380,          Type::B_380},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_385,          [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_385,          Type::B_385},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_464,          [&](){ return this->_setPropertieSpecs({{Constants::Brass::B_464,          Type::B_464},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
     };
 
     /**

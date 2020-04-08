@@ -21,7 +21,7 @@ namespace MassCalculatorTest::ShapesTest
    */
   TEST_F(CylinderTest, GetTypeTest)
   {
-    EXPECT_EQ(MassCalculator::Shapes::Constants::Cylinder, cylinder_.getType());
+    EXPECT_EQ(MassCalculator::Shapes::Constants::Shape::Cylinder, cylinder_.getType());
   }
 
   /**
@@ -30,7 +30,7 @@ namespace MassCalculatorTest::ShapesTest
    */
   TEST_F(CylinderTest, GetRadiusTest)
   {
-    EXPECT_EQ(meter_t{0.05}, cylinder_.getRadius());
+    EXPECT_EQ(meter_t{0.05_m}, cylinder_.getRadius());
   }
 
   /**
@@ -39,7 +39,7 @@ namespace MassCalculatorTest::ShapesTest
    */
   TEST_F(CylinderTest, GetDiameterTest)
   {
-    EXPECT_EQ(meter_t{0.1}, cylinder_.getDiameter());
+    EXPECT_EQ(meter_t{0.1_m}, cylinder_.getDiameter());
   }
 
   /**
@@ -48,7 +48,7 @@ namespace MassCalculatorTest::ShapesTest
    */
   TEST_F(CylinderTest, GetLengthTest)
   {
-    EXPECT_EQ(meter_t{1.0}, cylinder_.getLength());
+    EXPECT_EQ(meter_t{1.0_m}, cylinder_.getLength());
   }
 
   /**
@@ -57,7 +57,7 @@ namespace MassCalculatorTest::ShapesTest
    */
   TEST_F(CylinderTest, GetVolumeTest)
   {
-    EXPECT_NEAR(static_cast<double>(cubic_meter_t{0.007853}), static_cast<double>(cylinder_.getVolume()), static_cast<double>(cubic_meter_t{0.01}));
+    EXPECT_NEAR(static_cast<double>(cubic_meter_t{0.007853_cu_m}), static_cast<double>(cylinder_.getVolume()), static_cast<double>(cubic_meter_t{0.01_cu_m}));
   }
 
   /**
@@ -66,7 +66,7 @@ namespace MassCalculatorTest::ShapesTest
    */
   TEST_F(CylinderTest, GetSurfaceAreaTest)
   {
-    EXPECT_NEAR(static_cast<double>(square_meter_t{0.329867}), static_cast<double>(cylinder_.getSurfaceArea()), static_cast<double>(square_meter_t{0.01}));
+    EXPECT_NEAR(static_cast<double>(square_meter_t{0.329867_sq_m}), static_cast<double>(cylinder_.getSurfaceArea()), static_cast<double>(square_meter_t{0.01_sq_m}));
   }
 }//end namespace MassCalculatorTest::ShapesTest
 

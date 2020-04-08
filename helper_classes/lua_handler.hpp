@@ -245,7 +245,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return true 
      * @return false 
@@ -259,7 +259,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return float 
      */
@@ -277,7 +277,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return double 
      */
@@ -295,7 +295,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return int 
      */
@@ -313,7 +313,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return std::string 
      */
@@ -336,7 +336,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @return std::string 
      */
     template<>

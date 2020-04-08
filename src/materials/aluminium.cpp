@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Aluminium::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::AluminiumLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Aluminium::LuaConfigPath);
   }
 
   bool Aluminium::setType(const Aluminium::Type &type)
@@ -164,16 +164,16 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Aluminium::Type::A_1100: os << Constants::A_1100; break;
-      case Aluminium::Type::A_2011: os << Constants::A_2011; break;
-      case Aluminium::Type::A_2014: os << Constants::A_2014; break;
-      case Aluminium::Type::A_2024: os << Constants::A_2024; break;
-      case Aluminium::Type::A_3003: os << Constants::A_3003; break;
-      case Aluminium::Type::A_5052: os << Constants::A_5052; break;
-      case Aluminium::Type::A_6061: os << Constants::A_6061; break;
-      case Aluminium::Type::A_6063: os << Constants::A_6063; break;
-      case Aluminium::Type::A_7075: os << Constants::A_7075; break;
-      case Aluminium::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Aluminium::Type::A_1100: os << Constants::Aluminium::A_1100; break;
+      case Aluminium::Type::A_2011: os << Constants::Aluminium::A_2011; break;
+      case Aluminium::Type::A_2014: os << Constants::Aluminium::A_2014; break;
+      case Aluminium::Type::A_2024: os << Constants::Aluminium::A_2024; break;
+      case Aluminium::Type::A_3003: os << Constants::Aluminium::A_3003; break;
+      case Aluminium::Type::A_5052: os << Constants::Aluminium::A_5052; break;
+      case Aluminium::Type::A_6061: os << Constants::Aluminium::A_6061; break;
+      case Aluminium::Type::A_6063: os << Constants::Aluminium::A_6063; break;
+      case Aluminium::Type::A_7075: os << Constants::Aluminium::A_7075; break;
+      case Aluminium::Type::UNSPECIFIED: os << Constants::Aluminium::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

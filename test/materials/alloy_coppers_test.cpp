@@ -18,68 +18,68 @@ namespace MassCalculatorTest::MaterialsTest
   TEST_F(AlloyCoppersTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::AlloyCoppers::Type> 
-      type{MassCalculator::Materials::Constants::AC_145Tellvirum, MassCalculator::Materials::AlloyCoppers::Type::AC_145Tellvirum};
+      type{MassCalculator::Materials::Constants::AlloyCoppers::AC_145Tellvirum, MassCalculator::Materials::AlloyCoppers::Type::AC_145Tellvirum};
 
     EXPECT_EQ(type.first, material_AC_145Tellvirum.getType().first);
     EXPECT_EQ(type.second, material_AC_145Tellvirum.getType().second);
 
-    type = {"AC_194Iron", MassCalculator::Materials::AlloyCoppers::Type::AC_194Iron};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_194Iron, MassCalculator::Materials::AlloyCoppers::Type::AC_194Iron};
     EXPECT_EQ(type.first, material_AC_194Iron.getType().first);
     EXPECT_EQ(type.second, material_AC_194Iron.getType().second);
 
-    type = {"AC_195Iron", MassCalculator::Materials::AlloyCoppers::Type::AC_195Iron};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_195Iron, MassCalculator::Materials::AlloyCoppers::Type::AC_195Iron};
     EXPECT_EQ(type.first, material_AC_195Iron.getType().first);
     EXPECT_EQ(type.second, material_AC_195Iron.getType().second);
 
-    type = {"AC_182Class2", MassCalculator::Materials::AlloyCoppers::Type::AC_182Class2};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_182Class2, MassCalculator::Materials::AlloyCoppers::Type::AC_182Class2};
     EXPECT_EQ(type.first, material_AC_182Class2.getType().first);
     EXPECT_EQ(type.second, material_AC_182Class2.getType().second);
 
-    type = {"AC_655Silicon", MassCalculator::Materials::AlloyCoppers::Type::AC_655Silicon};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_655Silicon, MassCalculator::Materials::AlloyCoppers::Type::AC_655Silicon};
     EXPECT_EQ(type.first, material_AC_655Silicon.getType().first);
     EXPECT_EQ(type.second, material_AC_655Silicon.getType().second);
 
-    type = {"AC_706Nickel", MassCalculator::Materials::AlloyCoppers::Type::AC_706Nickel};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_706Nickel, MassCalculator::Materials::AlloyCoppers::Type::AC_706Nickel};
     EXPECT_EQ(type.first, material_AC_706Nickel.getType().first);
     EXPECT_EQ(type.second, material_AC_706Nickel.getType().second);
 
-    type = {"AC_715NickelSilver", MassCalculator::Materials::AlloyCoppers::Type::AC_715NickelSilver};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_715NickelSilver, MassCalculator::Materials::AlloyCoppers::Type::AC_715NickelSilver};
     EXPECT_EQ(type.first, material_AC_715NickelSilver.getType().first);
     EXPECT_EQ(type.second, material_AC_715NickelSilver.getType().second);
 
-    type = {"AC_725NickelSilver", MassCalculator::Materials::AlloyCoppers::Type::AC_725NickelSilver};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_725NickelSilver, MassCalculator::Materials::AlloyCoppers::Type::AC_725NickelSilver};
     EXPECT_EQ(type.first, material_AC_725NickelSilver.getType().first);
     EXPECT_EQ(type.second, material_AC_725NickelSilver.getType().second);
 
-    type = {"AC_735NickelSilver", MassCalculator::Materials::AlloyCoppers::Type::AC_735NickelSilver};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_735NickelSilver, MassCalculator::Materials::AlloyCoppers::Type::AC_735NickelSilver};
     EXPECT_EQ(type.first, material_AC_735NickelSilver.getType().first);
     EXPECT_EQ(type.second, material_AC_735NickelSilver.getType().second);
 
-    type = {"AC_752NickelSilver", MassCalculator::Materials::AlloyCoppers::Type::AC_752NickelSilver};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_752NickelSilver, MassCalculator::Materials::AlloyCoppers::Type::AC_752NickelSilver};
     EXPECT_EQ(type.first, material_AC_752NickelSilver.getType().first);
     EXPECT_EQ(type.second, material_AC_752NickelSilver.getType().second);
 
-    type = {"AC_762NickelSilver", MassCalculator::Materials::AlloyCoppers::Type::AC_762NickelSilver};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_762NickelSilver, MassCalculator::Materials::AlloyCoppers::Type::AC_762NickelSilver};
     EXPECT_EQ(type.first, material_AC_762NickelSilver.getType().first);
     EXPECT_EQ(type.second, material_AC_762NickelSilver.getType().second);
 
-    type = {"AC_770NickelSilver", MassCalculator::Materials::AlloyCoppers::Type::AC_770NickelSilver};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_770NickelSilver, MassCalculator::Materials::AlloyCoppers::Type::AC_770NickelSilver};
     EXPECT_EQ(type.first, material_AC_770NickelSilver.getType().first);
     EXPECT_EQ(type.second, material_AC_770NickelSilver.getType().second);
 
-    type = {"AC_1751Class3", MassCalculator::Materials::AlloyCoppers::Type::AC_1751Class3};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_1751Class3, MassCalculator::Materials::AlloyCoppers::Type::AC_1751Class3};
     EXPECT_EQ(type.first, material_AC_1751Class3.getType().first);
     EXPECT_EQ(type.second, material_AC_1751Class3.getType().second);
 
-    type = {"AC_1758Nickel", MassCalculator::Materials::AlloyCoppers::Type::AC_1758Nickel};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_1758Nickel, MassCalculator::Materials::AlloyCoppers::Type::AC_1758Nickel};
     EXPECT_EQ(type.first, material_AC_1758Nickel.getType().first);
     EXPECT_EQ(type.second, material_AC_1758Nickel.getType().second);
 
-    type = {"AC_MoldmaxBeCu", MassCalculator::Materials::AlloyCoppers::Type::AC_MoldmaxBeCu};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_MoldmaxBeCu, MassCalculator::Materials::AlloyCoppers::Type::AC_MoldmaxBeCu};
     EXPECT_EQ(type.first, material_AC_MoldmaxBeCu.getType().first);
     EXPECT_EQ(type.second, material_AC_MoldmaxBeCu.getType().second);
 
-    type = {"AC_ProthermBeCu", MassCalculator::Materials::AlloyCoppers::Type::AC_ProthermBeCu};
+    type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_ProthermBeCu, MassCalculator::Materials::AlloyCoppers::Type::AC_ProthermBeCu};
     EXPECT_EQ(type.first, material_AC_ProthermBeCu.getType().first);
     EXPECT_EQ(type.second, material_AC_ProthermBeCu.getType().second);
   }
@@ -90,22 +90,22 @@ namespace MassCalculatorTest::MaterialsTest
    */
   TEST_F(AlloyCoppersTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_145Tellvirum.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_194Iron.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_195Iron.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_182Class2.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_655Silicon.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_706Nickel.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_715NickelSilver.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_725NickelSilver.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_735NickelSilver.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_752NickelSilver.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_762NickelSilver.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_770NickelSilver.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_1751Class3.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_1758Nickel.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_MoldmaxBeCu.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_AC_ProthermBeCu.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_145Tellvirum.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_194Iron.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_195Iron.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_182Class2.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_655Silicon.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_706Nickel.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_715NickelSilver.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_725NickelSilver.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_735NickelSilver.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_752NickelSilver.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_762NickelSilver.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_770NickelSilver.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_1751Class3.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_1758Nickel.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_MoldmaxBeCu.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_AC_ProthermBeCu.getSpecificColor());
   }
 
   /**

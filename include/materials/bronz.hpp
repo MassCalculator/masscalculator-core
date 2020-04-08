@@ -18,32 +18,84 @@
  */
 namespace MassCalculator::Materials
 {
-  namespace Constants
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
+  namespace Constants::Bronz
   {
+    /** @brief String constant for B_18Al type */
     const std::string B_18Al{"B_18Al"};
+
+    /** @brief String constant for B_21Al type */
     const std::string B_21Al{"B_21Al"};
+
+    /** @brief String constant for B_314Commercial type */
     const std::string B_314Commercial{"B_314Commercial"};
+
+    /** @brief String constant for B_485Naval type */
     const std::string B_485Naval{"B_485Naval"};
+
+    /** @brief String constant for B_510Phos type */
     const std::string B_510Phos{"B_510Phos"};
+
+    /** @brief String constant for B_524Phos type */
     const std::string B_524Phos{"B_524Phos"};
+
+    /** @brief String constant for B_532Phos type */
     const std::string B_532Phos{"B_532Phos"};
+
+    /** @brief String constant for B_534Phos type */
     const std::string B_534Phos{"B_534Phos"};
+
+    /** @brief String constant for B_544Phos type */
     const std::string B_544Phos{"B_544Phos"};
+
+    /** @brief String constant for B_613Al type */
     const std::string B_613Al{"B_613Al"};
+
+    /** @brief String constant for B_614Al type */
     const std::string B_614Al{"B_614Al"};
+
+    /** @brief String constant for B_623Al type */
     const std::string B_623Al{"B_623Al"};
+
+    /** @brief String constant for B_624Al type */
     const std::string B_624Al{"B_624Al"};
+
+    /** @brief String constant for B_625Al type */
     const std::string B_625Al{"B_625Al"};
+
+    /** @brief String constant for B_630NiAl type */
     const std::string B_630NiAl{"B_630NiAl"};
+
+    /** @brief String constant for B_642AlSi type */
     const std::string B_642AlSi{"B_642AlSi"};
+
+    /** @brief String constant for B_932Bearing type */
     const std::string B_932Bearing{"B_932Bearing"};
+
+    /** @brief String constant for B_954Al type */
     const std::string B_954Al{"B_954Al"};
+
+    /** @brief String constant for B_OilLite type */
     const std::string B_OilLite{"B_OilLite"};
 
+    /** @brief String constant for UNSPECIFIED type */
+    const std::string UNSPECIFIED{"UNSPECIFIED"};
+
     #ifdef DEBUG
-      const std::string BronzLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/bronz_config.lua"};
+      /**
+       * @brief Lua config path when we are in debug mode, it will get the resources from source directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/bronz_config.lua"};
     #else
-      const std::string BronzLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/bronz_config.lua"};
+      /**
+       * @brief Lua config path when we are in release mode, it will get the resources from the install directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/bronz_config.lua"};
     #endif
   }
 
@@ -57,35 +109,99 @@ namespace MassCalculator::Materials
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * 
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of Bronz class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * @brief Type The parameter to save the specific type
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Bronz::Type::UNSPECIFIED};
-      std::string color_{""};
-      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
-      meters_per_second_squared_t gravity_{0_mps_sq};
-      kelvin_t melting_point_{0_K};
-      double poissons_ratio_{0};
-      watt_t thermal_conductivity_{0_W};
-      pascal_t mod_of_elasticity_tension_{0_Pa};
-      pascal_t mod_of_elasticity_torsion_{0_Pa};
+      std::pair<std::string, Type> type_;
+
+      /**
+       * @brief string Parameter to save specific color
+       * 
+       */
+      std::string color_;
+
+      /**
+       * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+       * 
+       */
+      kilograms_per_cubic_meter_t density_;
+
+      /**
+       * @brief meters_per_second_squared_t Parameter to save specific gravity
+       * 
+       */
+      meters_per_second_squared_t gravity_;
+
+      /**
+       * @brief kelvin_t Parameter to save specific melting point
+       * 
+       */
+      kelvin_t melting_point_;
+
+      /**
+       * @brief double Parameter to save specific poissons ratio
+       * 
+       */
+      double poissons_ratio_;
+
+      /**
+       * @brief watt_t Parameter to save specific thermal conductivity
+       * 
+       */
+      watt_t thermal_conductivity_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity tension
+       * 
+       */
+      pascal_t mod_of_elasticity_tension_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      pascal_t mod_of_elasticity_torsion_;
+
+      /**
+       * @brief Construct a new Properties object with all parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::Bronz::UNSPECIFIED, Bronz::Type::UNSPECIFIED)},
+                     color_{""},
+                     density_{0_kg_per_cu_m},
+                     gravity_{0_mps_sq},
+                     melting_point_{0_K},
+                     poissons_ratio_{0},
+                     thermal_conductivity_{0_W},
+                     mod_of_elasticity_tension_{0_Pa},
+                     mod_of_elasticity_torsion_{0_Pa} { }
+
+      /**
+       * @brief Construct a new Properties object through initializer list
+       * 
+       */
+      Properties(std::pair<std::string, Type> type,
+                 std::string color,
+                 kilograms_per_cubic_meter_t density,
+                 meters_per_second_squared_t gravity,
+                 kelvin_t melting_point,
+                 double poissons_ratio,
+                 watt_t thermal_conductivity,
+                 pascal_t mod_of_elasticity_tension,
+                 pascal_t mod_of_elasticity_torsion) : type_{type},
+                                                       color_{color},
+                                                       density_{density},
+                                                       gravity_{gravity},
+                                                       melting_point_{melting_point},
+                                                       poissons_ratio_{poissons_ratio},
+                                                       thermal_conductivity_{thermal_conductivity},
+                                                       mod_of_elasticity_tension_{mod_of_elasticity_tension},
+                                                       mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
     }Properties_t;
 
     public:
@@ -381,7 +497,7 @@ namespace MassCalculator::Materials
      * 
      * @return std::string Class name as a string
      */
-    inline std::string _getClassName(Bronz *) { return {"Bronz"}; };
+    inline std::string _getClassName(Bronz *) { return {Constants::Material::Bronz}; };
 
     /**
      * @brief Function to set the static propertie values
@@ -399,25 +515,25 @@ namespace MassCalculator::Materials
      */
     std::unordered_map<Type, std::function<void()>> type2func
     {
-      {Type::B_18Al,          [&](){ return this->_setPropertieSpecs({{Constants::B_18Al,          Type::B_18Al},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_21Al,          [&](){ return this->_setPropertieSpecs({{Constants::B_21Al,          Type::B_21Al},          {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_314Commercial, [&](){ return this->_setPropertieSpecs({{Constants::B_314Commercial, Type::B_314Commercial}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_485Naval,      [&](){ return this->_setPropertieSpecs({{Constants::B_485Naval,      Type::B_485Naval},      {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_510Phos,       [&](){ return this->_setPropertieSpecs({{Constants::B_510Phos,       Type::B_510Phos},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_524Phos,       [&](){ return this->_setPropertieSpecs({{Constants::B_524Phos,       Type::B_524Phos},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_532Phos,       [&](){ return this->_setPropertieSpecs({{Constants::B_532Phos,       Type::B_532Phos},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_534Phos,       [&](){ return this->_setPropertieSpecs({{Constants::B_534Phos,       Type::B_534Phos},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_544Phos,       [&](){ return this->_setPropertieSpecs({{Constants::B_544Phos,       Type::B_544Phos},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_613Al,         [&](){ return this->_setPropertieSpecs({{Constants::B_613Al,         Type::B_613Al},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_614Al,         [&](){ return this->_setPropertieSpecs({{Constants::B_614Al,         Type::B_614Al},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_623Al,         [&](){ return this->_setPropertieSpecs({{Constants::B_623Al,         Type::B_623Al},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_624Al,         [&](){ return this->_setPropertieSpecs({{Constants::B_624Al,         Type::B_624Al},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_625Al,         [&](){ return this->_setPropertieSpecs({{Constants::B_625Al,         Type::B_625Al},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_630NiAl,       [&](){ return this->_setPropertieSpecs({{Constants::B_630NiAl,       Type::B_630NiAl},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_642AlSi,       [&](){ return this->_setPropertieSpecs({{Constants::B_642AlSi,       Type::B_642AlSi},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_932Bearing,    [&](){ return this->_setPropertieSpecs({{Constants::B_932Bearing,    Type::B_932Bearing},    {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_954Al,         [&](){ return this->_setPropertieSpecs({{Constants::B_954Al,         Type::B_954Al},         {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::B_OilLite,       [&](){ return this->_setPropertieSpecs({{Constants::B_OilLite,       Type::B_OilLite},       {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
+      {Type::B_18Al,          [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_18Al,          Type::B_18Al},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_21Al,          [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_21Al,          Type::B_21Al},          {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_314Commercial, [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_314Commercial, Type::B_314Commercial}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_485Naval,      [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_485Naval,      Type::B_485Naval},      {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_510Phos,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_510Phos,       Type::B_510Phos},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_524Phos,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_524Phos,       Type::B_524Phos},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_532Phos,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_532Phos,       Type::B_532Phos},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_534Phos,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_534Phos,       Type::B_534Phos},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_544Phos,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_544Phos,       Type::B_544Phos},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_613Al,         [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_613Al,         Type::B_613Al},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_614Al,         [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_614Al,         Type::B_614Al},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_623Al,         [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_623Al,         Type::B_623Al},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_624Al,         [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_624Al,         Type::B_624Al},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_625Al,         [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_625Al,         Type::B_625Al},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_630NiAl,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_630NiAl,       Type::B_630NiAl},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_642AlSi,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_642AlSi,       Type::B_642AlSi},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_932Bearing,    [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_932Bearing,    Type::B_932Bearing},    {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_954Al,         [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_954Al,         Type::B_954Al},         {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::B_OilLite,       [&](){ return this->_setPropertieSpecs({{Constants::Bronz::B_OilLite,       Type::B_OilLite},       {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
     };
 
     /**
