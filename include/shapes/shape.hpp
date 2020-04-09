@@ -12,12 +12,16 @@
 #ifndef ___SHAPE_H___
 #define ___SHAPE_H___
 #define _USE_MATH_DEFINES
-#include <iostream>
+#include "../../helper_headers/macro_logger.hpp"
 #include <cmath>
 
 #include <dxflib/dl_dxf.h>
 
 #include "../../3rdParty/include/units.h"
+using namespace units::literals;
+using namespace units::length;
+using namespace units::volume;
+using namespace units::area;
 
 /**
  * @brief Default Shapes namespace
@@ -25,22 +29,53 @@
  */
 namespace MassCalculator::Shapes
 {
-  namespace Constants
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
+  namespace Constants::Shape
   {
+    /** @brief String constant for SquareBar shape */
     const std::string  SquareBar{"SquareBar"};
+
+    /** @brief String constant for Bar shape */
     const std::string  Bar{"Bar"};
+
+    /** @brief String constant for Cylinder shape */
     const std::string  Cylinder{"Cylinder"};
+
+    /** @brief String constant for SquareTubing shape */
     const std::string  SquareTubing{"SquareTubing"};
+
+    /** @brief String constant for Pipe shape */
     const std::string  Pipe{"Pipe"};
+
+    /** @brief String constant for Ellipse shape */
     const std::string  Ellipse{"Ellipse"};
+
+    /** @brief String constant for TBar shape */
     const std::string  TBar{"TBar"};
+
+    /** @brief String constant for Beam shape */
     const std::string  Beam{"Beam"};
+
+    /** @brief String constant for Channel shape */
     const std::string  Channel{"Channel"};
+
+    /** @brief String constant for Angle shape */
     const std::string  Angle{"Angle"};
+
+    /** @brief String constant for HexagonBar shape */
     const std::string  HexagonBar{"HexagonBar"};
+
+    /** @brief String constant for OctagonBar shape */
     const std::string  OctagonBar{"OctagonBar"};
+
+    /** @brief String constant for Sheet shape */
     const std::string  Sheet{"Sheet"};
-    const std::string  S_UNSPECIFIED{"S_UNSPECIFIED"};
+
+    /** @brief String constant for UNSPECIFIED shape */
+    const std::string  UNSPECIFIED{"UNSPECIFIED"};
   }
 
   /**
@@ -52,7 +87,18 @@ namespace MassCalculator::Shapes
   template <typename TShape>
   struct crtp
   {
+    /**
+     * @brief @todo add documentation
+     * 
+     * @return TShape& 
+     */
     TShape& shapeType() { return static_cast<TShape&>(*this); }
+
+    /**
+     * @brief @todo add documentation
+     * 
+     * @return TShape const& 
+     */
     TShape const& shapeType() const { return static_cast<TShape const&>(*this); }
   };
 
@@ -116,6 +162,11 @@ namespace MassCalculator::Shapes
     enum class Type : uint8_t
     {
       BEGIN = 0,
+
+      /**
+       * @brief SquareBar shape
+       * 
+       */
       SquareBar = BEGIN,
       Bar,
       Cylinder,
@@ -242,14 +293,14 @@ namespace MassCalculator::Shapes
     //Also add this kind of style for other shapes too, so we can choose between constructor with args, or empty constructor and then set the sizes
     //Cylinder(double diameter, double length);
 
-    // /**
-    //  * @brief Construct a new Shape object
-    //  * 
-    //  */
-    // Shape(Type type)
-    // {
-    //   this->shapeType()(type);
-    // };
+    /**
+     * @brief Construct a new Shape object
+     * 
+     */
+    Shape(Type type)
+    {
+      this->shapeType()(type);
+    };
 
     /**
      * @brief Set the Size object
@@ -387,39 +438,47 @@ namespace MassCalculator::Shapes
       return
         !format.c_str() ?
           Type::UNSPECIFIED :
-          !format.compare(Constants::SquareBar) ?
+          !format.compare(Constants::Shape::SquareBar) ?
             Type::SquareBar :
-          !format.compare(Constants::Bar) ?
+          !format.compare(Constants::Shape::Bar) ?
             Type::Bar :
-          !format.compare(Constants::Cylinder) ?
+          !format.compare(Constants::Shape::Cylinder) ?
             Type::Cylinder :
-          !format.compare(Constants::SquareTubing) ?
+          !format.compare(Constants::Shape::SquareTubing) ?
             Type::SquareTubing :
-          !format.compare(Constants::Pipe) ?
+          !format.compare(Constants::Shape::Pipe) ?
             Type::Pipe :
-          !format.compare(Constants::Ellipse) ?
+          !format.compare(Constants::Shape::Ellipse) ?
             Type::Ellipse :
-          !format.compare(Constants::TBar) ?
+          !format.compare(Constants::Shape::TBar) ?
             Type::TBar :
-          !format.compare(Constants::Beam) ?
+          !format.compare(Constants::Shape::Beam) ?
             Type::Beam :
-          !format.compare(Constants::Channel) ?
+          !format.compare(Constants::Shape::Channel) ?
             Type::Channel :
-          !format.compare(Constants::Angle) ?
+          !format.compare(Constants::Shape::Angle) ?
             Type::Angle :
-          !format.compare(Constants::HexagonBar) ?
+          !format.compare(Constants::Shape::HexagonBar) ?
             Type::HexagonBar :
-          !format.compare(Constants::OctagonBar) ?
+          !format.compare(Constants::Shape::OctagonBar) ?
             Type::OctagonBar :
-          !format.compare(Constants::Sheet) ?
+          !format.compare(Constants::Shape::Sheet) ?
             Type::Sheet :
-          !format.compare(Constants::S_UNSPECIFIED) ?
+          !format.compare(Constants::Shape::UNSPECIFIED) ?
             Type::UNSPECIFIED : 
         Type::UNSPECIFIED;
     }
 
   };
 
+  /**
+   * @brief @todo add documentation
+   * 
+   * @tparam TShape 
+   * @param os 
+   * @param obj 
+   * @return std::ostream& 
+   */
   template <typename TShape>
   std::ostream &operator << (std::ostream &os, const Shape<TShape> &obj)
   {
@@ -432,20 +491,20 @@ namespace MassCalculator::Shapes
   {
       switch(type)
       {
-        case Shape<TShape>::Type::SquareBar: os << Constants::SquareBar; break;
-        case Shape<TShape>::Type::Bar: os << Constants::Bar; break;
-        case Shape<TShape>::Type::Cylinder: os << Constants::Cylinder; break;
-        case Shape<TShape>::Type::SquareTubing: os << Constants::SquareTubing; break;
-        case Shape<TShape>::Type::Pipe: os << Constants::Pipe; break;
-        case Shape<TShape>::Type::Ellipse: os << Constants::Ellipse; break;
-        case Shape<TShape>::Type::TBar: os << Constants::TBar; break;
-        case Shape<TShape>::Type::Beam: os << Constants::Beam; break;
-        case Shape<TShape>::Type::Channel: os << Constants::Channel; break;
-        case Shape<TShape>::Type::Angle: os << Constants::Angle; break;
-        case Shape<TShape>::Type::HexagonBar: os << Constants::HexagonBar; break;
-        case Shape<TShape>::Type::OctagonBar: os << Constants::OctagonBar; break;
-        case Shape<TShape>::Type::Sheet: os << Constants::Sheet; break;
-        case Shape<TShape>::Type::UNSPECIFIED: os << Constants::S_UNSPECIFIED; break;
+        case Shape<TShape>::Type::SquareBar: os << Constants::Shape::SquareBar; break;
+        case Shape<TShape>::Type::Bar: os << Constants::Shape::Bar; break;
+        case Shape<TShape>::Type::Cylinder: os << Constants::Shape::Cylinder; break;
+        case Shape<TShape>::Type::SquareTubing: os << Constants::Shape::SquareTubing; break;
+        case Shape<TShape>::Type::Pipe: os << Constants::Shape::Pipe; break;
+        case Shape<TShape>::Type::Ellipse: os << Constants::Shape::Ellipse; break;
+        case Shape<TShape>::Type::TBar: os << Constants::Shape::TBar; break;
+        case Shape<TShape>::Type::Beam: os << Constants::Shape::Beam; break;
+        case Shape<TShape>::Type::Channel: os << Constants::Shape::Channel; break;
+        case Shape<TShape>::Type::Angle: os << Constants::Shape::Angle; break;
+        case Shape<TShape>::Type::HexagonBar: os << Constants::Shape::HexagonBar; break;
+        case Shape<TShape>::Type::OctagonBar: os << Constants::Shape::OctagonBar; break;
+        case Shape<TShape>::Type::Sheet: os << Constants::Shape::Sheet; break;
+        case Shape<TShape>::Type::UNSPECIFIED: os << Constants::Shape::UNSPECIFIED; break;
         default: os << "Name cannot be found";
       }
       return os;

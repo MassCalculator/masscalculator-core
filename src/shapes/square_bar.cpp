@@ -2,65 +2,65 @@
 
 namespace MassCalculator::Shapes
 {
-
-  SquareBar::SquareBar(double side, double length)
+  SquareBar::SquareBar(meter_t side, meter_t length) : properties_{side, length}
   {
-    std::cout << "From constructor: " << side * length << std::endl;
+    LOG_DEBUG("I just set the size of square bar from constructor: %f", static_cast<double>(side * length));
   }
 
-  bool SquareBar::setSize(double side, double length)
+  bool SquareBar::setSize(meter_t side, meter_t length)
   {
-    std::cout << "I just set the size of SquareBar\n"
-              << 4 * side * length << std::endl;
-
     this->properties_.side_ = side;
     this->properties_.length_ = length;
+
+    if(this->properties_.side_ != side && this->properties_.length_ != length)
+    {
+      std::cerr << "Cannot set the size of square bar\n";
+      return false;
+    }
+
+    LOG_DEBUG("I just set the size of square bar: %f", static_cast<double>(side * length));
 
     return true;
   }
 
-  //TODO:
-  double SquareBar::getDiagonal(void) const
+  meter_t SquareBar::getDiagonal(void) const
   {
-    return this->properties_.side_/2;
+    return{this->properties_.side_ * std::sqrt(2)};
   }
 
-  double SquareBar::getSide(void) const
+  meter_t SquareBar::getSide(void) const
   {
-    return this->properties_.side_;
+    return{this->properties_.side_};
   }
 
-  double SquareBar::getLength(void) const
+  meter_t SquareBar::getLength(void) const
   {
-    return this->properties_.length_;
+    return{this->properties_.length_};
   }
 
-  //TODO:
-  double SquareBar::getVolume(void) const
+  cubic_meter_t SquareBar::getVolume(void) const
   {
-    //Volume π*r^2*h. Note: diameter = 2 * r	(Note: Check for Eigen if there are build in functions to calculate, and use those instead) TODO:
-    return (M_PI * std::pow(this->getSide(), 2) * this->getLength());
+    return{units::math::pow<2>(this->getSide()) * this->getLength()};
   }
 
-  double SquareBar::getSurfaceArea(void) const
+  square_meter_t SquareBar::getSurfaceArea(void) const
   {
-    //2	π	r	 (	r	+	h	)
-    return (2 * M_PI * this->getSide() * (this->getSide() + this->getLength()));
+    return{(2 * this->getSide()) * (this->getSide() + (2 * this->getLength()))};
   }
 
   std::string SquareBar::getType(void) const
   {
-    return this->properties_.type_.first;
+    return{this->properties_.type_.first};
   }
 
   std::ostream &operator << (std::ostream &os, const SquareBar &obj)
   {
     os << "  SquareBar object properties: " "\n"
-          "   - Radius  : " + std::to_string(obj.getDiagonal()) + "\n"
-          "   - Diameter: " + std::to_string(obj.getSide()) + "\n"
-          "   - Length  : " + std::to_string(obj.getLength()) + "\n"
-          "   - Volume  : " + std::to_string(obj.getVolume()) + "\n"
-          "   - Surface area: " + std::to_string(obj.getSurfaceArea()) + "\n";
+          "   - Diagonal : " + units::length::to_string(obj.getDiagonal()) + "\n"
+          "   - Side     : " + units::length::to_string(obj.getSide()) + "\n"
+          "   - Length   : " + units::length::to_string(obj.getLength()) + "\n"
+          "   - Volume   : " + units::volume::to_string(obj.getVolume()) + "\n"
+          "   - Surface area: " + units::area::to_string(obj.getSurfaceArea()) + "\n";
     return os;
   }
 

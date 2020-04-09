@@ -11,7 +11,7 @@
  */
 #ifndef ___MATERIAL_H___
 #define ___MATERIAL_H___
-#include <iostream>
+#include "../../helper_headers/macro_logger.hpp"
 #include <functional>
 #include <unordered_map>
 
@@ -36,30 +36,65 @@ using namespace MassCalculator::HelperClasses;
  */
 namespace MassCalculator::Materials
 {
-    /**
+  /**
    * @brief String constants that are used through the code
    * 
    */
   namespace Constants
   {
-    //Material type constants
-    const std::string  AlloyCoppers{"AlloyCoppers"};
-    const std::string  AlloySteels{"AlloySteels"};
-    const std::string  Aluminium{"Aluminium"};
-    const std::string  Brass{"Brass"};
-    const std::string  Bronz{"Bronz"};
-    const std::string  Copper{"Copper"};
-    const std::string  Magnesium{"Magnesium"};
-    const std::string  Nickel{"Nickel"};
-    const std::string  Plastic{"Plastic"};
-    const std::string  StainlessSteel{"StainlessSteel"};
-    const std::string  Steel{"Steel"};
-    const std::string  Titanium{"Titanium"};
-    const std::string  UNSPECIFIED{"UNSPECIFIED"};
+    namespace Material
+    {
+      /** @brief String constant for AlloyCoppers material */
+      const std::string  AlloyCoppers{"AlloyCoppers"};
 
-    //Color constants
-    const std::string  Metallic{"Metallic"};
-    const std::string  DarkTone{"DarkTone"};
+      /** @brief String constant for AlloySteels material */
+      const std::string  AlloySteels{"AlloySteels"};
+
+      /** @brief String constant for Aluminium material */
+      const std::string  Aluminium{"Aluminium"};
+
+      /** @brief String constant for Brass material */
+      const std::string  Brass{"Brass"};
+
+      /** @brief String constant for Bronz material */
+      const std::string  Bronz{"Bronz"};
+
+      /** @brief String constant for Copper material */
+      const std::string  Copper{"Copper"};
+
+      /** @brief String constant for Magnesium material */
+      const std::string  Magnesium{"Magnesium"};
+
+      /** @brief String constant for Nickel material */
+      const std::string  Nickel{"Nickel"};
+
+      /** @brief String constant for Plastic material */
+      const std::string  Plastic{"Plastic"};
+
+      /** @brief String constant for StainlessSteel material */
+      const std::string  StainlessSteel{"StainlessSteel"};
+
+      /** @brief String constant for Steel material */
+      const std::string  Steel{"Steel"};
+
+      /** @brief String constant for Titanium material */
+      const std::string  Titanium{"Titanium"};
+
+      /** @brief String constant for Zinc material */
+      const std::string  Zinc{"Zinc"};
+
+      /** @brief String constant for UNSPECIFIED material */
+      const std::string  UNSPECIFIED{"UNSPECIFIED"};
+    }
+
+    namespace Color
+    {
+      /** @brief String constant for Metallic color */
+      const std::string  Metallic{"Metallic"};
+
+      /** @brief String constant for Darktone color */
+      const std::string  DarkTone{"DarkTone"};
+    }
   }
 
   /**
@@ -71,7 +106,18 @@ namespace MassCalculator::Materials
   template <typename TMaterial>
   struct crtp
   {
+    /**
+     * @brief 
+     * 
+     * @return TMaterial& 
+     */
     TMaterial& materialType() { return static_cast<TMaterial&>(*this); }
+
+    /**
+     * @brief 
+     * 
+     * @return TMaterial const& 
+     */
     TMaterial const& materialType() const { return static_cast<TMaterial const&>(*this); }
   };
 
@@ -84,46 +130,102 @@ namespace MassCalculator::Materials
   {
     public: enum class Type : uint8_t;
 
-    public: typedef struct Properties_base
-    {
+    // /**
+    //  * @brief Struct with material specific properties
+    //  * @todo: Check if this can be moved to the base class, the problem is only in the std::pair<T, Type>, Type cannot be deduced from base to derived
+    //  */
+    // typedef struct Properties
+    // {
+    //   /**
+    //    * @brief Type The parameter to save the specific type
+    //    * 
+    //    */
+    //   std::pair<std::string, Type> type_;
 
-      /**
-       * @brief 
-       * @todo This won't work, but leaving here so I don't forget. Try to deduce enumeration type from derived class in compile time
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
-       * 
-       */
-      std::pair<std::string, Type> type_;
-      std::string color_;
-      kilograms_per_cubic_meter_t density_;
-      meters_per_second_squared_t gravity_;
-      kelvin_t melting_point_;
-      double poissons_ratio_;
-      watt_t thermal_conductivity_;
-      pascal_t mod_of_elasticity_tension_;
-      pascal_t mod_of_elasticity_torsion_;
+    //   /**
+    //    * @brief string Parameter to save specific color
+    //    * 
+    //    */
+    //   std::string color_;
 
-      Properties_base() : type_{{Constants::UNSPECIFIED}, { }},
-                          // type_{{Constants::UNSPECIFIED}, {TMaterialType::Type::UNSPECIFIED}}, //I would love to do this
-                          color_{""},
-                          density_{0_kg_per_cu_m},
-                          gravity_{0_mps_sq},
-                          melting_point_{0_K},
-                          poissons_ratio_{0},
-                          thermal_conductivity_{0_W},
-                          mod_of_elasticity_tension_{0_Pa},
-                          mod_of_elasticity_torsion_{0_Pa} { }
+    //   /**
+    //    * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+    //    * 
+    //    */
+    //   kilograms_per_cubic_meter_t density_;
 
-    }Properties_base_t;
+    //   /**
+    //    * @brief meters_per_second_squared_t Parameter to save specific gravity
+    //    * 
+    //    */
+    //   meters_per_second_squared_t gravity_;
+
+    //   /**
+    //    * @brief kelvin_t Parameter to save specific melting point
+    //    * 
+    //    */
+    //   kelvin_t melting_point_;
+
+    //   /**
+    //    * @brief double Parameter to save specific poissons ratio
+    //    * 
+    //    */
+    //   double poissons_ratio_;
+
+    //   /**
+    //    * @brief watt_t Parameter to save specific thermal conductivity
+    //    * 
+    //    */
+    //   watt_t thermal_conductivity_;
+
+    //   /**
+    //    * @brief pascal_t Parameter to save specific modulus of elasticity tension
+    //    * 
+    //    */
+    //   pascal_t mod_of_elasticity_tension_;
+
+    //   /**
+    //    * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+    //    * 
+    //    */
+    //   pascal_t mod_of_elasticity_torsion_;
+
+    //   /**
+    //    * @brief Construct a new Properties object with all parameters initialized
+    //    * 
+    //    */
+    //   Properties() : type_{std::make_pair("", Type::UNSPECIFIED)},
+    //                  color_{""},
+    //                  density_{0_kg_per_cu_m},
+    //                  gravity_{0_mps_sq},
+    //                  melting_point_{0_K},
+    //                  poissons_ratio_{0},
+    //                  thermal_conductivity_{0_W},
+    //                  mod_of_elasticity_tension_{0_Pa},
+    //                  mod_of_elasticity_torsion_{0_Pa} { }
+
+    //   /**
+    //    * @brief Construct a new Properties object through initializer list
+    //    * 
+    //    */
+    //   Properties(std::pair<std::string,typename TMaterialType::Type> type,
+    //              std::string color,
+    //              kilograms_per_cubic_meter_t density,
+    //              meters_per_second_squared_t gravity,
+    //              kelvin_t melting_point,
+    //              double poissons_ratio,
+    //              watt_t thermal_conductivity,
+    //              pascal_t mod_of_elasticity_tension,
+    //              pascal_t mod_of_elasticity_torsion) : type_{type},
+    //                                                    color_{color},
+    //                                                    density_{density},
+    //                                                    gravity_{gravity},
+    //                                                    melting_point_{melting_point},
+    //                                                    poissons_ratio_{poissons_ratio},
+    //                                                    thermal_conductivity_{thermal_conductivity},
+    //                                                    mod_of_elasticity_tension_{mod_of_elasticity_tension},
+    //                                                    mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
+    // }Properties_t;
 
     public:
     /**

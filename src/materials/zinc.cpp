@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Zinc::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::ZincLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Zinc::LuaConfigPath);
   }
 
   bool Zinc::setType(const Zinc::Type &type)
@@ -164,14 +164,14 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Zinc::Type::Z_190: os << Constants::Z_190; break;
-      case Zinc::Type::Z_310: os << Constants::Z_310; break;
-      case Zinc::Type::Z_320: os << Constants::Z_320; break;
-      case Zinc::Type::Z_500: os << Constants::Z_500; break;
-      case Zinc::Type::Z_700: os << Constants::Z_700; break;
-      case Zinc::Type::Z_720: os << Constants::Z_720; break;
-      case Zinc::Type::Z_750: os << Constants::Z_750; break;
-      case Zinc::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Zinc::Type::Z_190: os << Constants::Zinc::Z_190; break;
+      case Zinc::Type::Z_310: os << Constants::Zinc::Z_310; break;
+      case Zinc::Type::Z_320: os << Constants::Zinc::Z_320; break;
+      case Zinc::Type::Z_500: os << Constants::Zinc::Z_500; break;
+      case Zinc::Type::Z_700: os << Constants::Zinc::Z_700; break;
+      case Zinc::Type::Z_720: os << Constants::Zinc::Z_720; break;
+      case Zinc::Type::Z_750: os << Constants::Zinc::Z_750; break;
+      case Zinc::Type::UNSPECIFIED: os << Constants::Zinc::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

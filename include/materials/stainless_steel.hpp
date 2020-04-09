@@ -18,26 +18,66 @@
  */
 namespace MassCalculator::Materials
 {
-  namespace Constants
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
+  namespace Constants::StainlessSteel
   {
-    const std::string  SS_301{"SS_301"};
-    const std::string  SS_302{"SS_302"};
-    const std::string  SS_303{"SS_303"};
-    const std::string  SS_304{"SS_304"};
-    const std::string  SS_305{"SS_305"};
-    const std::string  SS_316{"SS_316"};
-    const std::string  SS_321{"SS_321"};
-    const std::string  SS_409{"SS_409"};
-    const std::string  SS_410{"SS_410"};
-    const std::string  SS_420{"SS_420"};
-    const std::string  SS_430{"SS_430"};
-    const std::string  SS_15_5{"SS_15_5"};
-    const std::string  SS_17_4{"SS_17_4"};
+    /** @brief String constant for SS_301 type */
+    const std::string SS_301{"SS_301"};
+
+    /** @brief String constant for SS_302 type */
+    const std::string SS_302{"SS_302"};
+
+    /** @brief String constant for SS_303 type */
+    const std::string SS_303{"SS_303"};
+
+    /** @brief String constant for SS_304 type */
+    const std::string SS_304{"SS_304"};
+
+    /** @brief String constant for SS_305 type */
+    const std::string SS_305{"SS_305"};
+
+    /** @brief String constant for SS_316 type */
+    const std::string SS_316{"SS_316"};
+
+    /** @brief String constant for SS_321 type */
+    const std::string SS_321{"SS_321"};
+
+    /** @brief String constant for SS_409 type */
+    const std::string SS_409{"SS_409"};
+
+    /** @brief String constant for SS_410 type */
+    const std::string SS_410{"SS_410"};
+
+    /** @brief String constant for SS_420 type */
+    const std::string SS_420{"SS_420"};
+
+    /** @brief String constant for SS_430 type */
+    const std::string SS_430{"SS_430"};
+
+    /** @brief String constant for SS_15_5 type */
+    const std::string SS_15_5{"SS_15_5"};
+
+    /** @brief String constant for SS_17_4 type */
+    const std::string SS_17_4{"SS_17_4"};
+
+    /** @brief String constant for UNSPECIFIED type */
+    const std::string UNSPECIFIED{"UNSPECIFIED"};
 
     #ifdef DEBUG
-      const std::string StainlessSteelLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/stainless_steel_config.lua"};
+      /**
+       * @brief Lua config path when we are in debug mode, it will get the resources from source directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/stainless_steel_config.lua"};
     #else
-      const std::string StainlessSteelLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/stainless_steel_config.lua"};
+      /**
+       * @brief Lua config path when we are in release mode, it will get the resources from the install directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/stainless_steel_config.lua"};
     #endif
   }
 
@@ -51,35 +91,99 @@ namespace MassCalculator::Materials
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * 
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of StainlessSteel class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * @brief Type The parameter to save the specific type
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, StainlessSteel::Type::UNSPECIFIED};
-      std::string color_{0};
-      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
-      meters_per_second_squared_t gravity_{0_mps_sq};
-      kelvin_t melting_point_{0_K};
-      double poissons_ratio_{0};
-      watt_t thermal_conductivity_{0_W};
-      pascal_t mod_of_elasticity_tension_{0_Pa};
-      pascal_t mod_of_elasticity_torsion_{0_Pa};
+      std::pair<std::string, Type> type_;
+
+      /**
+       * @brief string Parameter to save specific color
+       * 
+       */
+      std::string color_;
+
+      /**
+       * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+       * 
+       */
+      kilograms_per_cubic_meter_t density_;
+
+      /**
+       * @brief meters_per_second_squared_t Parameter to save specific gravity
+       * 
+       */
+      meters_per_second_squared_t gravity_;
+
+      /**
+       * @brief kelvin_t Parameter to save specific melting point
+       * 
+       */
+      kelvin_t melting_point_;
+
+      /**
+       * @brief double Parameter to save specific poissons ratio
+       * 
+       */
+      double poissons_ratio_;
+
+      /**
+       * @brief watt_t Parameter to save specific thermal conductivity
+       * 
+       */
+      watt_t thermal_conductivity_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity tension
+       * 
+       */
+      pascal_t mod_of_elasticity_tension_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      pascal_t mod_of_elasticity_torsion_;
+
+      /**
+       * @brief Construct a new Properties object with all parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::StainlessSteel::UNSPECIFIED, StainlessSteel::Type::UNSPECIFIED)},
+                     color_{""},
+                     density_{0_kg_per_cu_m},
+                     gravity_{0_mps_sq},
+                     melting_point_{0_K},
+                     poissons_ratio_{0},
+                     thermal_conductivity_{0_W},
+                     mod_of_elasticity_tension_{0_Pa},
+                     mod_of_elasticity_torsion_{0_Pa} { }
+
+      /**
+       * @brief Construct a new Properties object through initializer list
+       * 
+       */
+      Properties(std::pair<std::string, Type> type,
+                 std::string color,
+                 kilograms_per_cubic_meter_t density,
+                 meters_per_second_squared_t gravity,
+                 kelvin_t melting_point,
+                 double poissons_ratio,
+                 watt_t thermal_conductivity,
+                 pascal_t mod_of_elasticity_tension,
+                 pascal_t mod_of_elasticity_torsion) : type_{type},
+                                                       color_{color},
+                                                       density_{density},
+                                                       gravity_{gravity},
+                                                       melting_point_{melting_point},
+                                                       poissons_ratio_{poissons_ratio},
+                                                       thermal_conductivity_{thermal_conductivity},
+                                                       mod_of_elasticity_tension_{mod_of_elasticity_tension},
+                                                       mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
     }Properties_t;
 
     public:
@@ -327,7 +431,7 @@ namespace MassCalculator::Materials
      * 
      * @return std::string Class name as a string
      */
-    inline std::string _getClassName(StainlessSteel *) { return {"StainlessSteel"}; };
+    inline std::string _getClassName(StainlessSteel *) { return {Constants::Material::StainlessSteel}; };
 
     /**
      * @brief Function to set the static propertie values
@@ -345,19 +449,19 @@ namespace MassCalculator::Materials
      */
     std::unordered_map<Type, std::function<void()>> type2func
     {
-      {Type::SS_301,  [&](){ return this->_setPropertieSpecs({{Constants::SS_301,  Type::SS_301},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_302,  [&](){ return this->_setPropertieSpecs({{Constants::SS_302,  Type::SS_302},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_303,  [&](){ return this->_setPropertieSpecs({{Constants::SS_303,  Type::SS_303},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_304,  [&](){ return this->_setPropertieSpecs({{Constants::SS_304,  Type::SS_304},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_305,  [&](){ return this->_setPropertieSpecs({{Constants::SS_305,  Type::SS_305},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_316,  [&](){ return this->_setPropertieSpecs({{Constants::SS_316,  Type::SS_316},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_321,  [&](){ return this->_setPropertieSpecs({{Constants::SS_321,  Type::SS_321},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_409,  [&](){ return this->_setPropertieSpecs({{Constants::SS_409,  Type::SS_409},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_410,  [&](){ return this->_setPropertieSpecs({{Constants::SS_410,  Type::SS_410},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_420,  [&](){ return this->_setPropertieSpecs({{Constants::SS_420,  Type::SS_420},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_430,  [&](){ return this->_setPropertieSpecs({{Constants::SS_430,  Type::SS_430},  {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_15_5, [&](){ return this->_setPropertieSpecs({{Constants::SS_15_5, Type::SS_15_5}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::SS_17_4, [&](){ return this->_setPropertieSpecs({{Constants::SS_17_4, Type::SS_17_4}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
+      {Type::SS_301,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_301,  Type::SS_301},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_302,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_302,  Type::SS_302},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_303,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_303,  Type::SS_303},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_304,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_304,  Type::SS_304},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_305,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_305,  Type::SS_305},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_316,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_316,  Type::SS_316},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_321,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_321,  Type::SS_321},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_409,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_409,  Type::SS_409},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_410,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_410,  Type::SS_410},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_420,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_420,  Type::SS_420},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_430,  [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_430,  Type::SS_430},  {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_15_5, [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_15_5, Type::SS_15_5}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::SS_17_4, [&](){ return this->_setPropertieSpecs({{Constants::StainlessSteel::SS_17_4, Type::SS_17_4}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
     };
 
     /**

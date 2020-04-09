@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Titanium::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::TitaniumLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Titanium::LuaConfigPath);
   }
 
   bool Titanium::setType(const Titanium::Type &type)
@@ -164,11 +164,11 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Titanium::Type::T_6Al4V: os << Constants::T_6Al4V; break;
-      case Titanium::Type::T_Grade2: os << Constants::T_Grade2; break;
-      case Titanium::Type::T_Grade4: os << Constants::T_Grade4; break;
-      case Titanium::Type::T_Grade5: os << Constants::T_Grade5; break;
-      case Titanium::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Titanium::Type::T_6Al4V: os << Constants::Titanium::T_6Al4V; break;
+      case Titanium::Type::T_Grade2: os << Constants::Titanium::T_Grade2; break;
+      case Titanium::Type::T_Grade4: os << Constants::Titanium::T_Grade4; break;
+      case Titanium::Type::T_Grade5: os << Constants::Titanium::T_Grade5; break;
+      case Titanium::Type::UNSPECIFIED: os << Constants::Titanium::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

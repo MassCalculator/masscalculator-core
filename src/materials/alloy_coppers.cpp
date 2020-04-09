@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool AlloyCoppers::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::AlloyCoppersLuaConfigPath);
+    return this->lua_state_.openScript(Constants::AlloyCoppers::LuaConfigPath);
   }
 
   bool AlloyCoppers::setType(const AlloyCoppers::Type &type)
@@ -164,24 +164,24 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case AlloyCoppers::Type::AC_145Tellvirum: os << Constants::AC_145Tellvirum; break;
-      case AlloyCoppers::Type::AC_194Iron: os << Constants::AC_194Iron; break;
-      case AlloyCoppers::Type::AC_195Iron: os << Constants::AC_195Iron; break;
-      case AlloyCoppers::Type::AC_172Beryllium: os << Constants::AC_172Beryllium; break;
-      case AlloyCoppers::Type::AC_182Class2: os << Constants::AC_182Class2; break;
-      case AlloyCoppers::Type::AC_655Silicon: os << Constants::AC_655Silicon; break;
-      case AlloyCoppers::Type::AC_706Nickel: os << Constants::AC_706Nickel; break;
-      case AlloyCoppers::Type::AC_715NickelSilver: os << Constants::AC_715NickelSilver; break;
-      case AlloyCoppers::Type::AC_725NickelSilver: os << Constants::AC_725NickelSilver; break;
-      case AlloyCoppers::Type::AC_735NickelSilver: os << Constants::AC_735NickelSilver; break;
-      case AlloyCoppers::Type::AC_752NickelSilver: os << Constants::AC_752NickelSilver; break;
-      case AlloyCoppers::Type::AC_762NickelSilver: os << Constants::AC_762NickelSilver; break;
-      case AlloyCoppers::Type::AC_770NickelSilver: os << Constants::AC_770NickelSilver; break;
-      case AlloyCoppers::Type::AC_1751Class3: os << Constants::AC_1751Class3; break;
-      case AlloyCoppers::Type::AC_1758Nickel: os << Constants::AC_1758Nickel; break;
-      case AlloyCoppers::Type::AC_MoldmaxBeCu: os << Constants::AC_MoldmaxBeCu; break;
-      case AlloyCoppers::Type::AC_ProthermBeCu: os << Constants::AC_ProthermBeCu; break;
-      case AlloyCoppers::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case AlloyCoppers::Type::AC_145Tellvirum: os << Constants::AlloyCoppers::AC_145Tellvirum; break;
+      case AlloyCoppers::Type::AC_194Iron: os << Constants::AlloyCoppers::AC_194Iron; break;
+      case AlloyCoppers::Type::AC_195Iron: os << Constants::AlloyCoppers::AC_195Iron; break;
+      case AlloyCoppers::Type::AC_172Beryllium: os << Constants::AlloyCoppers::AC_172Beryllium; break;
+      case AlloyCoppers::Type::AC_182Class2: os << Constants::AlloyCoppers::AC_182Class2; break;
+      case AlloyCoppers::Type::AC_655Silicon: os << Constants::AlloyCoppers::AC_655Silicon; break;
+      case AlloyCoppers::Type::AC_706Nickel: os << Constants::AlloyCoppers::AC_706Nickel; break;
+      case AlloyCoppers::Type::AC_715NickelSilver: os << Constants::AlloyCoppers::AC_715NickelSilver; break;
+      case AlloyCoppers::Type::AC_725NickelSilver: os << Constants::AlloyCoppers::AC_725NickelSilver; break;
+      case AlloyCoppers::Type::AC_735NickelSilver: os << Constants::AlloyCoppers::AC_735NickelSilver; break;
+      case AlloyCoppers::Type::AC_752NickelSilver: os << Constants::AlloyCoppers::AC_752NickelSilver; break;
+      case AlloyCoppers::Type::AC_762NickelSilver: os << Constants::AlloyCoppers::AC_762NickelSilver; break;
+      case AlloyCoppers::Type::AC_770NickelSilver: os << Constants::AlloyCoppers::AC_770NickelSilver; break;
+      case AlloyCoppers::Type::AC_1751Class3: os << Constants::AlloyCoppers::AC_1751Class3; break;
+      case AlloyCoppers::Type::AC_1758Nickel: os << Constants::AlloyCoppers::AC_1758Nickel; break;
+      case AlloyCoppers::Type::AC_MoldmaxBeCu: os << Constants::AlloyCoppers::AC_MoldmaxBeCu; break;
+      case AlloyCoppers::Type::AC_ProthermBeCu: os << Constants::AlloyCoppers::AC_ProthermBeCu; break;
+      case AlloyCoppers::Type::UNSPECIFIED: os << Constants::AlloyCoppers::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

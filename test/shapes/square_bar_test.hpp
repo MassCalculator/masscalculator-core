@@ -1,40 +1,51 @@
+/**
+ * @file square_bar_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class SquareBar, it tests all the functions and the constructors of the class
+ * @version 0.1
+ * @date 2020-04-06
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#ifndef ___SQUARE_BAR_TEST_H___
+#define ___SQUARE_BAR_TEST_H___
+#include "shapes/square_bar.hpp"
 #include <gtest/gtest.h>
 
-#include "shapes/square_bar.hpp"
-
-// The fixture for testing class Aluminium.
-class SquareBarTest : public ::testing::Test 
+/**
+ * @brief Default Shapes test namespace
+ * 
+ */
+namespace MassCalculatorTest::ShapesTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  SquareBarTest() 
+  /**
+   * @brief The test fixture for testing class SquareBar.
+   * 
+   */
+  class SquareBarTest : public ::testing::Test 
   {
-    // You can do set-up work for each test here.
-    this->square_bar_.setSize(0.1, 1);
-  }
+    protected:
+    /**
+     * @brief Construct a new SquareBarTest object
+     * 
+     */
+    SquareBarTest() 
+    {
+      this->square_bar_.setSize(0.1_m, 1_m);
+    }
 
-  ~SquareBarTest() override 
-  {
-    // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the SquareBarTest object
+     * 
+     */
+    ~SquareBarTest() = default;
 
-    // If the constructor and destructor are not enough for setting up
-    // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-    // Code here will be called immediately after the constructor (right
-    // before each test).
-  }
-
-  void TearDown() override 
-  {
-    // Code here will be called immediately after each test (right
-    // before the destructor).
-  }
-
-  //Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Shapes::SquareBar square_bar_;
-};
+    /**
+     * @brief Member object for class SquareBar
+     * 
+     */
+    MassCalculator::Shapes::SquareBar square_bar_;
+  };
+}//end namespace MassCalculatorTest::ShapesTest
+#endif//___SQUARE_BAR_TEST_H___

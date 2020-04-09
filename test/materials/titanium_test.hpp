@@ -14,7 +14,7 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
 namespace MassCalculatorTest
@@ -53,5 +53,5 @@ namespace MassCalculatorTest
                                         material_T_Grade4,
                                         material_T_Grade5;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___TITANIUM_TEST_H___

@@ -1,40 +1,51 @@
+/**
+ * @file cylinder_test.hpp
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains all the tests for the class Cylinder, it tests all the functions and the constructors of the class
+ * @version 0.1
+ * @date 2020-04-06
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+#ifndef ___CYLINDER_TEST_H___
+#define ___CYLINDER_TEST_H___
+#include "shapes/cylinder.hpp"
 #include <gtest/gtest.h>
 
-#include "shapes/cylinder.hpp"
-
-// The fixture for testing class Aluminium.
-class CylinderTest : public ::testing::Test 
+/**
+ * @brief Default Shapes test namespace
+ * 
+ */
+namespace MassCalculatorTest::ShapesTest
 {
-  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
-
-  CylinderTest() 
+  /**
+   * @brief The test fixture for testing class Cylinder.
+   * 
+   */
+  class CylinderTest : public ::testing::Test 
   {
-    // You can do set-up work for each test here.
-    this->cylinder_.setSize(0.1, 1);
-  }
+    protected:
+    /**
+     * @brief Construct a new CylinderTest object
+     * 
+     */
+    CylinderTest() 
+    {
+      this->cylinder_.setSize(0.1_m, 1_m);
+    }
 
-  ~CylinderTest() override 
-  {
-    // You can do clean-up work that doesn't throw exceptions here.
-  }
+    /**
+     * @brief Destroy the Cylinder Test object
+     * 
+     */
+    ~CylinderTest() = default;
 
-    // If the constructor and destructor are not enough for setting up
-    // and cleaning up each test, you can define the following methods:
-
-  void SetUp() override 
-  {
-    // Code here will be called immediately after the constructor (right
-    // before each test).
-  }
-
-  void TearDown() override 
-  {
-    // Code here will be called immediately after each test (right
-    // before the destructor).
-  }
-
-  //Objects declared here can be used by all tests in the test case for Foo.
-  MassCalculator::Shapes::Cylinder cylinder_;
-};
+    /**
+     * @brief Member object for class Cylinder
+     * 
+     */
+    MassCalculator::Shapes::Cylinder cylinder_;
+  };
+}//end namespace MassCalculatorTest::ShapesTest
+#endif//___CYLINDER_TEST_H___

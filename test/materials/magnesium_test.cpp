@@ -1,6 +1,6 @@
 #include "magnesium_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Magnesium object
@@ -18,7 +18,7 @@ namespace MassCalculatorTest
   TEST_F(MagnesiumTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Magnesium::Type> 
-      type{"M_AZ31B", MassCalculator::Materials::Magnesium::Type::M_AZ31B};
+      type{MassCalculator::Materials::Constants::Magnesium::M_AZ31B, MassCalculator::Materials::Magnesium::Type::M_AZ31B};
 
     EXPECT_EQ(type.first, material_M_AZ31B.getType().first);
     EXPECT_EQ(type.second, material_M_AZ31B.getType().second);
@@ -30,7 +30,7 @@ namespace MassCalculatorTest
    */
   TEST_F(MagnesiumTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_M_AZ31B.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_M_AZ31B.getSpecificColor());
   }
 
   /**
@@ -95,7 +95,7 @@ namespace MassCalculatorTest
   {
     EXPECT_EQ(pascal_t{3.8}, material_M_AZ31B.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

@@ -1,6 +1,6 @@
 #include "zinc_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Zinc object
@@ -18,32 +18,32 @@ namespace MassCalculatorTest
   TEST_F(ZincTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Zinc::Type> 
-      type{"Z_190", MassCalculator::Materials::Zinc::Type::Z_190};
+      type{MassCalculator::Materials::Constants::Zinc::Z_190, MassCalculator::Materials::Zinc::Type::Z_190};
 
     EXPECT_EQ(type.first, material_Z_190.getType().first);
     EXPECT_EQ(type.second, material_Z_190.getType().second);
 
-    type = {"Z_310", MassCalculator::Materials::Zinc::Type::Z_310};
+    type = {MassCalculator::Materials::Constants::Zinc::Z_310, MassCalculator::Materials::Zinc::Type::Z_310};
     EXPECT_EQ(type.first, material_Z_310.getType().first);
     EXPECT_EQ(type.second, material_Z_310.getType().second);
 
-    type = {"Z_320", MassCalculator::Materials::Zinc::Type::Z_320};
+    type = {MassCalculator::Materials::Constants::Zinc::Z_320, MassCalculator::Materials::Zinc::Type::Z_320};
     EXPECT_EQ(type.first, material_Z_320.getType().first);
     EXPECT_EQ(type.second, material_Z_320.getType().second);
 
-    type = {"Z_500", MassCalculator::Materials::Zinc::Type::Z_500};
+    type = {MassCalculator::Materials::Constants::Zinc::Z_500, MassCalculator::Materials::Zinc::Type::Z_500};
     EXPECT_EQ(type.first, material_Z_500.getType().first);
     EXPECT_EQ(type.second, material_Z_500.getType().second);
 
-    type = {"Z_700", MassCalculator::Materials::Zinc::Type::Z_700};
+    type = {MassCalculator::Materials::Constants::Zinc::Z_700, MassCalculator::Materials::Zinc::Type::Z_700};
     EXPECT_EQ(type.first, material_Z_700.getType().first);
     EXPECT_EQ(type.second, material_Z_700.getType().second);
 
-    type = {"Z_720", MassCalculator::Materials::Zinc::Type::Z_720};
+    type = {MassCalculator::Materials::Constants::Zinc::Z_720, MassCalculator::Materials::Zinc::Type::Z_720};
     EXPECT_EQ(type.first, material_Z_720.getType().first);
     EXPECT_EQ(type.second, material_Z_720.getType().second);
 
-    type = {"Z_750", MassCalculator::Materials::Zinc::Type::Z_750};
+    type = {MassCalculator::Materials::Constants::Zinc::Z_750, MassCalculator::Materials::Zinc::Type::Z_750};
     EXPECT_EQ(type.first, material_Z_750.getType().first);
     EXPECT_EQ(type.second, material_Z_750.getType().second);
   }
@@ -54,13 +54,13 @@ namespace MassCalculatorTest
    */
   TEST_F(ZincTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_190.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_310.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_320.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_500.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_700.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_720.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_Z_750.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_190.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_310.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_320.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_500.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_700.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_720.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_Z_750.getSpecificColor());
   }
 
   /**
@@ -167,7 +167,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_Z_720.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_Z_750.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

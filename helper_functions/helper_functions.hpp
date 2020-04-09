@@ -19,6 +19,11 @@ using namespace MassCalculator::HelperClasses;
  * 
  */
 #define stringify(a) #a
+
+/**
+ * @brief Caller for stringify macro
+ * 
+ */
 #define xstr(a) stringify(a)
 
 /**
@@ -89,15 +94,25 @@ namespace MassCalculator
     void destroyLuaConfig(LuaScriptHandler *lua_state);
 
     /**
-     * @brief @todo add documentation
+     * @brief Template ternary operator, you can specify with template the return type
      * 
-     * @tparam T 
-     * @param b 
-     * @param x 
-     * @param y 
-     * @return T& 
+     * @tparam Data type
+     * @param b Condition
+     * @param x Return if true
+     * @param y Return if false
+     * @return T& Type as reference from template type
      */
     template<class T> T& TTernaryOperator(bool b, T&x, T&y) { return b ? x : y; }
+
+    /**
+     * @brief const Template ternary operator, you can specify with template the return type
+     * 
+     * @tparam Data type
+     * @param b Condition
+     * @param x Return if true
+     * @param y Return if false
+     * @return T& Type as reference from template type
+     */
     template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
   }// End namespace HelperFunctions
 }// End namespace MassCalculator

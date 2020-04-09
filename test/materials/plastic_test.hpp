@@ -14,7 +14,7 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
 namespace MassCalculatorTest
@@ -47,5 +47,5 @@ namespace MassCalculatorTest
      */
     MassCalculator::Materials::Plastic material_P_ABS;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___PLASTIC_TEST_H___

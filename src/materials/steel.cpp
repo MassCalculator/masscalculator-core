@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Steel::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::SteelLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Steel::LuaConfigPath);
   }
 
   bool Steel::setType(const Steel::Type &type)
@@ -164,14 +164,14 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-        case Steel::Type::S_1010: os << Constants::S_1010; break;
-        case Steel::Type::S_1012: os << Constants::S_1012; break;
-        case Steel::Type::S_1015: os << Constants::S_1015; break;
-        case Steel::Type::S_1018: os << Constants::S_1018; break;
-        case Steel::Type::S_1541: os << Constants::S_1541; break;
-        case Steel::Type::S_4140: os << Constants::S_4140; break;
-        case Steel::Type::S_A36: os << Constants::S_A36; break;
-        case Steel::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+        case Steel::Type::S_1010: os << Constants::Steel::S_1010; break;
+        case Steel::Type::S_1012: os << Constants::Steel::S_1012; break;
+        case Steel::Type::S_1015: os << Constants::Steel::S_1015; break;
+        case Steel::Type::S_1018: os << Constants::Steel::S_1018; break;
+        case Steel::Type::S_1541: os << Constants::Steel::S_1541; break;
+        case Steel::Type::S_4140: os << Constants::Steel::S_4140; break;
+        case Steel::Type::S_A36: os << Constants::Steel::S_A36; break;
+        case Steel::Type::UNSPECIFIED: os << Constants::Steel::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

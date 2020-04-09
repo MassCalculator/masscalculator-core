@@ -18,22 +18,54 @@
  */
 namespace MassCalculator::Materials
 {
-  namespace Constants
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
+  namespace Constants::Aluminium
   {
+    /** @brief String constant for A_1100 type */
     const std::string A_1100{"A_1100"};
+
+    /** @brief String constant for A_2011 type */
     const std::string A_2011{"A_2011"};
+
+    /** @brief String constant for A_2014 type */
     const std::string A_2014{"A_2014"};
+
+    /** @brief String constant for A_2024 type */
     const std::string A_2024{"A_2024"};
+
+    /** @brief String constant for A_3003 type */
     const std::string A_3003{"A_3003"};
+
+    /** @brief String constant for A_5052 type */
     const std::string A_5052{"A_5052"};
+
+    /** @brief String constant for A_6061 type */
     const std::string A_6061{"A_6061"};
+
+    /** @brief String constant for A_6063 type */
     const std::string A_6063{"A_6063"};
+
+    /** @brief String constant for A_7075 type */
     const std::string A_7075{"A_7075"};
 
+    /** @brief String constant for UNSPECIFIED type */
+    const std::string UNSPECIFIED{"UNSPECIFIED"};
+
     #ifdef DEBUG
-      const std::string AluminiumLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/aluminium_config.lua"};
+      /**
+       * @brief Lua config path when we are in debug mode, it will get the resources from source directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/aluminium_config.lua"};
     #else
-      const std::string AluminiumLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/aluminium_config.lua"};
+      /**
+       * @brief Lua config path when we are in release mode, it will get the resources from the install directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/aluminium_config.lua"};
     #endif
   }
 
@@ -47,35 +79,99 @@ namespace MassCalculator::Materials
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * 
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of Aluminium class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * @brief Type The parameter to save the specific type
        * 
        */
-      std::pair<std::string, Type> type_{{Constants::UNSPECIFIED}, {Aluminium::Type::UNSPECIFIED}};
-      std::string color_{""};
-      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
-      meters_per_second_squared_t gravity_{0_mps_sq};
-      kelvin_t melting_point_{0_K};
-      double poissons_ratio_{0};
-      watt_t thermal_conductivity_{0_W};
-      pascal_t mod_of_elasticity_tension_{0_Pa};
-      pascal_t mod_of_elasticity_torsion_{0_Pa};
+      std::pair<std::string, Type> type_;
+
+      /**
+       * @brief string Parameter to save specific color
+       * 
+       */
+      std::string color_;
+
+      /**
+       * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+       * 
+       */
+      kilograms_per_cubic_meter_t density_;
+
+      /**
+       * @brief meters_per_second_squared_t Parameter to save specific gravity
+       * 
+       */
+      meters_per_second_squared_t gravity_;
+
+      /**
+       * @brief kelvin_t Parameter to save specific melting point
+       * 
+       */
+      kelvin_t melting_point_;
+
+      /**
+       * @brief double Parameter to save specific poissons ratio
+       * 
+       */
+      double poissons_ratio_;
+
+      /**
+       * @brief watt_t Parameter to save specific thermal conductivity
+       * 
+       */
+      watt_t thermal_conductivity_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity tension
+       * 
+       */
+      pascal_t mod_of_elasticity_tension_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      pascal_t mod_of_elasticity_torsion_;
+
+      /**
+       * @brief Construct a new Properties object with all parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::Aluminium::UNSPECIFIED, Aluminium::Type::UNSPECIFIED)},
+                     color_{""},
+                     density_{0_kg_per_cu_m},
+                     gravity_{0_mps_sq},
+                     melting_point_{0_K},
+                     poissons_ratio_{0},
+                     thermal_conductivity_{0_W},
+                     mod_of_elasticity_tension_{0_Pa},
+                     mod_of_elasticity_torsion_{0_Pa} { }
+
+      /**
+       * @brief Construct a new Properties object through initializer list
+       * 
+       */
+      Properties(std::pair<std::string, Type> type,
+                 std::string color,
+                 kilograms_per_cubic_meter_t density,
+                 meters_per_second_squared_t gravity,
+                 kelvin_t melting_point,
+                 double poissons_ratio,
+                 watt_t thermal_conductivity,
+                 pascal_t mod_of_elasticity_tension,
+                 pascal_t mod_of_elasticity_torsion) : type_{type},
+                                                       color_{color},
+                                                       density_{density},
+                                                       gravity_{gravity},
+                                                       melting_point_{melting_point},
+                                                       poissons_ratio_{poissons_ratio},
+                                                       thermal_conductivity_{thermal_conductivity},
+                                                       mod_of_elasticity_tension_{mod_of_elasticity_tension},
+                                                       mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
     }Properties_t;
 
     public:
@@ -313,7 +409,7 @@ namespace MassCalculator::Materials
      * 
      * @return std::string Class name as a string
      */
-    inline std::string _getClassName(Aluminium *) { return {"Aluminium"}; };
+    inline std::string _getClassName(Aluminium *) { return {Constants::Material::Aluminium}; };
 
     /**
      * @brief Function to set the static propertie values
@@ -331,15 +427,15 @@ namespace MassCalculator::Materials
      */
     std::unordered_map<Type, std::function<void()>> type2func
     {
-      {Type::A_1100, [&](){ return this->_setPropertieSpecs({{Constants::A_1100, Type::A_1100}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_2011, [&](){ return this->_setPropertieSpecs({{Constants::A_2011, Type::A_2011}, {Constants::Metallic}, {2.82_kg_per_cu_m}, {2.83_mps_sq}, {1000.00_K}, (0.33), {990.0_W}, {10.2_Pa}, {3.85_Pa}}); }},
-      {Type::A_2014, [&](){ return this->_setPropertieSpecs({{Constants::A_2014, Type::A_2014}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_2024, [&](){ return this->_setPropertieSpecs({{Constants::A_2024, Type::A_2024}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_3003, [&](){ return this->_setPropertieSpecs({{Constants::A_3003, Type::A_3003}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_5052, [&](){ return this->_setPropertieSpecs({{Constants::A_5052, Type::A_5052}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_6061, [&](){ return this->_setPropertieSpecs({{Constants::A_6061, Type::A_6061}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_6063, [&](){ return this->_setPropertieSpecs({{Constants::A_6063, Type::A_6063}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
-      {Type::A_7075, [&](){ return this->_setPropertieSpecs({{Constants::A_7075, Type::A_7075}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
+      {Type::A_1100, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_1100, Type::A_1100}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_2011, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_2011, Type::A_2011}, {Constants::Color::Metallic}, {2.82_kg_per_cu_m}, {2.83_mps_sq}, {1000.00_K}, {0.33}, {990.0_W}, {10.2_Pa}, {3.85_Pa}}); }},
+      {Type::A_2014, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_2014, Type::A_2014}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_2024, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_2024, Type::A_2024}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_3003, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_3003, Type::A_3003}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_5052, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_5052, Type::A_5052}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_6061, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_6061, Type::A_6061}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_6063, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_6063, Type::A_6063}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }},
+      {Type::A_7075, [&](){ return this->_setPropertieSpecs({{Constants::Aluminium::A_7075, Type::A_7075}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.90_Pa}, {3.80_Pa}}); }}
     };
 
     /**

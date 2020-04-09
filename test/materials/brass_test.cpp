@@ -1,6 +1,6 @@
 #include "brass_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Brass object
@@ -18,36 +18,36 @@ namespace MassCalculatorTest
   TEST_F(BrassTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Brass::Type> 
-      type{"B_240Low", MassCalculator::Materials::Brass::Type::B_240Low};
+      type{MassCalculator::Materials::Constants::Brass::B_240Low, MassCalculator::Materials::Brass::Type::B_240Low};
 
     EXPECT_EQ(type.first, material_B_240Low.getType().first);
     EXPECT_EQ(type.second, material_B_240Low.getType().second);
 
-    type = {"B_260Cartridge", MassCalculator::Materials::Brass::Type::B_260Cartridge};
+    type = {MassCalculator::Materials::Constants::Brass::B_260Cartridge, MassCalculator::Materials::Brass::Type::B_260Cartridge};
     EXPECT_EQ(type.first, material_B_260Cartridge.getType().first);
     EXPECT_EQ(type.second, material_B_260Cartridge.getType().second);
 
-    type = {"B_353Leaded", MassCalculator::Materials::Brass::Type::B_353Leaded};
+    type = {MassCalculator::Materials::Constants::Brass::B_353Leaded, MassCalculator::Materials::Brass::Type::B_353Leaded};
     EXPECT_EQ(type.first, material_B_353Leaded.getType().first);
     EXPECT_EQ(type.second, material_B_353Leaded.getType().second);
 
-    type = {"B_360", MassCalculator::Materials::Brass::Type::B_360};
+    type = {MassCalculator::Materials::Constants::Brass::B_360, MassCalculator::Materials::Brass::Type::B_360};
     EXPECT_EQ(type.first, material_B_360.getType().first);
     EXPECT_EQ(type.second, material_B_360.getType().second);
 
-    type = {"B_365", MassCalculator::Materials::Brass::Type::B_365};
+    type = {MassCalculator::Materials::Constants::Brass::B_365, MassCalculator::Materials::Brass::Type::B_365};
     EXPECT_EQ(type.first, material_B_365.getType().first);
     EXPECT_EQ(type.second, material_B_365.getType().second);
 
-    type = {"B_380", MassCalculator::Materials::Brass::Type::B_380};
+    type = {MassCalculator::Materials::Constants::Brass::B_380, MassCalculator::Materials::Brass::Type::B_380};
     EXPECT_EQ(type.first, material_B_380.getType().first);
     EXPECT_EQ(type.second, material_B_380.getType().second);
 
-    type = {"B_385", MassCalculator::Materials::Brass::Type::B_385};
+    type = {MassCalculator::Materials::Constants::Brass::B_385, MassCalculator::Materials::Brass::Type::B_385};
     EXPECT_EQ(type.first, material_B_385.getType().first);
     EXPECT_EQ(type.second, material_B_385.getType().second);
 
-    type = {"B_464", MassCalculator::Materials::Brass::Type::B_464};
+    type = {MassCalculator::Materials::Constants::Brass::B_464, MassCalculator::Materials::Brass::Type::B_464};
     EXPECT_EQ(type.first, material_B_464.getType().first);
     EXPECT_EQ(type.second, material_B_464.getType().second);
   }
@@ -58,14 +58,14 @@ namespace MassCalculatorTest
    */
   TEST_F(BrassTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_B_240Low.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_260Cartridge.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_353Leaded.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_360.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_365.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_380.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_385.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_464.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_240Low.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_260Cartridge.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_353Leaded.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_360.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_365.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_380.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_385.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_464.getSpecificColor());
   }
 
   /**
@@ -179,7 +179,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8_Pa}, material_B_385.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8_Pa}, material_B_464.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

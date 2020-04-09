@@ -18,20 +18,48 @@
  */
 namespace MassCalculator::Materials
 {
-  namespace Constants
+  /**
+   * @brief String constants that are used through the code
+   * 
+   */
+  namespace Constants::Zinc
   {
-    const std::string  Z_190{"Z_190"};
-    const std::string  Z_310{"Z_310"};
-    const std::string  Z_320{"Z_320"};
-    const std::string  Z_500{"Z_500"};
-    const std::string  Z_700{"Z_700"};
-    const std::string  Z_720{"Z_720"};
-    const std::string  Z_750{"Z_750"};
+    /** @brief String constant for Z_190 type */
+    const std::string Z_190{"Z_190"};
+
+    /** @brief String constant for Z_310 type */
+    const std::string Z_310{"Z_310"};
+
+    /** @brief String constant for Z_320 type */
+    const std::string Z_320{"Z_320"};
+
+    /** @brief String constant for Z_500 type */
+    const std::string Z_500{"Z_500"};
+
+    /** @brief String constant for Z_700 type */
+    const std::string Z_700{"Z_700"};
+
+    /** @brief String constant for Z_720 type */
+    const std::string Z_720{"Z_720"};
+
+    /** @brief String constant for Z_750 type */
+    const std::string Z_750{"Z_750"};
+
+    /** @brief String constant for UNSPECIFIED type */
+    const std::string UNSPECIFIED{"UNSPECIFIED"};
 
     #ifdef DEBUG
-      const std::string ZincLuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/zinc_config.lua"};
+      /**
+       * @brief Lua config path when we are in debug mode, it will get the resources from source directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getDebugLuaRootPath()) + "/MassCalculator/resources/materials/zinc_config.lua"};
     #else
-      const std::string ZincLuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/zinc_config.lua"};
+      /**
+       * @brief Lua config path when we are in release mode, it will get the resources from the install directory
+       * 
+       */
+      const std::string LuaConfigPath{std::string(getenv("HOME")) + "/.MassCalculator/resources/materials/zinc_config.lua"};
     #endif
   }
 
@@ -45,35 +73,99 @@ namespace MassCalculator::Materials
 
     /**
      * @brief Struct with material specific properties
-     * TODO:Check if this can be moved to the base class
+     * 
      */
     typedef struct Properties
     {
-
       /**
-       * @brief Private members of Zinc class. Values defaulted with brace-enclosed initializer list
-       * and will be set from the constructor.
-       * 
-       * @param type_ Type The parameter to save the specific type
-       * @param color_ string Parameter to save specific color
-       * @param density_ kilograms_per_cubic_meter_t Parameter to save specific density
-       * @param gravity_ meters_per_second_squared_t Parameter to save specific gravity
-       * @param melting_point_ kelvin_t Parameter to save specific melting point
-       * @param poissons_ratio_ double Parameter to save specific poissons ratio
-       * @param thermal_conductivity_ watt_t Parameter to save specific thermal conductivity
-       * @param mod_of_elasticity_tension_ pascal_t Parameter to save specific modulus of elasticity tension
-       * @param mod_of_elasticity_torsion_ pascal_t Parameter to save specific modulus of elasticity torsion
+       * @brief Type The parameter to save the specific type
        * 
        */
-      std::pair<std::string, Type> type_{Constants::UNSPECIFIED, Zinc::Type::UNSPECIFIED};
-      std::string color_{""};
-      kilograms_per_cubic_meter_t density_{0_kg_per_cu_m};
-      meters_per_second_squared_t gravity_{0_mps_sq};
-      kelvin_t melting_point_{0_K};
-      double poissons_ratio_{0};
-      watt_t thermal_conductivity_{0_W};
-      pascal_t mod_of_elasticity_tension_{0_Pa};
-      pascal_t mod_of_elasticity_torsion_{0_Pa};
+      std::pair<std::string, Type> type_;
+
+      /**
+       * @brief string Parameter to save specific color
+       * 
+       */
+      std::string color_;
+
+      /**
+       * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+       * 
+       */
+      kilograms_per_cubic_meter_t density_;
+
+      /**
+       * @brief meters_per_second_squared_t Parameter to save specific gravity
+       * 
+       */
+      meters_per_second_squared_t gravity_;
+
+      /**
+       * @brief kelvin_t Parameter to save specific melting point
+       * 
+       */
+      kelvin_t melting_point_;
+
+      /**
+       * @brief double Parameter to save specific poissons ratio
+       * 
+       */
+      double poissons_ratio_;
+
+      /**
+       * @brief watt_t Parameter to save specific thermal conductivity
+       * 
+       */
+      watt_t thermal_conductivity_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity tension
+       * 
+       */
+      pascal_t mod_of_elasticity_tension_;
+
+      /**
+       * @brief pascal_t Parameter to save specific modulus of elasticity torsion
+       * 
+       */
+      pascal_t mod_of_elasticity_torsion_;
+
+      /**
+       * @brief Construct a new Properties object with all parameters initialized
+       * 
+       */
+      Properties() : type_{std::make_pair(Constants::Zinc::UNSPECIFIED, Zinc::Type::UNSPECIFIED)},
+                     color_{""},
+                     density_{0_kg_per_cu_m},
+                     gravity_{0_mps_sq},
+                     melting_point_{0_K},
+                     poissons_ratio_{0},
+                     thermal_conductivity_{0_W},
+                     mod_of_elasticity_tension_{0_Pa},
+                     mod_of_elasticity_torsion_{0_Pa} { }
+
+      /**
+       * @brief Construct a new Properties object through initializer list
+       * 
+       */
+      Properties(std::pair<std::string, Type> type,
+                 std::string color,
+                 kilograms_per_cubic_meter_t density,
+                 meters_per_second_squared_t gravity,
+                 kelvin_t melting_point,
+                 double poissons_ratio,
+                 watt_t thermal_conductivity,
+                 pascal_t mod_of_elasticity_tension,
+                 pascal_t mod_of_elasticity_torsion) : type_{type},
+                                                       color_{color},
+                                                       density_{density},
+                                                       gravity_{gravity},
+                                                       melting_point_{melting_point},
+                                                       poissons_ratio_{poissons_ratio},
+                                                       thermal_conductivity_{thermal_conductivity},
+                                                       mod_of_elasticity_tension_{mod_of_elasticity_tension},
+                                                       mod_of_elasticity_torsion_{mod_of_elasticity_torsion} { }
     }Properties_t;
 
     public:
@@ -279,7 +371,7 @@ namespace MassCalculator::Materials
      * 
      * @return std::string Class name as a string
      */
-    inline std::string _getClassName(Zinc *) { return {"Zinc"}; };
+    inline std::string _getClassName(Zinc *) { return {Constants::Material::Zinc}; };
 
     /**
      * @brief Function to set the static propertie values
@@ -297,13 +389,13 @@ namespace MassCalculator::Materials
      */
     std::unordered_map<Type, std::function<void()>> type2func
     {
-      {Type::Z_190, [&](){ return this->_setPropertieSpecs({{Constants::Z_190, Type::Z_190}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::Z_310, [&](){ return this->_setPropertieSpecs({{Constants::Z_310, Type::Z_310}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::Z_320, [&](){ return this->_setPropertieSpecs({{Constants::Z_320, Type::Z_320}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::Z_500, [&](){ return this->_setPropertieSpecs({{Constants::Z_500, Type::Z_500}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::Z_700, [&](){ return this->_setPropertieSpecs({{Constants::Z_700, Type::Z_700}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::Z_720, [&](){ return this->_setPropertieSpecs({{Constants::Z_720, Type::Z_720}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
-      {Type::Z_750, [&](){ return this->_setPropertieSpecs({{Constants::Z_750, Type::Z_750}, {Constants::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, (0.33), {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
+      {Type::Z_190, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_190, Type::Z_190}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::Z_310, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_310, Type::Z_310}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::Z_320, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_320, Type::Z_320}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::Z_500, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_500, Type::Z_500}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::Z_700, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_700, Type::Z_700}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::Z_720, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_720, Type::Z_720}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }},
+      {Type::Z_750, [&](){ return this->_setPropertieSpecs({{Constants::Zinc::Z_750, Type::Z_750}, {Constants::Color::Metallic}, {2.71_kg_per_cu_m}, {2.83_mps_sq}, {537.778_K}, {0.33}, {990.0_W}, {9.9_Pa}, {3.8_Pa}}); }}
     };
 
     /**
