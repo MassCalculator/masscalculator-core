@@ -11,7 +11,7 @@
  */
 #ifndef ___MATERIAL_H___
 #define ___MATERIAL_H___
-#include <iostream>
+#include "../../helper_headers/macro_logger.hpp"
 #include <functional>
 #include <unordered_map>
 

@@ -12,7 +12,7 @@
 #ifndef ___SHAPE_H___
 #define ___SHAPE_H___
 #define _USE_MATH_DEFINES
-#include <iostream>
+#include "../../helper_headers/macro_logger.hpp"
 #include <cmath>
 
 #include <dxflib/dl_dxf.h>

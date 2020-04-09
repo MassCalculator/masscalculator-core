@@ -4,7 +4,7 @@ namespace MassCalculator::Shapes
 {
   SquareBar::SquareBar(meter_t side, meter_t length) : properties_{side, length}
   {
-    std::clog << "I just set the size of square bar from constructor: " << side * length << std::endl;
+    LOG_DEBUG("I just set the size of square bar from constructor: %f", static_cast<double>(side * length));
   }
 
   bool SquareBar::setSize(meter_t side, meter_t length)
@@ -18,7 +18,7 @@ namespace MassCalculator::Shapes
       return false;
     }
 
-    std::clog << "I just set the size of square bar: " << side * length << std::endl;
+    LOG_DEBUG("I just set the size of square bar: %f", static_cast<double>(side * length));
 
     return true;
   }
