@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Nickel::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::NickelLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Nickel::LuaConfigPath);
   }
 
   bool Nickel::setType(const Nickel::Type &type)
@@ -164,12 +164,12 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Nickel::Type::N_201: os << Constants::N_201; break;
-      case Nickel::Type::N_210: os << Constants::N_210; break;
-      case Nickel::Type::N_220: os << Constants::N_220; break;
-      case Nickel::Type::N_230: os << Constants::N_230; break;
-      case Nickel::Type::N_400: os << Constants::N_400; break;
-      case Nickel::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Nickel::Type::N_201: os << Constants::Nickel::N_201; break;
+      case Nickel::Type::N_210: os << Constants::Nickel::N_210; break;
+      case Nickel::Type::N_220: os << Constants::Nickel::N_220; break;
+      case Nickel::Type::N_230: os << Constants::Nickel::N_230; break;
+      case Nickel::Type::N_400: os << Constants::Nickel::N_400; break;
+      case Nickel::Type::UNSPECIFIED: os << Constants::Nickel::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

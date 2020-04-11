@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool StainlessSteel::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::StainlessSteelLuaConfigPath);
+    return this->lua_state_.openScript(Constants::StainlessSteel::LuaConfigPath);
   }
 
   bool StainlessSteel::setType(const StainlessSteel::Type &type)
@@ -164,19 +164,20 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case StainlessSteel::Type::SS_301: os << Constants::SS_301; break;
-      case StainlessSteel::Type::SS_302: os << Constants::SS_302; break;
-      case StainlessSteel::Type::SS_303: os << Constants::SS_303; break;
-      case StainlessSteel::Type::SS_304: os << Constants::SS_304; break;
-      case StainlessSteel::Type::SS_305: os << Constants::SS_305; break;
-      case StainlessSteel::Type::SS_316: os << Constants::SS_316; break;
-      case StainlessSteel::Type::SS_321: os << Constants::SS_321; break;
-      case StainlessSteel::Type::SS_409: os << Constants::SS_409; break;
-      case StainlessSteel::Type::SS_410: os << Constants::SS_410; break;
-      case StainlessSteel::Type::SS_420: os << Constants::SS_420; break;
-      case StainlessSteel::Type::SS_430: os << Constants::SS_430; break;
-      case StainlessSteel::Type::SS_15_5: os << Constants::SS_15_5; break;
-      case StainlessSteel::Type::SS_17_4: os << Constants::SS_17_4; break;
+      case StainlessSteel::Type::SS_301: os << Constants::StainlessSteel::SS_301; break;
+      case StainlessSteel::Type::SS_302: os << Constants::StainlessSteel::SS_302; break;
+      case StainlessSteel::Type::SS_303: os << Constants::StainlessSteel::SS_303; break;
+      case StainlessSteel::Type::SS_304: os << Constants::StainlessSteel::SS_304; break;
+      case StainlessSteel::Type::SS_305: os << Constants::StainlessSteel::SS_305; break;
+      case StainlessSteel::Type::SS_316: os << Constants::StainlessSteel::SS_316; break;
+      case StainlessSteel::Type::SS_321: os << Constants::StainlessSteel::SS_321; break;
+      case StainlessSteel::Type::SS_409: os << Constants::StainlessSteel::SS_409; break;
+      case StainlessSteel::Type::SS_410: os << Constants::StainlessSteel::SS_410; break;
+      case StainlessSteel::Type::SS_420: os << Constants::StainlessSteel::SS_420; break;
+      case StainlessSteel::Type::SS_430: os << Constants::StainlessSteel::SS_430; break;
+      case StainlessSteel::Type::SS_15_5: os << Constants::StainlessSteel::SS_15_5; break;
+      case StainlessSteel::Type::SS_17_4: os << Constants::StainlessSteel::SS_17_4; break;
+      case StainlessSteel::Type::UNSPECIFIED: os << Constants::StainlessSteel::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

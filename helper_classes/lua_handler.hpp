@@ -10,9 +10,10 @@
  */
 #ifndef ___HELPER_CLASSES_H___
 #define ___HELPER_CLASSES_H___
-#include <iostream>
 #include <string>
 #include <vector>
+
+#include "../helper_headers/macro_logger.hpp"
 
 // Lua is written in C, so compiler needs to know how to link its libraries
 extern "C" 
@@ -245,7 +246,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return true 
      * @return false 
@@ -259,7 +260,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return float 
      */
@@ -277,7 +278,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return double 
      */
@@ -295,7 +296,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return int 
      */
@@ -313,7 +314,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @param variableName 
      * @return std::string 
      */
@@ -336,7 +337,7 @@ namespace MassCalculator
     /**
      * @brief @todo add documentation
      * 
-     * @tparam  
+     * @tparam test
      * @return std::string 
      */
     template<>

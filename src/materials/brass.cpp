@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Brass::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::BrassLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Brass::LuaConfigPath);
   }
 
   bool Brass::setType(const Brass::Type &type)
@@ -164,15 +164,15 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Brass::Type::B_240Low: os << Constants::B_240Low; break;
-      case Brass::Type::B_260Cartridge: os << Constants::B_260Cartridge; break;
-      case Brass::Type::B_353Leaded: os << Constants::B_353Leaded; break;
-      case Brass::Type::B_360: os << Constants::B_360; break;
-      case Brass::Type::B_365: os << Constants::B_365; break;
-      case Brass::Type::B_380: os << Constants::B_380; break;
-      case Brass::Type::B_385: os << Constants::B_385; break;
-      case Brass::Type::B_464: os << Constants::B_464; break;
-      case Brass::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Brass::Type::B_240Low: os << Constants::Brass::B_240Low; break;
+      case Brass::Type::B_260Cartridge: os << Constants::Brass::B_260Cartridge; break;
+      case Brass::Type::B_353Leaded: os << Constants::Brass::B_353Leaded; break;
+      case Brass::Type::B_360: os << Constants::Brass::B_360; break;
+      case Brass::Type::B_365: os << Constants::Brass::B_365; break;
+      case Brass::Type::B_380: os << Constants::Brass::B_380; break;
+      case Brass::Type::B_385: os << Constants::Brass::B_385; break;
+      case Brass::Type::B_464: os << Constants::Brass::B_464; break;
+      case Brass::Type::UNSPECIFIED: os << Constants::Brass::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

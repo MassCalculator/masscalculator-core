@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Magnesium::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::MagnesiumLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Magnesium::LuaConfigPath);
   }
 
   bool Magnesium::setType(const Magnesium::Type &type)
@@ -164,8 +164,8 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Magnesium::Type::M_AZ31B: os << Constants::M_AZ31B; break;
-      case Magnesium::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Magnesium::Type::M_AZ31B: os << Constants::Magnesium::M_AZ31B; break;
+      case Magnesium::Type::UNSPECIFIED: os << Constants::Magnesium::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

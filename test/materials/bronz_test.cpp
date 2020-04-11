@@ -1,6 +1,6 @@
 #include "bronz_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Bronz object
@@ -18,80 +18,80 @@ namespace MassCalculatorTest
   TEST_F(BronzTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Bronz::Type> 
-      type{"B_18Al", MassCalculator::Materials::Bronz::Type::B_18Al};
+      type{MassCalculator::Materials::Constants::Bronz::B_18Al, MassCalculator::Materials::Bronz::Type::B_18Al};
 
     EXPECT_EQ(type.first, material_B_18Al.getType().first);
     EXPECT_EQ(type.second, material_B_18Al.getType().second);
 
-    type = {"B_21Al", MassCalculator::Materials::Bronz::Type::B_21Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_21Al, MassCalculator::Materials::Bronz::Type::B_21Al};
     EXPECT_EQ(type.first, material_B_21Al.getType().first);
     EXPECT_EQ(type.second, material_B_21Al.getType().second);
 
-    type = {"B_314Commercial", MassCalculator::Materials::Bronz::Type::B_314Commercial};
+    type = {MassCalculator::Materials::Constants::Bronz::B_314Commercial, MassCalculator::Materials::Bronz::Type::B_314Commercial};
     EXPECT_EQ(type.first, material_B_314Commercial.getType().first);
     EXPECT_EQ(type.second, material_B_314Commercial.getType().second);
 
-    type = {"B_485Naval", MassCalculator::Materials::Bronz::Type::B_485Naval};
+    type = {MassCalculator::Materials::Constants::Bronz::B_485Naval, MassCalculator::Materials::Bronz::Type::B_485Naval};
     EXPECT_EQ(type.first, material_B_485Naval.getType().first);
     EXPECT_EQ(type.second, material_B_485Naval.getType().second);
 
-    type = {"B_510Phos", MassCalculator::Materials::Bronz::Type::B_510Phos};
+    type = {MassCalculator::Materials::Constants::Bronz::B_510Phos, MassCalculator::Materials::Bronz::Type::B_510Phos};
     EXPECT_EQ(type.first, material_B_510Phos.getType().first);
     EXPECT_EQ(type.second, material_B_510Phos.getType().second);
 
-    type = {"B_524Phos", MassCalculator::Materials::Bronz::Type::B_524Phos};
+    type = {MassCalculator::Materials::Constants::Bronz::B_524Phos, MassCalculator::Materials::Bronz::Type::B_524Phos};
     EXPECT_EQ(type.first, material_B_524Phos.getType().first);
     EXPECT_EQ(type.second, material_B_524Phos.getType().second);
 
-    type = {"B_532Phos", MassCalculator::Materials::Bronz::Type::B_532Phos};
+    type = {MassCalculator::Materials::Constants::Bronz::B_532Phos, MassCalculator::Materials::Bronz::Type::B_532Phos};
     EXPECT_EQ(type.first, material_B_532Phos.getType().first);
     EXPECT_EQ(type.second, material_B_532Phos.getType().second);
 
-    type = {"B_534Phos", MassCalculator::Materials::Bronz::Type::B_534Phos};
+    type = {MassCalculator::Materials::Constants::Bronz::B_534Phos, MassCalculator::Materials::Bronz::Type::B_534Phos};
     EXPECT_EQ(type.first, material_B_534Phos.getType().first);
     EXPECT_EQ(type.second, material_B_534Phos.getType().second);
 
-    type = {"B_544Phos", MassCalculator::Materials::Bronz::Type::B_544Phos};
+    type = {MassCalculator::Materials::Constants::Bronz::B_544Phos, MassCalculator::Materials::Bronz::Type::B_544Phos};
     EXPECT_EQ(type.first, material_B_544Phos.getType().first);
     EXPECT_EQ(type.second, material_B_544Phos.getType().second);
 
-    type = {"B_613Al", MassCalculator::Materials::Bronz::Type::B_613Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_613Al, MassCalculator::Materials::Bronz::Type::B_613Al};
     EXPECT_EQ(type.first, material_B_613Al.getType().first);
     EXPECT_EQ(type.second, material_B_613Al.getType().second);
 
-    type = {"B_614Al", MassCalculator::Materials::Bronz::Type::B_614Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_614Al, MassCalculator::Materials::Bronz::Type::B_614Al};
     EXPECT_EQ(type.first, material_B_614Al.getType().first);
     EXPECT_EQ(type.second, material_B_614Al.getType().second);
 
-    type = {"B_623Al", MassCalculator::Materials::Bronz::Type::B_623Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_623Al, MassCalculator::Materials::Bronz::Type::B_623Al};
     EXPECT_EQ(type.first, material_B_623Al.getType().first);
     EXPECT_EQ(type.second, material_B_623Al.getType().second);
 
-    type = {"B_624Al", MassCalculator::Materials::Bronz::Type::B_624Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_624Al, MassCalculator::Materials::Bronz::Type::B_624Al};
     EXPECT_EQ(type.first, material_B_624Al.getType().first);
     EXPECT_EQ(type.second, material_B_624Al.getType().second);
 
-    type = {"B_625Al", MassCalculator::Materials::Bronz::Type::B_625Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_625Al, MassCalculator::Materials::Bronz::Type::B_625Al};
     EXPECT_EQ(type.first, material_B_625Al.getType().first);
     EXPECT_EQ(type.second, material_B_625Al.getType().second);
 
-    type = {"B_630NiAl", MassCalculator::Materials::Bronz::Type::B_630NiAl};
+    type = {MassCalculator::Materials::Constants::Bronz::B_630NiAl, MassCalculator::Materials::Bronz::Type::B_630NiAl};
     EXPECT_EQ(type.first, material_B_630NiAl.getType().first);
     EXPECT_EQ(type.second, material_B_630NiAl.getType().second);
 
-    type = {"B_642AlSi", MassCalculator::Materials::Bronz::Type::B_642AlSi};
+    type = {MassCalculator::Materials::Constants::Bronz::B_642AlSi, MassCalculator::Materials::Bronz::Type::B_642AlSi};
     EXPECT_EQ(type.first, material_B_642AlSi.getType().first);
     EXPECT_EQ(type.second, material_B_642AlSi.getType().second);
 
-    type = {"B_932Bearing", MassCalculator::Materials::Bronz::Type::B_932Bearing};
+    type = {MassCalculator::Materials::Constants::Bronz::B_932Bearing, MassCalculator::Materials::Bronz::Type::B_932Bearing};
     EXPECT_EQ(type.first, material_B_932Bearing.getType().first);
     EXPECT_EQ(type.second, material_B_932Bearing.getType().second);
 
-    type = {"B_954Al", MassCalculator::Materials::Bronz::Type::B_954Al};
+    type = {MassCalculator::Materials::Constants::Bronz::B_954Al, MassCalculator::Materials::Bronz::Type::B_954Al};
     EXPECT_EQ(type.first, material_B_954Al.getType().first);
     EXPECT_EQ(type.second, material_B_954Al.getType().second);
 
-    type = {"B_OilLite", MassCalculator::Materials::Bronz::Type::B_OilLite};
+    type = {MassCalculator::Materials::Constants::Bronz::B_OilLite, MassCalculator::Materials::Bronz::Type::B_OilLite};
     EXPECT_EQ(type.first, material_B_OilLite.getType().first);
     EXPECT_EQ(type.second, material_B_OilLite.getType().second);
   }
@@ -102,25 +102,25 @@ namespace MassCalculatorTest
    */
   TEST_F(BronzTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_B_18Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_21Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_314Commercial.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_485Naval.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_510Phos.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_524Phos.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_532Phos.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_534Phos.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_544Phos.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_613Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_614Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_623Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_624Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_625Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_630NiAl.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_642AlSi.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_932Bearing.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_954Al.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_B_OilLite.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_18Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_21Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_314Commercial.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_485Naval.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_510Phos.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_524Phos.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_532Phos.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_534Phos.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_544Phos.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_613Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_614Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_623Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_624Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_625Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_630NiAl.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_642AlSi.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_932Bearing.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_954Al.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_B_OilLite.getSpecificColor());
   }
 
   /**
@@ -311,7 +311,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_B_954Al.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_B_OilLite.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

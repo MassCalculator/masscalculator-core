@@ -1,55 +1,79 @@
-/**
- * @file square_bar_test.cpp
- * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains all the tests for the class Cylinder, it tests all the functions and the constructors of the class
- * @version 0.1
- * @date 2019-04-28
- * 
- * @copyright Copyright (c) 2019
- * 
- */
 #include "square_bar_test.hpp"
 
 /**
- * @brief Construct a new TEST object
+ * @brief Default Shapes test namespace
  * 
  */
-TEST_F(SquareBarTest, TypeConstructorTest)
+namespace MassCalculatorTest::ShapesTest
 {
-  EXPECT_DOUBLE_EQ( 5.0, 5.0);
-}
+  /**
+   * @brief Construct a new SquareBar object
+   * 
+   */
+  TEST_F(SquareBarTest, TypeConstructorTest)
+  {
+    EXPECT_DOUBLE_EQ(5.0, 5.0);
+  }
 
-TEST_F(SquareBarTest, GetDiagonalTest)
-{
-  EXPECT_DOUBLE_EQ( double{0.05}, square_bar_.getDiagonal());
-}
+  /**
+   * @brief Get Type for Cylinder Shape
+   * 
+   */
+  TEST_F(SquareBarTest, GetTypeTest)
+  {
+    EXPECT_EQ(MassCalculator::Shapes::Constants::Shape::SquareBar, square_bar_.getType());
+  }
 
-TEST_F(SquareBarTest, GetTypeTest)
-{
-  EXPECT_EQ( "SquareBar", square_bar_.getType());
-}
+  /**
+   * @brief Get diagonal for SquareBar Shape
+   * 
+   */
+  TEST_F(SquareBarTest, GetDiagonalTest)
+  {
+    EXPECT_NEAR(static_cast<double>(meter_t{0.141421_m}), static_cast<double>(square_bar_.getDiagonal()), static_cast<double>(meter_t{0.0001_m}));
+  }
 
-TEST_F(SquareBarTest, GetSideTest)
-{
-  EXPECT_DOUBLE_EQ( double{0.1}, square_bar_.getSide());
-}
+  /**
+   * @brief Get side for SquareBar Shape
+   * 
+   */
+  TEST_F(SquareBarTest, GetSideTest)
+  {
+    EXPECT_EQ(meter_t{0.1_m}, square_bar_.getSide());
+  }
 
-TEST_F(SquareBarTest, GetLengthTest)
-{
-  EXPECT_DOUBLE_EQ( double{1.0}, square_bar_.getLength());
-}
+  /**
+   * @brief Get length for SquareBar Shape
+   * 
+   */
+  TEST_F(SquareBarTest, GetLengthTest)
+  {
+    EXPECT_EQ(meter_t{1.0_m}, square_bar_.getLength());
+  }
 
-TEST_F(SquareBarTest, GetVolumeTest)
-{
-  // EXPECT_DOUBLE_EQ( double{0.007853}, square_bar_.getVolume());
-  EXPECT_NEAR( double{0.0314159}, square_bar_.getVolume(), 0.01);
-}
+  /**
+   * @brief Get volume for SquareBar Shape
+   * 
+   */
+  TEST_F(SquareBarTest, GetVolumeTest)
+  {
+    EXPECT_NEAR(static_cast<double>(cubic_meter_t{0.0100000_cu_m}), static_cast<double>(square_bar_.getVolume()), static_cast<double>(cubic_meter_t{0.0001_cu_m}));
+  }
 
-TEST_F(SquareBarTest, GetSurfaceAreaTest)
-{
-  EXPECT_NEAR( double{0.6911503}, square_bar_.getSurfaceArea(), 0.01);
-}
+  /**
+   * @brief Get surface area for SquareBar Shape
+   * 
+   */
+  TEST_F(SquareBarTest, GetSurfaceAreaTest)
+  {
+    EXPECT_NEAR(static_cast<double>(square_meter_t{0.420000_sq_m}), static_cast<double>(square_bar_.getSurfaceArea()), static_cast<double>(square_meter_t{0.01_sq_m}));
+  }
+}//end namespace MassCalculatorTest::ShapesTest
 
+/**
+ * @brief Main function to run these tests
+ * 
+ */
 int main(int argc, char **argv) 
 {
   ::testing::InitGoogleTest(&argc, argv);

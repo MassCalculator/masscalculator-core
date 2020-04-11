@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Bronz::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::BronzLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Bronz::LuaConfigPath);
   }
 
   bool Bronz::setType(const Bronz::Type &type)
@@ -164,26 +164,26 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Bronz::Type::B_18Al: os << Constants::B_18Al; break;
-      case Bronz::Type::B_21Al: os << Constants::B_21Al; break;
-      case Bronz::Type::B_314Commercial: os << Constants::B_314Commercial; break;
-      case Bronz::Type::B_485Naval: os << Constants::B_485Naval; break;
-      case Bronz::Type::B_510Phos: os << Constants::B_510Phos; break;
-      case Bronz::Type::B_524Phos: os << Constants::B_524Phos; break;
-      case Bronz::Type::B_532Phos: os << Constants::B_532Phos; break;
-      case Bronz::Type::B_534Phos: os << Constants::B_534Phos; break;
-      case Bronz::Type::B_544Phos: os << Constants::B_544Phos; break;
-      case Bronz::Type::B_613Al: os << Constants::B_613Al; break;
-      case Bronz::Type::B_614Al: os << Constants::B_614Al; break;
-      case Bronz::Type::B_623Al: os << Constants::B_623Al; break;
-      case Bronz::Type::B_624Al: os << Constants::B_624Al; break;
-      case Bronz::Type::B_625Al: os << Constants::B_625Al; break;
-      case Bronz::Type::B_630NiAl: os << Constants::B_630NiAl; break;
-      case Bronz::Type::B_642AlSi: os << Constants::B_642AlSi; break;
-      case Bronz::Type::B_932Bearing: os << Constants::B_932Bearing; break;
-      case Bronz::Type::B_954Al: os << Constants::B_954Al; break;
-      case Bronz::Type::B_OilLite: os << Constants::B_OilLite; break;
-      case Bronz::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Bronz::Type::B_18Al: os << Constants::Bronz::B_18Al; break;
+      case Bronz::Type::B_21Al: os << Constants::Bronz::B_21Al; break;
+      case Bronz::Type::B_314Commercial: os << Constants::Bronz::B_314Commercial; break;
+      case Bronz::Type::B_485Naval: os << Constants::Bronz::B_485Naval; break;
+      case Bronz::Type::B_510Phos: os << Constants::Bronz::B_510Phos; break;
+      case Bronz::Type::B_524Phos: os << Constants::Bronz::B_524Phos; break;
+      case Bronz::Type::B_532Phos: os << Constants::Bronz::B_532Phos; break;
+      case Bronz::Type::B_534Phos: os << Constants::Bronz::B_534Phos; break;
+      case Bronz::Type::B_544Phos: os << Constants::Bronz::B_544Phos; break;
+      case Bronz::Type::B_613Al: os << Constants::Bronz::B_613Al; break;
+      case Bronz::Type::B_614Al: os << Constants::Bronz::B_614Al; break;
+      case Bronz::Type::B_623Al: os << Constants::Bronz::B_623Al; break;
+      case Bronz::Type::B_624Al: os << Constants::Bronz::B_624Al; break;
+      case Bronz::Type::B_625Al: os << Constants::Bronz::B_625Al; break;
+      case Bronz::Type::B_630NiAl: os << Constants::Bronz::B_630NiAl; break;
+      case Bronz::Type::B_642AlSi: os << Constants::Bronz::B_642AlSi; break;
+      case Bronz::Type::B_932Bearing: os << Constants::Bronz::B_932Bearing; break;
+      case Bronz::Type::B_954Al: os << Constants::Bronz::B_954Al; break;
+      case Bronz::Type::B_OilLite: os << Constants::Bronz::B_OilLite; break;
+      case Bronz::Type::UNSPECIFIED: os << Constants::Bronz::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

@@ -17,7 +17,7 @@ namespace MassCalculator
       L = luaL_newstate();
       if (luaL_loadfile(L, filename.c_str()) || lua_pcall(L, 0, 0, 0)) 
       {
-        std::cout << "Error: failed to load (" << filename << ")" << std::endl;
+        LOG_ERROR("Error: failed to load (%s)", filename.c_str());
         L = 0;
       }
 
@@ -40,7 +40,7 @@ namespace MassCalculator
       }
       else
       {
-        std::cerr << "Lua is not initialized" << std::endl;
+        LOG_ERROR("Lua is not initialized: %s", __PRETTY_FUNCTION__);
         return false;
       }
     }
@@ -53,7 +53,7 @@ namespace MassCalculator
 
     void LuaScriptHandler::printError(const std::string& variableName, const std::string& reason) 
     {
-      std::cerr << "Error: can't get [" << variableName << "]. " << reason << std::endl;
+      LOG_ERROR("Error: can't get [%s]. %s", variableName.c_str(), reason.c_str());
     }
 
     std::vector<int> LuaScriptHandler::getIntVector(const std::string& name) 

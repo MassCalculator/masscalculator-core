@@ -117,6 +117,15 @@ namespace Interface
 
   };
 
+  /**
+   * @brief @todo Add documentation
+   * 
+   * @tparam TShapeOs 
+   * @tparam TMaterialOs 
+   * @param os 
+   * @param obj 
+   * @return std::ostream& 
+   */
   template<typename TShapeOs, typename TMaterialOs>
   std::ostream &operator << (std::ostream &os, const Object<TShapeOs, TMaterialOs> &obj)
   {

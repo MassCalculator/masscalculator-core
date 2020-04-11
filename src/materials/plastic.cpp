@@ -20,7 +20,7 @@ namespace MassCalculator::Materials
 
   bool Plastic::initLuaScript(void)
   {
-    return this->lua_state_.openScript(Constants::PlasticLuaConfigPath);
+    return this->lua_state_.openScript(Constants::Plastic::LuaConfigPath);
   }
 
   bool Plastic::setType(const Plastic::Type &type)
@@ -164,8 +164,8 @@ namespace MassCalculator::Materials
   {
     switch(type)
     {
-      case Plastic::Type::P_ABS: os << Constants::P_ABS; break;
-      case Plastic::Type::UNSPECIFIED: os << Constants::UNSPECIFIED; break;
+      case Plastic::Type::P_ABS: os << Constants::Plastic::P_ABS; break;
+      case Plastic::Type::UNSPECIFIED: os << Constants::Plastic::UNSPECIFIED; break;
       default: os << "Name cannot be found";
     }
     return os;

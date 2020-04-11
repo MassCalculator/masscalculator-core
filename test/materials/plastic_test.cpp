@@ -1,6 +1,6 @@
 #include "plastic_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Plastic object
@@ -18,7 +18,7 @@ namespace MassCalculatorTest
   TEST_F(PlasticTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Plastic::Type> 
-      type{"P_ABS", MassCalculator::Materials::Plastic::Type::P_ABS};
+      type{MassCalculator::Materials::Constants::Plastic::P_ABS, MassCalculator::Materials::Plastic::Type::P_ABS};
 
     EXPECT_EQ(type.first, material_P_ABS.getType().first);
     EXPECT_EQ(type.second, material_P_ABS.getType().second);
@@ -30,7 +30,7 @@ namespace MassCalculatorTest
    */
   TEST_F(PlasticTest, GetSpecificColorTest)
   {
-    EXPECT_EQ( std::string{"Metallic"}, material_P_ABS.getSpecificColor());
+    EXPECT_EQ( std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_P_ABS.getSpecificColor());
   }
 
   /**
@@ -95,7 +95,7 @@ namespace MassCalculatorTest
   {
     EXPECT_EQ(pascal_t{3.8}, material_P_ABS.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests

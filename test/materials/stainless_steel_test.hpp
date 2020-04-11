@@ -14,10 +14,10 @@
 #include <gtest/gtest.h>
 
 /**
- * @brief Default test namespace
+ * @brief Default Materials test namespace
  * 
  */
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief The test fixture for testing class StainlessSteel.
@@ -71,5 +71,5 @@ namespace MassCalculatorTest
                                               material_SS_15_5,
                                               material_SS_17_4;
   };
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 #endif//___STAINLESS_STEEL_TEST_H___

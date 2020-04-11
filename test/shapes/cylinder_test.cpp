@@ -1,55 +1,79 @@
-/**
- * @file cylinder_test.cpp
- * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains all the tests for the class Cylinder, it tests all the functions and the constructors of the class
- * @version 0.1
- * @date 2019-04-28
- * 
- * @copyright Copyright (c) 2019
- * 
- */
 #include "cylinder_test.hpp"
 
 /**
- * @brief Construct a new TEST object
+ * @brief Default Shapes test namespace
  * 
  */
-TEST_F(CylinderTest, TypeConstructorTest)
+namespace MassCalculatorTest::ShapesTest
 {
-  EXPECT_DOUBLE_EQ( 5.0, 5.0);
-}
+  /**
+   * @brief Construct a new Cylinder object
+   * 
+   */
+  TEST_F(CylinderTest, TypeConstructorTest)
+  {
+    EXPECT_DOUBLE_EQ(5.0, 5.0);
+  }
 
-TEST_F(CylinderTest, GetRadiusTest)
-{
-  EXPECT_DOUBLE_EQ( double{0.05}, cylinder_.getRadius());
-}
+  /**
+   * @brief Get Type for Cylinder Shape
+   * 
+   */
+  TEST_F(CylinderTest, GetTypeTest)
+  {
+    EXPECT_EQ(MassCalculator::Shapes::Constants::Shape::Cylinder, cylinder_.getType());
+  }
 
-TEST_F(CylinderTest, GetTypeTest)
-{
-  EXPECT_EQ( "Cylinder", cylinder_.getType());
-}
+  /**
+   * @brief Get radius for Cylinder Shape
+   * 
+   */
+  TEST_F(CylinderTest, GetRadiusTest)
+  {
+    EXPECT_EQ(meter_t{0.05_m}, cylinder_.getRadius());
+  }
 
-TEST_F(CylinderTest, GetDiameterTest)
-{
-  EXPECT_DOUBLE_EQ( double{0.1}, cylinder_.getDiameter());
-}
+  /**
+   * @brief Get diameter for Cylinder Shape
+   * 
+   */
+  TEST_F(CylinderTest, GetDiameterTest)
+  {
+    EXPECT_EQ(meter_t{0.1_m}, cylinder_.getDiameter());
+  }
 
-TEST_F(CylinderTest, GetLengthTest)
-{
-  EXPECT_DOUBLE_EQ( double{1.0}, cylinder_.getLength());
-}
+  /**
+   * @brief Get length for Cylinder Shape
+   * 
+   */
+  TEST_F(CylinderTest, GetLengthTest)
+  {
+    EXPECT_EQ(meter_t{1.0_m}, cylinder_.getLength());
+  }
 
-TEST_F(CylinderTest, GetVolumeTest)
-{
-  // EXPECT_DOUBLE_EQ( double{0.007853}, cylinder_.getVolume());
-  EXPECT_NEAR( double{0.007853}, cylinder_.getVolume(), 0.01);
-}
+  /**
+   * @brief Get volume for Cylinder Shape
+   * 
+   */
+  TEST_F(CylinderTest, GetVolumeTest)
+  {
+    EXPECT_NEAR(static_cast<double>(cubic_meter_t{0.007853_cu_m}), static_cast<double>(cylinder_.getVolume()), static_cast<double>(cubic_meter_t{0.01_cu_m}));
+  }
 
-TEST_F(CylinderTest, GetSurfaceAreaTest)
-{
-  EXPECT_NEAR( double{0.329867}, cylinder_.getSurfaceArea(), 0.01);
-}
+  /**
+   * @brief Get surface area for Cylinder Shape
+   * 
+   */
+  TEST_F(CylinderTest, GetSurfaceAreaTest)
+  {
+    EXPECT_NEAR(static_cast<double>(square_meter_t{0.329867_sq_m}), static_cast<double>(cylinder_.getSurfaceArea()), static_cast<double>(square_meter_t{0.01_sq_m}));
+  }
+}//end namespace MassCalculatorTest::ShapesTest
 
+/**
+ * @brief Main function to run these tests
+ * 
+ */
 int main(int argc, char **argv) 
 {
   ::testing::InitGoogleTest(&argc, argv);

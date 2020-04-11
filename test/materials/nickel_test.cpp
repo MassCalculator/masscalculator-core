@@ -1,6 +1,6 @@
 #include "nickel_test.hpp"
 
-namespace MassCalculatorTest
+namespace MassCalculatorTest::MaterialsTest
 {
   /**
    * @brief Construct a new Nickel object
@@ -18,24 +18,24 @@ namespace MassCalculatorTest
   TEST_F(NickelTest, GetSpecificTypeTest)
   {
     std::pair<std::string, MassCalculator::Materials::Nickel::Type> 
-      type{"N_201", MassCalculator::Materials::Nickel::Type::N_201};
+      type{MassCalculator::Materials::Constants::Nickel::N_201, MassCalculator::Materials::Nickel::Type::N_201};
 
     EXPECT_EQ(type.first, material_N_201.getType().first);
     EXPECT_EQ(type.second, material_N_201.getType().second);
 
-    type = {"N_210", MassCalculator::Materials::Nickel::Type::N_210};
+    type = {MassCalculator::Materials::Constants::Nickel::N_210, MassCalculator::Materials::Nickel::Type::N_210};
     EXPECT_EQ(type.first, material_N_210.getType().first);
     EXPECT_EQ(type.second, material_N_210.getType().second);
 
-    type = {"N_220", MassCalculator::Materials::Nickel::Type::N_220};
+    type = {MassCalculator::Materials::Constants::Nickel::N_220, MassCalculator::Materials::Nickel::Type::N_220};
     EXPECT_EQ(type.first, material_N_220.getType().first);
     EXPECT_EQ(type.second, material_N_220.getType().second);
 
-    type = {"N_230", MassCalculator::Materials::Nickel::Type::N_230};
+    type = {MassCalculator::Materials::Constants::Nickel::N_230, MassCalculator::Materials::Nickel::Type::N_230};
     EXPECT_EQ(type.first, material_N_230.getType().first);
     EXPECT_EQ(type.second, material_N_230.getType().second);
 
-    type = {"N_400", MassCalculator::Materials::Nickel::Type::N_400};
+    type = {MassCalculator::Materials::Constants::Nickel::N_400, MassCalculator::Materials::Nickel::Type::N_400};
     EXPECT_EQ(type.first, material_N_400.getType().first);
     EXPECT_EQ(type.second, material_N_400.getType().second);
   }
@@ -46,11 +46,11 @@ namespace MassCalculatorTest
    */
   TEST_F(NickelTest, GetSpecificColorTest)
   {
-    EXPECT_EQ(std::string{"Metallic"}, material_N_201.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_N_210.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_N_220.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_N_230.getSpecificColor());
-    EXPECT_EQ(std::string{"Metallic"}, material_N_400.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_N_201.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_N_210.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_N_220.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_N_230.getSpecificColor());
+    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_N_400.getSpecificColor());
   }
 
   /**
@@ -143,7 +143,7 @@ namespace MassCalculatorTest
     EXPECT_EQ(pascal_t{3.8}, material_N_230.getSpecificModOfElasticityTorsion());
     EXPECT_EQ(pascal_t{3.8}, material_N_400.getSpecificModOfElasticityTorsion());
   }
-}//end namespace MassCalculatorTest
+}//end namespace MassCalculatorTest::MaterialsTest
 
 /**
  * @brief Main function to run these tests
