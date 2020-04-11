@@ -4,7 +4,7 @@ namespace MassCalculator::Shapes
 {
   Cylinder::Cylinder(meter_t diameter, meter_t length) : properties_{diameter, length}
   {
-    std::clog << "I just set the size of cylinder from constructor: " << diameter * length << std::endl;
+    LOG_DEBUG("I just set the size of cylinder from constructor: %f", static_cast<double>(diameter * length));
   }
 
   bool Cylinder::setSize(meter_t diameter, meter_t length)
@@ -14,11 +14,11 @@ namespace MassCalculator::Shapes
 
     if(this->properties_.diameter_ != diameter && this->properties_.length_ != length)
     {
-      std::cerr << "Cannot set the size of cylinder\n";
+      LOG_ERROR("Could not set the size of cylinder. %s", __PRETTY_FUNCTION__);
       return false;
     }
 
-    std::clog << "I just set the size of cylinder: " << diameter * length << std::endl;
+    LOG_DEBUG("I just set the size of cylinder: %f", static_cast<double>(diameter * length));
 
     return true;
   }

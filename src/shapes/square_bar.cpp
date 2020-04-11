@@ -14,7 +14,7 @@ namespace MassCalculator::Shapes
 
     if(this->properties_.side_ != side && this->properties_.length_ != length)
     {
-      std::cerr << "Cannot set the size of square bar\n";
+      LOG_ERROR("Could not set the size of square bar. %s", __PRETTY_FUNCTION__);
       return false;
     }
 
