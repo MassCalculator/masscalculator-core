@@ -159,7 +159,7 @@ install(
 ## install headers
 install(
   DIRECTORY include/
-  DESTINATION include/MassCalculator/
+  DESTINATION include/MassCalculator/libmasscalculator
   PATTERN "CMakeLists.txt" EXCLUDE
 )
 
