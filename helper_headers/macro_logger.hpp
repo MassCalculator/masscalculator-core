@@ -1,7 +1,7 @@
 /**
  * @file macro_logger.cpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief 
+ * @brief @todo add brief
  * @version 0.1
  * @date 2020-04-09
  * 
@@ -12,8 +12,6 @@
 #define ___MACRO_LOGGER_H___
 #include <time.h>
 #include <string.h>
-
-// @todo #pragma GCC diagnostic ignored "-Wuninitialized" use this method to silent named argument macros. put back the argument names into macros
 
 static inline char *timenow();
 
@@ -40,27 +38,27 @@ static inline char *timenow();
 #define DEBUG_TAG   "DEBUG"
 
 #if LOG_LEVEL >= DEBUG_LEVEL
-#define LOG_DEBUG(message, ...)     PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(DEBUG_TAG), ## __VA_ARGS__)
+#define LOG_DEBUG(message, args...)     PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(DEBUG_TAG), ## args)
 #else
-#define LOG_DEBUG(message, ...)
+#define LOG_DEBUG(message, args...)
 #endif
 
 #if LOG_LEVEL >= INFO_LEVEL
-#define LOG_INFO(message, ...)      PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(INFO_TAG), ## __VA_ARGS__)
+#define LOG_INFO(message, args...)      PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(INFO_TAG), ## args)
 #else
-#define LOG_INFO(message, ...)
+#define LOG_INFO(message, args...)
 #endif
 
 #if LOG_LEVEL >= ERROR_LEVEL
-#define LOG_ERROR(message, ...)     PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(ERROR_TAG), ## __VA_ARGS__)
+#define LOG_ERROR(message, args...)     PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(ERROR_TAG), ## args)
 #else
-#define LOG_ERROR(message, ...)
+#define LOG_ERROR(message, args...)
 #endif
 
 #if LOG_LEVEL >= NO_LOG
-#define LOG_IF_ERROR(condition, message, ...) if (condition) PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(ERROR_TAG), ## __VA_ARGS__)
+#define LOG_IF_ERROR(condition, message, args...) if (condition) PRINTFUNCTION(LOG_FMT message NEWLINE, LOG_ARGS(ERROR_TAG), ## args)
 #else
-#define LOG_IF_ERROR(condition, message, ...)
+#define LOG_IF_ERROR(condition, message, args...)
 #endif
 
 static inline char *timenow() 

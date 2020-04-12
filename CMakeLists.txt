@@ -41,8 +41,9 @@ set(CMAKE_CXX_FLAGS
   -Wstrict-overflow=5 \
   -Wswitch-default \
   -Wundef \
+  -Wunused \
   -Werror \
-  -Wno-unused"
+  -Wno-variadic-macros"
 )
 
 include_directories(
