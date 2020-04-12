@@ -11,7 +11,7 @@ project(MassCalculator
 
 find_package(GTest REQUIRED >= 1.8)
 find_package(Lua51 REQUIRED)
-find_package(DXFLib PATHS 3rdParty/CMakeModules/)
+find_package(DXFLib PATHS cmake_modules)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -45,12 +45,6 @@ set(CMAKE_CXX_FLAGS
   -Werror \
   -Wno-variadic-macros"
 )
-
-# Enable testing
-enable_testing()
-include(CTest) #To get the info for tests from CTestConfig.cmake
-
-# add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 
 include_directories(
   include/

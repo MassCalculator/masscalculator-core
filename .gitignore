@@ -1,6 +1,7 @@
 .vscode/
 build/
-docs/
+docs/html
+docs/latex
 Testing/
 doxygen_warnings.log
 .buildconfig
