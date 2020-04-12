@@ -254,6 +254,11 @@ namespace MassCalculator
     template <> 
     inline bool LuaScriptHandler::lua_get<bool>(const std::string& variableName) 
     {
+      if(!lua_isboolean(L, -1)) 
+      {
+        printError(variableName, "Not a boolean");
+      }
+
       return static_cast<bool>(lua_toboolean(L, -1));
     }
 
