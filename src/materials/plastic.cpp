@@ -6,7 +6,7 @@ namespace MassCalculator::Materials
   {
     if(!this->initLuaScript())
     {
-      std::cerr << "Construction of the object failed\n";
+      LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
     }
   }
 
@@ -14,7 +14,7 @@ namespace MassCalculator::Materials
   {
     if(!setType(type) || !this->initLuaScript())
     {
-      std::cerr << "Construction of the object failed\n";
+      LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
     }
   }
 
@@ -27,7 +27,7 @@ namespace MassCalculator::Materials
   {
     if(!setPropertieSpecs(type))
     {
-      std::cerr << "Cannot set the Plastic type\n";
+      LOG_ERROR("Cannot set the Plastic type. %s", __PRETTY_FUNCTION__);
       return false;
     }
     
@@ -139,7 +139,7 @@ namespace MassCalculator::Materials
     }
     else
     {
-      std::cerr << "Could not set the values for type: " << type << std::endl;
+      LOG_ERROR("Could not set the values for type: %s", this->getType().first.c_str());
     }
 
     return true;

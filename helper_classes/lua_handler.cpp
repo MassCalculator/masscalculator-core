@@ -34,8 +34,7 @@ namespace MassCalculator
     {
       if(this->L)
       {
-        //@todo: check if the log shows in release
-        // std::clog << "Lua is initialized for specific material" << std::endl;
+        LOG_DEBUG("Lua is initialized for specific material. %s", __PRETTY_FUNCTION__);
         return true;
       }
       else

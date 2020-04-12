@@ -13,6 +13,8 @@
 #include <time.h>
 #include <string.h>
 
+// @todo #pragma GCC diagnostic ignored "-Wuninitialized" use this method to silent named argument macros. put back the argument names into macros
+
 static inline char *timenow();
 
 #define _FILE strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__
