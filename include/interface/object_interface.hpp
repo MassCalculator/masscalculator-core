@@ -1,6 +1,6 @@
 /**
  * @file object_interface.hpp
- * @author your name (you@domain.com)
+ * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief Interface class, that interacts with all other classes to get the result we need
  * @version 0.1
  * @date 2020-03-20
@@ -20,16 +20,10 @@ using namespace units::literals;
 using namespace units::mass;
 
 /**
- * @brief Default namespace
+ * @brief Default Interface namespace
  * 
  */
-namespace MassCalculator 
-{
-/**
- * @brief Interface namespace
- * 
- */
-namespace Interface
+namespace MassCalculator::Interface
 {
   /**
    * @brief  Class Object, that holds all the nessesary information from Material and Shape classes
@@ -135,6 +129,5 @@ namespace Interface
           "   - Weight   : " + units::mass::to_string(obj.getWeight()) + "\n";
     return os;
   }
-}//end namespace Interface
-}//end namespace MassCalculator
+}//end namespace MassCalculator::Interface
 #endif//___OBJECT_H___
