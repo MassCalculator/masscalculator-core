@@ -6,12 +6,12 @@ project(MassCalculator
 )
 
 # Set the libmasscalculator version in cmake, and also add it as a DEFINE for the code to access
-add_compile_definitions(LIBMASSCALCULATOR_NAME=${PROJECT_NAME})
-add_compile_definitions(LIBMASSCALCULATOR_MAJOR_VERSION=${PROJECT_VERSION_MAJOR})
-add_compile_definitions(LIBMASSCALCULATOR_MINOR_VERSION=${PROJECT_VERSION_MINOR})
-add_compile_definitions(LIBMASSCALCULATOR_PATCH_VERSION=${PROJECT_VERSION_PATCH})
-add_compile_definitions(LIBMASSCALCULATOR_VERSION=${PROJECT_VERSION})
-add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR})
+add_definitions(LIBMASSCALCULATOR_NAME=${PROJECT_NAME})
+add_definitions(LIBMASSCALCULATOR_MAJOR_VERSION=${PROJECT_VERSION_MAJOR})
+add_definitions(LIBMASSCALCULATOR_MINOR_VERSION=${PROJECT_VERSION_MINOR})
+add_definitions(LIBMASSCALCULATOR_PATCH_VERSION=${PROJECT_VERSION_PATCH})
+add_definitions(LIBMASSCALCULATOR_VERSION=${PROJECT_VERSION})
+add_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR})
 
 # add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 
