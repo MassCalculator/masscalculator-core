@@ -37,7 +37,6 @@ namespace MassCalculator
   {
     /**
      * @brief Class LuaScriptHandler, that holds all the nessesary functions and specialisations to get from lua files
-     * @todo Refactor the class, check the names and add documentation
      * 
      */
     class LuaScriptHandler 
@@ -56,48 +55,48 @@ namespace MassCalculator
         ~LuaScriptHandler();
         
         /**
-         * @brief @todo add documentation
+         * @brief Function that opens the Lua script
          * 
-         * @param filename 
-         * @return true 
-         * @return false 
+         * @param filename Path to the Lua script
+         * @return true if script is opened successfully
+         * @return false if script failed to open
          */
         bool openScript(const std::string &filename);
 
         /**
-         * @brief @todo add documentation
+         * @brief Function that initializes the Lua script
          * 
-         * @return true 
-         * @return false 
+         * @return true if initialization is successful
+         * @return false if initialization failed
          */
         bool isInitialized(void);
 
         /**
-         * @brief @todo add documentation
+         * @brief Function to close the Lua script
          * 
-         * @return true 
-         * @return false 
+         * @return true if the script closed successfully
+         * @return false if script failed to close
          */
         bool closeScript(void);
 
         /**
-         * @brief @todo add documentation
+         * @brief Function to print the error
          * 
-         * @param variableName 
-         * @param reason 
+         * @param variableName Lua parameter
+         * @param reason Reason of error
          */
         void printError(const std::string& variableName, const std::string& reason);
 
         /**
          * @brief Get the Int Vector object
          * 
-         * @param name 
-         * @return std::vector<int> 
+         * @param name Lua vector parameter
+         * @return std::vector<int> with the values from Lua script
          */
         std::vector<int> getIntVector(const std::string& name);
         
         /**
-         * @brief @todo add documentation
+         * @brief Clean Lua stack
          * 
          */
         inline void clean() 
@@ -107,11 +106,11 @@ namespace MassCalculator
         }
 
         /**
-         * @brief @todo add documentation
+         * @brief Generic getter for Lua parameter
          * 
-         * @tparam T 
-         * @param variableName 
-         * @return T 
+         * @tparam T Type of the Lua parameter
+         * @param variableName Name of the Lua parameter
+         * @return T Type of Lua parameter
          */
         template<typename T>
         T get(const std::string& variableName) 
@@ -137,11 +136,11 @@ namespace MassCalculator
         }
 
         /**
-         * @brief @todo add documentation
+         * @brief Function to get to the Lua script stack
          * 
-         * @param variableName 
-         * @return true 
-         * @return false 
+         * @param variableName Parameter from Lua script
+         * @return true If the parameter found successfully
+         * @return false If parameter failed to get
          */
         bool lua_gettostack(const std::string& variableName) 
         {
@@ -199,9 +198,9 @@ namespace MassCalculator
         /**
          * @brief Generic get function
          * 
-         * @tparam T 
-         * @param variableName 
-         * @return T 
+         * @tparam T Type for Lua parameter
+         * @param variableName Parameter from Lua script
+         * @return T Type for return parameter
          */
         template<typename T>
         T lua_get(const std::string& variableName)
@@ -210,10 +209,10 @@ namespace MassCalculator
         }
 
         /**
-         * @brief @todo add documentation
+         * @brief Function to get default
          * 
-         * @tparam T 
-         * @return T 
+         * @tparam T Type for Lua parameter
+         * @return T Type for return parameter
          */
         template<typename T>
         T lua_getdefault()
@@ -223,33 +222,31 @@ namespace MassCalculator
 
       private:
         /**
-         * @brief @todo add documentation
+         * @brief Variable to store the Lua state
          * 
          */
         lua_State* L;
 
         /**
-         * @brief @todo add documentation
+         * @brief Variable to store the script filename
          * 
          */
         std::string filename_;
 
         /**
-         * @brief @todo add documentation
+         * @brief Variable to store the Lua stack level
          * 
          */
         int level;
     };
 
-    //Specialisations
-
     /**
-     * @brief @todo add documentation
+     * @brief Specialisation to get Lua parameter as bool
      * 
-     * @tparam test
-     * @param variableName 
-     * @return true 
-     * @return false 
+     * @tparam bool
+     * @param variableName Parameter name in Lua script
+     * @return true if parameter get is successfully
+     * @return false if parameter failed to get
      */
     template <> 
     inline bool LuaScriptHandler::lua_get<bool>(const std::string& variableName) 
@@ -263,11 +260,11 @@ namespace MassCalculator
     }
 
     /**
-     * @brief @todo add documentation
+     * @brief Specialisation to get Lua parameter as float
      * 
-     * @tparam test
-     * @param variableName 
-     * @return float 
+     * @tparam float
+     * @param variableName Parameter name in Lua script
+     * @return float Parameter as float type
      */
     template <> 
     inline float LuaScriptHandler::lua_get<float>(const std::string& variableName) 
@@ -281,11 +278,11 @@ namespace MassCalculator
     }
 
     /**
-     * @brief @todo add documentation
+     * @brief Specialisation to get Lua parameter as double
      * 
-     * @tparam test
-     * @param variableName 
-     * @return double 
+     * @tparam double
+     * @param variableName Parameter name in Lua script
+     * @return double Parameter as double type
      */
     template <>
     inline double LuaScriptHandler::lua_get<double>(const std::string& variableName) 
@@ -299,11 +296,11 @@ namespace MassCalculator
     }
 
     /**
-     * @brief @todo add documentation
+     * @brief Specialisation to get Lua parameter as int
      * 
-     * @tparam test
-     * @param variableName 
-     * @return int 
+     * @tparam int
+     * @param variableName Parameter name in Lua script
+     * @return int Parameter as int type
      */
     template <>
     inline int LuaScriptHandler::lua_get<int>(const std::string& variableName) 
@@ -317,11 +314,11 @@ namespace MassCalculator
     }
 
     /**
-     * @brief @todo add documentation
+     * @brief Specialisation to get Lua parameter as std::string
      * 
-     * @tparam test
-     * @param variableName 
-     * @return std::string 
+     * @tparam std::string
+     * @param variableName Parameter name in Lua script
+     * @return std::string Parameter as std::string type
      */
     template <>
     inline std::string LuaScriptHandler::lua_get<std::string>(const std::string& variableName) 
@@ -340,10 +337,11 @@ namespace MassCalculator
     }
 
     /**
-     * @brief @todo add documentation
+     * @brief Specialisation to get Lua parameter as default
      * 
-     * @tparam test
-     * @return std::string 
+     * @tparam std::string
+     * @param variableName Parameter name in Lua script
+     * @return std::string Parameter as default std::string type
      */
     template<>
     inline std::string LuaScriptHandler::lua_getdefault<std::string>() 
