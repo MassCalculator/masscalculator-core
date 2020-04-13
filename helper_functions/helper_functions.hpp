@@ -14,6 +14,8 @@
 #include "lua_handler.hpp"
 using namespace MassCalculator::HelperClasses;
 
+#include <sstream>
+
 /**
  * @brief Stringify a string macro (Used to stringify the path parset from cmake)
  * 
@@ -80,13 +82,6 @@ namespace MassCalculator
     const std::string getDebugLuaRootPath(void);
 
     /**
-     * @brief Get the Lib Interface Version object
-     * 
-     * @return unsigned int 
-     */
-    unsigned int getLibInterfaceVersion(void);
-
-    /**
      * @brief @todo add documentation
      * 
      * @param lua_state 
@@ -114,6 +109,20 @@ namespace MassCalculator
      * @return T& Type as reference from template type
      */
     template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+
+    /**
+     * @brief Get the Name object
+     * 
+     * @return std::string 
+     */
+    std::string getName(void);
+
+    /**
+     * @brief Get the Version object
+     * 
+     * @return std::string with the library verison
+     */
+    std::string getVersion(void);
   }// End namespace HelperFunctions
 }// End namespace MassCalculator
 #endif

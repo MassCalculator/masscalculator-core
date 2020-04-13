@@ -28,12 +28,6 @@ before_script:
   - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
   - make && sudo make install && cd ../../
 
-  # # Install Eigen
-  # - git clone https://github.com/eigenteam/eigen-git-mirror.git
-  # - cd eigen-git-mirror
-  # - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
-  # - make && sudo make install && cd ../../
-
   # create a build folder for the out-of-source build
   - mkdir build
 
@@ -53,11 +47,24 @@ jobs:
       script: make
         && make test
 
-    - stage: Package
+    - stage: Install
       script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
         -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
         && make
         && make install
+
+    - stage: Uninstall
+      script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
+        -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+        && make
+        && make install
+        && make uninstall
+
+    - stage: PackageDEB
+      script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
+        -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+        && make
+        && make package
 
 after_script:
   - ls
