@@ -5,7 +5,10 @@ project(MassCalculator
         LANGUAGES CXX
 )
 
-# Set the libmasscalculator version in cmake, and also add it as a DEFINE for the code to access
+#################
+## Definitions ##
+#################
+
 add_definitions(-DLIBMASSCALCULATOR_NAME=${PROJECT_NAME})
 add_definitions(-DLIBMASSCALCULATOR_MAJOR_VERSION=${PROJECT_VERSION_MAJOR})
 add_definitions(-DLIBMASSCALCULATOR_MINOR_VERSION=${PROJECT_VERSION_MINOR})
@@ -15,20 +18,19 @@ add_definitions(-DROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR})
 
 # add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules/)
+
 ###########
 ## Build ##
 ###########
 
-# Dependencies
 find_package(GTest REQUIRED >= 1.8)
 find_package(Lua51 REQUIRED)
 find_package(DXFLib PATHS cmake_modules)
 
-# C++ Standard
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# Flags
 set(CMAKE_CXX_FLAGS 
   "-O2 \
   -pthread \
@@ -59,7 +61,6 @@ set(CMAKE_CXX_FLAGS
   -Wno-variadic-macros"
 )
 
-# Includes
 include_directories(
   include/
   3rdParty/include/
@@ -69,7 +70,6 @@ include_directories(
   ${DXFLib_INCLUDE_DIRS}
 )
 
-# Sources
 set( material_src
   src/materials/material.cpp
   src/materials/alloy_coppers.cpp
@@ -126,7 +126,6 @@ set( SRC
   ${helper_functions_src}
 )
 
-# set libto build itself
 add_library(
   ${PROJECT_NAME} STATIC
   ${SRC}
@@ -156,7 +155,6 @@ add_subdirectory(test)
 ## Install ##
 #############
 
-# to be discussed, we want to expose data types only!
 install(
   TARGETS ${PROJECT_NAME} EXPORT MassCalculator-config
   ARCHIVE DESTINATION lib
@@ -164,17 +162,11 @@ install(
   INCLUDES DESTINATION include
 )
 
-## install headers
 install(
   DIRECTORY include/
   DESTINATION include/MassCalculator/libmasscalculator
   PATTERN "CMakeLists.txt" EXCLUDE
 )
-
-###############
-## Packaging ##
-###############
-#
 
 install(
  EXPORT ${PROJECT_NAME}-config
@@ -182,7 +174,7 @@ install(
 )
 
 install(
-  FILES ${CMAKE_SOURCE_DIR}/docs/man/libmasscalculator.1 
+  FILES ${CMAKE_SOURCE_DIR}/docs/man/libmasscalculator.1.gz
   DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/man1 COMPONENT docs
 )
 
@@ -190,3 +182,28 @@ install(
   DIRECTORY ${CMAKE_SOURCE_DIR}/resources
   DESTINATION $ENV{HOME}/.MassCalculator
 )
+
+###############
+## Packaging ##
+###############
+
+include(CPack)
+
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mergim Halimi")
+
+###############
+## Uninstall ##
+###############
+
+if(NOT TARGET uninstall)
+  configure_file(
+      "${CMAKE_MODULE_PATH}/templates/cmake_uninstall.cmake.in"
+      "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+      IMMEDIATE @ONLY)
+
+  add_custom_target(uninstall 
+    COMMAND ${CMAKE_COMMAND} 
+    -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
+  )
+endif()

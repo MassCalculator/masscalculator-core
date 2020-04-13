@@ -1,0 +1,31 @@
+.TH "libmasscalculator" "1" "12 April 2020" "" ""
+.SH "NAME"
+libMassCalculator \- Library for calculating the weight of different materials and shapes
+
+.SH "DESCRIPTION"
+
+.PP 
+libMassCalculator is an open source library for calculating the weight of different 
+materials and shapes written in C++.
+
+.PP 
+libMassCalculator supports a huge variety of materials and shapes
+
+
+.SH "USAGE"
+.PP 
+
+    TODO
+
+Where: 
+
+    TODO
+
+.SH "AUTHOR"
+
+.PP 
+libMassCalculator is written and maintained by Mergim Halimi (m.halimi123@gmail.com)
+and contributors from the open source community.
+.PP 
+Mailing lists for support and development are available at:
+TODO
