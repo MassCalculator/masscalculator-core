@@ -6,9 +6,26 @@
 
 ## What is libmasscalculator
 
-TODO: update readme
+Lib MassCalculator is a library used t ocalculate the weight of an object while specifying the material and shape. The library will be able to import stl files, and also dxf files where the user can be able to extrude the dxf for a specific thickness.
+
+I am planning to add all the material specific properties accordingly to SI (International system), but the user will be able to change these parameters from the providen LUA config files for each material (Doing so will watermark the report for not using the SI parameters but instead, custom ones)
+
+All the datatypes are strongly typed from a third party library that I use. It is not included as a submodule because I changed some old style casting, but credit goes to the writer.
+
+```bash
+https://github.com/nholthaus/units
+```
 
 ## Additional info
+
+As additional info I am mentioning the design pattern I have used, also providing some explanation. Also I used this project as a learning process, so even if not necessary, I will provide bellow a list of the language features I wanted in this project.
+
+### List
+
+* std::function
+* std::unordered_map
+* lambda function
+* Shift operator overloads
 
 ### CRTP Design Pattern
 
@@ -50,12 +67,12 @@ Below listed packages are required and have to be installed/compiled before:
   $ sudo apt install cmake
   ```
 
-* libDXFlib
+* DXFlib
   ```bash
   $ sudo apt install libdxflib-dev
   ```
 
-* libLUAlib
+* LUAlib
   ```bash
   $ sudo apt-get install liblua5.1-0-dev
   ```
@@ -84,28 +101,6 @@ There is no current working version, the work is still in progress.
   $ sudo make install
   ```
 
-## TODO List
-
-* **(done)** Doxyfile for doxygen documentation
-* **(done)** Add headers that include all the headers
-* **(todo)** Research for inheriting in the object class the two base classes for Shape and Material
-* **(done)** Overload shift operator with the details of the object (Remaining only for ObjectInterface)
-* **(done)** Create a struct for the material properties
-* **(done)** Integrate lua for text properties in resources follder. Also do const string literals if the file is missing or cannot be read
-* **(done)** Integrate libdxflib to read the dxf files
-* **(done)** Find all physical and mechalincal properties that a material has, and finish the Aluminium class so nothing else is needed there then can cantinue to do the other classes.
-* **(done)** Finish the base class with the common functions so you don't have to deal then with the base class material
-* **(done)** Continue with the class shapes
-* **(done)** overload shift operator in enum
-
 Note: 
 * .hh files are header only to include all the headers
 * .hpp files have a .cpp file that is associated with
-
-What I also want to have in the app:
-* **(done)** lambdas
-* **(done)** constexpr
-* **(done)** std::function
-* **(todo)** Posibility to import DXF and extude while in app
-* **(todo)** Posibility to import STL and calculate the mass of the model
-* **(todo)** Add versioning, through cmake, and functions to print version
