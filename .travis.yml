@@ -54,7 +54,9 @@ jobs:
         && make install
 
     - stage: Uninstall
-      script: make
+      script: cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF
+        -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
+        && make
         && make install
         && make uninstall
 
