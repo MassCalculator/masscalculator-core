@@ -1,16 +1,14 @@
 # libmasscalculator
 
-Travis CI pipeline : 
-
-master: [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=master)](https://travis-ci.com/masscalculator/libmasscalculator)
-
-devel: [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=devel)](https://travis-ci.com/masscalculator/libmasscalculator) 
+| Master 	| Devel 	| Deployment 	|
+|--------	|-------	|------------	|
+| [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=master)](https://travis-ci.com/masscalculator/libmasscalculator) |  [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=devel)](https://travis-ci.com/masscalculator/libmasscalculator) | [![Build Status](https://travis-ci.com/masscalculator/libmasscalculator.svg?token=SL6RqWzwyVSzbz3qVX6L&branch=devel)](https://travis-ci.com/masscalculator/libmasscalculator) | 
 
 ## What is libmasscalculator
 
 TODO: update readme
 
-## Additional info (Design pattern used and GUI lib)
+## Additional info
 
 ### CRTP Design Pattern
 
@@ -52,16 +50,6 @@ Below listed packages are required and have to be installed/compiled before:
   $ sudo apt install cmake
   ```
 
-* OpenGL
-  ```bash
-  $ sudo apt install mesa-utils
-  ```
-
-* libQT5 (Need to check which modules are nessesary to install)
-  ```bash
-  $ sudo apt install qtbase5-dev
-  ```
-
 * libDXFlib
   ```bash
   $ sudo apt install libdxflib-dev
@@ -69,39 +57,13 @@ Below listed packages are required and have to be installed/compiled before:
 
 * libLUAlib
   ```bash
-  $ sudo apt-get install lua5.1-0
   $ sudo apt-get install liblua5.1-0-dev
-  ```
-
-* freeGlut - **Not used anymore, switched to QT**
-  ```bash
-  $ sudo apt install freeglut3-dev
-  ```
-
-* libGlui - **Not used anymore, switched to QT**
-  ```bash
-  $ git clone https://github.com/libglui/glui
-  $ cd ${repo}
-  $ mkdir build && cd build
-  $ cmake ..
-  $ make 
-  $ sudo make install
   ```
 
 * GoogleTest
   ```bash
   $ git clone https://github.com/google/googletest.git
-  $ cd ${repo}
-  $ mkdir build && cd build
-  $ cmake ..
-  $ make 
-  $ sudo make install
-  ```
-
-* Eigen **Currently not used**
-  ```bash
-  $ git clone https://github.com/eigenteam/eigen-git-mirror.git
-  $ cd ${repo}
+  $ cd googletest
   $ mkdir build && cd build
   $ cmake ..
   $ make 

@@ -28,12 +28,6 @@ before_script:
   - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
   - make && sudo make install && cd ../../
 
-  # # Install Eigen
-  # - git clone https://github.com/eigenteam/eigen-git-mirror.git
-  # - cd eigen-git-mirror
-  # - mkdir build && cd build && cmake .. -DCMAKE_CXX_STANDARD="17"
-  # - make && sudo make install && cd ../../
-
   # create a build folder for the out-of-source build
   - mkdir build
 

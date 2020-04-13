@@ -1,21 +1,34 @@
 cmake_minimum_required(VERSION 3.10...3.15)
 project(MassCalculator
-        VERSION 0.1
+        VERSION 0.1.0
         DESCRIPTION "MassCalculator base library"
         LANGUAGES CXX
 )
+
+# Set the libmasscalculator version in cmake, and also add it as a DEFINE for the code to access
+add_compile_definitions(LIBMASSCALCULATOR_NAME=${PROJECT_NAME})
+add_compile_definitions(LIBMASSCALCULATOR_MAJOR_VERSION=${PROJECT_VERSION_MAJOR})
+add_compile_definitions(LIBMASSCALCULATOR_MINOR_VERSION=${PROJECT_VERSION_MINOR})
+add_compile_definitions(LIBMASSCALCULATOR_PATCH_VERSION=${PROJECT_VERSION_PATCH})
+add_compile_definitions(LIBMASSCALCULATOR_VERSION=${PROJECT_VERSION})
+add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR})
+
+# add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR} DEBUG)
 
 ###########
 ## Build ##
 ###########
 
+# Dependencies
 find_package(GTest REQUIRED >= 1.8)
 find_package(Lua51 REQUIRED)
 find_package(DXFLib PATHS cmake_modules)
 
+# C++ Standard
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
+# Flags
 set(CMAKE_CXX_FLAGS 
   "-O2 \
   -pthread \
@@ -46,6 +59,7 @@ set(CMAKE_CXX_FLAGS
   -Wno-variadic-macros"
 )
 
+# Includes
 include_directories(
   include/
   3rdParty/include/
@@ -123,11 +137,6 @@ target_include_directories( ${PROJECT_NAME}
          $<INSTALL_INTERFACE:include/MassCalculator/>
 )
 
-# target_include_directories( ${PROJECT_NAME}
-#   SYSTEM
-#   PUBLIC ${EIGEN3_INCLUDE_DIR}
-# )
-
 target_link_libraries( ${PROJECT_NAME}
   ${LUA_LIBRARIES}
   ${DXFLib_LIBRARIES}
@@ -136,6 +145,10 @@ target_link_libraries( ${PROJECT_NAME}
 #############
 ## TESTING ##
 #############
+
+enable_testing()
+
+include(CTest)
 
 add_subdirectory(test)
 
@@ -168,4 +181,12 @@ install(
  DESTINATION share/cmake/${PROJECT_NAME}
 )
 
-# todo: copy resources to .MassCalculator/resources/*
+install(
+  FILES ${CMAKE_SOURCE_DIR}/docs/man/libmasscalculator.1 
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/man1 COMPONENT docs
+)
+
+install(
+  DIRECTORY ${CMAKE_SOURCE_DIR}/resources
+  DESTINATION $ENV{HOME}/.MassCalculator
+)
