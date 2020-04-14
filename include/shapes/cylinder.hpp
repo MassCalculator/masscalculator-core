@@ -126,9 +126,9 @@ namespace MassCalculator::Shapes
     square_meter_t getSurfaceArea(void) const;
 
     /**
-     * @brief Get the Surface Area object
+     * @brief Get the type as string
      * 
-     * @return std::string Surface Are of the Cylinder
+     * @return std::string Type as string
      */
     std::string getType(void) const;
 
@@ -139,7 +139,7 @@ namespace MassCalculator::Shapes
     ~Cylinder(void) = default;
 
     /**
-     * @brief Shift operator overload for class Aluminium, this will print all the nessesery informations
+     * @brief Shift operator overload for class Cylinder, this will print all the nessesery informations
      * 
      */
     friend std::ostream &operator << (std::ostream &os, const Cylinder &obj);

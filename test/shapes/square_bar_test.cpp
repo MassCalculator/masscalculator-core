@@ -16,7 +16,7 @@ namespace MassCalculatorTest::ShapesTest
   }
 
   /**
-   * @brief Get Type for Cylinder Shape
+   * @brief Get Type for SquareBar Shape
    * 
    */
   TEST_F(SquareBarTest, GetTypeTest)

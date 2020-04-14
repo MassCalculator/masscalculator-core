@@ -34,3 +34,20 @@ add_test(
   NAME SquareBarTest
   COMMAND square_bar_test
 )
+
+#SquareTubing test
+add_executable(
+  square_tubing_test
+  square_tubing_test.cpp
+)
+
+target_link_libraries(
+  square_tubing_test
+  ${GTEST_BOTH_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+add_test(
+  NAME SquareTubingTest
+  COMMAND square_tubing_test
+)
