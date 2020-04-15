@@ -4,7 +4,7 @@ namespace MassCalculator::Shapes
 {
   Cylinder::Cylinder(meter_t diameter, meter_t length) : properties_{diameter, length}
   {
-    LOG_DEBUG("I just set the size of cylinder from constructor: %f", static_cast<double>(diameter * length));
+    LOG_DEBUG("I just set the size of cylinder from constructor: Diameter: %f, Length: %f", diameter.to<double>(), length.to<double>());
   }
 
   bool Cylinder::setSize(meter_t diameter, meter_t length)
@@ -18,7 +18,7 @@ namespace MassCalculator::Shapes
       return false;
     }
 
-    LOG_DEBUG("I just set the size of cylinder: %f", static_cast<double>(diameter * length));
+    LOG_DEBUG("I just set the size of cylinder: Diameter: %f, Length: %f", diameter.to<double>(), length.to<double>());
 
     return true;
   }
