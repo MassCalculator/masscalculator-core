@@ -14,6 +14,8 @@
 #include "lua_handler.hpp"
 using namespace MassCalculator::HelperClasses;
 
+#include <sstream>
+
 /**
  * @brief Stringify a string macro (Used to stringify the path parset from cmake)
  * 
@@ -39,31 +41,31 @@ namespace MassCalculator
   namespace HelperFunctions
   {
     /**
-     * @brief @todo add documentation
+     * @brief Helper function to initialize the Lua script
      * 
-     * @param lua_state 
-     * @param config_path 
-     * @return true 
-     * @return false 
+     * @param lua_state Lua state as forwarded reference
+     * @param config_path Lua script path 
+     * @return true if init is successful
+     * @return false if init failed
      */
     bool initLuaConfig(LuaScriptHandler &&lua_state, const std::string &config_path);
 
     /**
-     * @brief @todo add documentation
+     * @brief Helper function to check from Lua script
      * 
-     * @param lua_state 
-     * @param value 
-     * @return true 
-     * @return false 
+     * @param lua_state Lua state as forwarded reference
+     * @param value Lua parameter that we want to check
+     * @return true if parameter is true
+     * @return false if parameter is false
      */
     bool checkFromLuaConfig(LuaScriptHandler &&lua_state, const std::string &value);
 
     /**
-     * @brief @todo add documentation
+     * @brief Template helper function to get the value from Lua config in the datatype we want
      * 
-     * @tparam TLuaReturnType 
-     * @param lua_state 
-     * @param value 
+     * @tparam TLuaReturnType Return type we want
+     * @param lua_state Lua state as forwarded reference
+     * @param value Lua parameter that we want to get
      * @return constexpr TLuaReturnType 
      */
     template<typename TLuaReturnType>
@@ -80,14 +82,7 @@ namespace MassCalculator
     const std::string getDebugLuaRootPath(void);
 
     /**
-     * @brief Get the Lib Interface Version object
-     * 
-     * @return unsigned int 
-     */
-    unsigned int getLibInterfaceVersion(void);
-
-    /**
-     * @brief @todo add documentation
+     * @brief Function to destroy the lua state and clean the stack
      * 
      * @param lua_state 
      */
@@ -114,6 +109,20 @@ namespace MassCalculator
      * @return T& Type as reference from template type
      */
     template<class T> const T& TTernaryOperator(bool b, const T&x, const T&y) { return b ? x : y; }
+
+    /**
+     * @brief Get the Name object
+     * 
+     * @return std::string 
+     */
+    std::string getName(void);
+
+    /**
+     * @brief Get the Version object
+     * 
+     * @return std::string with the library verison
+     */
+    std::string getVersion(void);
   }// End namespace HelperFunctions
 }// End namespace MassCalculator
 #endif

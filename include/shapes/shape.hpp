@@ -23,6 +23,12 @@ using namespace units::length;
 using namespace units::volume;
 using namespace units::area;
 
+#include "../../helper_functions/helper_functions.hpp"
+using namespace MassCalculator::HelperFunctions;
+
+#include "../../helper_classes/lua_handler.hpp"
+using namespace MassCalculator::HelperClasses;
+
 /**
  * @brief Default Shapes namespace
  * 

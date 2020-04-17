@@ -36,13 +36,23 @@ namespace MassCalculator
 
     const std::string getDebugLuaRootPath(void)
     {
-      return std::string(xstr(ROOT_PATH));
+      std::stringstream ss;
+      ss << xstr(ROOT_PATH);
+      return{std::string(ss.str())};
     }
 
-    unsigned int getLibInterfaceVersion(void)
+    std::string getName(void)
     {
-      return 0;
-      // return LIBINTERFACE_VERSION;
+      std::stringstream ss;
+      ss << "libMassCalculator";
+      return{std::string(ss.str())};
+    }
+
+    std::string getVersion(void)
+    {
+      std::stringstream ss;
+      ss << getName() << " version: " << LIBMASSCALCULATOR_MAJOR_VERSION << "." << LIBMASSCALCULATOR_MINOR_VERSION << "." << LIBMASSCALCULATOR_PATCH_VERSION;
+      return{std::string(ss.str())};
     }
   }// End namespace HelperFunctions
 }// End namespace MassCalculator

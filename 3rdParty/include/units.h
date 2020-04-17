@@ -2968,12 +2968,11 @@ namespace units
 	template<typename Units, std::uintmax_t Num, std::uintmax_t Denom = 1>
 	struct unit_value_t : units::detail::_unit_value_t<Units>
 	{
-		//TODO: Uncoment and get rid of the warnings
 		typedef Units unit_type;
-		// typedef std::ratio<Num, Denom> ratio;
+		typedef std::ratio<static_cast<long int>(Num), static_cast<long int>(Denom)> ratio;
 
-		// static_assert(traits::is_unit<Units>::value, "Template parameter `Units` must be a unit type.");
-		// static constexpr const unit_t<Units> value() { return unit_t<Units>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)); }
+		static_assert(traits::is_unit<Units>::value, "Template parameter `Units` must be a unit type.");
+		static constexpr const unit_t<Units> value() { return unit_t<Units>(static_cast<UNIT_LIB_DEFAULT_TYPE>(ratio::num / ratio::den)); }
 	};
 
 	namespace traits

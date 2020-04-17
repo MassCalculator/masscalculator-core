@@ -1,7 +1,7 @@
 /**
  * @file macro_logger.cpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief @todo add brief
+ * @brief In this header we find the logger macros we use all over the code
  * @version 0.1
  * @date 2020-04-09
  * 
