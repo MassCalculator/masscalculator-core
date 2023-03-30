@@ -11,7 +11,7 @@
  */
 #ifndef ___MATERIAL_H___
 #define ___MATERIAL_H___
-#include "../../helper_headers/macro_logger.hpp"
+#include "macro_logger.hpp"
 #include <functional>
 #include <unordered_map>
 
@@ -23,12 +23,6 @@ using namespace units::acceleration;
 using namespace units::temperature;
 using namespace units::power;
 using namespace units::pressure;
-
-#include "../../helper_functions/helper_functions.hpp"
-using namespace MassCalculator::HelperFunctions;
-
-#include "../../helper_classes/lua_handler.hpp"
-using namespace MassCalculator::HelperClasses;
 
 /**
  * @brief Default Materials namespace
