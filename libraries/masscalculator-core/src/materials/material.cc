@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2019
  * 
  */
-#include "materials/material.hpp"
+#include "materials/material.h"
 
 /*
 #include "materials/aluminium.hpp"
