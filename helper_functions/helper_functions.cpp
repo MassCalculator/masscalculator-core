@@ -4,11 +4,6 @@ namespace MassCalculator
 {
   namespace HelperFunctions
   {
-    bool initLuaConfig(LuaScriptHandler &&lua_state, const std::string &config_path)
-    {
-      lua_state.openScript(config_path);
-      return true;
-    }
 
     bool checkFromLuaConfig(LuaScriptHandler &&lua_state, const std::string &value)
     {
@@ -56,3 +51,11 @@ namespace MassCalculator
     }
   }// End namespace HelperFunctions
 }// End namespace MassCalculator
+
+
+todo: incorporate this into luahandler
+find a way to globalise functios for getVersion and getName, find a better way.
+finalise the cmakes and make a commit
+add comments in toplevel cmake
+add a todo to cmakelists to add the install target
+add tests initial structure, and 

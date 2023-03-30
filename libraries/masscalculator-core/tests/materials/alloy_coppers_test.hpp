@@ -10,7 +10,7 @@
  */
 #ifndef ___ALLOY_COPPERS_TEST_H___
 #define ___ALLOY_COPPERS_TEST_H___
-#include "materials/alloy_coppers.hpp"
+#include "materials/alloy_coppers.h"
 #include <gtest/gtest.h>
 
 /**

@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-#include "../helper_headers/macro_logger.hpp"
+#include "macro_logger.hpp"
 
 // Lua is written in C, so compiler needs to know how to link its libraries
 extern "C" 
@@ -27,14 +27,9 @@ extern "C"
  * @brief Default namespace
  * 
  */
-namespace MassCalculator
+namespace masscalculator
 {
-  /**
-   * @brief HelperClasses namespace
-   * 
-   */
-  namespace HelperClasses
-  {
+
     /**
      * @brief Class LuaScriptHandler, that holds all the nessesary functions and specialisations to get from lua files
      * 
@@ -349,6 +344,5 @@ namespace MassCalculator
       return "null";
     }
 
-  }// End namespace HelperClasses
-}// End namespace MassCalculator
+}// End namespace masscalculator
 #endif//___HELPER_CLASSES_H___

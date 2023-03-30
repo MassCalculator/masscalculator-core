@@ -1,9 +1,8 @@
-#include "lua_handler.hpp"
+#include "lua_handler.h"
 
-namespace MassCalculator
+namespace masscalculator
 {
-  namespace HelperClasses
-  {
+
     LuaScriptHandler::~LuaScriptHandler() 
     {
       if(L)
@@ -74,5 +73,4 @@ namespace MassCalculator
       clean();
       return v;
     }
-  }// End namespace HelperClasses
 }// End namespace MassCalculator

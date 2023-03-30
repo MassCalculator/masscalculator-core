@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
-
 project(masscalculator-core
         VERSION 0.1.0
         DESCRIPTION "masscalculator-core library"
@@ -26,6 +23,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules/)
 ## Build ##
 ###########
 
-add_subdirectory(third_party)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
+add_subdirectory(third_party)
 add_subdirectory(libraries)

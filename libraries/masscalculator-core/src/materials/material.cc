@@ -15,7 +15,7 @@
 #include "materials/aluminium.hpp"
 */
 
-namespace MassCalculator::Materials {
+namespace masscalculator::materials {
 
 /*
 //Code example how it can be done in cpp
@@ -30,4 +30,4 @@ template const std::string Material<Steel>::getSpecificColor();
 
 */
 
-}  // end namespace MassCalculator::Materials
+}  // namespace masscalculator::materials
