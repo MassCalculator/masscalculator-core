@@ -1,7 +1,6 @@
-#ifndef LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
-#define LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
 
-#include <cstdlib>
 namespace masscalculator::materials::constants::alloycopper {
 
 /** @brief String constant for AC_145Tellvirum type */
@@ -59,7 +58,7 @@ constexpr auto AC_ProthermBeCu{"AC_ProthermBeCu"};
 constexpr auto UNSPECIFIED{"UNSPECIFIED"};
 
 }  // namespace masscalculator::materials::constants::alloycopper
-#endif  // LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
+#endif  // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
 
 // /**
 //  * @brief @todo It will come a time that we will cross_compile, add a Windows

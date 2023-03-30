@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2020
  *
  */
-#ifndef LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
-#define LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
 #include <lua_handler.h>  // for LuaScriptHandler
 
 #include "constants/alloy_coppers.h"  // for alloycopper::k*
@@ -638,4 +638,4 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   LuaScriptHandler lua_state_;
 };
 }  // namespace masscalculator::materials
-#endif  // LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
+#endif  // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_

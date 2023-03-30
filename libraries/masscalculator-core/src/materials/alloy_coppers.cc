@@ -64,7 +64,7 @@ units::pressure::pascal_t AlloyCoppers::GetSpecificModOfElasticityTension()
   return {this->specific_properties_.mod_of_elasticity_tension};
 }
 
-bool AlloyCoppers::_setPropertieSpecs(const Properties& properties) {
+bool AlloyCoppers::_setPropertieSpecs(const Properties& /*properties*/) {
   // this->specific_properties_.type_ = {
   //     TTernaryOperator(
   //         checkFromLuaConfig(std::move(this->lua_state_),
@@ -163,7 +163,7 @@ bool AlloyCoppers::SetPropertieSpecs(const AlloyCoppers::Type& type) {
   return true;
 }
 
-std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj) {
+std::ostream& operator<<(std::ostream& os, const AlloyCoppers& /*obj*/) {
   // os << "  AlloyCoppers object properties: "
   //       "\n"
   //       "   - Type    : " +

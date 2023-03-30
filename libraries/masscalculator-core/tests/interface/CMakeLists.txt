@@ -1,4 +1,3 @@
-# Found this on https://cmake.org/cmake/help/v3.0/module/FindGTest.html
 # Tests for ObjectInterface
 add_executable(
   object_interface_test

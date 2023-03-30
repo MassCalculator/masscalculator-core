@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 
 project(lua-handler)
 
-find_package(GTest 1.8 REQUIRED)
-find_package(Lua51 REQUIRED)
-
 add_library(${PROJECT_NAME} SHARED 
   src/lua_handler.cc
 )

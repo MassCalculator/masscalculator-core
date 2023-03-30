@@ -1,6 +1,10 @@
-#include "alloy_coppers_test.hpp"
+#include "alloy_coppers_test.hpp" // for AlloyCoppersTest
 
-namespace MassCalculatorTest::MaterialsTest {
+#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "materials/constants/material.h"      // for color::k*
+#include "units.h"                             // for units::*
+
+namespace masscalculator_test::materials_test {
 /**
  * @brief Construct a new AlloyCoppers object
  *
@@ -12,93 +16,87 @@ TEST_F(AlloyCoppersTest, TypeConstructorTest) { EXPECT_DOUBLE_EQ(5.0, 5.0); }
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
-  std::pair<std::string, MassCalculator::Materials::AlloyCoppers::Type> type{
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_145Tellvirum,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_145Tellvirum};
+  std::pair<std::string, masscalculator::materials::AlloyCoppers::Type> type{
+      masscalculator::materials::constants::alloycopper::k145Telluirum,
+      masscalculator::materials::AlloyCoppers::Type::AC_145Tellvirum};
 
-  EXPECT_EQ(type.first, material_AC_145Tellvirum.getType().first);
-  EXPECT_EQ(type.second, material_AC_145Tellvirum.getType().second);
+  EXPECT_EQ(type.first, ac_145_tellvirum.GetType().first);
+  EXPECT_EQ(type.second, ac_145_tellvirum.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_194Iron,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_194Iron};
-  EXPECT_EQ(type.first, material_AC_194Iron.getType().first);
-  EXPECT_EQ(type.second, material_AC_194Iron.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_194Iron,
+          masscalculator::materials::AlloyCoppers::Type::AC_194Iron};
+  EXPECT_EQ(type.first, ac_194_iron.GetType().first);
+  EXPECT_EQ(type.second, ac_194_iron.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_195Iron,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_195Iron};
-  EXPECT_EQ(type.first, material_AC_195Iron.getType().first);
-  EXPECT_EQ(type.second, material_AC_195Iron.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_195Iron,
+          masscalculator::materials::AlloyCoppers::Type::AC_195Iron};
+  EXPECT_EQ(type.first, ac_195_iron.GetType().first);
+  EXPECT_EQ(type.second, ac_195_iron.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_182Class2,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_182Class2};
-  EXPECT_EQ(type.first, material_AC_182Class2.getType().first);
-  EXPECT_EQ(type.second, material_AC_182Class2.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_182Class2,
+          masscalculator::materials::AlloyCoppers::Type::AC_182Class2};
+  EXPECT_EQ(type.first, ac_182_class2.GetType().first);
+  EXPECT_EQ(type.second, ac_182_class2.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_655Silicon,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_655Silicon};
-  EXPECT_EQ(type.first, material_AC_655Silicon.getType().first);
-  EXPECT_EQ(type.second, material_AC_655Silicon.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_655Silicon,
+          masscalculator::materials::AlloyCoppers::Type::AC_655Silicon};
+  EXPECT_EQ(type.first, ac_655_silicon.GetType().first);
+  EXPECT_EQ(type.second, ac_655_silicon.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_706Nickel,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_706Nickel};
-  EXPECT_EQ(type.first, material_AC_706Nickel.getType().first);
-  EXPECT_EQ(type.second, material_AC_706Nickel.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_706Nickel,
+          masscalculator::materials::AlloyCoppers::Type::AC_706Nickel};
+  EXPECT_EQ(type.first, ac_706_nickel.GetType().first);
+  EXPECT_EQ(type.second, ac_706_nickel.GetType().second);
 
-  type = {
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_715NickelSilver,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_715NickelSilver};
-  EXPECT_EQ(type.first, material_AC_715NickelSilver.getType().first);
-  EXPECT_EQ(type.second, material_AC_715NickelSilver.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_715NickelSilver,
+          masscalculator::materials::AlloyCoppers::Type::AC_715NickelSilver};
+  EXPECT_EQ(type.first, ac_715_nickel_silver.GetType().first);
+  EXPECT_EQ(type.second, ac_715_nickel_silver.GetType().second);
 
-  type = {
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_725NickelSilver,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_725NickelSilver};
-  EXPECT_EQ(type.first, material_AC_725NickelSilver.getType().first);
-  EXPECT_EQ(type.second, material_AC_725NickelSilver.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_725NickelSilver,
+          masscalculator::materials::AlloyCoppers::Type::AC_725NickelSilver};
+  EXPECT_EQ(type.first, ac_725_nickel_silver.GetType().first);
+  EXPECT_EQ(type.second, ac_725_nickel_silver.GetType().second);
 
-  type = {
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_735NickelSilver,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_735NickelSilver};
-  EXPECT_EQ(type.first, material_AC_735NickelSilver.getType().first);
-  EXPECT_EQ(type.second, material_AC_735NickelSilver.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_735NickelSilver,
+          masscalculator::materials::AlloyCoppers::Type::AC_735NickelSilver};
+  EXPECT_EQ(type.first, ac_735_nickel_silver.GetType().first);
+  EXPECT_EQ(type.second, ac_735_nickel_silver.GetType().second);
 
-  type = {
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_752NickelSilver,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_752NickelSilver};
-  EXPECT_EQ(type.first, material_AC_752NickelSilver.getType().first);
-  EXPECT_EQ(type.second, material_AC_752NickelSilver.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_752NickelSilver,
+          masscalculator::materials::AlloyCoppers::Type::AC_752NickelSilver};
+  EXPECT_EQ(type.first, ac_752_nickel_silver.GetType().first);
+  EXPECT_EQ(type.second, ac_752_nickel_silver.GetType().second);
 
-  type = {
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_762NickelSilver,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_762NickelSilver};
-  EXPECT_EQ(type.first, material_AC_762NickelSilver.getType().first);
-  EXPECT_EQ(type.second, material_AC_762NickelSilver.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_762NickelSilver,
+          masscalculator::materials::AlloyCoppers::Type::AC_762NickelSilver};
+  EXPECT_EQ(type.first, ac_762_nickel_silver.GetType().first);
+  EXPECT_EQ(type.second, ac_762_nickel_silver.GetType().second);
 
-  type = {
-      MassCalculator::Materials::Constants::AlloyCoppers::AC_770NickelSilver,
-      MassCalculator::Materials::AlloyCoppers::Type::AC_770NickelSilver};
-  EXPECT_EQ(type.first, material_AC_770NickelSilver.getType().first);
-  EXPECT_EQ(type.second, material_AC_770NickelSilver.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_770NickelSilver,
+          masscalculator::materials::AlloyCoppers::Type::AC_770NickelSilver};
+  EXPECT_EQ(type.first, ac_770_nickel_silver.GetType().first);
+  EXPECT_EQ(type.second, ac_770_nickel_silver.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_1751Class3,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_1751Class3};
-  EXPECT_EQ(type.first, material_AC_1751Class3.getType().first);
-  EXPECT_EQ(type.second, material_AC_1751Class3.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_1751Class3,
+          masscalculator::materials::AlloyCoppers::Type::AC_1751Class3};
+  EXPECT_EQ(type.first, ac_1751_class3.GetType().first);
+  EXPECT_EQ(type.second, ac_1751_class3.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_1758Nickel,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_1758Nickel};
-  EXPECT_EQ(type.first, material_AC_1758Nickel.getType().first);
-  EXPECT_EQ(type.second, material_AC_1758Nickel.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_1758Nickel,
+          masscalculator::materials::AlloyCoppers::Type::AC_1758Nickel};
+  EXPECT_EQ(type.first, ac_1758_nickel.GetType().first);
+  EXPECT_EQ(type.second, ac_1758_nickel.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_MoldmaxBeCu,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_MoldmaxBeCu};
-  EXPECT_EQ(type.first, material_AC_MoldmaxBeCu.getType().first);
-  EXPECT_EQ(type.second, material_AC_MoldmaxBeCu.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_MoldmaxBeCu,
+          masscalculator::materials::AlloyCoppers::Type::AC_MoldmaxBeCu};
+  EXPECT_EQ(type.first, ac_moldmax_be_cu.GetType().first);
+  EXPECT_EQ(type.second, ac_moldmax_be_cu.GetType().second);
 
-  type = {MassCalculator::Materials::Constants::AlloyCoppers::AC_ProthermBeCu,
-          MassCalculator::Materials::AlloyCoppers::Type::AC_ProthermBeCu};
-  EXPECT_EQ(type.first, material_AC_ProthermBeCu.getType().first);
-  EXPECT_EQ(type.second, material_AC_ProthermBeCu.getType().second);
+  type = {masscalculator::materials::constants::alloycopper::AC_ProthermBeCu,
+          masscalculator::materials::AlloyCoppers::Type::AC_ProthermBeCu};
+  EXPECT_EQ(type.first, ac_protherm_be_cu.GetType().first);
+  EXPECT_EQ(type.second, ac_protherm_be_cu.GetType().second);
 }
 
 /**
@@ -106,38 +104,38 @@ TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificColorTest) {
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_145Tellvirum.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_194Iron.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_195Iron.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_182Class2.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_655Silicon.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_706Nickel.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_715NickelSilver.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_725NickelSilver.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_735NickelSilver.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_752NickelSilver.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_762NickelSilver.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_770NickelSilver.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_1751Class3.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_1758Nickel.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_MoldmaxBeCu.getSpecificColor());
-  EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic},
-            material_AC_ProthermBeCu.getSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_145_tellvirum.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_194_iron.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_195_iron.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_182_class2.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_655_silicon.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_706_nickel.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_715_nickel_silver.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_725_nickel_silver.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_735_nickel_silver.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_752_nickel_silver.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_762_nickel_silver.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_770_nickel_silver.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_1751_class3.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_1758_nickel.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_moldmax_be_cu.GetSpecificColor());
+  EXPECT_EQ(std::string{masscalculator::materials::constants::color::kMetallic},
+            ac_protherm_be_cu.GetSpecificColor());
 }
 
 /**
@@ -145,38 +143,38 @@ TEST_F(AlloyCoppersTest, GetSpecificColorTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificDensityTest) {
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_145Tellvirum.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_194Iron.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_195Iron.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_182Class2.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_655Silicon.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_706Nickel.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_715NickelSilver.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_725NickelSilver.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_735NickelSilver.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_752NickelSilver.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_762NickelSilver.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_770NickelSilver.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_1751Class3.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_1758Nickel.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_MoldmaxBeCu.getSpecificDensity());
-  EXPECT_EQ(kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
-            material_AC_ProthermBeCu.getSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_145_tellvirum.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_194_iron.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_195_iron.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_182_class2.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_655_silicon.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_706_nickel.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_715_nickel_silver.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_725_nickel_silver.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_735_nickel_silver.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_752_nickel_silver.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_762_nickel_silver.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_770_nickel_silver.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_1751_class3.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_1758_nickel.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_moldmax_be_cu.GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{2.71_kg_per_cu_m},
+            ac_protherm_be_cu.GetSpecificDensity());
 }
 
 /**
@@ -184,38 +182,38 @@ TEST_F(AlloyCoppersTest, GetSpecificDensityTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificGravityTest) {
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_145Tellvirum.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_194Iron.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_195Iron.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_182Class2.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_655Silicon.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_706Nickel.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_715NickelSilver.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_725NickelSilver.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_735NickelSilver.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_752NickelSilver.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_762NickelSilver.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_770NickelSilver.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_1751Class3.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_1758Nickel.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_MoldmaxBeCu.getSpecificGravity());
-  EXPECT_EQ(meters_per_second_squared_t{2.83_mps_sq},
-            material_AC_ProthermBeCu.getSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_145_tellvirum.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_194_iron.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_195_iron.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_182_class2.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_655_silicon.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_706_nickel.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_715_nickel_silver.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_725_nickel_silver.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_735_nickel_silver.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_752_nickel_silver.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_762_nickel_silver.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_770_nickel_silver.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_1751_class3.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_1758_nickel.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_moldmax_be_cu.GetSpecificGravity());
+  EXPECT_EQ(units::acceleration::meters_per_second_squared_t{2.83_mps_sq},
+            ac_protherm_be_cu.GetSpecificGravity());
 }
 
 /**
@@ -223,36 +221,38 @@ TEST_F(AlloyCoppersTest, GetSpecificGravityTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificMeltingPointTest) {
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_145Tellvirum.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K}, material_AC_194Iron.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K}, material_AC_195Iron.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_182Class2.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_655Silicon.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_706Nickel.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_715NickelSilver.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_725NickelSilver.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_735NickelSilver.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_752NickelSilver.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_762NickelSilver.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_770NickelSilver.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_1751Class3.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_1758Nickel.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_MoldmaxBeCu.getSpecificMeltingPoint());
-  EXPECT_EQ(kelvin_t{537.778_K},
-            material_AC_ProthermBeCu.getSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_145_tellvirum.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_194_iron.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_195_iron.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_182_class2.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_655_silicon.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_706_nickel.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_715_nickel_silver.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_725_nickel_silver.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_735_nickel_silver.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_752_nickel_silver.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_762_nickel_silver.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_770_nickel_silver.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_1751_class3.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_1758_nickel.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_moldmax_be_cu.GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{537.778_K},
+            ac_protherm_be_cu.GetSpecificMeltingPoint());
 }
 
 /**
@@ -260,28 +260,22 @@ TEST_F(AlloyCoppersTest, GetSpecificMeltingPointTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificPoissonsRatioTest) {
-  EXPECT_EQ(double{0.33}, material_AC_145Tellvirum.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_194Iron.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_195Iron.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_182Class2.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_655Silicon.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_706Nickel.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33},
-            material_AC_715NickelSilver.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33},
-            material_AC_725NickelSilver.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33},
-            material_AC_735NickelSilver.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33},
-            material_AC_752NickelSilver.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33},
-            material_AC_762NickelSilver.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33},
-            material_AC_770NickelSilver.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_1751Class3.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_1758Nickel.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_MoldmaxBeCu.getSpecificPoissonsRatio());
-  EXPECT_EQ(double{0.33}, material_AC_ProthermBeCu.getSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_145_tellvirum.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_194_iron.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_195_iron.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_182_class2.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_655_silicon.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_706_nickel.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_715_nickel_silver.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_725_nickel_silver.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_735_nickel_silver.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_752_nickel_silver.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_762_nickel_silver.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_770_nickel_silver.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_1751_class3.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_1758_nickel.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_moldmax_be_cu.GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.33}, ac_protherm_be_cu.GetSpecificPoissonsRatio());
 }
 
 /**
@@ -289,38 +283,38 @@ TEST_F(AlloyCoppersTest, GetSpecificPoissonsRatioTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificThermalConductivityTest) {
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_145Tellvirum.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_194Iron.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_195Iron.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_182Class2.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_655Silicon.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_706Nickel.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_715NickelSilver.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_725NickelSilver.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_735NickelSilver.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_752NickelSilver.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_762NickelSilver.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_770NickelSilver.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_1751Class3.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_1758Nickel.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_MoldmaxBeCu.getSpecificThermalConductivity());
-  EXPECT_EQ(watt_t{990.0_W},
-            material_AC_ProthermBeCu.getSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_145_tellvirum.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_194_iron.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_195_iron.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_182_class2.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_655_silicon.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_706_nickel.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_715_nickel_silver.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_725_nickel_silver.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_735_nickel_silver.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_752_nickel_silver.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_762_nickel_silver.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_770_nickel_silver.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_1751_class3.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_1758_nickel.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_moldmax_be_cu.GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{990.0_W},
+            ac_protherm_be_cu.GetSpecificThermalConductivity());
 }
 
 /**
@@ -328,85 +322,46 @@ TEST_F(AlloyCoppersTest, GetSpecificThermalConductivityTest) {
  *
  */
 TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest) {
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_145Tellvirum.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_194Iron.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_195Iron.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_182Class2.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_655Silicon.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_706Nickel.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_715NickelSilver.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_725NickelSilver.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_735NickelSilver.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_752NickelSilver.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_762NickelSilver.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_770NickelSilver.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_1751Class3.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_1758Nickel.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_MoldmaxBeCu.getSpecificModOfElasticityTension());
-  EXPECT_EQ(pascal_t{9.9_Pa},
-            material_AC_ProthermBeCu.getSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_145_tellvirum.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_194_iron.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_195_iron.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_182_class2.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_655_silicon.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_706_nickel.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_715_nickel_silver.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_725_nickel_silver.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_735_nickel_silver.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_752_nickel_silver.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_762_nickel_silver.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_770_nickel_silver.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_1751_class3.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_1758_nickel.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_moldmax_be_cu.GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{9.9_Pa},
+            ac_protherm_be_cu.GetSpecificModOfElasticityTension());
 }
-
-/**
- * @brief Get Specific Modulus of Elasticity Torsion for specific material
- *
- */
-TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTorsionTest) {
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_145Tellvirum.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_194Iron.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_195Iron.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_182Class2.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_655Silicon.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_706Nickel.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_715NickelSilver.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_725NickelSilver.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_735NickelSilver.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_752NickelSilver.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_762NickelSilver.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_770NickelSilver.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_1751Class3.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_1758Nickel.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_MoldmaxBeCu.getSpecificModOfElasticityTorsion());
-  EXPECT_EQ(pascal_t{3.8_Pa},
-            material_AC_ProthermBeCu.getSpecificModOfElasticityTorsion());
-}
-}  // end namespace MassCalculatorTest::MaterialsTest
+} // namespace masscalculator_test::materials_test
 
 /**
  * @brief Main function to run these tests
  *
  */
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

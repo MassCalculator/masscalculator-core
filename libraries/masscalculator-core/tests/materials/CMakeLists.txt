@@ -1,4 +1,3 @@
-# Found this on https://cmake.org/cmake/help/v3.0/module/FindGTest.html
 # Tests for Materials
 
 #AlloyCoppers test
@@ -14,6 +13,12 @@ target_link_libraries(alloy_coppers_test
     lua-handler
     MassCalculator::base
     third_party::units
+    pthread
+)
+
+gtest_add_tests(TARGET      alloy_coppers_test
+                TEST_SUFFIX .noArgs
+                TEST_LIST   noArgsTests
 )
 
 add_test(
@@ -224,3 +229,6 @@ add_test(
 #   NAME ZincTest
 #   COMMAND zinc_test
 # )
+
+set_tests_properties(${noArgsTests}   PROPERTIES TIMEOUT 10)
+set_tests_properties(${withArgsTests} PROPERTIES TIMEOUT 20)

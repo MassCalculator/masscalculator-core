@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-set(GOOGLETEST_REQUIRED_VERSION 1.10.0)
+set(GOOGLETEST_REQUIRED_VERSION 1.8.0)
 
 # Check that GoogleTest is installed in the system.
 # This call cannot fail.

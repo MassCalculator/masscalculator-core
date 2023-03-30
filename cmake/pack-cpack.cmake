@@ -19,6 +19,7 @@
 #   CPACK_PACKAGE_VERSION_MINOR         - Package project version (minor)
 #   CPACK_PACKAGE_VERSION_PATCH         - Package project version (patch)
 
+# Packaging
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mergim Halimi")
 set(CPACK_BINARY_BUNDLE "")
@@ -69,3 +70,6 @@ set(CPACK_SOURCE_TZ "")
 set(CPACK_SOURCE_ZIP "")
 set(CPACK_SYSTEM_NAME "Linux")
 set(CPACK_TOPLEVEL_TAG "Linux")
+
+# Do this at last
+include(CPack)
