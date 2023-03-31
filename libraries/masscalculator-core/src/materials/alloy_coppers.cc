@@ -1,8 +1,9 @@
 #include "materials/alloy_coppers.h" // for AlloyCoppers
 
-#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
-#include "materials/constants/material.h"      // for properties::k*
-#include "units.h"                             // for units::*
+#include "masscalculator/base/macro_logger.hpp" // for LOG_*
+#include "materials/constants/alloy_coppers.h"  // for alloycopper::k*
+#include "materials/constants/material.h"       // for properties::k*
+#include "units.h"                              // for units::*
 
 namespace masscalculator::materials {
 AlloyCoppers::AlloyCoppers() {

@@ -3,7 +3,7 @@
 
 #include <string> // for std::string
 
-namespace masscalculator::core {
+namespace masscalculator::base {
 
 constexpr auto kSoftwareName = "@MASSCALCULATOR_CORE_NAME@";
 constexpr auto kSoftwareVersion = "@MASSCALCULATOR_CORE_VERSION@";
@@ -16,6 +16,6 @@ inline auto GetVersion() {
                      ", Version: " + std::string(kSoftwareVersion)};
 }
 
-} // namespace masscalculator::core
+} // namespace masscalculator::base
 
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_

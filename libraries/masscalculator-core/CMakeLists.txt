@@ -2,10 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 
 project(masscalculator-core)
 
-# Generate header for Software Version
-configure_file(config/software_version.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/include/software_version.h)
-
 add_library(${PROJECT_NAME} SHARED 
   src/materials/alloy_coppers.cc
   src/materials/material.cc
