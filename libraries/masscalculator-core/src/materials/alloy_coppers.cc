@@ -11,7 +11,7 @@ AlloyCoppers::AlloyCoppers() {
   }
 }
 
-AlloyCoppers::AlloyCoppers(const AlloyCoppers::Type &type) {
+AlloyCoppers::AlloyCoppers(const AlloyCoppers::Type& type) {
   if (!SetType(type) || !InitLuaScript()) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
   }
@@ -22,7 +22,7 @@ bool AlloyCoppers::InitLuaScript() {
   return lua_state_.openScript(constants::alloycopper::kLuaConfigPath);
 }
 
-bool AlloyCoppers::SetType(const AlloyCoppers::Type &type) {
+bool AlloyCoppers::SetType(const AlloyCoppers::Type& type) {
   if (!SetPropertieSpecs(type)) {
     LOG_ERROR("Cannot set the AlloyCoppers type. %s", __PRETTY_FUNCTION__);
     return false;
@@ -39,8 +39,8 @@ std::string AlloyCoppers::GetSpecificColor() const {
   return {specific_properties_.color};
 }
 
-units::density::kilograms_per_cubic_meter_t
-AlloyCoppers::GetSpecificDensity() const {
+units::density::kilograms_per_cubic_meter_t AlloyCoppers::GetSpecificDensity()
+    const {
   return {specific_properties_.density};
 }
 
@@ -61,8 +61,8 @@ units::power::watt_t AlloyCoppers::GetSpecificThermalConductivity() const {
   return {specific_properties_.thermal_conductivity};
 }
 
-units::pressure::pascal_t
-AlloyCoppers::GetSpecificModOfElasticityTension() const {
+units::pressure::pascal_t AlloyCoppers::GetSpecificModOfElasticityTension()
+    const {
   return {specific_properties_.mod_of_elasticity_tension};
 }
 
@@ -76,8 +76,8 @@ AlloyCoppers::GetSpecificModOfElasticityTension() const {
  * @return true if parameter is true
  * @return false if parameter is false
  */
-bool CheckFromLuaConfig(LuaScriptHandler &&lua_state,
-                        const std::string &value) {
+bool CheckFromLuaConfig(LuaScriptHandler&& lua_state,
+                        const std::string& value) {
   if (lua_state.isInitialized()) {
     if (lua_state.get<bool>(value.c_str())) {
       return true;
@@ -101,13 +101,13 @@ bool CheckFromLuaConfig(LuaScriptHandler &&lua_state,
  * @return constexpr TLuaReturnType
  */
 template <typename TLuaReturnType>
-constexpr TLuaReturnType GetFromLuaConfig(LuaScriptHandler &&lua_state,
-                                          const std::string &value) {
+constexpr TLuaReturnType GetFromLuaConfig(LuaScriptHandler&& lua_state,
+                                          const std::string& value) {
   return lua_state.get<TLuaReturnType>(value);
 }
 
-bool AlloyCoppers::SetPropertieSpecs(const Properties &properties) {
-  auto fetch_from_lua_or_default = [&](const std::string &property_name,
+bool AlloyCoppers::SetPropertieSpecs(const Properties& properties) {
+  auto fetch_from_lua_or_default = [&](const std::string& property_name,
                                        auto default_value) {
     using ValueType = decltype(default_value);
     if (CheckFromLuaConfig(std::move(lua_state_),
@@ -156,7 +156,7 @@ bool AlloyCoppers::SetPropertieSpecs(const Properties &properties) {
   return true;
 }
 
-bool AlloyCoppers::SetPropertieSpecs(const AlloyCoppers::Type &type) {
+bool AlloyCoppers::SetPropertieSpecs(const AlloyCoppers::Type& type) {
   auto pair = type2func_.find(type);
 
   if (pair != type2func_.end()) {
@@ -168,7 +168,7 @@ bool AlloyCoppers::SetPropertieSpecs(const AlloyCoppers::Type &type) {
   return true;
 }
 
-std::ostream &operator<<(std::ostream &os, const AlloyCoppers &obj) {
+std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj) {
   os << "  AlloyCoppers object properties: "
         "\n"
         "   - Type    : " +
@@ -199,64 +199,64 @@ std::ostream &operator<<(std::ostream &os, const AlloyCoppers &obj) {
   return os;
 }
 
-std::ostream &operator<<(std::ostream &os, const AlloyCoppers::Type &type) {
+std::ostream& operator<<(std::ostream& os, const AlloyCoppers::Type& type) {
   switch (type) {
-  case AlloyCoppers::Type::k145Telluirum:
-    os << constants::alloycopper::k145Telluirum;
-    break;
-  case AlloyCoppers::Type::k194Iron:
-    os << constants::alloycopper::k194Iron;
-    break;
-  case AlloyCoppers::Type::k195Iron:
-    os << constants::alloycopper::k195Iron;
-    break;
-  case AlloyCoppers::Type::k172Beryllium:
-    os << constants::alloycopper::k172Beryllium;
-    break;
-  case AlloyCoppers::Type::k182Class2:
-    os << constants::alloycopper::k182Class2;
-    break;
-  case AlloyCoppers::Type::k655Silicon:
-    os << constants::alloycopper::k655Silicon;
-    break;
-  case AlloyCoppers::Type::k706Nickel:
-    os << constants::alloycopper::k706Nickel;
-    break;
-  case AlloyCoppers::Type::k715NickelSilver:
-    os << constants::alloycopper::k715NickelSilver;
-    break;
-  case AlloyCoppers::Type::k725NickelSilver:
-    os << constants::alloycopper::k725NickelSilver;
-    break;
-  case AlloyCoppers::Type::k735NickelSilver:
-    os << constants::alloycopper::k735NickelSilver;
-    break;
-  case AlloyCoppers::Type::k752NickelSilver:
-    os << constants::alloycopper::k752NickelSilver;
-    break;
-  case AlloyCoppers::Type::k762NickelSilver:
-    os << constants::alloycopper::k762NickelSilver;
-    break;
-  case AlloyCoppers::Type::k770NickelSilver:
-    os << constants::alloycopper::k770NickelSilver;
-    break;
-  case AlloyCoppers::Type::k1751Class3:
-    os << constants::alloycopper::k1751Class3;
-    break;
-  case AlloyCoppers::Type::k1758Nickel:
-    os << constants::alloycopper::k1758Nickel;
-    break;
-  case AlloyCoppers::Type::kMoldmaxBeCu:
-    os << constants::alloycopper::kMoldmaxBeCu;
-    break;
-  case AlloyCoppers::Type::kProthermBeCu:
-    os << constants::alloycopper::kProthermBeCu;
-    break;
-  case AlloyCoppers::Type::kUnspecified:
-    os << constants::alloycopper::kUnspecified;
-    break;
-  default:
-    os << "Name cannot be found";
+    case AlloyCoppers::Type::k145Telluirum:
+      os << constants::alloycopper::k145Telluirum;
+      break;
+    case AlloyCoppers::Type::k194Iron:
+      os << constants::alloycopper::k194Iron;
+      break;
+    case AlloyCoppers::Type::k195Iron:
+      os << constants::alloycopper::k195Iron;
+      break;
+    case AlloyCoppers::Type::k172Beryllium:
+      os << constants::alloycopper::k172Beryllium;
+      break;
+    case AlloyCoppers::Type::k182Class2:
+      os << constants::alloycopper::k182Class2;
+      break;
+    case AlloyCoppers::Type::k655Silicon:
+      os << constants::alloycopper::k655Silicon;
+      break;
+    case AlloyCoppers::Type::k706Nickel:
+      os << constants::alloycopper::k706Nickel;
+      break;
+    case AlloyCoppers::Type::k715NickelSilver:
+      os << constants::alloycopper::k715NickelSilver;
+      break;
+    case AlloyCoppers::Type::k725NickelSilver:
+      os << constants::alloycopper::k725NickelSilver;
+      break;
+    case AlloyCoppers::Type::k735NickelSilver:
+      os << constants::alloycopper::k735NickelSilver;
+      break;
+    case AlloyCoppers::Type::k752NickelSilver:
+      os << constants::alloycopper::k752NickelSilver;
+      break;
+    case AlloyCoppers::Type::k762NickelSilver:
+      os << constants::alloycopper::k762NickelSilver;
+      break;
+    case AlloyCoppers::Type::k770NickelSilver:
+      os << constants::alloycopper::k770NickelSilver;
+      break;
+    case AlloyCoppers::Type::k1751Class3:
+      os << constants::alloycopper::k1751Class3;
+      break;
+    case AlloyCoppers::Type::k1758Nickel:
+      os << constants::alloycopper::k1758Nickel;
+      break;
+    case AlloyCoppers::Type::kMoldmaxBeCu:
+      os << constants::alloycopper::kMoldmaxBeCu;
+      break;
+    case AlloyCoppers::Type::kProthermBeCu:
+      os << constants::alloycopper::kProthermBeCu;
+      break;
+    case AlloyCoppers::Type::kUnspecified:
+      os << constants::alloycopper::kUnspecified;
+      break;
+    default:
+      os << "Name cannot be found";
   }
   return os;
 }

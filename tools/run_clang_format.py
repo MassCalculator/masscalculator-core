@@ -1,1 +1,0 @@
-fix the structure, the tools the permissions and the repositories for thirdparty software. Do it with Conan package manager.

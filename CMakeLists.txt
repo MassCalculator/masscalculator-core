@@ -18,8 +18,9 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# @todo(jimmyhalimi): These should be removed, leaving here until finished.
 set(BUILD_TESTS ON)
-# set(BUILD_DOCS ON)
+set(BUILD_DOCS ON)
 # set(BUILD_EXAMPLES ON)
 # set(BUILD_RELEASE ON)
 
@@ -30,8 +31,11 @@ set(MASSCALCULATOR_CORE_MAJOR ${PROJECT_VERSION_MAJOR})
 set(MASSCALCULATOR_CORE_MINOR ${PROJECT_VERSION_MINOR})
 set(MASSCALCULATOR_CORE_PATCH ${PROJECT_VERSION_PATCH})
 
-# @todo(jimmyhalimi): Add Lua config path from here.
-add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR})
+# Set the MassCalculator core source directory.
+set(MASSCALCULATOR_SOURCE ${PROJECT_SOURCE_DIR})
+
+# Set the MassCalculator core home directory.
+set(MASSCALCULATOR_HOME "$ENV{HOME}/.masscalculator")
 
 ################################################################################
 #

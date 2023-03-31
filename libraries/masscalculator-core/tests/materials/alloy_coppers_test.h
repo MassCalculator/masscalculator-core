@@ -23,7 +23,7 @@ namespace masscalculator_test::materials_test {
  * @brief The test fixture for testing class AlloyCoppers.
  */
 class AlloyCoppersTest : public ::testing::Test {
-protected:
+ protected:
   /**
    * @brief Construct a new AlloyCoppersTest object
    */

@@ -2,7 +2,7 @@
 
 #AlloyCoppers test
 add_executable(alloy_coppers_test
-  alloy_coppers_test.cpp
+  alloy_coppers_test.cc
 )
 
 target_link_libraries(alloy_coppers_test

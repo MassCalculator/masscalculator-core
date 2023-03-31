@@ -1,4 +1,4 @@
-#include "alloy_coppers_test.hpp" // for AlloyCoppersTest
+#include "alloy_coppers_test.h" // for AlloyCoppersTest
 
 #include "materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "materials/constants/material.h"      // for color::k*
@@ -351,7 +351,7 @@ TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest) {
 /**
  * @brief Main function to run these tests
  */
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

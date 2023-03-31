@@ -10,12 +10,12 @@
  * @copyright Copyright (c) 2020
  *
  */
-#ifndef ___MATERIAL_H___
-#define ___MATERIAL_H___
-#include <functional>     // for std::function
-#include <unordered_map>  // for std::unordered_map
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
+#include <functional>    // for std::function
+#include <unordered_map> // for std::unordered_map
 
-#include "units.h"  // for units::*
+#include "units.h" // for units::*
 
 /**
  * @brief Default Materials namespace
@@ -232,5 +232,5 @@ std::ostream& operator<<(std::ostream& os, const Material<TMaterial>& obj) {
   os << "\nMaterial\n" << obj.ThisTMaterialType();
   return os;
 }
-}  // namespace masscalculator::materials
-#endif  //___MATERIAL_H___
+} // namespace masscalculator::materials
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_

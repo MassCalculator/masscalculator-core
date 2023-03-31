@@ -33,13 +33,14 @@ namespace masscalculator::materials {
  *
  */
 class AlloyCoppers : public Material<AlloyCoppers> {
-public:
+ public:
   enum class Type : uint8_t;
 
   /**
    * @brief Struct with material specific properties
-   * @todo(jimmyhalimi): Check if this can be moved to the base class, the problem is only in
-   * the std::pair<T, Type>, Type cannot be deduced from base to derived
+   * @todo(jimmyhalimi): Check if this can be moved to the base class, the
+   * problem is only in the std::pair<T, Type>, Type cannot be deduced from base
+   * to derived
    */
   using Properties = struct Properties {
     /**
@@ -92,8 +93,12 @@ public:
     Properties()
         : type{std::make_pair(constants::alloycopper::kUnspecified,
                               AlloyCoppers::Type::kUnspecified)},
-          color{""}, density{0_kg_per_cu_m}, gravity{0_mps_sq},
-          melting_point{0_K}, poissons_ratio{0}, thermal_conductivity{0_W},
+          color{""},
+          density{0_kg_per_cu_m},
+          gravity{0_mps_sq},
+          melting_point{0_K},
+          poissons_ratio{0},
+          thermal_conductivity{0_W},
           mod_of_elasticity_tension{0_Pa} {}
 
     /**
@@ -105,14 +110,17 @@ public:
                units::temperature::kelvin_t melting_point,
                double poissons_ratio, units::power::watt_t thermal_conductivity,
                units::pressure::pascal_t mod_of_elasticity_tension)
-        : type{std::move(type)}, color{std::move(color)}, density{density},
-          gravity{gravity}, melting_point{melting_point},
+        : type{std::move(type)},
+          color{std::move(color)},
+          density{density},
+          gravity{gravity},
+          melting_point{melting_point},
           poissons_ratio{poissons_ratio},
           thermal_conductivity{thermal_conductivity},
           mod_of_elasticity_tension{mod_of_elasticity_tension} {}
   };
 
-public:
+ public:
   /**
    * @brief Enum that holds the AlloyCoppers types
    *
@@ -156,6 +164,7 @@ public:
      * properties. Alloy 195 Iron is commonly used in a variety of industrial
      * applications, including electrical equipment, aerospace components, and
      * automotive parts.
+     *
      * @source: https://www.azom.com/article.aspx?ArticleID=15804
      */
     k195Iron,
@@ -324,7 +333,7 @@ public:
   /**
    * @brief Construct a new AlloyCoppers object and specify the type
    */
-  explicit AlloyCoppers(const Type &type);
+  explicit AlloyCoppers(const Type& type);
 
   /**
    * @brief Function to initialize the Lua object
@@ -338,7 +347,7 @@ public:
    * @return true If the type is set successfully
    * @return false If the type failed to set
    */
-  bool SetType(const Type &type);
+  bool SetType(const Type& type);
 
   /**
    * @brief Get the Type object
@@ -406,42 +415,42 @@ public:
    * @brief Shift operator overload for class AlloyCoppers, this will print all
    * the nessesery informations
    */
-  friend std::ostream &operator<<(std::ostream &os, const AlloyCoppers &obj);
+  friend std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj);
 
   /**
    * @brief Shift operator overload for Types of AlloyCoppers, this will print
    * the name in string
    */
-  friend std::ostream &operator<<(std::ostream &os, const Type &type);
+  friend std::ostream& operator<<(std::ostream& os, const Type& type);
 
   /**
    * @brief Delete copy constructor
    */
-  AlloyCoppers(const AlloyCoppers &) = delete;
+  AlloyCoppers(const AlloyCoppers&) = delete;
 
   /**
    * @brief Set move constructor to default
    */
-  AlloyCoppers(AlloyCoppers &&) = default;
+  AlloyCoppers(AlloyCoppers&&) = default;
 
   /**
    * @brief Delete assignment operator
    */
-  AlloyCoppers &operator=(const AlloyCoppers &) = delete;
+  AlloyCoppers& operator=(const AlloyCoppers&) = delete;
 
   /**
    * @brief Allow move assignment operator
    */
-  AlloyCoppers &operator=(AlloyCoppers &&) = default;
+  AlloyCoppers& operator=(AlloyCoppers&&) = default;
 
-private:
+ private:
   /**
    * @brief Function to return the class name, not the pointer of the class, I
    * am trying to keep away this function outside of the class
    *
    * @return std::string Class name as a string
    */
-  inline std::string GetClassName(AlloyCoppers * /*unused*/) {
+  inline std::string GetClassName(AlloyCoppers* /*unused*/) {
     return {constants::material::kAlloyCoppers};
   };
 
@@ -452,7 +461,7 @@ private:
    * @return true If properties are correctly set
    * @return false If properties have failed to set
    */
-  bool SetPropertieSpecs(const Properties &properties);
+  bool SetPropertieSpecs(const Properties& properties);
 
   /**
    * @brief Unordered map, and a lambda parsed as std::function. This is all
@@ -667,7 +676,7 @@ private:
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
-  bool SetPropertieSpecs(const Type &type);
+  bool SetPropertieSpecs(const Type& type);
 
   /**
    * @brief Properties struct to hold the specific object properties

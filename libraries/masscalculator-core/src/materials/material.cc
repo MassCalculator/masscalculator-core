@@ -30,4 +30,4 @@ template const std::string Material<Steel>::getSpecificColor();
 
 */
 
-}  // namespace masscalculator::materials
+} // namespace masscalculator::materials

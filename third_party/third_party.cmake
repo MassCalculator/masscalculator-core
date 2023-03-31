@@ -4,5 +4,12 @@ cmake_minimum_required(VERSION 3.15)
 include(FetchContent)
 
 # Third-party dependencies available
-include(googletest)
+if(${BUILD_DOCS})
+  include(doxygen)
+endif()
+
+if(${BUILD_TESTS})
+  include(googletest)
+endif()
+
 include(lua51)

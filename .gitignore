@@ -1,5 +1,3 @@
 .vscode/*
 .cache/*
 build/*
-docs/*
-doxygen_warnings.log
