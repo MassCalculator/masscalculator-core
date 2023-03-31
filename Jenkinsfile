@@ -8,10 +8,12 @@ pipeline {
                     REPO_NAME = env.JOB_NAME.split('/')[0]
                 }
                 echo "Repository name: ${REPO_NAME}"
+                sh "ls -la"
             }
         }
         stage('Environment setup') {
             steps {
+                sh "ls -la"
                 sh ". ${REPO_NAME}/tools/envsetup.sh"
                 sh 'mkdir -p build/MassCalculatorCore-Debug'
                 sh 'mkdir -p build/MassCalculatorCore-Release'
