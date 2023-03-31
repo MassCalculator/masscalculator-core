@@ -23,4 +23,4 @@ https://github.com/nholthaus/units
 
 ## CI Server
 
-[![Build Status](https://app.travis-ci.com/MassCalculator/masscalculator-core.svg?branch=devel)](https://app.travis-ci.com/MassCalculator/masscalculator-core)
+WIP: Using local Jenkins for the moment.
