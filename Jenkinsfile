@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        SHELL = "/usr/bin/env bash"
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -8,7 +11,7 @@ pipeline {
         }
         stage('Environment setup') {
             steps {
-                sh ". tools/envsetup.sh"
+                sh "source tools/envsetup.sh"
                 sh 'mkdir -p build/MassCalculatorCore-Debug'
                 sh 'mkdir -p build/MassCalculatorCore-Release'
             }
