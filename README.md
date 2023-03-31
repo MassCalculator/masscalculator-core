@@ -24,3 +24,5 @@ https://github.com/nholthaus/units
 ## CI Server
 
 WIP: Using local Jenkins for the moment.
+
+[![Build Status](http://localhost:8080/jenkins/job/masscalculator-core/job/master/badge/icon)](http://localhost:8080/jenkins/job/masscalculator-core/job/master/)
