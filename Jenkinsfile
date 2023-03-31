@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Environment setup') {
             steps {
-                sh "source ${REPO_NAME}/tools/envsetup.sh"
+                sh ". ${REPO_NAME}/tools/envsetup.sh"
                 sh 'mkdir -p build/MassCalculatorCore-Debug'
                 sh 'mkdir -p build/MassCalculatorCore-Release'
             }
