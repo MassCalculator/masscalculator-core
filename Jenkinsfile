@@ -8,7 +8,6 @@ pipeline {
         }
         stage('Environment setup') {
             steps {
-                sh "source tools/envsetup.sh"
                 sh 'mkdir -p build/MassCalculatorCore-Debug'
                 sh 'mkdir -p build/MassCalculatorCore-Release'
             }
@@ -18,7 +17,7 @@ pipeline {
                 stage('Debug') {
                     steps {
                         dir('build/MassCalculatorCore-Debug') {
-                            sh "cmake -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE"
+                            sh "cmake -DBUILD_TESTS=ON ../../"
                             sh "cmake --build ."
                         }
                     }
@@ -26,7 +25,7 @@ pipeline {
                 stage('Release') {
                     steps {
                         dir('build/MassCalculatorCore-Release') {
-                            sh "cmake -DBUILD_RELEASE=ON -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE"
+                            sh "cmake -DBUILD_RELEASE=ON -DBUILD_TESTS=ON ../../"
                             sh "cmake --build ."
                         }
                     }
