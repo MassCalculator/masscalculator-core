@@ -45,7 +45,7 @@ add_compile_definitions(ROOT_PATH=${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/cmake/"
   "${CMAKE_SOURCE_DIR}/cmake/modules/"
-  "${CMAKE_SOURCE_DIR}/third_party/cmake"
+  "${CMAKE_SOURCE_DIR}/third_party/"
 )
 
 # Initialize the package manager.
@@ -67,9 +67,6 @@ if(${BUILD_DOCS})
 endif()
 
 add_subdirectory(libraries)
-
-# @todo(jimmyhalimi): Check if this can be removed, maybe move units in base.
-add_subdirectory(third_party)
 
 if (${BUILD_EXAMPLES})
   add_subdirectory(examples)
