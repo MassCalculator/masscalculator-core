@@ -1,0 +1,3 @@
+# Authors that contributed to the project
+
+Mergim Halimi <m.halimi123@gmail.com>
