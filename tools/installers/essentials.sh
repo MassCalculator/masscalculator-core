@@ -20,12 +20,14 @@ apt-utils \
 build-essential \
 clang-format-13 \
 clang-tidy-13 \
+clang-13 \
 ccache \
 curl \
 cmake \
+graphviz \
 doxygen \
 git \
-googletest \
+libgtest-dev \
 libdxflib-dev \
 liblua5.1-0-dev \
 ninja-build \
@@ -33,7 +35,7 @@ software-properties-common \
 sudo \
 unzip \
 vim \
-# wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
-# [[ $rc -ne 0 ]] && on_exit $rc
+wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
+[[ $rc -ne 0 ]] && on_exit $rc
 
-# on_exit 0
+on_exit 0
