@@ -8,6 +8,7 @@ pipeline {
         }
         stage('Environment setup') {
             steps {
+                sh "tools/installers/essentials.sh"
                 sh 'mkdir -p build/MassCalculatorCore-Debug'
                 sh 'mkdir -p build/MassCalculatorCore-Release'
             }
