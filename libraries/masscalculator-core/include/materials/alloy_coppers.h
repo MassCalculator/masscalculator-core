@@ -38,7 +38,7 @@ public:
 
   /**
    * @brief Struct with material specific properties
-   * @todo: Check if this can be moved to the base class, the problem is only in
+   * @todo(jimmyhalimi): Check if this can be moved to the base class, the problem is only in
    * the std::pair<T, Type>, Type cannot be deduced from base to derived
    */
   using Properties = struct Properties {

@@ -1,5 +1,5 @@
 #Tests for Object Interface
-# add_subdirectory(interface) #todo fix interface test
+# add_subdirectory(interface)
 
 #Tests for Materials
 add_subdirectory(materials)

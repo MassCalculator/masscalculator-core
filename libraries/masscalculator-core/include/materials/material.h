@@ -227,7 +227,7 @@ template <typename TMaterial>
 std::ostream& operator<<(std::ostream& os, const Material<TMaterial>& obj) {
   // @todo(jimmyhalimi): This causes segmentation fault, it works if you comment
   // out headers in materials.hh and you move implementation in the class
-  // @todo@(jimmyhalimi): Update: The error is caused in interface when calling
+  // @todo(jimmyhalimi): Update: The error is caused in interface when calling
   // with make unique base object.
   os << "\nMaterial\n" << obj.ThisTMaterialType();
   return os;
