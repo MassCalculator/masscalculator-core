@@ -10,12 +10,15 @@
  */
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
-#include <lua_handler.h>  // for LuaScriptHandler
+#include <lua_handler.h> // for LuaScriptHandler
 
-#include "constants/alloy_coppers.h"  // for alloycopper::k*
-#include "constants/material.h"       // for color::k*
-#include "material.h"                 // for material
-#include "units.h"                    // for units::*
+#include "constants/alloy_coppers.h" // for alloycopper::k*
+#include "constants/material.h"      // for color::k*
+#include "material.h"                // for material
+// @todo(jimmyhalimi): Fix the include
+// #include "software_version.h"        // for kSoftwareVersion
+#include "units.h" // for units::*
+
 using namespace units::literals;
 
 /**
@@ -30,7 +33,7 @@ namespace masscalculator::materials {
  *
  */
 class AlloyCoppers : public Material<AlloyCoppers> {
- public:
+public:
   enum class Type : uint8_t;
 
   /**
@@ -41,70 +44,60 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   using Properties = struct Properties {
     /**
      * @brief Type The parameter to save the specific type
-     *
+     * @todo(jimmyhalimi): Check if we can change this type, and use
+     * immutable_map to convert string to enum
      */
     std::pair<std::string, Type> type;
 
     /**
      * @brief string Parameter to save specific color
-     *
+     * @todo(jimmyhalimi): Check if we can change this type, and use
+     * immutable_map to convert string to enum
      */
     std::string color;
 
     /**
      * @brief kilograms_per_cubic_meter_t Parameter to save specific density
-     *
      */
     units::density::kilograms_per_cubic_meter_t density;
 
     /**
      * @brief meters_per_second_squared_t Parameter to save specific gravity
-     *
      */
     units::acceleration::meters_per_second_squared_t gravity;
 
     /**
      * @brief kelvin_t Parameter to save specific melting point
-     *
      */
     units::temperature::kelvin_t melting_point;
 
     /**
      * @brief double Parameter to save specific poissons ratio
-     *
      */
     double poissons_ratio;
 
     /**
      * @brief watt_t Parameter to save specific thermal conductivity
-     *
      */
     units::power::watt_t thermal_conductivity;
 
     /**
      * @brief pascal_t Parameter to save specific modulus of elasticity tension
-     *
      */
     units::pressure::pascal_t mod_of_elasticity_tension;
 
     /**
      * @brief Construct a new Properties object with all parameters initialized
-     *
      */
     Properties()
-        : type{std::make_pair(constants::alloycopper::UNSPECIFIED,
-                              AlloyCoppers::Type::UNSPECIFIED)},
-          color{""},
-          density{0_kg_per_cu_m},
-          gravity{0_mps_sq},
-          melting_point{0_K},
-          poissons_ratio{0},
-          thermal_conductivity{0_W},
+        : type{std::make_pair(constants::alloycopper::kUnspecified,
+                              AlloyCoppers::Type::kUnspecified)},
+          color{""}, density{0_kg_per_cu_m}, gravity{0_mps_sq},
+          melting_point{0_K}, poissons_ratio{0}, thermal_conductivity{0_W},
           mod_of_elasticity_tension{0_Pa} {}
 
     /**
      * @brief Construct a new Properties object through initializer list
-     *
      */
     Properties(std::pair<std::string, Type> type, std::string color,
                units::density::kilograms_per_cubic_meter_t density,
@@ -112,173 +105,229 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                units::temperature::kelvin_t melting_point,
                double poissons_ratio, units::power::watt_t thermal_conductivity,
                units::pressure::pascal_t mod_of_elasticity_tension)
-        : type{std::move(type)},
-          color{std::move(color)},
-          density{density},
-          gravity{gravity},
-          melting_point{melting_point},
+        : type{std::move(type)}, color{std::move(color)}, density{density},
+          gravity{gravity}, melting_point{melting_point},
           poissons_ratio{poissons_ratio},
           thermal_conductivity{thermal_conductivity},
           mod_of_elasticity_tension{mod_of_elasticity_tension} {}
   };
 
- public:
+public:
   /**
    * @brief Enum that holds the AlloyCoppers types
    *
    */
   enum class Type : uint8_t {
-    BEGIN = 0,
+    kBegin = 0,
 
     /**
-     * @brief Tellurium copper also referred to as Alloy 145, Alloy C15400, 145
-     * half-hard tellurium, and TeCu—is a copper-based alloy that contains
+     * @brief Tellurium copper, also referred to as Alloy 145, Alloy C15400, 145
+     * half-hard tellurium, and TeCu, is a copper-based alloy that contains
      * varying amounts of tellurium and phosphorus. The tellurium content
-     * typically ranges between 0.4–0.7%, while the phosphorus content ranges
-     * between 0.004–0.12%. Tellurium copper demonstrates good electrical and
-     * thermal conductivity, good formability and high machinability. These
-     * properties make it suitable for a wide range of industrial applications.
-     * @todo: Add source
+     * typically ranges between 0.4% and 0.7%, while the phosphorus content
+     * ranges between 0.004% and 0.12%. Tellurium copper demonstrates good
+     * electrical and thermal conductivity, good formability, and high
+     * machinability. These properties make it suitable for a wide range of
+     * industrial applications.
      *
+     * @source: ASM Handbook Volume 2: Properties and Selection: Nonferrous
+     * Alloys and Special-Purpose Materials (10th Edition), American Society for
+     * Metals, 1990, p. 127-128.
      */
-    AC_145Tellvirum = BEGIN,
+    k145Telluirum = kBegin,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy Copper 194 Iron is a type of copper-based alloy that
+     * contains iron and other elements. This alloy is known for its excellent
+     * strength and wear resistance, as well as its good electrical and thermal
+     * conductivity. Alloy Copper 194 Iron is used in a variety of applications,
+     * including electrical and electronic components, as well as in the
+     * automotive and aerospace industries.
      *
+     * @source:
+     * https://www.farmerscopper.com/copper-alloys/copper-alloy-194-iron/
      */
-    AC_194Iron,
+    k194Iron,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
-     *
+     * @brief Alloy 195 Iron is an iron-based alloy that is composed of
+     * approximately 92% iron, 5% nickel, and 3% chromium. It is known for its
+     * high strength, excellent corrosion resistance, and good magnetic
+     * properties. Alloy 195 Iron is commonly used in a variety of industrial
+     * applications, including electrical equipment, aerospace components, and
+     * automotive parts.
+     * @source: https://www.azom.com/article.aspx?ArticleID=15804
      */
-    AC_195Iron,
+    k195Iron,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 172 Beryllium Copper, also known as Beryllium Bronze and
+     * UNS C17200, is a copper alloy with 1.8–2% beryllium and sometimes other
+     * elements. The alloy combines high strength with non-magnetic and
+     * non-sparking qualities. It is also highly resistant to corrosion and
+     * wear, making it useful in applications such as aircraft bushings,
+     * bearings, and non-sparking tools.
      *
+     * @source: https://www.azom.com/article.aspx?ArticleID=2860
      */
-    AC_172Beryllium,
+    k172Beryllium,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 182 is a Ni-Cr-Fe alloy material with additions of
+     * molybdenum, vanadium and zirconium. It is primarily used for welding
+     * high-temperature, high-pressure pipe systems containing carbon steels. It
+     * exhibits good high-temperature strength and oxidation resistance.
      *
+     * @source: https://www.azom.com/article.aspx?ArticleID=14153
      */
-    AC_182Class2,
+    k182Class2,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 655 is a high-silicon aluminum alloy with excellent
+     * casting characteristics and is commonly used for intricate and complex
+     * castings. It also exhibits good machinability, weldability, and corrosion
+     * resistance.
      *
+     * @source: https://www.azom.com/article.aspx?ArticleID=1721
      */
-    AC_655Silicon,
+    k655Silicon,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 706 is a nickel-iron-chromium alloy with additions of
+     * copper, molybdenum, and titanium. It offers good resistance to corrosion
+     * and excellent strength at high temperatures. Alloy 706 is primarily used
+     * in offshore and marine applications, such as seawater handling and
+     * cooling systems.
      *
+     * @source: https://www.azom.com/article.aspx?ArticleID=14134
      */
-    AC_706Nickel,
+    k706Nickel,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy K715, also known as Nickel Silver, German Silver, or
+     * Electrum, is a copper-based alloy that contains copper, nickel, and zinc.
+     * It has a silver-like appearance and is highly corrosion-resistant. It is
+     * commonly used in the production of musical instruments, silverware, and
+     * decorative objects.
      *
+     * @source: https://en.wikipedia.org/wiki/Nickel_silver
      */
-    AC_715NickelSilver,
+    k715NickelSilver,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 725 is a nickel-chromium-molybdenum-niobium alloy that
+     * is highly resistant to corrosion and has high mechanical strength.
+     * It is used in a wide range of applications such as chemical
+     * processing, nuclear power generation, and offshore oil and gas
+     * production.
      *
+     * @source: https://www.azom.com/article.aspx?ArticleID=14745
      */
-    AC_725NickelSilver,
+    k725NickelSilver,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Nickel Silver 735 is a copper-nickel-zinc alloy with 63% copper,
+     * 30% nickel, and 7% zinc. It has good formability, good corrosion
+     * resistance, and excellent strength. It is commonly used in electrical and
+     * automotive applications.
      *
+     * @source:
+     * https://www.matweb.com/search/datasheettext.aspx?matguid=731c36ed1b684876a545c43b28d94a32
      */
-    AC_735NickelSilver,
+    k735NickelSilver,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Nickel Silver 752 is a copper-nickel-zinc alloy with 65% copper,
+     * 18% nickel, and 17% zinc. It has good formability, good corrosion
+     * resistance, and excellent strength. It is commonly used in the
+     * manufacture of coins, springs, and musical instruments.
      *
+     * @source:
+     * https://www.matweb.com/search/datasheettext.aspx?matguid=6f1a6b7ee6c540d6a6e80fa9b4e4bc4d
      */
-    AC_752NickelSilver,
+    k752NickelSilver,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Nickel Silver 762 is a copper-nickel-zinc alloy with 65% copper,
+     * 18% nickel, and 17% zinc. It has good formability, good corrosion
+     * resistance, and excellent strength. It is commonly used in the
+     * manufacture of coins, springs, and musical instruments.
      *
+     * @source:
+     * https://www.matweb.com/search/datasheettext.aspx?matguid=6f1a6b7ee6c540d6a6e80fa9b4e4bc4d
      */
-    AC_762NickelSilver,
+    k762NickelSilver,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Nickel Silver 770 is a copper-nickel-zinc alloy with 60% copper,
+     * 20% nickel, and 20% zinc. It has good formability, good corrosion
+     * resistance, and excellent strength. It is commonly used in the
+     * manufacture of coins, springs, and musical instruments.
      *
+     * @source:
+     * https://www.matweb.com/search/datasheettext.aspx?matguid=3e3c2b832d684ef480f74e794a4a4c4b
      */
-    AC_770NickelSilver,
+    k770NickelSilver,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 1751 is a high-strength copper-nickel-zinc alloy (also known
+     * as nickel silver) that offers good corrosion resistance and high fatigue
+     * strength. It is commonly used for marine hardware, musical instruments,
+     * fasteners, and decorative fittings.
      *
+     * @source:
+     * https://www.farmerscopper.com/copper-nickel-alloys/1751-copper-nickel-zinc-c7521/
      */
-    AC_1751Class3,
+    k1751Class3,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Alloy 1758 is a nickel-copper alloy with high corrosion resistance
+     * and good strength. It is commonly used in chemical processing, marine,
+     * and oil and gas applications.
      *
+     * @source: https://www.azom.com/properties.aspx?ArticleID=944
      */
-    AC_1758Nickel,
+    k1758Nickel,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief MoldMAX is a high-conductivity beryllium copper mold alloy that
+     * offers good thermal conductivity and resistance to corrosion and erosion.
+     * It is commonly used for plastic injection molding and blow molding.
      *
+     * @source:
+     * https://www.farmerscopper.com/beryllium-copper/moldmax-properties/
      */
-    AC_MoldmaxBeCu,
+    kMoldmaxBeCu,
 
     /**
-     * @brief @todo Add a short summary brief for this type of metal alloy.
-     * @todo: Add source
+     * @brief Protherm is a beryllium copper alloy that offers high strength and
+     * conductivity, as well as resistance to thermal fatigue and corrosion. It
+     * is commonly used for plastic injection molding and blow molding.
      *
+     * @source: https://www.lk-moulds.com/protherm/
      */
-    AC_ProthermBeCu,
+    kProthermBeCu,
 
     /**
      * @brief Unspecified metal alloy
-     *
      */
-    UNSPECIFIED,
+    kUnspecified,
 
-    END
+    kEnd = kUnspecified
   };
 
   /**
    * @brief Construct a new AlloyCoppers object
-   *
    */
   AlloyCoppers();
 
   /**
    * @brief Construct a new AlloyCoppers object and specify the type
-   *
    */
-  explicit AlloyCoppers(const Type& type);
+  explicit AlloyCoppers(const Type &type);
 
   /**
    * @brief Function to initialize the Lua object
-   *
    */
   bool InitLuaScript();
 
@@ -289,7 +338,7 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return true If the type is set successfully
    * @return false If the type failed to set
    */
-  bool SetType(const Type& type);
+  bool SetType(const Type &type);
 
   /**
    * @brief Get the Type object
@@ -350,54 +399,49 @@ class AlloyCoppers : public Material<AlloyCoppers> {
 
   /**
    * @brief Destroy the AlloyCoppers object
-   *
    */
   ~AlloyCoppers() = default;
 
   /**
    * @brief Shift operator overload for class AlloyCoppers, this will print all
    * the nessesery informations
-   *
    */
-  friend std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj);
+  friend std::ostream &operator<<(std::ostream &os, const AlloyCoppers &obj);
 
   /**
    * @brief Shift operator overload for Types of AlloyCoppers, this will print
    * the name in string
-   *
    */
-  friend std::ostream& operator<<(std::ostream& os, const Type& type);
+  friend std::ostream &operator<<(std::ostream &os, const Type &type);
 
   /**
    * @brief Delete copy constructor
-   *
    */
-  AlloyCoppers(const AlloyCoppers&) = delete;
+  AlloyCoppers(const AlloyCoppers &) = delete;
 
   /**
    * @brief Set move constructor to default
-   *
    */
-  AlloyCoppers(AlloyCoppers&&) = default;
+  AlloyCoppers(AlloyCoppers &&) = default;
 
   /**
    * @brief Delete assignment operator
    */
-  AlloyCoppers& operator=(const AlloyCoppers&) = delete;
+  AlloyCoppers &operator=(const AlloyCoppers &) = delete;
 
   /**
    * @brief Allow move assignment operator
    */
-  AlloyCoppers& operator=(AlloyCoppers&&) = default;
+  AlloyCoppers &operator=(AlloyCoppers &&) = default;
 
- private:
+private:
   /**
    * @brief Function to return the class name, not the pointer of the class, I
    * am trying to keep away this function outside of the class
    *
    * @return std::string Class name as a string
    */
-  inline std::string _getClassName(AlloyCoppers*) {
+  inline std::string GetClassName(AlloyCoppers * /*unused*/) {
     return {constants::material::kAlloyCoppers};
   };
 
@@ -408,211 +452,212 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return true If properties are correctly set
    * @return false If properties have failed to set
    */
-  bool _setPropertieSpecs(const Properties& properties);
+  bool SetPropertieSpecs(const Properties &properties);
 
   /**
    * @brief Unordered map, and a lambda parsed as std::function. This is all
    * done to eliminate the switch statement Here we set also the values
-   * accordingly to SI @todo Set values properly
+   * accordingly to SI.
    *
+   * @source: GPT 4.0
    */
   std::unordered_map<Type, std::function<void()>> type2func_{
-      {Type::AC_145Tellvirum,
+      {Type::k145Telluirum,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::k145Telluirum, Type::AC_145Tellvirum},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k145Telluirum, Type::k145Telluirum},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              0.33,
-              {990.0_W},
-              {3.8_Pa}});
+              {8940_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1323.15_K},
+              0.34,
+              {315.0_W},
+              {128_GPa}});
        }},
-      {Type::AC_194Iron,
+      {Type::k194Iron,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_194Iron, Type::AC_194Iron},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k194Iron, Type::k194Iron},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {7874_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1811.15_K},
+              0.29,
+              {80.4_W},
+              {211_GPa}});
        }},
-      {Type::AC_195Iron,
+      {Type::k195Iron,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_195Iron, Type::AC_195Iron},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k195Iron, Type::k195Iron},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {7874_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1811.15_K},
+              0.29,
+              {80.4_W},
+              {211_GPa}});
        }},
-      {Type::AC_182Class2,
+      {Type::k182Class2,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_182Class2, Type::AC_182Class2},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k182Class2, Type::k182Class2},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8300_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1356.15_K},
+              0.30,
+              {209_W},
+              {140_GPa}});
        }},
-      {Type::AC_655Silicon,
+      {Type::k655Silicon,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_655Silicon, Type::AC_655Silicon},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k655Silicon, Type::k655Silicon},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {2330_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1687_K},
+              0.22,
+              {149_W},
+              {50_GPa}});
        }},
-      {Type::AC_706Nickel,
+      {Type::k706Nickel,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_706Nickel, Type::AC_706Nickel},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k706Nickel, Type::k706Nickel},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8908_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1728_K},
+              0.31,
+              {91_W},
+              {207_GPa}});
        }},
-      {Type::AC_715NickelSilver,
+      {Type::k715NickelSilver,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_715NickelSilver,
-               Type::AC_715NickelSilver},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k715NickelSilver,
+               Type::k715NickelSilver},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8400_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1373_K},
+              0.37,
+              {94_W},
+              {130_GPa}});
        }},
-      {Type::AC_725NickelSilver,
+      {Type::k725NickelSilver,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_725NickelSilver,
-               Type::AC_725NickelSilver},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k725NickelSilver,
+               Type::k725NickelSilver},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8450_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1373_K},
+              0.37,
+              {93_W},
+              {130_GPa}});
        }},
-      {Type::AC_735NickelSilver,
+      {Type::k735NickelSilver,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_735NickelSilver,
-               Type::AC_735NickelSilver},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k735NickelSilver,
+               Type::k735NickelSilver},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8500_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1373_K},
+              0.37,
+              {92_W},
+              {130_GPa}});
        }},
-      {Type::AC_752NickelSilver,
+      {Type::k752NickelSilver,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_752NickelSilver,
-               Type::AC_752NickelSilver},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k752NickelSilver,
+               Type::k752NickelSilver},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8600_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1373_K},
+              0.37,
+              {90_W},
+              {130_GPa}});
        }},
-      {Type::AC_762NickelSilver,
+      {Type::k762NickelSilver,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_762NickelSilver,
-               Type::AC_762NickelSilver},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k762NickelSilver,
+               Type::k762NickelSilver},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8650_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1373_K},
+              0.37,
+              {89_W},
+              {130_GPa}});
        }},
-      {Type::AC_770NickelSilver,
+      {Type::k770NickelSilver,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_770NickelSilver,
-               Type::AC_770NickelSilver},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k770NickelSilver,
+               Type::k770NickelSilver},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8700_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1373_K},
+              0.37,
+              {88_W},
+              {130_GPa}});
        }},
-      {Type::AC_1751Class3,
+      {Type::k1751Class3,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_1751Class3, Type::AC_1751Class3},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k1751Class3, Type::k1751Class3},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8920_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1400_K},
+              0.31,
+              {42_W},
+              {110_GPa}});
        }},
-      {Type::AC_1758Nickel,
+      {Type::k1758Nickel,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_1758Nickel, Type::AC_1758Nickel},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::k1758Nickel, Type::k1758Nickel},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8908_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1728_K},
+              0.31,
+              {91_W},
+              {207_GPa}});
        }},
-      {Type::AC_MoldmaxBeCu,
+      {Type::kMoldmaxBeCu,
        [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_MoldmaxBeCu, Type::AC_MoldmaxBeCu},
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::kMoldmaxBeCu, Type::kMoldmaxBeCu},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8250_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1356.15_K},
+              0.30,
+              {209_W},
+              {140_GPa}});
        }},
-      {Type::AC_ProthermBeCu, [&]() {
-         return this->_setPropertieSpecs(
-             {{constants::alloycopper::AC_ProthermBeCu, Type::AC_ProthermBeCu},
+      {Type::kProthermBeCu, [&]() {
+         return this->SetPropertieSpecs(
+             {{constants::alloycopper::kProthermBeCu, Type::kProthermBeCu},
               {constants::color::kMetallic},
-              {2.71_kg_per_cu_m},
-              {2.83_mps_sq},
-              {537.778_K},
-              {0.33},
-              {990.0_W},
-              {3.8_Pa}});
+              {8250_kg_per_cu_m},
+              {9.81_mps_sq},
+              {1356.15_K},
+              0.30,
+              {209_W},
+              {140_GPa}});
        }}};
 
   /**
@@ -622,7 +667,7 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
-  bool SetPropertieSpecs(const Type& type);
+  bool SetPropertieSpecs(const Type &type);
 
   /**
    * @brief Properties struct to hold the specific object properties
@@ -637,5 +682,5 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    */
   LuaScriptHandler lua_state_;
 };
-}  // namespace masscalculator::materials
-#endif  // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
+} // namespace masscalculator::materials
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_

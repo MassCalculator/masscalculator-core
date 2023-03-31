@@ -2,86 +2,47 @@
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
 
 namespace masscalculator::materials::constants::alloycopper {
-
-/** @brief String constant for AC_145Tellvirum type */
+// ! String constant for material AlloyCopper type 145Tellvirum.
 constexpr auto k145Telluirum{"AlloyCopper145Tellvirum"};
+// ! String constant for material AlloyCopper type 194Iron.
+constexpr auto k194Iron{"AlloyCopper194Iron"};
+// ! String constant for material AlloyCopper type 195Iron.
+constexpr auto k195Iron{"AlloyCopper195Iron"};
+// ! String constant for material AlloyCopper type 172Beryllium.
+constexpr auto k172Beryllium{"AlloyCopper172Beryllium"};
+// ! String constant for material AlloyCopper type 182Class2.
+constexpr auto k182Class2{"AlloyCopper182Class2"};
+// ! String constant for material AlloyCopper type 655Silicon.
+constexpr auto k655Silicon{"AlloyCopper655Silicon"};
+// ! String constant for material AlloyCopper type 706Nickel.
+constexpr auto k706Nickel{"AlloyCopper706Nickel"};
+// ! String constant for material AlloyCopper type 715NickelSilver.
+constexpr auto k715NickelSilver{"AlloyCopper715NickelSilver"};
+// ! String constant for material AlloyCopper type 725NickelSilver.
+constexpr auto k725NickelSilver{"AlloyCopper725NickelSilver"};
+// ! String constant for material AlloyCopper type 735NickelSilver.
+constexpr auto k735NickelSilver{"AlloyCopper735NickelSilver"};
+// ! String constant for material AlloyCopper type 752NickelSilver.
+constexpr auto k752NickelSilver{"AlloyCopper752NickelSilver"};
+// ! String constant for material AlloyCopper type 762NickelSilver.
+constexpr auto k762NickelSilver{"AlloyCopper762NickelSilver"};
+// ! String constant for material AlloyCopper type 770NickelSilver.
+constexpr auto k770NickelSilver{"AlloyCopper770NickelSilver"};
+// ! String constant for material AlloyCopper type 1751Class3.
+constexpr auto k1751Class3{"AlloyCopper1751Class3"};
+// ! String constant for material AlloyCopper type 1758Nickel.
+constexpr auto k1758Nickel{"AlloyCopper1758Nickel"};
+// ! String constant for material AlloyCopper type MoldmaxBeCu.
+constexpr auto kMoldmaxBeCu{"AlloyCopperMoldmaxBeCu"};
+// ! String constant for material AlloyCopper type ProthermBeCu.
+constexpr auto kProthermBeCu{"AlloyCopperProthermBeCu"};
+// ! String constant for material AlloyCopper type Unspecified.
+constexpr auto kUnspecified{"Unspecified"};
 
-/** @brief String constant for AC_194Iron type */
-constexpr auto AC_194Iron{"AC_194Iron"};
+// ! String constant for path to AlloyCopper Lua config. Debug only.
+constexpr auto kLuaConfigPath{
+    "/home/jimmyhalimi/ws/masscalculator/masscalculator-core/libraries/"
+    "masscalculator-core/resources/materials/alloy_coppers_config.lua"};
 
-/** @brief String constant for AC_195Iron type */
-constexpr auto AC_195Iron{"AC_195Iron"};
-
-/** @brief String constant for AC_172Beryllium type */
-constexpr auto AC_172Beryllium{"AC_172Beryllium"};
-
-/** @brief String constant for AC_182Class2 type */
-constexpr auto AC_182Class2{"AC_182Class2"};
-
-/** @brief String constant for AC_655Silicon type */
-constexpr auto AC_655Silicon{"AC_655Silicon"};
-
-/** @brief String constant for AC_706Nickel type */
-constexpr auto AC_706Nickel{"AC_706Nickel"};
-
-/** @brief String constant for AC_715NickelSilver type */
-constexpr auto AC_715NickelSilver{"AC_715NickelSilver"};
-
-/** @brief String constant for AC_725NickelSilver type */
-constexpr auto AC_725NickelSilver{"AC_725NickelSilver"};
-
-/** @brief String constant for AC_735NickelSilver type */
-constexpr auto AC_735NickelSilver{"AC_735NickelSilver"};
-
-/** @brief String constant for AC_752NickelSilver type */
-constexpr auto AC_752NickelSilver{"AC_752NickelSilver"};
-
-/** @brief String constant for AC_762NickelSilver type */
-constexpr auto AC_762NickelSilver{"AC_762NickelSilver"};
-
-/** @brief String constant for AC_770NickelSilver type */
-constexpr auto AC_770NickelSilver{"AC_770NickelSilver"};
-
-/** @brief String constant for AC_1751Class3 type */
-constexpr auto AC_1751Class3{"AC_1751Class3"};
-
-/** @brief String constant for AC_1758Nickel type */
-constexpr auto AC_1758Nickel{"AC_1758Nickel"};
-
-/** @brief String constant for AC_MoldmaxBeCu type */
-constexpr auto AC_MoldmaxBeCu{"AC_MoldmaxBeCu"};
-
-/** @brief String constant for AC_ProthermBeCu type */
-constexpr auto AC_ProthermBeCu{"AC_ProthermBeCu"};
-
-/** @brief String constant for UNSPECIFIED type */
-constexpr auto UNSPECIFIED{"UNSPECIFIED"};
-
-}  // namespace masscalculator::materials::constants::alloycopper
-#endif  // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
-
-// /**
-//  * @brief @todo It will come a time that we will cross_compile, add a Windows
-//  * tag to.
-//  *
-//  */
-// #ifdef DEBUG
-// /**
-//  * @brief Lua config path when we are in debug mode, it will get the
-//  resources
-//  * from source directory
-//  *
-//  */
-// constexpr auto LuaConfigPath{
-//     std::string(getDebugLuaRootPath()) +
-//     "/MassCalculator/resources/materials/alloy_coppers_config.lua"};
-// #else
-// /**
-//  * @brief Lua config path when we are in release mode, it will get the
-//  resources
-//  * from the install directory
-//  *
-//  */
-// constexpr char[] kEnvironment{getenv("HOME")};
-// constexpr auto LuaConfigPath{   +
-// "/.MassCalculator/resources/materials/alloy_coppers_config.lua"};
+} // namespace masscalculator::materials::constants::alloycopper
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_

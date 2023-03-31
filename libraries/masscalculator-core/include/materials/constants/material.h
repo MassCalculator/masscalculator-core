@@ -2,7 +2,6 @@
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_
 
 namespace masscalculator::materials::constants {
-
 namespace material {
 // ! String constant for AlloyCoppers material.
 constexpr auto kAlloyCoppers{"AlloyCoppers"};
@@ -31,16 +30,33 @@ constexpr auto kTitanium{"Titanium"};
 // ! String constant for Zinc material.
 constexpr auto kZinc{"Zinc"};
 // ! String constant for UNSPECIFIED material.
-constexpr auto kUnspecified{"UNSPECIFIED"};
-}  // namespace material
+constexpr auto kUnspecified{"Unspecified"};
+} // namespace material
 
 namespace color {
-/** @brief String constant for Metallic color */
+// ! String constant for Metallic color.
 constexpr auto kMetallic{"Metallic"};
+// ! String constant for Darktone color.
+constexpr auto kDarkTone{"Darktone"};
+} // namespace color
 
-/** @brief String constant for Darktone color */
-constexpr auto kDarkTone{"DarkTone"};
-}  // namespace color
-
-}  // namespace masscalculator::materials::constants
-#endif  // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_
+namespace properties {
+// ! Key to get the type.
+constexpr auto kTypeKey{"type"};
+// ! Key to get the color.
+constexpr auto kColorKey{"color"};
+// ! Key to get the density.
+constexpr auto kDensityKey{"density"};
+// ! Key to get the gravity.
+constexpr auto kGravityKey{"gravity"};
+// ! Key to get the melting point.
+constexpr auto kMeltingPointKey{"melting_point"};
+// ! Key to get the poissons ratio.
+constexpr auto kPoissonsRatioKey{"poissons_ratio"};
+// ! Key to get the thermal conductivity.
+constexpr auto kThermalConductivityKey{"thermal_conductivity"};
+// ! Key to get the modulus of elasticity tension.
+constexpr auto kModOfElasticityTensionKey{"mod_of_elasticity_tension"};
+} // namespace properties
+} // namespace masscalculator::materials::constants
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_

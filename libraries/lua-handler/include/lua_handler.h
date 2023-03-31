@@ -198,7 +198,7 @@ namespace masscalculator
          * @return T Type for return parameter
          */
         template<typename T>
-        T lua_get(const std::string& variableName)
+        T lua_get(const std::string& /*variableName*/)
         {
           return 0;
         }

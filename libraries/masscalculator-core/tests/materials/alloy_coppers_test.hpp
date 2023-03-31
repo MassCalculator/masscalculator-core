@@ -17,52 +17,49 @@
 
 /**
  * @brief Default Materials test namespace
- *
  */
 namespace masscalculator_test::materials_test {
 /**
  * @brief The test fixture for testing class AlloyCoppers.
- *
  */
 class AlloyCoppersTest : public ::testing::Test {
 protected:
   /**
    * @brief Construct a new AlloyCoppersTest object
-   *
    */
   AlloyCoppersTest() {
     ac_145_tellvirum.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_145Tellvirum);
+        masscalculator::materials::AlloyCoppers::Type::k145Telluirum);
     ac_194_iron.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_194Iron);
+        masscalculator::materials::AlloyCoppers::Type::k194Iron);
     ac_195_iron.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_195Iron);
+        masscalculator::materials::AlloyCoppers::Type::k195Iron);
     ac_182_class2.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_182Class2);
+        masscalculator::materials::AlloyCoppers::Type::k182Class2);
     ac_655_silicon.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_655Silicon);
+        masscalculator::materials::AlloyCoppers::Type::k655Silicon);
     ac_706_nickel.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_706Nickel);
+        masscalculator::materials::AlloyCoppers::Type::k706Nickel);
     ac_715_nickel_silver.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_715NickelSilver);
+        masscalculator::materials::AlloyCoppers::Type::k715NickelSilver);
     ac_725_nickel_silver.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_725NickelSilver);
+        masscalculator::materials::AlloyCoppers::Type::k725NickelSilver);
     ac_735_nickel_silver.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_735NickelSilver);
+        masscalculator::materials::AlloyCoppers::Type::k735NickelSilver);
     ac_752_nickel_silver.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_752NickelSilver);
+        masscalculator::materials::AlloyCoppers::Type::k752NickelSilver);
     ac_762_nickel_silver.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_762NickelSilver);
+        masscalculator::materials::AlloyCoppers::Type::k762NickelSilver);
     ac_770_nickel_silver.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_770NickelSilver);
+        masscalculator::materials::AlloyCoppers::Type::k770NickelSilver);
     ac_1751_class3.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_1751Class3);
+        masscalculator::materials::AlloyCoppers::Type::k1751Class3);
     ac_1758_nickel.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_1758Nickel);
+        masscalculator::materials::AlloyCoppers::Type::k1758Nickel);
     ac_moldmax_be_cu.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_MoldmaxBeCu);
+        masscalculator::materials::AlloyCoppers::Type::kMoldmaxBeCu);
     ac_protherm_be_cu.SetType(
-        masscalculator::materials::AlloyCoppers::Type::AC_ProthermBeCu);
+        masscalculator::materials::AlloyCoppers::Type::kProthermBeCu);
   }
 
   /**
@@ -72,7 +69,6 @@ protected:
 
   /**
    * @brief Member objects for class AlloyCopper for each AlloyCopper type
-   *
    */
   masscalculator::materials::AlloyCoppers ac_145_tellvirum, ac_194_iron,
       ac_195_iron, ac_182_class2, ac_655_silicon, ac_706_nickel,
