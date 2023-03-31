@@ -4,35 +4,61 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                sh 'mkdir -p build local'
             }
         }
-        stage('Compile') {
+        stage('Environment setup') {
             steps {
-                sh '''
-                	cd build &&
-                	cmake .. -D CMAKE_BUILD_TYPE=Debug -D BUILD_TESTING=ON .. &&
-                	make
-                '''
+                sh "sudo tools/installers/essentials.sh"
+                sh 'mkdir -p build/MassCalculatorCore-Debug'
+                sh 'mkdir -p build/MassCalculatorCore-Release'
+            }
+        }
+        stage('Build') {
+            parallel {
+                stage('Debug') {
+                    steps {
+                        dir('build/MassCalculatorCore-Debug') {
+                            sh "cmake -DBUILD_TESTS=ON ../../"
+                            sh "cmake --build ."
+                        }
+                    }
+                }
+                stage('Release') {
+                    steps {
+                        dir('build/MassCalculatorCore-Release') {
+                            sh "cmake -DBUILD_RELEASE=ON -DBUILD_TESTS=ON ../../"
+                            sh "cmake --build ."
+                        }
+                    }
+                }
             }
         }
         stage('Test') {
-            steps {
-                sh '''
-                	cd build &&
-                	ctest
-                '''
+            parallel {
+                stage('Debug') {
+                    steps {
+                        dir('build/MassCalculatorCore-Debug') {
+                            sh 'ctest'
+                        }
+                    }
+                }
+                stage('Release') {
+                    steps {
+                        dir('build/MassCalculatorCore-Release') {
+                            sh 'ctest'
+                        }
+                    }
+                }
             }
         }
         stage('Package') {
             steps {
-                sh '''
-                	cd build &&
-                	cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX:PATH=$PWD/../local ..
-                	make
-                	make install
-                '''
-								archiveArtifacts artifacts: 'local/**', fingerprint: true, onlyIfSuccessful: true
+                echo 'Package stage is in progress'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy stage is in progress'
             }
         }
     }
