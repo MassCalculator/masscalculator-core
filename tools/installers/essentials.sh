@@ -33,7 +33,7 @@ software-properties-common \
 sudo \
 unzip \
 vim \
-wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
-[[ $rc -ne 0 ]] && on_exit $rc
+# wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
+# [[ $rc -ne 0 ]] && on_exit $rc
 
-on_exit 0
+# on_exit 0
