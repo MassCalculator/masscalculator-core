@@ -43,7 +43,7 @@ pipeline {
                         sh 'ctest'
                     }
                 }
-                stage('Debug') {
+                stage('Release') {
                     steps {
                         sh 'cd build/MassCalculatorCore-Release'
                         sh 'ctest'
