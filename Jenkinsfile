@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh "ls -la"
                 checkout scm
                 script {
                     REPO_NAME = env.JOB_NAME.split('/')[0]
@@ -13,17 +14,20 @@ pipeline {
         }
         stage('Environment setup') {
             steps {
-                sh "ls -la"
-                sh ". ${REPO_NAME}/tools/envsetup.sh"
-                sh 'mkdir -p build/MassCalculatorCore-Debug'
-                sh 'mkdir -p build/MassCalculatorCore-Release'
+                dir('../') {
+                    sh "ls -la"
+                    sh ". ${REPO_NAME}/tools/envsetup.sh"
+                    sh 'mkdir -p build/MassCalculatorCore-Debug'
+                    sh 'mkdir -p build/MassCalculatorCore-Release'
+                    sh "ls -la"
+                }
             }
         }
         stage('Build') {
             parallel {
                 stage('Debug') {
                     steps {
-                        dir('build/MassCalculatorCore-Debug') {
+                        dir('../build/MassCalculatorCore-Debug') {
                             sh "cmake -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE"
                             sh "cmake --build ."
                         }
@@ -31,7 +35,7 @@ pipeline {
                 }
                 stage('Release') {
                     steps {
-                        dir('build/MassCalculatorCore-Release') {
+                        dir('../build/MassCalculatorCore-Release') {
                             sh "cmake -DBUILD_RELEASE=ON -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE"
                             sh "cmake --build ."
                         }
@@ -43,14 +47,14 @@ pipeline {
             parallel {
                 stage('Debug') {
                     steps {
-                        dir('build/MassCalculatorCore-Debug') {
+                        dir('../build/MassCalculatorCore-Debug') {
                             sh 'ctest'
                         }
                     }
                 }
                 stage('Release') {
                     steps {
-                        dir('build/MassCalculatorCore-Release') {
+                        dir('../build/MassCalculatorCore-Release') {
                             sh 'ctest'
                         }
                     }
