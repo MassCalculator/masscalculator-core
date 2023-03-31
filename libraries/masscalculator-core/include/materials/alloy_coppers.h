@@ -15,9 +15,7 @@
 #include "constants/alloy_coppers.h" // for alloycopper::k*
 #include "constants/material.h"      // for color::k*
 #include "material.h"                // for material
-// @todo(jimmyhalimi): Fix the include
-// #include "software_version.h"        // for kSoftwareVersion
-#include "units.h" // for units::*
+#include "units.h"                   // for units::*
 
 using namespace units::literals;
 

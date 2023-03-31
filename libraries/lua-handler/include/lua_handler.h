@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-#include "macro_logger.hpp"
+#include "masscalculator/base/macro_logger.hpp" // for LOG_*
 
 // Lua is written in C, so compiler needs to know how to link its libraries
 extern "C" 
