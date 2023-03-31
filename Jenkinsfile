@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Environment setup') {
             steps {
-                sh "source tools/envsetup.sh"
+                sh ". tools/envsetup.sh"
                 sh 'mkdir -p build/MassCalculatorCore-Debug'
                 sh 'mkdir -p build/MassCalculatorCore-Release'
             }
