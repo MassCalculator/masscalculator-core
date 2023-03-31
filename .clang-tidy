@@ -1,0 +1,85 @@
+---
+Checks: "-*,
+bugprone-*,
+clang-*,
+google-*,
+modernize-*,
+readability-avoid-const-params-in-decls,
+readability-braces-around-statements,
+readability-const-return-type,
+readability-container-contains,
+readability-container-data-pointer,
+readability-container-size-empty,
+readability-delete-null-pointer,
+readability-duplicate-include,
+readability-else-after-return,
+readability-implicit-bool-conversion,
+readability-inconsistent-declaration-parameter-name,
+readability-misleading-indentation,
+readability-misplaced-array-index,
+readability-named-parameter,
+readability-isolate-declaration,
+-bugprone-easily-swappable-parameters,
+-bugprone-exception-escape,
+-bugprone-reserved-identifier,
+-bugprone-narrowing-conversions,
+-bugprone-macro-parentheses,
+-modernize-avoid-bind,
+-modernize-avoid-c-arrays,
+-modernize-use-trailing-return-type,
+-clang-analyzer-core.NonNullParamChecker,
+-clang-analyzer-cplusplus.NewDeleteLeaks,
+-readability-convert-member-functions-to-static,
+-readability-function-cognitive-complexity,
+-readability-function-size,
+-readability-identifier-length,
+readability-identifier-naming"
+CheckOptions:
+  - key:             readability-identifier-naming.ClassCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.ClassMemberCase
+    value:           lower_case
+  - key:             readability-identifier-naming.ConstexprVariableCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.ConstexprVariablePrefix
+    value:           k
+  - key:             readability-identifier-naming.EnumCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.EnumConstantCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.EnumConstantPrefix
+    value:           k
+  - key:             readability-identifier-naming.FunctionCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.GlobalConstantCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.GlobalConstantPrefix
+    value:           k
+  - key:             readability-identifier-naming.StaticConstantCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.StaticConstantPrefix
+    value:           k
+  - key:             readability-identifier-naming.StaticVariableCase
+    value:           lower_case
+  - key:             readability-identifier-naming.MemberCase
+    value:           lower_case
+  - key:             readability-identifier-naming.PrivateMemberSuffix
+    value:           _
+  - key:             readability-identifier-naming.PublicMemberSuffix
+    value:           ''
+  - key:             readability-identifier-naming.NamespaceCase
+    value:           lower_case
+  - key:             readability-identifier-naming.ParameterCase
+    value:           lower_case
+  - key:             readability-identifier-naming.TypeAliasCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.TypedefCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.VariableCase
+    value:           lower_case
+  - key:             readability-identifier-naming.IgnoreMainLikeFunctions
+    value:           1
+HeaderFilterRegex: "."
+ExtraArgs: ['-Wno-unknown-warning-option']
+WarningsAsErrors: "*"
+...

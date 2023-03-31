@@ -1,0 +1,6 @@
+---
+BasedOnStyle: Google
+DerivePointerAlignment: false
+PointerAlignment: Left
+SpacesBeforeTrailingComments: 1
+...
