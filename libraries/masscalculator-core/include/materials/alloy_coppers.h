@@ -1,34 +1,59 @@
 /**
- * @file alloy_coppers.hpp
+ * @file alloy_coppers.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief AlloyCoppers class that holds the parameters for all the types
- * @version 0.1
- * @date 2020-03-20
+ * @brief This file contains the class definition for alloy_coppers.
+ * The alloy_coppers class holds all the specific properties for the different
+ * types of alloy_coppers. It inherits from the base class Material and provides
+ * the getters and setters for the alloy_coppers properties.
+ * @version 0.2
+ * @date 2023-04-03
  *
- * @copyright Copyright (c) 2020
+ * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
+ * @license This project is released under the  MIT license (MIT).
  *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
-#include <lua_handler.h> // for LuaScriptHandler
+#include <cstdint>       // for uint8_t
+#include <functional>    // for std::function
+#include <memory>        // for std::unique_ptr
+#include <ostream>       // fot std::ostream
+#include <string>        // for std::string
+#include <unordered_map> // for std::unordered_map
+#include <utility>       // for std::pair and std::move
 
-#include "constants/alloy_coppers.h" // for alloycopper::k*
-#include "constants/material.h"      // for color::k*
-#include "material.h"                // for material
-#include "units.h"                   // for units::*
-
-using namespace units::literals;
+#include "lua_handler.h"                       // for LuaScriptHandler
+#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "materials/constants/color.h"         // for color::k*
+#include "materials/constants/material.h"      // for material::k*
+#include "materials/material.h"                // for material
+#include "units.h"                             // for units::*
 
 /**
  * @brief Default Materials namespace
- *
  */
 namespace masscalculator::materials {
 
 /**
  * @brief Class AlloyCoppers, that holds all the nessesary information for
  * AlloyCoppers and it's types therefore we can use in the interface
- *
  */
 class AlloyCoppers : public Material<AlloyCoppers> {
  public:
@@ -121,7 +146,6 @@ class AlloyCoppers : public Material<AlloyCoppers> {
  public:
   /**
    * @brief Enum that holds the AlloyCoppers types
-   *
    */
   enum class Type : uint8_t {
     kBegin = 0,
@@ -352,49 +376,51 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    *
    * @return std::pair<std::string, Type> Pair with type name and type enum
    */
-  std::pair<std::string, Type> GetType() const;
+  [[nodiscard]] std::pair<std::string, Type> GetType() const;
 
   /**
    * @brief Get the Specific color object
    *
    * @return std::string color of the material
    */
-  std::string GetSpecificColor() const;
+  [[nodiscard]] std::string GetSpecificColor() const;
 
   /**
    * @brief Get the Specific Density object
    *
    * @return kilograms_per_cubic_meter_t Density of the material
    */
-  units::density::kilograms_per_cubic_meter_t GetSpecificDensity() const;
+  [[nodiscard]] units::density::kilograms_per_cubic_meter_t GetSpecificDensity()
+      const;
 
   /**
    * @brief Get the Specific Gravity object
    *
    * @return meters_per_second_squared_t double Gravity of the material
    */
-  units::acceleration::meters_per_second_squared_t GetSpecificGravity() const;
+  [[nodiscard]] units::acceleration::meters_per_second_squared_t
+  GetSpecificGravity() const;
 
   /**
    * @brief Get the Specific Melting Point object
    *
    * @return kelvin_t The specific melting point of AlloyCoppers type
    */
-  units::temperature::kelvin_t GetSpecificMeltingPoint() const;
+  [[nodiscard]] units::temperature::kelvin_t GetSpecificMeltingPoint() const;
 
   /**
    * @brief Get the Specific PoissonsRatio object
    *
    * @return double The specific poissons ratio of AlloyCoppers type
    */
-  double GetSpecificPoissonsRatio() const;
+  [[nodiscard]] double GetSpecificPoissonsRatio() const;
 
   /**
    * @brief Get the Specific Thermal Conductivity object
    *
    * @return watt_t The specific thermal conductivity of AlloyCoppers type
    */
-  units::power::watt_t GetSpecificThermalConductivity() const;
+  [[nodiscard]] units::power::watt_t GetSpecificThermalConductivity() const;
 
   /**
    * @brief Get the Specific Modulus of Elasticity Tension object
@@ -402,7 +428,8 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return pascal_t The specific modulus of elasticity tension point of
    * AlloyCoppers type
    */
-  units::pressure::pascal_t GetSpecificModOfElasticityTension() const;
+  [[nodiscard]] units::pressure::pascal_t GetSpecificModOfElasticityTension()
+      const;
 
   /**
    * @brief Destroy the AlloyCoppers object
@@ -462,9 +489,11 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   bool SetPropertieSpecs(const Properties& properties);
 
   /**
-   * @brief Unordered map, and a lambda parsed as std::function. This is all
-   * done to eliminate the switch statement Here we set also the values
-   * accordingly to SI.
+   * @brief Convert a string representation of a unit to its corresponding SI
+   * unit using an unordered map and a lambda function.
+   * Instead of using a switch statement, an unordered map is used with a lambda
+   * function to eliminate the need for a large switch statement. The function
+   * sets the values accordingly to SI units.
    *
    * @source: GPT 4.0
    */
@@ -678,16 +707,15 @@ class AlloyCoppers : public Material<AlloyCoppers> {
 
   /**
    * @brief Properties struct to hold the specific object properties
-   *
    */
   Properties specific_properties_;
 
   /**
    * @brief Lua Handler object to get the config for metals from LuaScript is
    * necessary
-   *
    */
   LuaScriptHandler lua_state_;
+  // std::unique_ptr<LuaScriptHandler> lua_state_;
 };
 } // namespace masscalculator::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_

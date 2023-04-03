@@ -1,8 +1,8 @@
 /**
- * @file material.cpp
+ * @file color.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file is left here for convenience, but the implementation is
- * done with templates in the header file.
+ * @brief This file contains constant expressions that define the keys to get
+ * the values of the different colors of a material.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -27,25 +27,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
 
-/*
-#include "materials/aluminium.hpp"
-*/
-
-namespace masscalculator::materials {
-
-/*
-//Code example how it can be done in cpp
-
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
-
-*/
-
-} // namespace masscalculator::materials
+namespace masscalculator::materials::constants::color {
+// ! String constant for Metallic color.
+constexpr auto kMetallic{"Metallic"};
+// ! String constant for Darktone color.
+constexpr auto kDarkTone{"Darktone"};
+} // namespace masscalculator::materials::constants::color
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_

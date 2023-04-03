@@ -1,8 +1,46 @@
+/**
+ * @file alloy_coppers.h
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains the implementation for the alloy_coppers class.
+ * The alloy_coppers class holds all the specific properties for the different
+ * types of alloy_coppers. It inherits from the base class Material and provides
+ * the getters and setters for the alloy_coppers properties.
+ * @version 0.2
+ * @date 2023-04-03
+ *
+ * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
+ * @license This project is released under the  MIT license (MIT).
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 #include "materials/alloy_coppers.h" // for AlloyCoppers
 
+#include <memory>  // for std::unique_ptr
+#include <ostream> // fot std::ostream
+#include <string>  // for std::string
+#include <utility> // for std::pair and std::move
+
+#include "lua_handler.h"                        // for LuaScriptHandler
 #include "masscalculator/base/macro_logger.hpp" // for LOG_*
 #include "materials/constants/alloy_coppers.h"  // for alloycopper::k*
-#include "materials/constants/material.h"       // for properties::k*
+#include "materials/constants/properties.h"     // for properties::k*
+#include "materials/material.h"                 // for material
 #include "units.h"                              // for units::*
 
 namespace masscalculator::materials {
@@ -20,7 +58,7 @@ AlloyCoppers::AlloyCoppers(const AlloyCoppers::Type& type) {
 
 // @todo(jimmyhalimi): Initialise usig unique pointer and make unique.
 bool AlloyCoppers::InitLuaScript() {
-  return lua_state_.openScript(constants::alloycopper::kLuaConfigPath);
+  return lua_state_.openScript(constants::alloycopper::kConfigPath);
 }
 
 bool AlloyCoppers::SetType(const AlloyCoppers::Type& type) {
