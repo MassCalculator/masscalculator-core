@@ -1,10 +1,11 @@
 /**
- * @file material.cpp
+ * @file immutable_map.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file is left here for convenience, but the implementation is
- * done with templates in the header file.
+ * @brief Defines the ImmutableMap template class, which is a simple map
+ * structure that can be declared as constexpr. This is a useful object to hold
+ * pairs of matching values known at compile time.
  * @version 0.2
- * @date 2023-04-03
+ * @date 2023-04-04
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -27,25 +28,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#ifndef MASSCALCULATOR_LIBRARIES_BASE_INCLUDE_IMMUTABLE_MAP_H_
+#define MASSCALCULATOR_LIBRARIES_BASE_INCLUDE_IMMUTABLE_MAP_H_
+#include <algorithm> // for std::find_if, begin and end
+#include <array>     // for std::array
 
-/*
-#include "materials/aluminium.hpp"
-*/
+namespace masscalculator::base {
 
-namespace masscalculator::materials {
+template <typename Key, typename Value, std::size_t Size>
 
-/*
-//Code example how it can be done in cpp
+/**
+ * @brief A simple map structure that can be declared as constexpr.
+ *  This is a useful object to hold pairs of matching values known at compile
+ *  time.
+ */
+struct ImmutableMap {
+  std::array<std::pair<Key, Value>, Size> data;
 
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
-
-*/
-
-} // namespace masscalculator::materials
+  // Map item accessors. Naming is kept lower case to intuitively map it to the
+  // equivalent std::map accessor
+  // NOLINTNEXTLINE(readability-identifier-naming)
+  [[nodiscard]] constexpr Value at(const Key& key) const {
+    const auto it = std::find_if(begin(data), end(data), [&key](const auto& v) {
+      return v.first == key;
+    });
+    return it->second;
+  }
+};
+} // namespace masscalculator::base
+#endif // MASSCALCULATOR_LIBRARIES_BASE_INCLUDE_IMMUTABLE_MAP_H_

@@ -47,9 +47,9 @@ set(MASSCALCULATOR_HOME "$ENV{HOME}/.masscalculator")
 # natively supported by CMake and to be able to include CMake files
 # uder third_party/ redirectly.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-  "${CMAKE_SOURCE_DIR}/cmake/"
-  "${CMAKE_SOURCE_DIR}/cmake/modules/"
-  "${CMAKE_SOURCE_DIR}/third_party/"
+  "${CMAKE_SOURCE_DIR}/cmake"
+  "${CMAKE_SOURCE_DIR}/cmake/modules"
+  "${CMAKE_SOURCE_DIR}/third_party"
 )
 
 # Initialize the package manager.

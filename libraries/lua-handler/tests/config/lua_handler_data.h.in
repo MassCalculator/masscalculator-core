@@ -1,12 +1,8 @@
 /**
- * @file software_version.h
+ * @file lua_handler_data.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief Defines the software name and version number.
- * This file defines constants for the software name, version number, and
- * version components, which are used throughout the project. The constants are
- * populated during the build process using CMake.
- * This file also provides a function, `GetVersion()`, which returns a formatted
- * string with the software name and version number.
+ * @brief Specifies the path to the test data used by the LuaScriptHandler
+ * class.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -34,30 +30,9 @@
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
 
-#include <string> // for std::string
-
-namespace masscalculator::base {
-// ! String constant to get the software name.
-constexpr auto kSoftwareName = "@MASSCALCULATOR_CORE_NAME@";
-// ! String constant to get the software version.
-constexpr auto kSoftwareVersion = "@MASSCALCULATOR_CORE_VERSION@";
-// ! String constant to get the software major version.
-constexpr auto kSoftwareVersionMajor = "@MASSCALCULATOR_CORE_MAJOR@";
-// ! String constant to get the software minor version.
-constexpr auto kSoftwareVersionMinor = "@MASSCALCULATOR_CORE_MINOR@";
-// ! String constant to get the software patch version.
-constexpr auto kSoftwareVersionPatch = "@MASSCALCULATOR_CORE_PATCH@";
-
-/**
- * @brief Get the Version object
- *
- * @return A formatted string with the software name and version number.
- */
-inline auto GetVersion() {
-  return std::string{"Project: " + std::string(kSoftwareName) +
-                     ", Version: " + std::string(kSoftwareVersion)};
-}
-
-} // namespace masscalculator::base
+namespace masscalculator {
+// ! String constant to get the path to the test configuration.
+constexpr auto kTestDataConfigPath = "@LUA_HANDLER_TEST_DATA_CONFIG@";
+} // namespace masscalculator
 
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
