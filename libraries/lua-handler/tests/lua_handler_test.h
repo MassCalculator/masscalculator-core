@@ -42,6 +42,9 @@ class LuaScriptHandlerTest : public ::testing::Test {
   void SetUp() override {
     lua_state = std::make_unique<LuaScriptHandler>(kTestDataConfigPath);
   }
+
+  void TearDown() override { lua_state.reset(); }
+
   /**
    * @brief Construct a new AlloyCoppersTest object
    */

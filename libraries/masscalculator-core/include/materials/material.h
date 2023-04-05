@@ -31,6 +31,7 @@
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
 #include <functional>    // for std::function
+#include <string_view>   // for std::string_view
 #include <unordered_map> // for std::unordered_map
 
 #include "masscalculator/base/immutable_map.h" // for ImmutableMap
@@ -84,16 +85,6 @@ class Material : public Crtp<TMaterialType> {
     kDarkTone,
     kUnspecified
   };
-
-  static constexpr base::ImmutableMap<std::string_view, Color, 3> kColor{
-      {{{constants::color::kMetallic, Color::kMetallic},
-        {constants::color::kDarkTone, Color::kDarkTone},
-        {constants::color::kUnspecified, Color::kUnspecified}}}};
-
-  static constexpr base::ImmutableMap<Color, std::string_view, 3> kColorString{
-      {{{Color::kMetallic, constants::color::kMetallic},
-        {Color::kDarkTone, constants::color::kDarkTone},
-        {Color::kUnspecified, constants::color::kUnspecified}}}};
 
   /**
    * @brief Struct with material specific properties
@@ -163,9 +154,6 @@ class Material : public Crtp<TMaterialType> {
           mod_of_elasticity_tension{mod_of_elasticity_tension} {}
   };
 
-  // @todo(jimmyhalimi): Find a way to remove this forward declaration
-  enum class Type : uint8_t;
-
   /**
    * @brief Construct a new Material object
    */
@@ -176,18 +164,8 @@ class Material : public Crtp<TMaterialType> {
    *
    * @param type Type of the Material
    */
-  explicit Material(const Type& type) { this->MaterialType()(type); }
-
-  /**
-   * @brief Set the Type object
-   *
-   * @param type Type of the Material
-   * @return true If the type is set successfully
-   * @return false If the type failed to set
-   */
-  bool SetType(const Type& type) {
-    this->MaterialType().SetType(type);
-    return true;
+  explicit Material(const std::string_view& type) {
+    this->MaterialType()(type);
   }
 
   /**
@@ -196,7 +174,7 @@ class Material : public Crtp<TMaterialType> {
    * @return Type Pair with type name and type
    * enum from Derived class
    */
-  [[nodiscard]] constexpr Type GetType() const {
+  [[nodiscard]] constexpr std::string_view GetType() const {
     return this->MaterialType().GetType();
   }
 
@@ -313,6 +291,25 @@ class Material : public Crtp<TMaterialType> {
 
     return os;
   }
+
+ protected:
+  /**
+   * @brief A map used to convert a string representation of a color to an enum
+   * value.
+   */
+  static constexpr base::ImmutableMap<std::string_view, Color, 3> kColor{
+      {{{constants::color::kMetallic, Color::kMetallic},
+        {constants::color::kDarkTone, Color::kDarkTone},
+        {constants::color::kUnspecified, Color::kUnspecified}}}};
+
+  /**
+   * @brief A map used to convert an enum value of type Color to its string
+   * representation.
+   */
+  static constexpr base::ImmutableMap<Color, std::string_view, 3> kColorString{
+      {{{Color::kMetallic, constants::color::kMetallic},
+        {Color::kDarkTone, constants::color::kDarkTone},
+        {Color::kUnspecified, constants::color::kUnspecified}}}};
 };
 } // namespace masscalculator::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_

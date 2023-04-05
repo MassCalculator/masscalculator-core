@@ -36,10 +36,12 @@
 #include <memory>        // for std::unique_ptr
 #include <ostream>       // fot std::ostream
 #include <string>        // for std::string
+#include <string_view>   // for std::string_view
 #include <unordered_map> // for std::unordered_map
 #include <utility>       // for std::pair and std::move
 
 #include "lua_handler.h"                       // for LuaScriptHandler
+#include "masscalculator/base/immutable_map.h" // for ImmutableMap
 #include "materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "materials/constants/color.h"         // for color::k*
 #include "materials/constants/material.h"      // for material::k*
@@ -50,7 +52,6 @@
  * @brief Default Materials namespace
  */
 namespace masscalculator::materials {
-
 /**
  * @brief Class AlloyCoppers, that holds all the nessesary information for
  * AlloyCoppers and it's types therefore we can use in the interface
@@ -263,14 +264,14 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   /**
    * @brief Construct a new AlloyCoppers object and specify the type
    */
-  explicit AlloyCoppers(const Type& type);
+  explicit AlloyCoppers(const std::string_view& type);
 
   /**
    * @brief Get the Type object
    *
    * @return Type Type enumeration of the material
    */
-  [[nodiscard]] Type GetType() const;
+  [[nodiscard]] std::string_view GetType() const;
 
   /**
    * @brief Get the Specific color object
@@ -327,12 +328,6 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * the nessesery informations
    */
   friend std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj);
-
-  /**
-   * @brief Shift operator overload for Types of AlloyCoppers, this will print
-   * the name in string
-   */
-  friend std::ostream& operator<<(std::ostream& os, const Type& type);
 
   /**
    * @brief Delete copy constructor
@@ -566,13 +561,90 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   /**
    * @brief Properties struct to hold the specific object properties
    */
-  Properties specific_properties_;
+  std::unique_ptr<Properties> specific_properties_;
 
   /**
    * @brief Lua Handler object to get the config for metals from LuaScript is
    * necessary
    */
   std::unique_ptr<LuaScriptHandler> lua_state_;
+
+  /**
+   * @brief A map used to convert a string representation of a type to an enum
+   * value.
+   */
+  static constexpr base::ImmutableMap<std::string_view, AlloyCoppers::Type, 17>
+      kType{{{
+          {constants::alloycopper::k145Telluirum,
+           AlloyCoppers::Type::k145Telluirum},
+          {constants::alloycopper::k194Iron, AlloyCoppers::Type::k194Iron},
+          {constants::alloycopper::k195Iron, AlloyCoppers::Type::k195Iron},
+          {constants::alloycopper::k172Beryllium,
+           AlloyCoppers::Type::k172Beryllium},
+          {constants::alloycopper::k182Class2, AlloyCoppers::Type::k182Class2},
+          {constants::alloycopper::k655Silicon,
+           AlloyCoppers::Type::k655Silicon},
+          {constants::alloycopper::k706Nickel, AlloyCoppers::Type::k706Nickel},
+          {constants::alloycopper::k715NickelSilver,
+           AlloyCoppers::Type::k715NickelSilver},
+          {constants::alloycopper::k725NickelSilver,
+           AlloyCoppers::Type::k725NickelSilver},
+          {constants::alloycopper::k735NickelSilver,
+           AlloyCoppers::Type::k735NickelSilver},
+          {constants::alloycopper::k752NickelSilver,
+           AlloyCoppers::Type::k752NickelSilver},
+          {constants::alloycopper::k762NickelSilver,
+           AlloyCoppers::Type::k762NickelSilver},
+          {constants::alloycopper::k770NickelSilver,
+           AlloyCoppers::Type::k770NickelSilver},
+          {constants::alloycopper::k1751Class3,
+           AlloyCoppers::Type::k1751Class3},
+          {constants::alloycopper::k1758Nickel,
+           AlloyCoppers::Type::k1758Nickel},
+          {constants::alloycopper::kMoldmaxBeCu,
+           AlloyCoppers::Type::kMoldmaxBeCu},
+          {constants::alloycopper::kProthermBeCu,
+           AlloyCoppers::Type::kProthermBeCu},
+      }}};
+
+  /**
+   * @brief A map used to convert an enum value of type Type to its string
+   * representation.
+   */
+  static constexpr base::ImmutableMap<AlloyCoppers::Type, std::string_view, 17>
+      kTypeString{
+          {{{AlloyCoppers::Type::k145Telluirum,
+             constants::alloycopper::k145Telluirum},
+            {AlloyCoppers::Type::k194Iron, constants::alloycopper::k194Iron},
+            {AlloyCoppers::Type::k195Iron, constants::alloycopper::k195Iron},
+            {AlloyCoppers::Type::k172Beryllium,
+             constants::alloycopper::k172Beryllium},
+            {AlloyCoppers::Type::k182Class2,
+             constants::alloycopper::k182Class2},
+            {AlloyCoppers::Type::k655Silicon,
+             constants::alloycopper::k655Silicon},
+            {AlloyCoppers::Type::k706Nickel,
+             constants::alloycopper::k706Nickel},
+            {AlloyCoppers::Type::k715NickelSilver,
+             constants::alloycopper::k715NickelSilver},
+            {AlloyCoppers::Type::k725NickelSilver,
+             constants::alloycopper::k725NickelSilver},
+            {AlloyCoppers::Type::k735NickelSilver,
+             constants::alloycopper::k735NickelSilver},
+            {AlloyCoppers::Type::k752NickelSilver,
+             constants::alloycopper::k752NickelSilver},
+            {AlloyCoppers::Type::k762NickelSilver,
+             constants::alloycopper::k762NickelSilver},
+            {AlloyCoppers::Type::k770NickelSilver,
+             constants::alloycopper::k770NickelSilver},
+            {AlloyCoppers::Type::k1751Class3,
+             constants::alloycopper::k1751Class3},
+            {AlloyCoppers::Type::k1758Nickel,
+             constants::alloycopper::k1758Nickel},
+            {AlloyCoppers::Type::kMoldmaxBeCu,
+             constants::alloycopper::kMoldmaxBeCu},
+            {AlloyCoppers::Type::kProthermBeCu,
+             constants::alloycopper::kProthermBeCu}}}};
 };
 } // namespace masscalculator::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
