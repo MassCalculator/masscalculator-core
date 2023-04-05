@@ -1,10 +1,11 @@
 /**
- * @file color.h
+ * @file immutable_map.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains constant expressions that define the keys to get
- * the values of the different colors of a material.
+ * @brief Defines the ImmutableMap template class, which is a simple map
+ * structure that can be declared as constexpr. This is a useful object to hold
+ * pairs of matching values known at compile time.
  * @version 0.2
- * @date 2023-04-03
+ * @date 2023-04-04
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -27,15 +28,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
-#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+#ifndef MASSCALCULATOR_LIBRARIES_BASE_INCLUDE_IMMUTABLE_MAP_H_
+#define MASSCALCULATOR_LIBRARIES_BASE_INCLUDE_IMMUTABLE_MAP_H_
+#include <algorithm> // for std::find_if, begin and end
+#include <array>     // for std::array
 
-namespace masscalculator::materials::constants::color {
-// ! String constant for Metallic color.
-constexpr auto kMetallic{"Metallic"};
-// ! String constant for Darktone color.
-constexpr auto kDarkTone{"Darktone"};
-// ! String constant for Unspecified color.
-constexpr auto kUnspecified{"Unspecified"};
-} // namespace masscalculator::materials::constants::color
-#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+namespace masscalculator::base {
+
+template <typename Key, typename Value, std::size_t Size>
+
+/**
+ * @brief A simple map structure that can be declared as constexpr.
+ *  This is a useful object to hold pairs of matching values known at compile
+ *  time.
+ */
+struct ImmutableMap {
+  std::array<std::pair<Key, Value>, Size> data;
+
+  // Map item accessors. Naming is kept lower case to intuitively map it to the
+  // equivalent std::map accessor
+  // NOLINTNEXTLINE(readability-identifier-naming)
+  [[nodiscard]] constexpr Value at(const Key& key) const {
+    const auto it = std::find_if(begin(data), end(data), [&key](const auto& v) {
+      return v.first == key;
+    });
+    return it->second;
+  }
+};
+} // namespace masscalculator::base
+#endif // MASSCALCULATOR_LIBRARIES_BASE_INCLUDE_IMMUTABLE_MAP_H_

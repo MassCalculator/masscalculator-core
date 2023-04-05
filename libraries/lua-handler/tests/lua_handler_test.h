@@ -1,8 +1,7 @@
 /**
- * @file color.h
+ * @file lua_handler_test.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains constant expressions that define the keys to get
- * the values of the different colors of a material.
+ * @brief Defines unit tests for the LuaScriptHandler class.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -27,15 +26,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
-#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+#ifndef MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
+#define MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
+#include <gtest/gtest.h> // for ::testing::Test and TEST_F
 
-namespace masscalculator::materials::constants::color {
-// ! String constant for Metallic color.
-constexpr auto kMetallic{"Metallic"};
-// ! String constant for Darktone color.
-constexpr auto kDarkTone{"Darktone"};
-// ! String constant for Unspecified color.
-constexpr auto kUnspecified{"Unspecified"};
-} // namespace masscalculator::materials::constants::color
-#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+#include <memory> // for std::unique_ptr
+
+#include "lua_handler.h"                         // for LuaScriptHandler
+#include "masscalculator/lua/lua_handler_data.h" // for kTestDataConfigPath
+
+namespace masscalculator {
+
+class LuaScriptHandlerTest : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    lua_state = std::make_unique<LuaScriptHandler>(kTestDataConfigPath);
+  }
+  /**
+   * @brief Construct a new AlloyCoppersTest object
+   */
+  LuaScriptHandlerTest() = default;
+
+  /**
+   * @brief Destroy the AlloyCoppersTest object
+   */
+  ~LuaScriptHandlerTest() override = default;
+
+  /**
+   * @brief Member objects for class AlloyCopper for each AlloyCopper type
+   */
+  std::unique_ptr<LuaScriptHandler> lua_state;
+};
+} // namespace masscalculator
+#endif // MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_

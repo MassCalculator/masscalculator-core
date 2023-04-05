@@ -33,7 +33,9 @@
 #include <functional>    // for std::function
 #include <unordered_map> // for std::unordered_map
 
-#include "units.h" // for units::*
+#include "masscalculator/base/immutable_map.h" // for ImmutableMap
+#include "materials/constants/color.h"         // for color::k*
+#include "units.h"                             // for units::*
 using namespace units::literals;
 
 /**
@@ -71,16 +73,101 @@ struct Crtp {
  *
  */
 template <typename TMaterialType>
-class Material : Crtp<TMaterialType> {
- public:
-  enum class Type : uint8_t;
-
-  enum class Color : uint8_t { kBegin = 0, kMetallic = kBegin, kDarkTone };
-
+class Material : public Crtp<TMaterialType> {
  public:
   /**
+   * @brief Enumeration that holds the material colors.
+   */
+  enum class Color : uint8_t {
+    kBegin = 0,
+    kMetallic = kBegin,
+    kDarkTone,
+    kUnspecified
+  };
+
+  static constexpr base::ImmutableMap<std::string_view, Color, 3> kColor{
+      {{{constants::color::kMetallic, Color::kMetallic},
+        {constants::color::kDarkTone, Color::kDarkTone},
+        {constants::color::kUnspecified, Color::kUnspecified}}}};
+
+  static constexpr base::ImmutableMap<Color, std::string_view, 3> kColorString{
+      {{{Color::kMetallic, constants::color::kMetallic},
+        {Color::kDarkTone, constants::color::kDarkTone},
+        {Color::kUnspecified, constants::color::kUnspecified}}}};
+
+  /**
+   * @brief Struct with material specific properties
+   */
+  using Properties = struct Properties {
+    /**
+     * @brief TMaterialType::Type The parameter to save the specific type
+     */
+    typename TMaterialType::Type type;
+
+    /**
+     * @brief string Parameter to save specific color
+     */
+    Color color;
+
+    /**
+     * @brief kilograms_per_cubic_meter_t Parameter to save specific density
+     */
+    units::density::kilograms_per_cubic_meter_t density;
+
+    /**
+     * @brief kelvin_t Parameter to save specific melting point
+     */
+    units::temperature::kelvin_t melting_point;
+
+    /**
+     * @brief double Parameter to save specific poissons ratio
+     */
+    double poissons_ratio;
+
+    /**
+     * @brief watt_t Parameter to save specific thermal conductivity
+     */
+    units::power::watt_t thermal_conductivity;
+
+    /**
+     * @brief pascal_t Parameter to save specific modulus of elasticity tension
+     */
+    units::pressure::pascal_t mod_of_elasticity_tension;
+
+    /**
+     * @brief Construct a new Properties object with all parameters initialized
+     */
+    Properties()
+        : type{TMaterialType::Type::kUnspecified},
+          color{Color::kUnspecified},
+          density{0_kg_per_cu_m},
+          melting_point{0_K},
+          poissons_ratio{0},
+          thermal_conductivity{0_W},
+          mod_of_elasticity_tension{0_Pa} {}
+
+    /**
+     * @brief Construct a new Properties object through initializer list
+     */
+    Properties(typename TMaterialType::Type type, Color color,
+               units::density::kilograms_per_cubic_meter_t density,
+               units::temperature::kelvin_t melting_point,
+               double poissons_ratio, units::power::watt_t thermal_conductivity,
+               units::pressure::pascal_t mod_of_elasticity_tension)
+        : type{type},
+          color{color},
+          density{density},
+          melting_point{melting_point},
+          poissons_ratio{poissons_ratio},
+          thermal_conductivity{thermal_conductivity},
+          mod_of_elasticity_tension{mod_of_elasticity_tension} {}
+  };
+
+  // @todo(jimmyhalimi): Find a way to remove this forward declaration
+  enum class Type : uint8_t;
+
+  /**
    * @brief Construct a new Material object
-   *
    */
   Material() = default;
 
@@ -92,15 +179,6 @@ class Material : Crtp<TMaterialType> {
   explicit Material(const Type& type) { this->MaterialType()(type); }
 
   /**
-   * @brief Init the Lua config file
-   *
-   */
-  bool InitLuaScript() {
-    this->MaterialType()->InitLuaScript();
-    return true;
-  }
-
-  /**
    * @brief Set the Type object
    *
    * @param type Type of the Material
@@ -108,27 +186,27 @@ class Material : Crtp<TMaterialType> {
    * @return false If the type failed to set
    */
   bool SetType(const Type& type) {
-    this->MaterialType()->SetType(type);
+    this->MaterialType().SetType(type);
     return true;
   }
 
   /**
    * @brief Get the Type object
    *
-   * @return const std::pair<std::string, Type> Pair with type name and type
+   * @return Type Pair with type name and type
    * enum from Derived class
    */
-  [[nodiscard]] constexpr std::pair<std::string, Type> GetType() const {
-    return std::make_pair(this->MaterialType()->GetType());
+  [[nodiscard]] constexpr Type GetType() const {
+    return this->MaterialType().GetType();
   }
 
   /**
    * @brief Get the Specific Color object
    *
-   * @return const std::string Color of the material from Derived class
+   * @return Color Color of the material from Derived class
    */
   [[nodiscard]] constexpr Color GetSpecificColor() const {
-    return {this->MaterialType()->GetSpecificColor()};
+    return this->MaterialType().GetSpecificColor();
   }
 
   /**
@@ -139,18 +217,7 @@ class Material : Crtp<TMaterialType> {
    */
   [[nodiscard]] constexpr units::density::kilograms_per_cubic_meter_t
   GetSpecificDensity() const {
-    return {this->MaterialType()->GetSpecificDensity()};
-  }
-
-  /**
-   * @brief Get the Specific Gravity object
-   *
-   * @return meters_per_second_squared_t Gravity of the material from Derived
-   * class
-   */
-  [[nodiscard]] constexpr units::acceleration::meters_per_second_squared_t
-  GetSpecificGravity() const {
-    return {this->MaterialType()->GetSpecificGravity()};
+    return this->MaterialType().GetSpecificDensity();
   }
 
   /**
@@ -161,7 +228,7 @@ class Material : Crtp<TMaterialType> {
    */
   [[nodiscard]] constexpr units::temperature::kelvin_t GetSpecificMeltingPoint()
       const {
-    return {this->MaterialType()->GetSpecificMeltingPoint()};
+    return this->MaterialType().GetSpecificMeltingPoint();
   }
 
   /**
@@ -171,7 +238,7 @@ class Material : Crtp<TMaterialType> {
    * class
    */
   [[nodiscard]] constexpr double GetSpecificPoissonsRatio() const {
-    return {this->MaterialType()->GetSpecificPoissonsRatio()};
+    return this->MaterialType().GetSpecificPoissonsRatio();
   }
 
   /**
@@ -182,7 +249,7 @@ class Material : Crtp<TMaterialType> {
    */
   [[nodiscard]] constexpr units::power::watt_t GetSpecificThermalConductivity()
       const {
-    return {this->MaterialType()->GetSpecificThermalConductivity()};
+    return this->MaterialType().GetSpecificThermalConductivity();
   }
 
   /**
@@ -193,24 +260,21 @@ class Material : Crtp<TMaterialType> {
    */
   [[nodiscard]] constexpr units::pressure::pascal_t
   GetSpecificModOfElasticityTension() const {
-    return {this->MaterialType()->GetSpecificModOfElasticityTension()};
+    return this->MaterialType().GetSpecificModOfElasticityTension();
   }
 
   /**
    * @brief Destroy the Material object
-   *
    */
   ~Material() = default;
 
   /**
    * @brief Delete copy constructor
-   *
    */
   Material(const Material&) = delete;
 
   /**
    * @brief Set move constructor to default
-   *
    */
   Material(Material&&) = default;
 
@@ -235,21 +299,20 @@ class Material : Crtp<TMaterialType> {
 
   /**
    * @brief Shift operator template overload, for the base class Material
-   *
    */
-  template <typename TMaterial>
   friend std::ostream& operator<<(std::ostream& os,
-                                  const Material<TMaterialType>& obj);
-};
+                                  const Material<TMaterialType>& obj) {
+    os << "Material " << obj.ThisTMaterialType();
 
-template <typename TMaterial>
-std::ostream& operator<<(std::ostream& os, const Material<TMaterial>& obj) {
-  // @todo(jimmyhalimi): This causes segmentation fault, it works if you comment
-  // out headers in materials.hh and you move implementation in the class
-  // @todo(jimmyhalimi): Update: The error is caused in interface when calling
-  // with make unique base object.
-  os << "\nMaterial\n" << obj.ThisTMaterialType();
-  return os;
-}
+    return os;
+  }
+
+  friend std::ostream& operator<<(std::ostream& os,
+                                  const Material<TMaterialType>::Color& color) {
+    os << kColorString.at(color);
+
+    return os;
+  }
+};
 } // namespace masscalculator::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_

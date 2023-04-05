@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.15)
 
 project(masscalculator-core)
 
-set(MASSCALCULATOR_RESOURCES_PATH "${MASSCALCULATOR_HOME}/resources")
+set(MASSCALCULATOR_RESOURCES_PATH "${MASSCALCULATOR_HOME}/resources/")
 
 configure_file(config/resources.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/include/masscalculator/core/resources.h)
 
 file(
   COPY resources
-  DESTINATION ${MASSCALCULATOR_RESOURCES_PATH}
+  DESTINATION ${MASSCALCULATOR_HOME}
 )
 
 add_library(${PROJECT_NAME} SHARED 

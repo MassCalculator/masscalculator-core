@@ -1,8 +1,8 @@
 /**
- * @file color.h
+ * @file lua_handler_data.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains constant expressions that define the keys to get
- * the values of the different colors of a material.
+ * @brief Specifies the path to the test data used by the LuaScriptHandler
+ * class.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -27,15 +27,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
-#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
 
-namespace masscalculator::materials::constants::color {
-// ! String constant for Metallic color.
-constexpr auto kMetallic{"Metallic"};
-// ! String constant for Darktone color.
-constexpr auto kDarkTone{"Darktone"};
-// ! String constant for Unspecified color.
-constexpr auto kUnspecified{"Unspecified"};
-} // namespace masscalculator::materials::constants::color
-#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
+namespace masscalculator {
+// ! String constant to get the path to the test configuration.
+constexpr auto kTestDataConfigPath = "@LUA_HANDLER_TEST_DATA_CONFIG@";
+} // namespace masscalculator
+
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_

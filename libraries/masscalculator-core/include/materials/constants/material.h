@@ -57,7 +57,7 @@ constexpr auto kSteel{"Steel"};
 constexpr auto kTitanium{"Titanium"};
 // ! String constant for Zinc material.
 constexpr auto kZinc{"Zinc"};
-// ! String constant for UNSPECIFIED material.
+// ! String constant for Unspecified material.
 constexpr auto kUnspecified{"Unspecified"};
 } // namespace masscalculator::materials::constants::material
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_
