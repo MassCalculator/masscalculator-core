@@ -37,12 +37,12 @@
 #include <string_view> // for std::string_view
 #include <utility>     // for std::pair and std::move
 
-#include "lua_handler.h"                        // for LuaScriptHandler
-#include "masscalculator/base/macro_logger.hpp" // for LOG_*
-#include "materials/constants/alloy_coppers.h"  // for alloycopper::k*
-#include "materials/constants/properties.h"     // for properties::k*
-#include "materials/material.h"                 // for material
-#include "units.h"                              // for units::*
+#include "lua_handler.h"                       // for LuaScriptHandler
+#include "masscalculator/base/macro_logger.h"  // for LOG_*
+#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "materials/constants/properties.h"    // for properties::k*
+#include "materials/material.h"                // for material
+#include "units.h"                             // for units::*
 
 namespace masscalculator::materials {
 AlloyCoppers::AlloyCoppers(const std::string_view& type)
