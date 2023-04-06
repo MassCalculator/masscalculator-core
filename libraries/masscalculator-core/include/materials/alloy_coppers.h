@@ -1,129 +1,65 @@
 /**
- * @file alloy_coppers.hpp
+ * @file alloy_coppers.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief AlloyCoppers class that holds the parameters for all the types
- * @version 0.1
- * @date 2020-03-20
+ * @brief This file contains the class definition for alloy_coppers.
+ * The alloy_coppers class holds all the specific properties for the different
+ * types of alloy_coppers. It inherits from the base class Material and provides
+ * the getters and setters for the alloy_coppers properties.
+ * @version 0.2
+ * @date 2023-04-03
  *
- * @copyright Copyright (c) 2020
+ * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
+ * @license This project is released under the  MIT license (MIT).
  *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
-#include <lua_handler.h> // for LuaScriptHandler
+#include <cstdint>       // for uint8_t
+#include <functional>    // for std::function
+#include <memory>        // for std::unique_ptr
+#include <ostream>       // fot std::ostream
+#include <string>        // for std::string
+#include <string_view>   // for std::string_view
+#include <unordered_map> // for std::unordered_map
+#include <utility>       // for std::pair and std::move
 
-#include "constants/alloy_coppers.h" // for alloycopper::k*
-#include "constants/material.h"      // for color::k*
-#include "material.h"                // for material
-// @todo(jimmyhalimi): Fix the include
-// #include "software_version.h"        // for kSoftwareVersion
-#include "units.h" // for units::*
-
-using namespace units::literals;
+#include "lua_handler.h"                       // for LuaScriptHandler
+#include "masscalculator/base/immutable_map.h" // for ImmutableMap
+#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "materials/constants/color.h"         // for color::k*
+#include "materials/constants/material.h"      // for material::k*
+#include "materials/material.h"                // for material
+#include "units.h"                             // for units::*
 
 /**
  * @brief Default Materials namespace
- *
  */
 namespace masscalculator::materials {
-
 /**
  * @brief Class AlloyCoppers, that holds all the nessesary information for
  * AlloyCoppers and it's types therefore we can use in the interface
- *
  */
 class AlloyCoppers : public Material<AlloyCoppers> {
  public:
-  enum class Type : uint8_t;
-
-  /**
-   * @brief Struct with material specific properties
-   * @todo(jimmyhalimi): Check if this can be moved to the base class, the
-   * problem is only in the std::pair<T, Type>, Type cannot be deduced from base
-   * to derived
-   */
-  using Properties = struct Properties {
-    /**
-     * @brief Type The parameter to save the specific type
-     * @todo(jimmyhalimi): Check if we can change this type, and use
-     * immutable_map to convert string to enum
-     */
-    std::pair<std::string, Type> type;
-
-    /**
-     * @brief string Parameter to save specific color
-     * @todo(jimmyhalimi): Check if we can change this type, and use
-     * immutable_map to convert string to enum
-     */
-    std::string color;
-
-    /**
-     * @brief kilograms_per_cubic_meter_t Parameter to save specific density
-     */
-    units::density::kilograms_per_cubic_meter_t density;
-
-    /**
-     * @brief meters_per_second_squared_t Parameter to save specific gravity
-     */
-    units::acceleration::meters_per_second_squared_t gravity;
-
-    /**
-     * @brief kelvin_t Parameter to save specific melting point
-     */
-    units::temperature::kelvin_t melting_point;
-
-    /**
-     * @brief double Parameter to save specific poissons ratio
-     */
-    double poissons_ratio;
-
-    /**
-     * @brief watt_t Parameter to save specific thermal conductivity
-     */
-    units::power::watt_t thermal_conductivity;
-
-    /**
-     * @brief pascal_t Parameter to save specific modulus of elasticity tension
-     */
-    units::pressure::pascal_t mod_of_elasticity_tension;
-
-    /**
-     * @brief Construct a new Properties object with all parameters initialized
-     */
-    Properties()
-        : type{std::make_pair(constants::alloycopper::kUnspecified,
-                              AlloyCoppers::Type::kUnspecified)},
-          color{""},
-          density{0_kg_per_cu_m},
-          gravity{0_mps_sq},
-          melting_point{0_K},
-          poissons_ratio{0},
-          thermal_conductivity{0_W},
-          mod_of_elasticity_tension{0_Pa} {}
-
-    /**
-     * @brief Construct a new Properties object through initializer list
-     */
-    Properties(std::pair<std::string, Type> type, std::string color,
-               units::density::kilograms_per_cubic_meter_t density,
-               units::acceleration::meters_per_second_squared_t gravity,
-               units::temperature::kelvin_t melting_point,
-               double poissons_ratio, units::power::watt_t thermal_conductivity,
-               units::pressure::pascal_t mod_of_elasticity_tension)
-        : type{std::move(type)},
-          color{std::move(color)},
-          density{density},
-          gravity{gravity},
-          melting_point{melting_point},
-          poissons_ratio{poissons_ratio},
-          thermal_conductivity{thermal_conductivity},
-          mod_of_elasticity_tension{mod_of_elasticity_tension} {}
-  };
-
- public:
   /**
    * @brief Enum that holds the AlloyCoppers types
-   *
    */
   enum class Type : uint8_t {
     kBegin = 0,
@@ -326,77 +262,52 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   };
 
   /**
-   * @brief Construct a new AlloyCoppers object
-   */
-  AlloyCoppers();
-
-  /**
    * @brief Construct a new AlloyCoppers object and specify the type
    */
-  explicit AlloyCoppers(const Type& type);
-
-  /**
-   * @brief Function to initialize the Lua object
-   */
-  bool InitLuaScript();
-
-  /**
-   * @brief Set the Type object
-   *
-   * @param type Type of the AlloyCoppers
-   * @return true If the type is set successfully
-   * @return false If the type failed to set
-   */
-  bool SetType(const Type& type);
+  explicit AlloyCoppers(const std::string_view& type);
 
   /**
    * @brief Get the Type object
    *
-   * @return std::pair<std::string, Type> Pair with type name and type enum
+   * @return Type Type enumeration of the material
    */
-  std::pair<std::string, Type> GetType() const;
+  [[nodiscard]] std::string_view GetType() const;
 
   /**
    * @brief Get the Specific color object
    *
-   * @return std::string color of the material
+   * @return Color color of the material
    */
-  std::string GetSpecificColor() const;
+  [[nodiscard]] Color GetSpecificColor() const;
 
   /**
    * @brief Get the Specific Density object
    *
    * @return kilograms_per_cubic_meter_t Density of the material
    */
-  units::density::kilograms_per_cubic_meter_t GetSpecificDensity() const;
-
-  /**
-   * @brief Get the Specific Gravity object
-   *
-   * @return meters_per_second_squared_t double Gravity of the material
-   */
-  units::acceleration::meters_per_second_squared_t GetSpecificGravity() const;
+  [[nodiscard]] units::density::kilograms_per_cubic_meter_t GetSpecificDensity()
+      const;
 
   /**
    * @brief Get the Specific Melting Point object
    *
    * @return kelvin_t The specific melting point of AlloyCoppers type
    */
-  units::temperature::kelvin_t GetSpecificMeltingPoint() const;
+  [[nodiscard]] units::temperature::kelvin_t GetSpecificMeltingPoint() const;
 
   /**
    * @brief Get the Specific PoissonsRatio object
    *
    * @return double The specific poissons ratio of AlloyCoppers type
    */
-  double GetSpecificPoissonsRatio() const;
+  [[nodiscard]] double GetSpecificPoissonsRatio() const;
 
   /**
    * @brief Get the Specific Thermal Conductivity object
    *
    * @return watt_t The specific thermal conductivity of AlloyCoppers type
    */
-  units::power::watt_t GetSpecificThermalConductivity() const;
+  [[nodiscard]] units::power::watt_t GetSpecificThermalConductivity() const;
 
   /**
    * @brief Get the Specific Modulus of Elasticity Tension object
@@ -404,7 +315,8 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return pascal_t The specific modulus of elasticity tension point of
    * AlloyCoppers type
    */
-  units::pressure::pascal_t GetSpecificModOfElasticityTension() const;
+  [[nodiscard]] units::pressure::pascal_t GetSpecificModOfElasticityTension()
+      const;
 
   /**
    * @brief Destroy the AlloyCoppers object
@@ -416,12 +328,6 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * the nessesery informations
    */
   friend std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj);
-
-  /**
-   * @brief Shift operator overload for Types of AlloyCoppers, this will print
-   * the name in string
-   */
-  friend std::ostream& operator<<(std::ostream& os, const Type& type);
 
   /**
    * @brief Delete copy constructor
@@ -450,8 +356,8 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    *
    * @return std::string Class name as a string
    */
-  inline std::string GetClassName(AlloyCoppers* /*unused*/) {
-    return {constants::material::kAlloyCoppers};
+  [[nodiscard]] inline constexpr auto GetClassName() const {
+    return constants::material::kAlloyCoppers;
   };
 
   /**
@@ -461,212 +367,186 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return true If properties are correctly set
    * @return false If properties have failed to set
    */
-  bool SetPropertieSpecs(const Properties& properties);
+  bool SetProperties(const Properties& properties);
 
   /**
-   * @brief Unordered map, and a lambda parsed as std::function. This is all
-   * done to eliminate the switch statement Here we set also the values
-   * accordingly to SI.
+   * @brief Convert a string representation of a unit to its corresponding SI
+   * unit using an unordered map and a lambda function.
+   * Instead of using a switch statement, an unordered map is used with a lambda
+   * function to eliminate the need for a large switch statement. The function
+   * sets the values accordingly to SI units.
    *
    * @source: GPT 4.0
    */
   std::unordered_map<Type, std::function<void()>> type2func_{
       {Type::k145Telluirum,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k145Telluirum, Type::k145Telluirum},
-              {constants::color::kMetallic},
-              {8940_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1323.15_K},
-              0.34,
-              {315.0_W},
-              {128_GPa}});
+         return this->SetProperties({Type::k145Telluirum,
+                                     Color::kMetallic,
+                                     {8940_kg_per_cu_m},
+                                     {1323.15_K},
+                                     0.34,
+                                     {315.0_W},
+                                     {128_GPa}});
        }},
       {Type::k194Iron,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k194Iron, Type::k194Iron},
-              {constants::color::kMetallic},
-              {7874_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1811.15_K},
-              0.29,
-              {80.4_W},
-              {211_GPa}});
+         return this->SetProperties({Type::k194Iron,
+                                     Color::kMetallic,
+                                     {7874_kg_per_cu_m},
+                                     {1811.15_K},
+                                     0.29,
+                                     {80.4_W},
+                                     {211_GPa}});
        }},
       {Type::k195Iron,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k195Iron, Type::k195Iron},
-              {constants::color::kMetallic},
-              {7874_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1811.15_K},
-              0.29,
-              {80.4_W},
-              {211_GPa}});
+         return this->SetProperties({Type::k195Iron,
+                                     Color::kMetallic,
+                                     {7874_kg_per_cu_m},
+                                     {1811.15_K},
+                                     0.29,
+                                     {80.4_W},
+                                     {211_GPa}});
+       }},
+      {Type::k172Beryllium,
+       [&]() {
+         return this->SetProperties({Type::k172Beryllium,
+                                     Color::kMetallic,
+                                     {8300_kg_per_cu_m},
+                                     {1356.15_K},
+                                     0.30,
+                                     {209_W},
+                                     {140_GPa}});
        }},
       {Type::k182Class2,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k182Class2, Type::k182Class2},
-              {constants::color::kMetallic},
-              {8300_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1356.15_K},
-              0.30,
-              {209_W},
-              {140_GPa}});
+         return this->SetProperties({Type::k182Class2,
+                                     Color::kMetallic,
+                                     {8300_kg_per_cu_m},
+                                     {1356.15_K},
+                                     0.30,
+                                     {209_W},
+                                     {140_GPa}});
        }},
       {Type::k655Silicon,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k655Silicon, Type::k655Silicon},
-              {constants::color::kMetallic},
-              {2330_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1687_K},
-              0.22,
-              {149_W},
-              {50_GPa}});
+         return this->SetProperties({Type::k655Silicon,
+                                     Color::kMetallic,
+                                     {2330_kg_per_cu_m},
+                                     {1687_K},
+                                     0.22,
+                                     {149_W},
+                                     {50_GPa}});
        }},
       {Type::k706Nickel,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k706Nickel, Type::k706Nickel},
-              {constants::color::kMetallic},
-              {8908_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1728_K},
-              0.31,
-              {91_W},
-              {207_GPa}});
+         return this->SetProperties({Type::k706Nickel,
+                                     Color::kMetallic,
+                                     {8908_kg_per_cu_m},
+                                     {1728_K},
+                                     0.31,
+                                     {91_W},
+                                     {207_GPa}});
        }},
       {Type::k715NickelSilver,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k715NickelSilver,
-               Type::k715NickelSilver},
-              {constants::color::kMetallic},
-              {8400_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1373_K},
-              0.37,
-              {94_W},
-              {130_GPa}});
+         return this->SetProperties({Type::k715NickelSilver,
+                                     Color::kMetallic,
+                                     {8400_kg_per_cu_m},
+                                     {1373_K},
+                                     0.37,
+                                     {94_W},
+                                     {130_GPa}});
        }},
       {Type::k725NickelSilver,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k725NickelSilver,
-               Type::k725NickelSilver},
-              {constants::color::kMetallic},
-              {8450_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1373_K},
-              0.37,
-              {93_W},
-              {130_GPa}});
+         return this->SetProperties({Type::k725NickelSilver,
+                                     Color::kMetallic,
+                                     {8450_kg_per_cu_m},
+                                     {1373_K},
+                                     0.37,
+                                     {93_W},
+                                     {130_GPa}});
        }},
       {Type::k735NickelSilver,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k735NickelSilver,
-               Type::k735NickelSilver},
-              {constants::color::kMetallic},
-              {8500_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1373_K},
-              0.37,
-              {92_W},
-              {130_GPa}});
+         return this->SetProperties({Type::k735NickelSilver,
+                                     Color::kMetallic,
+                                     {8500_kg_per_cu_m},
+                                     {1373_K},
+                                     0.37,
+                                     {92_W},
+                                     {130_GPa}});
        }},
       {Type::k752NickelSilver,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k752NickelSilver,
-               Type::k752NickelSilver},
-              {constants::color::kMetallic},
-              {8600_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1373_K},
-              0.37,
-              {90_W},
-              {130_GPa}});
+         return this->SetProperties({Type::k752NickelSilver,
+                                     Color::kMetallic,
+                                     {8600_kg_per_cu_m},
+                                     {1373_K},
+                                     0.37,
+                                     {90_W},
+                                     {130_GPa}});
        }},
       {Type::k762NickelSilver,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k762NickelSilver,
-               Type::k762NickelSilver},
-              {constants::color::kMetallic},
-              {8650_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1373_K},
-              0.37,
-              {89_W},
-              {130_GPa}});
+         return this->SetProperties({Type::k762NickelSilver,
+                                     Color::kMetallic,
+                                     {8650_kg_per_cu_m},
+                                     {1373_K},
+                                     0.37,
+                                     {89_W},
+                                     {130_GPa}});
        }},
       {Type::k770NickelSilver,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k770NickelSilver,
-               Type::k770NickelSilver},
-              {constants::color::kMetallic},
-              {8700_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1373_K},
-              0.37,
-              {88_W},
-              {130_GPa}});
+         return this->SetProperties({Type::k770NickelSilver,
+                                     Color::kMetallic,
+                                     {8700_kg_per_cu_m},
+                                     {1373_K},
+                                     0.37,
+                                     {88_W},
+                                     {130_GPa}});
        }},
       {Type::k1751Class3,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k1751Class3, Type::k1751Class3},
-              {constants::color::kMetallic},
-              {8920_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1400_K},
-              0.31,
-              {42_W},
-              {110_GPa}});
+         return this->SetProperties({Type::k1751Class3,
+                                     Color::kMetallic,
+                                     {8920_kg_per_cu_m},
+                                     {1400_K},
+                                     0.31,
+                                     {42_W},
+                                     {110_GPa}});
        }},
       {Type::k1758Nickel,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::k1758Nickel, Type::k1758Nickel},
-              {constants::color::kMetallic},
-              {8908_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1728_K},
-              0.31,
-              {91_W},
-              {207_GPa}});
+         return this->SetProperties({Type::k1758Nickel,
+                                     Color::kMetallic,
+                                     {8908_kg_per_cu_m},
+                                     {1728_K},
+                                     0.31,
+                                     {91_W},
+                                     {207_GPa}});
        }},
       {Type::kMoldmaxBeCu,
        [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::kMoldmaxBeCu, Type::kMoldmaxBeCu},
-              {constants::color::kMetallic},
-              {8250_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1356.15_K},
-              0.30,
-              {209_W},
-              {140_GPa}});
+         return this->SetProperties({Type::kMoldmaxBeCu,
+                                     Color::kMetallic,
+                                     {8250_kg_per_cu_m},
+                                     {1356.15_K},
+                                     0.30,
+                                     {209_W},
+                                     {140_GPa}});
        }},
       {Type::kProthermBeCu, [&]() {
-         return this->SetPropertieSpecs(
-             {{constants::alloycopper::kProthermBeCu, Type::kProthermBeCu},
-              {constants::color::kMetallic},
-              {8250_kg_per_cu_m},
-              {9.81_mps_sq},
-              {1356.15_K},
-              0.30,
-              {209_W},
-              {140_GPa}});
+         return this->SetProperties({Type::kProthermBeCu,
+                                     Color::kMetallic,
+                                     {8250_kg_per_cu_m},
+                                     {1356.15_K},
+                                     0.30,
+                                     {209_W},
+                                     {140_GPa}});
        }}};
 
   /**
@@ -676,20 +556,95 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
-  bool SetPropertieSpecs(const Type& type);
+  bool SetType(const Type& type);
 
   /**
    * @brief Properties struct to hold the specific object properties
-   *
    */
-  Properties specific_properties_;
+  std::unique_ptr<Properties> specific_properties_;
 
   /**
    * @brief Lua Handler object to get the config for metals from LuaScript is
    * necessary
-   *
    */
-  LuaScriptHandler lua_state_;
+  std::unique_ptr<LuaScriptHandler> lua_state_;
+
+  /**
+   * @brief A map used to convert a string representation of a type to an enum
+   * value.
+   */
+  static constexpr base::ImmutableMap<std::string_view, AlloyCoppers::Type, 17>
+      kType{{{
+          {constants::alloycopper::k145Telluirum,
+           AlloyCoppers::Type::k145Telluirum},
+          {constants::alloycopper::k194Iron, AlloyCoppers::Type::k194Iron},
+          {constants::alloycopper::k195Iron, AlloyCoppers::Type::k195Iron},
+          {constants::alloycopper::k172Beryllium,
+           AlloyCoppers::Type::k172Beryllium},
+          {constants::alloycopper::k182Class2, AlloyCoppers::Type::k182Class2},
+          {constants::alloycopper::k655Silicon,
+           AlloyCoppers::Type::k655Silicon},
+          {constants::alloycopper::k706Nickel, AlloyCoppers::Type::k706Nickel},
+          {constants::alloycopper::k715NickelSilver,
+           AlloyCoppers::Type::k715NickelSilver},
+          {constants::alloycopper::k725NickelSilver,
+           AlloyCoppers::Type::k725NickelSilver},
+          {constants::alloycopper::k735NickelSilver,
+           AlloyCoppers::Type::k735NickelSilver},
+          {constants::alloycopper::k752NickelSilver,
+           AlloyCoppers::Type::k752NickelSilver},
+          {constants::alloycopper::k762NickelSilver,
+           AlloyCoppers::Type::k762NickelSilver},
+          {constants::alloycopper::k770NickelSilver,
+           AlloyCoppers::Type::k770NickelSilver},
+          {constants::alloycopper::k1751Class3,
+           AlloyCoppers::Type::k1751Class3},
+          {constants::alloycopper::k1758Nickel,
+           AlloyCoppers::Type::k1758Nickel},
+          {constants::alloycopper::kMoldmaxBeCu,
+           AlloyCoppers::Type::kMoldmaxBeCu},
+          {constants::alloycopper::kProthermBeCu,
+           AlloyCoppers::Type::kProthermBeCu},
+      }}};
+
+  /**
+   * @brief A map used to convert an enum value of type Type to its string
+   * representation.
+   */
+  static constexpr base::ImmutableMap<AlloyCoppers::Type, std::string_view, 17>
+      kTypeString{
+          {{{AlloyCoppers::Type::k145Telluirum,
+             constants::alloycopper::k145Telluirum},
+            {AlloyCoppers::Type::k194Iron, constants::alloycopper::k194Iron},
+            {AlloyCoppers::Type::k195Iron, constants::alloycopper::k195Iron},
+            {AlloyCoppers::Type::k172Beryllium,
+             constants::alloycopper::k172Beryllium},
+            {AlloyCoppers::Type::k182Class2,
+             constants::alloycopper::k182Class2},
+            {AlloyCoppers::Type::k655Silicon,
+             constants::alloycopper::k655Silicon},
+            {AlloyCoppers::Type::k706Nickel,
+             constants::alloycopper::k706Nickel},
+            {AlloyCoppers::Type::k715NickelSilver,
+             constants::alloycopper::k715NickelSilver},
+            {AlloyCoppers::Type::k725NickelSilver,
+             constants::alloycopper::k725NickelSilver},
+            {AlloyCoppers::Type::k735NickelSilver,
+             constants::alloycopper::k735NickelSilver},
+            {AlloyCoppers::Type::k752NickelSilver,
+             constants::alloycopper::k752NickelSilver},
+            {AlloyCoppers::Type::k762NickelSilver,
+             constants::alloycopper::k762NickelSilver},
+            {AlloyCoppers::Type::k770NickelSilver,
+             constants::alloycopper::k770NickelSilver},
+            {AlloyCoppers::Type::k1751Class3,
+             constants::alloycopper::k1751Class3},
+            {AlloyCoppers::Type::k1758Nickel,
+             constants::alloycopper::k1758Nickel},
+            {AlloyCoppers::Type::kMoldmaxBeCu,
+             constants::alloycopper::kMoldmaxBeCu},
+            {AlloyCoppers::Type::kProthermBeCu,
+             constants::alloycopper::kProthermBeCu}}}};
 };
 } // namespace masscalculator::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_

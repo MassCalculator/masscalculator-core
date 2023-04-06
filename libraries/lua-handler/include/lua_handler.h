@@ -1,348 +1,229 @@
 /**
- * @file lua_handler.hpp
+ * @file lua_handler.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief LuaScriptHandler Class that holds all the nessesary functions and specialisations to get from lua files
- * @version 0.1
- * @date 2020-03-30
- * 
- * @copyright Copyright (c) 2020
- * 
+ * @brief Definition of the LuaScriptHandler class, which encapsulates
+ * the definition and specializations for handling Lua scripts. It provides
+ * an interface to interact with Lua scripts and execute Lua functions from
+ * C++ code.
+ * @version 0.2
+ * @date 2023-04-04
+ *
+ * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
+ * @license This project is released under the  MIT license (MIT).
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
-#ifndef ___HELPER_CLASSES_H___
-#define ___HELPER_CLASSES_H___
-#include <string>
-#include <vector>
+#ifndef MASSCALCULATOR_LIBRARIES_LUA_HANDLER_INCLUDE_LUA_HANDLER_H_
+#define MASSCALCULATOR_LIBRARIES_LUA_HANDLER_INCLUDE_LUA_HANDLER_H_
+#include <string> // for std::string
+#include <vector> // for std::vector
 
-#include "macro_logger.hpp"
+#include "masscalculator/base/macro_logger.h" // for LOG_*
 
-// Lua is written in C, so compiler needs to know how to link its libraries
-extern "C" 
-{
-  #include "lua5.1/lua.h"
-  #include "lua5.1/lualib.h"
-  #include "lua5.1/lauxlib.h"
+extern "C" {
+#include "lua5.1/lauxlib.h" // for luaL_newstate, luaL_loadfile
+#include "lua5.1/lua.h"     // for lua_State and lua_*
+#include "lua5.1/lualib.h"  // for luaL_openlibs
 }
 
 /**
  * @brief Default namespace
- * 
  */
-namespace masscalculator
-{
+namespace masscalculator {
 
-    /**
-     * @brief Class LuaScriptHandler, that holds all the nessesary functions and specialisations to get from lua files
-     * 
-     */
-    class LuaScriptHandler 
-    {
-      public:
-        /**
-         * @brief Construct a new Lua Script Handler object
-         * 
-         */
-        LuaScriptHandler(void) = default;
+/**
+ * @brief Class LuaScriptHandler, that holds all the nessesary functions and
+ * specialisations to get from lua files
+ */
+class LuaScriptHandler {
+ public:
+  /**
+   * @brief Construct a new Lua Script Handler object
+   */
+  explicit LuaScriptHandler(const std::string& filename);
 
-        /**
-         * @brief Destroy the Lua Script Handler object
-         * 
-         */
-        ~LuaScriptHandler();
-        
-        /**
-         * @brief Function that opens the Lua script
-         * 
-         * @param filename Path to the Lua script
-         * @return true if script is opened successfully
-         * @return false if script failed to open
-         */
-        bool openScript(const std::string &filename);
+  /**
+   * @brief Destroy the Lua Script Handler object
+   */
+  ~LuaScriptHandler();
 
-        /**
-         * @brief Function that initializes the Lua script
-         * 
-         * @return true if initialization is successful
-         * @return false if initialization failed
-         */
-        bool isInitialized(void);
-
-        /**
-         * @brief Function to close the Lua script
-         * 
-         * @return true if the script closed successfully
-         * @return false if script failed to close
-         */
-        bool closeScript(void);
-
-        /**
-         * @brief Function to print the error
-         * 
-         * @param variableName Lua parameter
-         * @param reason Reason of error
-         */
-        void printError(const std::string& variableName, const std::string& reason);
-
-        /**
-         * @brief Get the Int Vector object
-         * 
-         * @param name Lua vector parameter
-         * @return std::vector<int> with the values from Lua script
-         */
-        std::vector<int> getIntVector(const std::string& name);
-        
-        /**
-         * @brief Clean Lua stack
-         * 
-         */
-        inline void clean() 
-        {
-          int n = lua_gettop(L);
-          lua_pop(L, n);
-        }
-
-        /**
-         * @brief Generic getter for Lua parameter
-         * 
-         * @tparam T Type of the Lua parameter
-         * @param variableName Name of the Lua parameter
-         * @return T Type of Lua parameter
-         */
-        template<typename T>
-        T get(const std::string& variableName) 
-        {
-          if(!L) 
-          {
-            printError(variableName, "Script is not loaded");
-            return lua_getdefault<T>();
-          }
-          
-          T result;
-          if(lua_gettostack(variableName))
-          {
-            result = lua_get<T>(variableName);  
-          } 
-          else 
-          {
-            result = lua_getdefault<T>();
-          }
-        
-          clean();
-          return result;
-        }
-
-        /**
-         * @brief Function to get to the Lua script stack
-         * 
-         * @param variableName Parameter from Lua script
-         * @return true If the parameter found successfully
-         * @return false If parameter failed to get
-         */
-        bool lua_gettostack(const std::string& variableName) 
-        {
-          level = 0;
-          std::string var = "";
-          
-          for(unsigned int i = 0; i < variableName.size(); i++) 
-          {
-            if(variableName.at(i) == '.') 
-            {
-              if(level == 0) 
-              {
-                lua_getglobal(L, var.c_str());
-              }
-              else
-              {
-                lua_getfield(L, -1, var.c_str());
-              }
-              
-              if(lua_isnil(L, -1)) 
-              {
-                printError(variableName, var + " is not defined");
-                return false;
-              }
-              else 
-              {
-                var = "";
-                level++;
-              }
-            }
-            else
-            {
-              var += variableName.at(i);
-            }
-          }
-
-          if(level == 0) 
-          {
-            lua_getglobal(L, var.c_str());
-          } 
-          else
-          {
-            lua_getfield(L, -1, var.c_str());
-          }
-
-          if(lua_isnil(L, -1)) 
-          {
-            printError(variableName, var + " is not defined");
-            return false;
-          }
-
-          return true;       
-        }
-
-        /**
-         * @brief Generic get function
-         * 
-         * @tparam T Type for Lua parameter
-         * @param variableName Parameter from Lua script
-         * @return T Type for return parameter
-         */
-        template<typename T>
-        T lua_get(const std::string& /*variableName*/)
-        {
-          return 0;
-        }
-
-        /**
-         * @brief Function to get default
-         * 
-         * @tparam T Type for Lua parameter
-         * @return T Type for return parameter
-         */
-        template<typename T>
-        T lua_getdefault()
-        {
-          return 0;
-        }
-
-      private:
-        /**
-         * @brief Variable to store the Lua state
-         * 
-         */
-        lua_State* L;
-
-        /**
-         * @brief Variable to store the script filename
-         * 
-         */
-        std::string filename_;
-
-        /**
-         * @brief Variable to store the Lua stack level
-         * 
-         */
-        int level;
-    };
-
-    /**
-     * @brief Specialisation to get Lua parameter as bool
-     * 
-     * @tparam bool
-     * @param variableName Parameter name in Lua script
-     * @return true if parameter get is successfully
-     * @return false if parameter failed to get
-     */
-    template <> 
-    inline bool LuaScriptHandler::lua_get<bool>(const std::string& variableName) 
-    {
-      if(!lua_isboolean(L, -1)) 
-      {
-        printError(variableName, "Not a boolean");
+  /**
+   * @brief Get a value from Lua config.
+   *
+   * @tparam TLuaReturnType The return type.
+   * @param value The name of the value in Lua config.
+   * @return The value of the specified type.
+   */
+  template <typename TLuaReturnType>
+  TLuaReturnType Get(const std::string& variable_name) {
+    if (lua_state_ != nullptr) {
+      if (LuaGetToStack(variable_name)) {
+        return LuaGet<TLuaReturnType>(variable_name.c_str());
       }
-
-      return static_cast<bool>(lua_toboolean(L, -1));
     }
 
-    /**
-     * @brief Specialisation to get Lua parameter as float
-     * 
-     * @tparam float
-     * @param variableName Parameter name in Lua script
-     * @return float Parameter as float type
-     */
-    template <> 
-    inline float LuaScriptHandler::lua_get<float>(const std::string& variableName) 
-    {
-      if(!lua_isnumber(L, -1)) 
-      {
-        printError(variableName, "Not a number");
-      }
+    LuaClean();
+    return TLuaReturnType{};
+  }
 
-      return static_cast<float>(lua_tonumber(L, -1));
+  /**
+   * @brief Get a value from Lua config, or a default value if Lua config is not
+   * used.
+   *
+   * @tparam TLuaReturnType The return type.
+   * @tparam TValue The type of the default value.
+   * @param value The name of the value in Lua config.
+   * @param default_value The default value.
+   * @return The value from Lua config if available, otherwise the default
+   * value.
+   */
+  template <typename TLuaReturnType, typename TValue>
+  TLuaReturnType GetOrDefault(const std::string& value,
+                              const TValue& default_value) {
+    auto pos = value.find_last_of(".");
+    if (pos == std::string::npos) {
+      // handle error case where '.' is not found in the string
+    }
+    std::string new_value = value.substr(0, pos) + ".UseLuaConfig";
+    if (Get<bool>(new_value.c_str())) {
+      return static_cast<TLuaReturnType>(Get<TLuaReturnType>({value}));
+    }
+    return static_cast<TLuaReturnType>(default_value);
+  }
+
+ private:
+  /**
+   * @brief Opens the Lua state and standard libraries, and loads the specified
+   * Lua script file into the state.
+   *
+   * @param filename The name of the Lua script file to load.
+   * @return true if the Lua state was opened and the script was loaded
+   * successfully, false otherwise.
+   */
+  bool LuaOpen(const std::string& filename);
+
+  /**
+   * @brief Retrieves a variable from the Lua script and pushes it onto the Lua
+   * stack.
+   *
+   * @param variable_name The name of the variable to retrieve from the Lua
+   * script.
+   * @return true if the variable was found and pushed onto the stack
+   * successfully, false otherwise.
+   */
+  bool LuaGetToStack(const std::string& variable_name);
+
+  /**
+   * @brief Cleans the Lua stack by removing all values from it.
+   *
+   * @return true if the Lua stack was cleaned successfully, false otherwise.
+   */
+  bool LuaClean();
+
+  /**
+   * @brief Closes the Lua state and frees all associated resources.
+   *
+   * @return true if the Lua state was closed successfully, false otherwise.
+   */
+  bool LuaClose();
+
+  /**
+   * @brief Generic function template to retrieve a Lua parameter of type `T`.
+   *
+   * @tparam TLuaReturnType The type of the parameter to retrieve.
+   * @param variable_name The name of the Lua parameter to retrieve.
+   * @return TLuaReturnType The value of the Lua parameter as type
+   * `TLuaReturnType`.
+   */
+  template <typename TLuaReturnType>
+  TLuaReturnType LuaGet(const std::string& variable_name) {
+    if (lua_isnumber(lua_state_, -1) == 0) {
+      LOG_ERROR("Can't get [%s]. Not a number", variable_name.c_str());
     }
 
-    /**
-     * @brief Specialisation to get Lua parameter as double
-     * 
-     * @tparam double
-     * @param variableName Parameter name in Lua script
-     * @return double Parameter as double type
-     */
-    template <>
-    inline double LuaScriptHandler::lua_get<double>(const std::string& variableName) 
-    {
-      if(!lua_isnumber(L, -1)) 
-      {
-        printError(variableName, "Not a number");
-      }
+    return static_cast<TLuaReturnType>(lua_tonumber(lua_state_, -1));
+  }
 
-      return static_cast<double>(lua_tonumber(L, -1));
-    }
+  /**
+   * @brief Pointer to the Lua state object.
+   *
+   * This data member is used to store the pointer to the Lua state object
+   * created by `luaL_newstate`. It is used to interact with the Lua interpreter
+   * API functions.
+   */
+  lua_State* lua_state_;
+};
 
-    /**
-     * @brief Specialisation to get Lua parameter as int
-     * 
-     * @tparam int
-     * @param variableName Parameter name in Lua script
-     * @return int Parameter as int type
-     */
-    template <>
-    inline int LuaScriptHandler::lua_get<int>(const std::string& variableName) 
-    {
-      if(!lua_isnumber(L, -1)) 
-      {
-        printError(variableName, "Not a number");
-      }
+/**
+ * @brief Specialization of the `LuaGet` function template to retrieve a Lua
+ * parameter as a `bool`.
+ *
+ * @tparam bool The type of the parameter to retrieve.
+ * @param variable_name The name of the Lua parameter to retrieve.
+ * @return bool The value of the Lua parameter as a `bool`.
+ */
+template <>
+inline bool LuaScriptHandler::LuaGet<bool>(const std::string& variable_name) {
+  if (!lua_isboolean(lua_state_, -1)) {
+    LOG_ERROR("Can't get [%s]. Not a boolean", variable_name.c_str());
+  }
 
-      return static_cast<int>(lua_tonumber(L, -1));
-    }
+  return static_cast<bool>(lua_toboolean(lua_state_, -1));
+}
 
-    /**
-     * @brief Specialisation to get Lua parameter as std::string
-     * 
-     * @tparam std::string
-     * @param variableName Parameter name in Lua script
-     * @return std::string Parameter as std::string type
-     */
-    template <>
-    inline std::string LuaScriptHandler::lua_get<std::string>(const std::string& variableName) 
-    {
-      std::string s = "null";
-      if(lua_isstring(L, -1)) 
-      {
-        s = std::string(lua_tostring(L, -1));
-      } 
-      else 
-      {
-        printError(variableName, "Not a string");
-      }
+/**
+ * @brief Specialization of the `LuaGet` function template to retrieve a Lua
+ * parameter as a `std::string`.
+ *
+ * @tparam std::string The type of the parameter to retrieve.
+ * @param variable_name The name of the Lua parameter to retrieve.
+ * @return std::string The value of the Lua parameter as a `std::string`.
+ */
+template <>
+inline std::string LuaScriptHandler::LuaGet<std::string>(
+    const std::string& variable_name) {
+  if (lua_isstring(lua_state_, -1) == 0) {
+    LOG_ERROR("Can't get [%s]. Not a string", variable_name.c_str());
+  }
 
-      return s;
-    }
+  return lua_tostring(lua_state_, -1);
+}
 
-    /**
-     * @brief Specialisation to get Lua parameter as default
-     * 
-     * @tparam std::string
-     * @param variableName Parameter name in Lua script
-     * @return std::string Parameter as default std::string type
-     */
-    template<>
-    inline std::string LuaScriptHandler::lua_getdefault<std::string>() 
-    {
-      return "null";
-    }
+/**
+ * @brief Specialization of the `LuaGet` function template to retrieve a Lua
+ * parameter as a `std::string_view`.
+ *
+ * @tparam std::string_view The type of the parameter to retrieve.
+ * @param variable_name The name of the Lua parameter to retrieve.
+ * @return std::string_view The value of the Lua parameter as a
+ * `std::string_view`.
+ */
+template <>
+inline std::string_view LuaScriptHandler::LuaGet<std::string_view>(
+    const std::string& variable_name) {
+  if (lua_isstring(lua_state_, -1) == 0) {
+    LOG_ERROR("Can't get [%s]. Not a string", variable_name.c_str());
+  }
 
-}// End namespace masscalculator
-#endif//___HELPER_CLASSES_H___
+  const char* str = lua_tostring(lua_state_, -1);
+  size_t len = lua_strlen(lua_state_, -1);
+  return {str, len};
+}
+} // End namespace masscalculator
+#endif // MASSCALCULATOR_LIBRARIES_LUA_HANDLER_INCLUDE_LUA_HANDLER_H_

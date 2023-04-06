@@ -1,18 +1,12 @@
 # MassCalculator core library
 
+[![Build Status](https://jenkins.mergimhalimi.com/buildStatus/icon?job=masscalculator-core%2Fmaster)](https://jenkins.mergimhalimi.com/job/masscalculator-core/job/master/)
+
 This repository contains the main codebase for the MassCalculator library development.
 
-## What is libmasscalculator
+## What is masscalculator-core
 
-Lib MassCalculator is a library used t ocalculate the weight of an object while specifying the material and shape. The library will be able to import stl files, and also dxf files where the user can be able to extrude the dxf for a specific thickness.
-
-I am planning to add all the material specific properties accordingly to SI (International system), but the user will be able to change these parameters from the providen LUA config files for each material (Doing so will watermark the report for not using the SI parameters but instead, custom ones)
-
-All the datatypes are strongly typed from a third party library that I use. It is not included as a submodule because I changed some old style casting, but credit goes to the writer.
-
-```bash
-https://github.com/nholthaus/units
-```
+The `masscalculator-core` library is designed to determine the weight of an object by taking into account its material and shape. It can handle stl and dxf file formats, and the user can specify the desired thickness when extruding the dxf file. The library includes material properties conforming to the International System of Units (SI), but the user can customize these properties using LUA configuration files. However, using custom parameters will result in a watermark on the report. The library uses strongly-typed data types from a third-party library, which has been modified to remove old-style casting. The third-party library used is available at https://github.com/nholthaus/units.
 
 ## Instructions
 
@@ -21,8 +15,6 @@ https://github.com/nholthaus/units
 - [How to Build](docs/BUILD.md)
 - [All about Tests](docs/TESTS.md)
 
-## CI Server
+## Jenkins Server
 
-WIP: Using local Jenkins for the moment.
-
-[![Build Status](http://localhost:8080/jenkins/job/masscalculator-core/job/master/badge/icon)](http://localhost:8080/jenkins/job/masscalculator-core/job/master/)
+Access Jenkins server [here](https://jenkins.mergimhalimi.com/job/masscalculator-core/)

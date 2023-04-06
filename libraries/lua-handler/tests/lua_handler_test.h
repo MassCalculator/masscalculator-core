@@ -1,8 +1,7 @@
 /**
- * @file material.cpp
+ * @file lua_handler_test.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file is left here for convenience, but the implementation is
- * done with templates in the header file.
+ * @brief Defines unit tests for the LuaScriptHandler class.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -27,25 +26,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#ifndef MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
+#define MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
+#include <gtest/gtest.h> // for ::testing::Test and TEST_F
 
-/*
-#include "materials/aluminium.hpp"
-*/
+#include <memory> // for std::unique_ptr
 
-namespace masscalculator::materials {
+#include "lua_handler.h"                         // for LuaScriptHandler
+#include "masscalculator/lua/lua_handler_data.h" // for kTestDataConfigPath
 
-/*
-//Code example how it can be done in cpp
+namespace masscalculator {
 
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
+class LuaScriptHandlerTest : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    lua_state = std::make_unique<LuaScriptHandler>(kTestDataConfigPath);
+  }
 
-*/
+  void TearDown() override { lua_state.reset(); }
 
-} // namespace masscalculator::materials
+  /**
+   * @brief Construct a new AlloyCoppersTest object
+   */
+  LuaScriptHandlerTest() = default;
+
+  /**
+   * @brief Destroy the AlloyCoppersTest object
+   */
+  ~LuaScriptHandlerTest() override = default;
+
+  /**
+   * @brief Member objects for class AlloyCopper for each AlloyCopper type
+   */
+  std::unique_ptr<LuaScriptHandler> lua_state;
+};
+} // namespace masscalculator
+#endif // MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_

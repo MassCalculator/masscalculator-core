@@ -1,8 +1,8 @@
 /**
- * @file material.cpp
+ * @file lua_handler_data.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file is left here for convenience, but the implementation is
- * done with templates in the header file.
+ * @brief Specifies the path to the test data used by the LuaScriptHandler
+ * class.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -27,25 +27,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_
 
-/*
-#include "materials/aluminium.hpp"
-*/
+namespace masscalculator {
+// ! String constant to get the path to the test configuration.
+constexpr auto kTestDataConfigPath = "@LUA_HANDLER_TEST_DATA_CONFIG@";
+} // namespace masscalculator
 
-namespace masscalculator::materials {
-
-/*
-//Code example how it can be done in cpp
-
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
-
-*/
-
-} // namespace masscalculator::materials
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_CONFIG_SOFTWARE_VERSION_H_

@@ -1,243 +1,188 @@
-AlloyCoppers = 
-{
-  Type = 
-  {
-    AC_145Tellvirum = 
-    {
-      UseLuaConfig = false,
-      type = "AC_145Tellvirum",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+AlloyCoppers = {
+    k145Telluirum = {
+        UseLuaConfig = false,
+        type = "k145Telluirum",
+        color = "Metallic",
+        density = 8940.0,
+        melting_point = 1323.15,
+        poissons_ratio = 0.34,
+        thermal_conductivity = 315.0,
+        mod_of_elasticity_tension = 128000000000.0
     },
 
-    AC_194Iron = 
-    {
-      UseLuaConfig = false,
-      type = "AC_194Iron",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k194Iron = {
+        UseLuaConfig = false,
+        type = "k194Iron",
+        color = "Metallic",
+        density = 7874.0,
+        melting_point = 1811.15,
+        poissons_ratio = 0.29,
+        thermal_conductivity = 80.4,
+        mod_of_elasticity_tension = 211000000000.0
     },
 
-    AC_195Iron = 
-    {
-      UseLuaConfig = false,
-      type = "AC_194Iron",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k195Iron = {
+        UseLuaConfig = false,
+        type = "k195Iron",
+        color = "Metallic",
+        density = 7874.0,
+        melting_point = 1811.15,
+        poissons_ratio = 0.29,
+        thermal_conductivity = 80.4,
+        mod_of_elasticity_tension = 211000000000.0
     },
 
-    AC_172Beryllium = 
-    {
-      UseLuaConfig = false,
-      type = "AC_172Beryllium",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k172Beryllium = {
+        UseLuaConfig = false,
+        type = "k172Beryllium",
+        color = "Metallic",
+        density = 8300.0,
+        melting_point = 1356.15,
+        poissons_ratio = 0.30,
+        thermal_conductivity = 209.0,
+        mod_of_elasticity_tension = 140000000000.0
     },
 
-    AC_182Class2 = 
-    {
-      UseLuaConfig = false,
-      type = "AC_182Class2",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k182Class2 = {
+        UseLuaConfig = false,
+        type = "k182Class2",
+        color = "Metallic",
+        density = 8300.0,
+        melting_point = 1356.15,
+        poissons_ratio = 0.30,
+        thermal_conductivity = 209.0,
+        mod_of_elasticity_tension = 140000000000.0
     },
 
-    AC_655Silicon = 
-    {
-      UseLuaConfig = false,
-      type = "AC_655Silicon",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k655Silicon = {
+        UseLuaConfig = false,
+        type = "k655Silicon",
+        color = "Metallic",
+        density = 2330.0,
+        melting_point = 1687.0,
+        poissons_ratio = 0.22,
+        thermal_conductivity = 149.0,
+        mod_of_elasticity_tension = 50000000000.0
     },
 
-    AC_706Nickel = 
-    {
-      UseLuaConfig = false,
-      type = "AC_706Nickel",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k706Nickel = {
+        UseLuaConfig = false,
+        type = "k706Nickel",
+        color = "Metallic",
+        density = 8908.0,
+        melting_point = 1728.0,
+        poissons_ratio = 0.31,
+        thermal_conductivity = 91.0,
+        mod_of_elasticity_tension = 207000000000.0
     },
 
-    AC_715NickelSilver = 
-    {
-      UseLuaConfig = false,
-      type = "AC_715NickelSilver",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k715NickelSilver = {
+        UseLuaConfig = false,
+        type = "k715NickelSilver",
+        color = "Metallic",
+        density = 8400.0,
+        melting_point = 1373.0,
+        poissons_ratio = 0.37,
+        thermal_conductivity = 94.0,
+        mod_of_elasticity_tension = 130000000000.0
     },
 
-    AC_725NickelSilver = 
-    {
-      UseLuaConfig = false,
-      type = "AC_725NickelSilver",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k725NickelSilver = {
+        UseLuaConfig = false,
+        type = "k725NickelSilver",
+        color = "Metallic",
+        density = 8450.0,
+        melting_point = 1373.0,
+        poissons_ratio = 0.37,
+        thermal_conductivity = 93.0,
+        mod_of_elasticity_tension = 130000000000.0
     },
 
-    AC_735NickelSilver = 
-    {
-      UseLuaConfig = false,
-      type = "AC_735NickelSilver",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k735NickelSilver = {
+        UseLuaConfig = false,
+        type = "k735NickelSilver",
+        color = "Metallic",
+        density = 8500.0,
+        melting_point = 1373.0,
+        poissons_ratio = 0.37,
+        thermal_conductivity = 92.0,
+        mod_of_elasticity_tension = 130000000000.0
     },
 
-    AC_752NickelSilver = 
-    {
-      UseLuaConfig = false,
-      type = "AC_752NickelSilver",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k752NickelSilver = {
+        UseLuaConfig = false,
+        type = "k752NickelSilver",
+        color = "Metallic",
+        density = 8600.0,
+        melting_point = 1373.0,
+        poissons_ratio = 0.37,
+        thermal_conductivity = 90.0,
+        mod_of_elasticity_tension = 130000000000.0
     },
 
-    AC_762NickelSilver = 
-    {
-      UseLuaConfig = false,
-      type = "AC_762NickelSilver",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k762NickelSilver = {
+        UseLuaConfig = false,
+        type = "k762NickelSilver",
+        color = "Metallic",
+        density = 8650.0,
+        melting_point = 1373.0,
+        poissons_ratio = 0.37,
+        thermal_conductivity = 89.0,
+        mod_of_elasticity_tension = 130000000000.0
     },
 
-    AC_770NickelSilver = 
-    {
-      UseLuaConfig = false,
-      type = "AC_770NickelSilver",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k770NickelSilver = {
+        UseLuaConfig = false,
+        type = "k770NickelSilver",
+        color = "Metallic",
+        density = 8700.0,
+        melting_point = 1373.0,
+        poissons_ratio = 0.37,
+        thermal_conductivity = 88.0,
+        mod_of_elasticity_tension = 130000000000.0
     },
 
-    AC_1751Class3 = 
-    {
-      UseLuaConfig = false,
-      type = "AC_1751Class3",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k1751Class3 = {
+        UseLuaConfig = false,
+        type = "k1751Class3",
+        color = "Metallic",
+        density = 8920.0,
+        melting_point = 1400.0,
+        poissons_ratio = 0.31,
+        thermal_conductivity = 42.0,
+        mod_of_elasticity_tension = 110000000000.0
     },
 
-    AC_1758Nickel = 
-    {
-      UseLuaConfig = false,
-      type = "AC_1758Nickel",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k1758Nickel = {
+        UseLuaConfig = false,
+        type = "k1758Nickel",
+        color = "Metallic",
+        density = 8908.0,
+        melting_point = 1728.0,
+        poissons_ratio = 0.31,
+        thermal_conductivity = 91.0,
+        mod_of_elasticity_tension = 207000000000.0
     },
 
-    AC_MoldmaxBeCu = 
-    {
-      UseLuaConfig = false,
-      type = "AC_MoldmaxBeCu",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    kMoldmaxBeCu = {
+        UseLuaConfig = false,
+        type = "kMoldmaxBeCu",
+        color = "Metallic",
+        density = 8250.0,
+        melting_point = 1356.15,
+        poissons_ratio = 0.30,
+        thermal_conductivity = 209.0,
+        mod_of_elasticity_tension = 140000000000.0
     },
 
-    AC_ProthermBeCu = 
-    {
-      UseLuaConfig = false,
-      type = "AC_ProthermBeCu",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    kProthermBeCu = {
+        UseLuaConfig = false,
+        type = "kProthermBeCu",
+        color = "Metallic",
+        density = 8250.0,
+        melting_point = 1356.15,
+        poissons_ratio = 0.30,
+        thermal_conductivity = 209.0,
+        mod_of_elasticity_tension = 140000000000.0
     }
-  }
 }

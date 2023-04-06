@@ -1,8 +1,8 @@
 /**
- * @file material.cpp
+ * @file properties.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file is left here for convenience, but the implementation is
- * done with templates in the header file.
+ * @brief This file contains constant expressions that define the keys to get
+ * the values of the different properties of a material.
  * @version 0.2
  * @date 2023-04-03
  *
@@ -27,25 +27,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
 
-/*
-#include "materials/aluminium.hpp"
-*/
-
-namespace masscalculator::materials {
-
-/*
-//Code example how it can be done in cpp
-
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
-
-*/
-
-} // namespace masscalculator::materials
+namespace masscalculator::materials::constants::properties {
+// ! Key to get the type.
+constexpr auto kTypeKey{"type"};
+// ! Key to get the color.
+constexpr auto kColorKey{"color"};
+// ! Key to get the density.
+constexpr auto kDensityKey{"density"};
+// ! Key to get the gravity.
+constexpr auto kGravityKey{"gravity"};
+// ! Key to get the melting point.
+constexpr auto kMeltingPointKey{"melting_point"};
+// ! Key to get the poissons ratio.
+constexpr auto kPoissonsRatioKey{"poissons_ratio"};
+// ! Key to get the thermal conductivity.
+constexpr auto kThermalConductivityKey{"thermal_conductivity"};
+// ! Key to get the modulus of elasticity tension.
+constexpr auto kModOfElasticityTensionKey{"mod_of_elasticity_tension"};
+} // namespace masscalculator::materials::constants::properties
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
