@@ -25,7 +25,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
-    MassCalculator::base
+    MassCalculator::masscalculator-base
     lua-handler
     third_party::units
 )

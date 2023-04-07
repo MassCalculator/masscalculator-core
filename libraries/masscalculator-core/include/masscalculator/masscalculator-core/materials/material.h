@@ -34,15 +34,15 @@
 #include <string_view>   // for std::string_view
 #include <unordered_map> // for std::unordered_map
 
-#include "masscalculator/base/immutable_map.h" // for ImmutableMap
-#include "materials/constants/color.h"         // for color::k*
-#include "units.h"                             // for units::*
+#include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
+#include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "units.h" // for units::*
 using namespace units::literals;
 
 /**
  * @brief Default Materials namespace
  */
-namespace masscalculator::materials {
+namespace masscalculator::core::materials {
 /**
  * @brief Writing repeated static_casts in CRTP base classes quickly becomes
  * cumbersome, as it does not add much meaning to the code. With this template
@@ -311,5 +311,5 @@ class Material : public Crtp<TMaterialType> {
         {Color::kDarkTone, constants::color::kDarkTone},
         {Color::kUnspecified, constants::color::kUnspecified}}}};
 };
-} // namespace masscalculator::materials
+} // namespace masscalculator::core::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_

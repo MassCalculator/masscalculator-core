@@ -29,7 +29,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/alloy_coppers.h" // for AlloyCoppers
+#include "masscalculator/masscalculator-core/materials/alloy_coppers.h" // for AlloyCoppers
 
 #include <memory>      // for std::unique_ptr
 #include <ostream>     // fot std::ostream
@@ -37,14 +37,14 @@
 #include <string_view> // for std::string_view
 #include <utility>     // for std::pair and std::move
 
-#include "lua_handler.h"                       // for LuaScriptHandler
-#include "masscalculator/base/macro_logger.h"  // for LOG_*
-#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
-#include "materials/constants/properties.h"    // for properties::k*
-#include "materials/material.h"                // for material
-#include "units.h"                             // for units::*
+#include "lua_handler.h" // for LuaScriptHandler
+#include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
+#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "masscalculator/masscalculator-core/materials/constants/properties.h" // for properties::k*
+#include "masscalculator/masscalculator-core/materials/material.h" // for material
+#include "units.h" // for units::*
 
-namespace masscalculator::materials {
+namespace masscalculator::core::materials {
 AlloyCoppers::AlloyCoppers(const std::string_view& type)
     : specific_properties_(std::make_unique<Properties>()),
       lua_state_(std::make_unique<LuaScriptHandler>(
@@ -153,4 +153,4 @@ std::ostream& operator<<(std::ostream& os, const AlloyCoppers& obj) {
 
   return os;
 }
-} // namespace masscalculator::materials
+} // namespace masscalculator::core::materials

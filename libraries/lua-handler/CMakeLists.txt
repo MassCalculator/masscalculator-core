@@ -16,7 +16,7 @@ target_link_libraries(${PROJECT_NAME}
   PUBLIC
     ${LUA_LIBRARIES}
   PRIVATE
-    MassCalculator::base
+    MassCalculator::masscalculator-base
 )
 
 if(${BUILD_TESTS})

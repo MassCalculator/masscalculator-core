@@ -27,13 +27,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#include "masscalculator/masscalculator-core/materials/material.h"
 
 /*
 #include "materials/aluminium.hpp"
 */
 
-namespace masscalculator::materials {
+namespace masscalculator::core::materials {
 
 /*
 //Code example how it can be done in cpp
@@ -48,4 +48,4 @@ template const std::string Material<Steel>::getSpecificColor();
 
 */
 
-} // namespace masscalculator::materials
+} // namespace masscalculator::core::materials

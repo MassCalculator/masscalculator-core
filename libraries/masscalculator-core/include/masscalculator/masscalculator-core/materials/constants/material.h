@@ -30,7 +30,7 @@
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_
 
-namespace masscalculator::materials::constants::material {
+namespace masscalculator::core::materials::constants::material {
 // ! String constant for AlloyCoppers material.
 constexpr auto kAlloyCoppers{"AlloyCoppers"};
 // ! String constant for AlloySteels material.
@@ -59,5 +59,5 @@ constexpr auto kTitanium{"Titanium"};
 constexpr auto kZinc{"Zinc"};
 // ! String constant for Unspecified material.
 constexpr auto kUnspecified{"Unspecified"};
-} // namespace masscalculator::materials::constants::material
+} // namespace masscalculator::core::materials::constants::material
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_MATERIAL_H_

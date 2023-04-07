@@ -30,7 +30,7 @@
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
 
-namespace masscalculator::materials::constants::properties {
+namespace masscalculator::core::materials::constants::properties {
 // ! Key to get the type.
 constexpr auto kTypeKey{"type"};
 // ! Key to get the color.
@@ -47,5 +47,5 @@ constexpr auto kPoissonsRatioKey{"poissons_ratio"};
 constexpr auto kThermalConductivityKey{"thermal_conductivity"};
 // ! Key to get the modulus of elasticity tension.
 constexpr auto kModOfElasticityTensionKey{"mod_of_elasticity_tension"};
-} // namespace masscalculator::materials::constants::properties
+} // namespace masscalculator::core::materials::constants::properties
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_

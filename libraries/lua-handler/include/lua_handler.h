@@ -34,7 +34,7 @@
 #include <string> // for std::string
 #include <vector> // for std::vector
 
-#include "masscalculator/base/macro_logger.h" // for LOG_*
+#include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 
 extern "C" {
 #include "lua5.1/lauxlib.h" // for luaL_newstate, luaL_loadfile
