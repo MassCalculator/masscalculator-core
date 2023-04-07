@@ -30,12 +30,12 @@
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_
 
-namespace masscalculator::materials::constants::color {
+namespace masscalculator::core::materials::constants::color {
 // ! String constant for Metallic color.
 constexpr auto kMetallic{"Metallic"};
 // ! String constant for Darktone color.
 constexpr auto kDarkTone{"Darktone"};
 // ! String constant for Unspecified color.
 constexpr auto kUnspecified{"Unspecified"};
-} // namespace masscalculator::materials::constants::color
+} // namespace masscalculator::core::materials::constants::color
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_COLOR_H_

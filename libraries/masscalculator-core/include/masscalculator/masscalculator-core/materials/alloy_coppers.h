@@ -40,18 +40,18 @@
 #include <unordered_map> // for std::unordered_map
 #include <utility>       // for std::pair and std::move
 
-#include "lua_handler.h"                       // for LuaScriptHandler
-#include "masscalculator/base/immutable_map.h" // for ImmutableMap
-#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
-#include "materials/constants/color.h"         // for color::k*
-#include "materials/constants/material.h"      // for material::k*
-#include "materials/material.h"                // for material
-#include "units.h"                             // for units::*
+#include "lua_handler.h" // for LuaScriptHandler
+#include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
+#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
+#include "masscalculator/masscalculator-core/materials/material.h" // for material
+#include "units.h" // for units::*
 
 /**
  * @brief Default Materials namespace
  */
-namespace masscalculator::materials {
+namespace masscalculator::core::materials {
 /**
  * @brief Class AlloyCoppers, that holds all the nessesary information for
  * AlloyCoppers and it's types therefore we can use in the interface
@@ -646,5 +646,5 @@ class AlloyCoppers : public Material<AlloyCoppers> {
             {AlloyCoppers::Type::kProthermBeCu,
              constants::alloycopper::kProthermBeCu}}}};
 };
-} // namespace masscalculator::materials
+} // namespace masscalculator::core::materials
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_

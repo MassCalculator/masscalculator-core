@@ -34,7 +34,7 @@
 
 #include "masscalculator/core/resources.h" // for core::kResourcesPath
 
-namespace masscalculator::materials::constants::alloycopper {
+namespace masscalculator::core::materials::constants::alloycopper {
 // ! String constant for material AlloyCopper type 145Tellvirum.
 constexpr auto k145Telluirum{"k145Telluirum"};
 // ! String constant for material AlloyCopper type 194Iron.
@@ -76,5 +76,5 @@ constexpr auto kConfigKey{"materials/alloy_coppers_config.lua"};
 // ! String constant to get path to the configuration for this material type.
 const std::string kConfigPath{std::string(core::kResourcesPath) +
                               std::string(kConfigKey)};
-} // namespace masscalculator::materials::constants::alloycopper
+} // namespace masscalculator::core::materials::constants::alloycopper
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_

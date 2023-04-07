@@ -17,7 +17,7 @@ target_link_libraries(lua_handler_test
   PRIVATE
     ${PROJECT_NAME}
     lua-handler
-    MassCalculator::base
+    MassCalculator::masscalculator-base
     third_party::units
     pthread
 )
