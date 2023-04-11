@@ -29,8 +29,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
-#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
+#ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_ALLOY_COPPERS_H_
+#define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_ALLOY_COPPERS_H_
 #include <cstdint>       // for uint8_t
 #include <functional>    // for std::function
 #include <memory>        // for std::unique_ptr
@@ -40,8 +40,8 @@
 #include <unordered_map> // for std::unordered_map
 #include <utility>       // for std::pair and std::move
 
-#include "lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
+#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
@@ -567,7 +567,7 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @brief Lua Handler object to get the config for metals from LuaScript is
    * necessary
    */
-  std::unique_ptr<LuaScriptHandler> lua_state_;
+  std::unique_ptr<base::LuaScriptHandler> lua_state_;
 
   /**
    * @brief A map used to convert a string representation of a type to an enum
@@ -647,4 +647,4 @@ class AlloyCoppers : public Material<AlloyCoppers> {
              constants::alloycopper::kProthermBeCu}}}};
 };
 } // namespace masscalculator::core::materials
-#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_ALLOY_COPPERS_H_
+#endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_ALLOY_COPPERS_H_

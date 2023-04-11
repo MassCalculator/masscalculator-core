@@ -29,7 +29,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "lua_handler.h" // for LuaScriptHandler
+#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 
@@ -39,7 +39,7 @@ extern "C" {
 #include "lua5.1/lualib.h"  // for luaL_openlibs
 }
 
-namespace masscalculator {
+namespace masscalculator::base {
 
 LuaScriptHandler::LuaScriptHandler(const std::string& filename) {
   if (!LuaOpen(filename)) {
@@ -123,4 +123,4 @@ LuaScriptHandler::~LuaScriptHandler() {
     LOG_ERROR("Failed to close Lua Script");
   }
 }
-} // namespace masscalculator
+} // namespace masscalculator::base

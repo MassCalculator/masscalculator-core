@@ -30,7 +30,7 @@
 
 #include <gtest/gtest.h> // for ::testing::Test and TEST_F
 
-namespace masscalculator {
+namespace masscalculator::base {
 
 namespace {
 constexpr auto kFirstLevelKey{"FirstLevel"};
@@ -184,7 +184,7 @@ TEST_F(LuaScriptHandlerTest, GetNumericValueFourTest) {
   EXPECT_EQ(numeric_value, 0.0);
 }
 
-} // namespace masscalculator
+} // namespace masscalculator::base
 
 /**
  * @brief Main function to run these tests

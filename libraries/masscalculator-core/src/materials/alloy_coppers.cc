@@ -37,7 +37,7 @@
 #include <string_view> // for std::string_view
 #include <utility>     // for std::pair and std::move
 
-#include "lua_handler.h" // for LuaScriptHandler
+#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/properties.h" // for properties::k*
@@ -47,7 +47,7 @@
 namespace masscalculator::core::materials {
 AlloyCoppers::AlloyCoppers(const std::string_view& type)
     : specific_properties_(std::make_unique<Properties>()),
-      lua_state_(std::make_unique<LuaScriptHandler>(
+      lua_state_(std::make_unique<base::LuaScriptHandler>(
           constants::alloycopper::kConfigPath)) {
   if (!SetType(kType.at(type))) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);

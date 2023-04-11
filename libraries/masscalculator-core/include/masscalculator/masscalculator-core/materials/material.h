@@ -28,8 +28,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
-#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
+#ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_MATERIAL_H_
+#define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_MATERIAL_H_
 #include <functional>    // for std::function
 #include <string_view>   // for std::string_view
 #include <unordered_map> // for std::unordered_map
@@ -37,6 +37,8 @@
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "units.h" // for units::*
+
+// NOLINTNEXTLINE(google-global-names-in-headers,google-build-using-namespace)
 using namespace units::literals;
 
 /**
@@ -312,4 +314,4 @@ class Material : public Crtp<TMaterialType> {
         {Color::kUnspecified, constants::color::kUnspecified}}}};
 };
 } // namespace masscalculator::core::materials
-#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_MATERIAL_H_
+#endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_MATERIAL_H_

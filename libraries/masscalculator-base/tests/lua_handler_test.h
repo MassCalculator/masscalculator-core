@@ -26,16 +26,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
-#define MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
+#ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_LUA_HANDLER_TEST_H_
+#define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_LUA_HANDLER_TEST_H_
 #include <gtest/gtest.h> // for ::testing::Test and TEST_F
 
 #include <memory> // for std::unique_ptr
 
-#include "lua_handler.h"                         // for LuaScriptHandler
-#include "masscalculator/lua/lua_handler_data.h" // for kTestDataConfigPath
+#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
+#include "masscalculator/masscalculator-base/lua_handler_data.h" // for kTestDataConfigPath
 
-namespace masscalculator {
+namespace masscalculator::base {
 
 class LuaScriptHandlerTest : public ::testing::Test {
  protected:
@@ -60,5 +60,5 @@ class LuaScriptHandlerTest : public ::testing::Test {
    */
   std::unique_ptr<LuaScriptHandler> lua_state;
 };
-} // namespace masscalculator
-#endif // MASSCALCULATOR_LIBRARIES_LUA_HANDLER_TESTS_LUA_HANDLER_TEST_H_
+} // namespace masscalculator::base
+#endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_LUA_HANDLER_TEST_H_
