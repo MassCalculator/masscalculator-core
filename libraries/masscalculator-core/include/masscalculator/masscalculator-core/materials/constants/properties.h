@@ -27,9 +27,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
-#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
-
+#ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_PROPERTIES_H_
+#define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_PROPERTIES_H_
 namespace masscalculator::core::materials::constants::properties {
 // ! Key to get the type.
 constexpr auto kTypeKey{"type"};
@@ -48,4 +47,4 @@ constexpr auto kThermalConductivityKey{"thermal_conductivity"};
 // ! Key to get the modulus of elasticity tension.
 constexpr auto kModOfElasticityTensionKey{"mod_of_elasticity_tension"};
 } // namespace masscalculator::core::materials::constants::properties
-#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_INCLUDE_MATERIALS_CONSTANTS_PROPERTIES_H_
+#endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_PROPERTIES_H_
