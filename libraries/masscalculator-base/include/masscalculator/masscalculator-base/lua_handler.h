@@ -45,7 +45,7 @@ extern "C" {
 /**
  * @brief Default namespace
  */
-namespace masscalculator {
+namespace masscalculator::base {
 
 /**
  * @brief Class LuaScriptHandler, that holds all the nessesary functions and
@@ -225,5 +225,5 @@ inline std::string_view LuaScriptHandler::LuaGet<std::string_view>(
   size_t len = lua_strlen(lua_state_, -1);
   return {str, len};
 }
-} // End namespace masscalculator
+} // namespace masscalculator::base
 #endif // MASSCALCULATOR_LIBRARIES_LUA_HANDLER_INCLUDE_LUA_HANDLER_H_

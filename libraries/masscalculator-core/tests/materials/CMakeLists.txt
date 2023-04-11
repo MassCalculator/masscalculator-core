@@ -10,9 +10,8 @@ target_link_libraries(alloy_coppers_test
     ${GTEST_BOTH_LIBRARIES}
   PRIVATE
     ${PROJECT_NAME}
-    lua-handler
     MassCalculator::masscalculator-base
-    third_party::units
+    MassCalculator::third_party::units
     pthread
 )
 

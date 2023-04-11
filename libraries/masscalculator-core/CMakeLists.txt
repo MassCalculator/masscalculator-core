@@ -26,8 +26,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
     MassCalculator::masscalculator-base
-    lua-handler
-    third_party::units
+    MassCalculator::third_party::units
 )
 
 if(${BUILD_TESTS})
