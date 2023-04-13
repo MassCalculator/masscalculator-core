@@ -85,7 +85,8 @@ class Material : public Crtp<TMaterialType> {
     kBegin = 0,
     kMetallic = kBegin,
     kDarkTone,
-    kUnspecified
+    kUnspecified,
+    kEnd = kUnspecified
   };
 
   /**
@@ -98,7 +99,7 @@ class Material : public Crtp<TMaterialType> {
     typename TMaterialType::Type type;
 
     /**
-     * @brief string Parameter to save specific color
+     * @brief Color Parameter to save specific color
      */
     Color color;
 
@@ -173,8 +174,7 @@ class Material : public Crtp<TMaterialType> {
   /**
    * @brief Get the Type object
    *
-   * @return Type Pair with type name and type
-   * enum from Derived class
+   * @return const std::string_view Type of the Material from Derived class
    */
   [[nodiscard]] constexpr std::string_view GetType() const {
     return this->MaterialType().GetType();
@@ -287,6 +287,9 @@ class Material : public Crtp<TMaterialType> {
     return os;
   }
 
+  /**
+   * @brief Shift operator template overload, for the class Color
+   */
   friend std::ostream& operator<<(std::ostream& os,
                                   const Material<TMaterialType>::Color& color) {
     os << kColorString.at(color);

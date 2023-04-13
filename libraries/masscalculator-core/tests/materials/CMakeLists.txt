@@ -20,11 +20,6 @@ gtest_add_tests(TARGET      alloy_coppers_test
                 TEST_LIST   noArgsTests
 )
 
-add_test(
-  NAME AlloyCoppers
-  COMMAND alloy_coppers_test
-)
-
 # #AlloySteels test
 # add_executable(
 #   alloy_steels_test

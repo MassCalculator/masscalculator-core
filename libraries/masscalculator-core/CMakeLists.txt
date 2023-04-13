@@ -15,6 +15,8 @@ file(
 add_library(${PROJECT_NAME} SHARED 
   src/materials/alloy_coppers.cc
   src/materials/material.cc
+  src/shapes/cylinder.cc
+  src/shapes/shape.cc
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC 

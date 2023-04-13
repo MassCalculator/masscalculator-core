@@ -31,11 +31,10 @@
  */
 #include "masscalculator/masscalculator-core/materials/alloy_coppers.h" // for AlloyCoppers
 
-#include <memory>      // for std::unique_ptr
+#include <memory>      // for std::make_unique
 #include <ostream>     // fot std::ostream
 #include <string>      // for std::string
 #include <string_view> // for std::string_view
-#include <utility>     // for std::pair and std::move
 
 #include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*

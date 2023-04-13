@@ -1,5 +1,5 @@
 /**
- * @file material.cpp
+ * @file shape.cpp
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file is left here for convenience, but the implementation is
  * done with templates in the header file.
@@ -27,12 +27,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "masscalculator/masscalculator-core/materials/material.h"
+#include "masscalculator/masscalculator-core/shapes/shape.h"
 
 /*
-#include "masscalculator/masscalculator-core/materials/alloy_coppers.h"
+#include "masscalculator/masscalculator-core/shapes/cylinder.h"
 */
 
-namespace masscalculator::core::materials {
+namespace masscalculator::core::shapes {
 // @todo(jimmyhalimi): Add a comment block with an example.
-} // namespace masscalculator::core::materials
+} // namespace masscalculator::core::shapes

@@ -1,8 +1,8 @@
-#Tests for Object Interface
+# Tests for Object Interface
 # add_subdirectory(interface)
 
-#Tests for Materials
+# Tests for Materials
 add_subdirectory(materials)
 
-#Tests for Shapes
-# add_subdirectory(shapes)
+# Tests for Shapes
+add_subdirectory(shapes)

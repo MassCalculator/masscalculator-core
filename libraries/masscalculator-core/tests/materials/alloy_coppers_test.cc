@@ -39,8 +39,8 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "units.h" // for units::*
-namespace masscalculator_test::materials_test {
 
+namespace masscalculator_test::materials_test {
 TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k145Telluirum,
