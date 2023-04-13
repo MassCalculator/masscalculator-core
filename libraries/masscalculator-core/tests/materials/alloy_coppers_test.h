@@ -38,7 +38,7 @@
 /**
  * @brief Default Materials test namespace
  */
-namespace masscalculator_test::materials_test {
+namespace masscalculator_test::core_test::materials_test {
 /**
  * @brief The test fixture for testing class AlloyCoppers.
  */
@@ -210,5 +210,5 @@ class AlloyCoppersTest : public ::testing::Test {
       masscalculator::core::materials::AlloyCoppers>>
       ac_protherm_be_cu;
 };
-} // namespace masscalculator_test::materials_test
+} // namespace masscalculator_test::core_test::materials_test
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_TESTS_MATERIALS_ALLOY_COPPERS_TEST_H_

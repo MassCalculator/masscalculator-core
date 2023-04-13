@@ -1,9 +1,9 @@
 /**
- * @file cylinder_test.cc
+ * @file object_interface_test.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief Defines unit tests for the Cylinder class.
+ * @brief Defines unit tests for the Object class.
  * @version 0.2
- * @date 2023-04-03
+ * @date 2023-04-14
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -26,47 +26,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "cylinder_test.h" // for AlloyCoppersTest
+#include "object_interface_test.h" // for Object<T, U>
 
-#include <gtest/gtest.h> // for ::testing::Test and TEST_F
+#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h"
+#include "units.h"
 
-#include "masscalculator/masscalculator-core/shapes/cylinder.h" // for Cylinder::Type
-#include "units.h"                                              // for units::*
+namespace masscalculator_test::core_test::interface_test {
 
-namespace masscalculator_test::core_test::shapes_test {
-TEST_F(CylinderTest, GetTypeTest) {
-  EXPECT_EQ(masscalculator::core::shapes::Cylinder::Type::kCylinder,
-            cylinder->GetType());
+namespace {
+constexpr auto kControlRadius{0.05_m};
+constexpr auto kControlLength{0.10_m};
+constexpr auto kControlType{
+    masscalculator::core::materials::constants::alloycopper::k715NickelSilver};
+constexpr auto kExpectedWeight{6.5973445725385664_kg};
+} // namespace
+
+TEST_F(ObjectInterfaceTest, GetWeightTest) {
+  EXPECT_NEAR(units::mass::kilogram_t{0.0_kg}.to<double>(),
+              object_cylinder_alloycopper->GetWeight().to<double>(), 0.001);
 }
 
-TEST_F(CylinderTest, GetSurfaceAreaTest) {
-  EXPECT_EQ(units::area::square_meter_t{0_sq_m}, cylinder->GetSurfaceArea());
-}
+TEST_F(ObjectInterfaceTest, GetWeightAfterSetTest) {
+  shape->SetSize(kControlRadius, kControlLength);
+  material->SetType(kControlType);
 
-TEST_F(CylinderTest, GetSurfaceAreaAfterSetSizeTest) {
-  EXPECT_EQ(units::area::square_meter_t{0_sq_m}, cylinder->GetSurfaceArea());
-}
+  object_cylinder_alloycopper->SetProperties(shape, material);
 
-TEST_F(CylinderTest, GetVolumeTest) {
-  EXPECT_TRUE(cylinder->SetSize(0.1_m, 0.2_m));
-  EXPECT_NEAR(units::volume::cubic_meter_t{0.0062831_cu_m}.to<double>(),
-              cylinder->GetVolume().to<double>(), 0.001);
+  EXPECT_NEAR(kExpectedWeight.to<double>(),
+              object_cylinder_alloycopper->GetWeight().to<double>(), 0.001);
 }
-
-TEST_F(CylinderTest, GetVolumeAfterSetSizeTest) {
-  EXPECT_TRUE(cylinder->SetSize(0.2_m, 0.3_m));
-  EXPECT_NEAR(units::volume::cubic_meter_t{0.0376991_cu_m}.to<double>(),
-              cylinder->GetVolume().to<double>(), 0.001);
-}
-
-TEST_F(CylinderTest, SetSizeTest) {
-  EXPECT_TRUE(cylinder->SetSize(0.1_m, 0.1_m));
-}
-} // namespace masscalculator_test::core_test::shapes_test
+} // namespace masscalculator_test::core_test::interface_test
 
 /**
  * @brief Main function to run these tests
- *
  */
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -31,7 +31,7 @@
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_ALLOY_COPPERS_H_
 #include <string> // for std::string
 
-#include "masscalculator/core/resources.h" // for core::kResourcesPath
+#include "masscalculator/masscalculator-core/resources.h" // for core::kResourcesPath
 
 namespace masscalculator::core::materials::constants::alloycopper {
 // ! String constant for material AlloyCopper type 145Tellvirum.

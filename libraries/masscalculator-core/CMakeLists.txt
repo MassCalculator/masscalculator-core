@@ -5,7 +5,7 @@ project(masscalculator-core)
 set(MASSCALCULATOR_RESOURCES_PATH "${MASSCALCULATOR_HOME}/resources/")
 
 configure_file(config/resources.h.in
-  ${CMAKE_CURRENT_BINARY_DIR}/include/masscalculator/core/resources.h)
+  ${CMAKE_CURRENT_BINARY_DIR}/include/masscalculator/${PROJECT_NAME}/resources.h)
 
 file(
   COPY resources
@@ -13,6 +13,7 @@ file(
 )
 
 add_library(${PROJECT_NAME} SHARED 
+  src/interface/object_interface.cc
   src/materials/alloy_coppers.cc
   src/materials/material.cc
   src/shapes/cylinder.cc

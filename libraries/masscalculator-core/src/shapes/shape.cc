@@ -27,11 +27,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "masscalculator/masscalculator-core/shapes/shape.h"
+#include "masscalculator/masscalculator-core/shapes/shape.h" // for Shape<T>
 
-/*
-#include "masscalculator/masscalculator-core/shapes/cylinder.h"
-*/
+#include "masscalculator/masscalculator-core/shapes/shapes.hh" // for Shapes::*
 
 namespace masscalculator::core::shapes {
 // @todo(jimmyhalimi): Add a comment block with an example.

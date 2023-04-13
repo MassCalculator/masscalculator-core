@@ -61,15 +61,17 @@ bool Cylinder::SetSize(units::length::meter_t radius,
   return SetGenericProperties();
 }
 
-units::volume::cubic_meter_t Cylinder::GetVolume() const {
+[[nodiscard]] units::volume::cubic_meter_t Cylinder::GetVolume() const {
   return {M_PI * units::math::pow<2>(GetRadius()) * GetLength()};
 }
 
-units::area::square_meter_t Cylinder::GetSurfaceArea() const {
+[[nodiscard]] units::area::square_meter_t Cylinder::GetSurfaceArea() const {
   return {2 * M_PI * GetRadius() * (GetRadius() + GetLength())};
 }
 
-Cylinder::Type Cylinder::GetType() const { return properties_->type; }
+[[nodiscard]] Cylinder::Type Cylinder::GetType() const {
+  return properties_->type;
+}
 
 bool Cylinder::SetGenericProperties() {
   properties_->type = Type::kCylinder;
@@ -79,11 +81,11 @@ bool Cylinder::SetGenericProperties() {
   return true;
 }
 
-units::length::meter_t Cylinder::GetRadius() const {
+[[nodiscard]] units::length::meter_t Cylinder::GetRadius() const {
   return {properties_->radius};
 }
 
-units::length::meter_t Cylinder::GetLength() const {
+[[nodiscard]] units::length::meter_t Cylinder::GetLength() const {
   return {properties_->length};
 }
 

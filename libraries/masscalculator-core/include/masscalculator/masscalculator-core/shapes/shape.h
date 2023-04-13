@@ -129,8 +129,8 @@ class Shape : public Crtp<TShapeType> {
     /**
      * @brief Construct a new GenericProperties object through initializer list
      */
-    GenericProperties(Type type, units::volume::cubic_meter_t volume,
-                      units::area::square_meter_t surface_area)
+    explicit GenericProperties(Type type, units::volume::cubic_meter_t volume,
+                               units::area::square_meter_t surface_area)
         : type{type}, volume{volume}, surface_area{surface_area} {}
   };
 

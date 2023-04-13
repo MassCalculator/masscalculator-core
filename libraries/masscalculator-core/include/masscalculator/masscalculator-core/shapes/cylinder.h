@@ -45,12 +45,10 @@ namespace masscalculator::core::shapes {
 /**
  * @brief Class Cylinder, that holds all the nessesary information for Cylinder
  * and it's details therefore we can use in the interface
- *
  */
 class Cylinder : public Shape<Cylinder> {
   /**
    * @brief Struct with shape specific properties
-   *
    */
   using Properties = struct SpecificProperties : GenericProperties {
     /**
@@ -71,10 +69,9 @@ class Cylinder : public Shape<Cylinder> {
 
     /**
      * @brief Construct a new Properties object and set radius and length
-     *
      */
-    SpecificProperties(units::length::meter_t radius,
-                       units::length::meter_t length)
+    explicit SpecificProperties(units::length::meter_t radius,
+                                units::length::meter_t length)
         : radius{radius}, length{length} {}
   };
 

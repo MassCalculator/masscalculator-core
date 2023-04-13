@@ -37,7 +37,7 @@
 /**
  * @brief Default Shapes test namespace
  */
-namespace masscalculator_test::shapes_test {
+namespace masscalculator_test::core_test::shapes_test {
 /**
  * @brief The test fixture for testing class AlloyCoppers.
  */

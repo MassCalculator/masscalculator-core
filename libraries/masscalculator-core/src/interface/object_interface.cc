@@ -1,10 +1,10 @@
 /**
- * @file material.cpp
+ * @file object_interface.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file is left here for convenience, but the implementation is
- * done with templates in the header file.
+ * @brief This file contains the implementation for the Object class.
+ * The Object class holds all the properties for an object.
  * @version 0.2
- * @date 2023-04-03
+ * @date 2023-04-13
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -27,10 +27,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
+#include "masscalculator/masscalculator-core/interface/object_interface.h" // for Object<T, U>
 
 #include "masscalculator/masscalculator-core/materials/materials.hh" // for Material::*
+#include "masscalculator/masscalculator-core/shapes/shapes.hh" // for Shape::*
 
-namespace masscalculator::core::materials {
+namespace masscalculator::core::interface {
 // @todo(jimmyhalimi): Add a comment block with an example.
-} // namespace masscalculator::core::materials
+} // namespace masscalculator::core::interface
