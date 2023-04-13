@@ -39,8 +39,8 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "units.h" // for units::*
-namespace masscalculator_test::materials_test {
 
+namespace masscalculator_test::materials_test {
 TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k145Telluirum,
@@ -296,7 +296,7 @@ TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest) {
             ac_protherm_be_cu->GetSpecificModOfElasticityTension());
 }
 
-TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColor) {
+TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColorTest) {
   std::vector<
       std::pair<std::unique_ptr<masscalculator::core::materials::Material<
                     masscalculator::core::materials::AlloyCoppers>>,

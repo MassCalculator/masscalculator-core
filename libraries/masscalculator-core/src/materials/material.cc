@@ -30,22 +30,9 @@
 #include "masscalculator/masscalculator-core/materials/material.h"
 
 /*
-#include "materials/aluminium.hpp"
+#include "masscalculator/masscalculator-core/materials/alloy_coppers.h"
 */
 
 namespace masscalculator::core::materials {
-
-/*
-//Code example how it can be done in cpp
-
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
-
-*/
-
+// @todo(jimmyhalimi): Add a comment block with an example.
 } // namespace masscalculator::core::materials

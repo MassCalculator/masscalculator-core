@@ -45,7 +45,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
-#include "masscalculator/masscalculator-core/materials/material.h" // for material
+#include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
 #include "units.h" // for units::*
 
 /**
@@ -381,172 +381,172 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   std::unordered_map<Type, std::function<void()>> type2func_{
       {Type::k145Telluirum,
        [&]() {
-         return this->SetProperties({Type::k145Telluirum,
-                                     Color::kMetallic,
-                                     {8940_kg_per_cu_m},
-                                     {1323.15_K},
-                                     0.34,
-                                     {315.0_W},
-                                     {128_GPa}});
+         return SetProperties({Type::k145Telluirum,
+                               Color::kMetallic,
+                               {8940_kg_per_cu_m},
+                               {1323.15_K},
+                               0.34,
+                               {315.0_W},
+                               {128_GPa}});
        }},
       {Type::k194Iron,
        [&]() {
-         return this->SetProperties({Type::k194Iron,
-                                     Color::kMetallic,
-                                     {7874_kg_per_cu_m},
-                                     {1811.15_K},
-                                     0.29,
-                                     {80.4_W},
-                                     {211_GPa}});
+         return SetProperties({Type::k194Iron,
+                               Color::kMetallic,
+                               {7874_kg_per_cu_m},
+                               {1811.15_K},
+                               0.29,
+                               {80.4_W},
+                               {211_GPa}});
        }},
       {Type::k195Iron,
        [&]() {
-         return this->SetProperties({Type::k195Iron,
-                                     Color::kMetallic,
-                                     {7874_kg_per_cu_m},
-                                     {1811.15_K},
-                                     0.29,
-                                     {80.4_W},
-                                     {211_GPa}});
+         return SetProperties({Type::k195Iron,
+                               Color::kMetallic,
+                               {7874_kg_per_cu_m},
+                               {1811.15_K},
+                               0.29,
+                               {80.4_W},
+                               {211_GPa}});
        }},
       {Type::k172Beryllium,
        [&]() {
-         return this->SetProperties({Type::k172Beryllium,
-                                     Color::kMetallic,
-                                     {8300_kg_per_cu_m},
-                                     {1356.15_K},
-                                     0.30,
-                                     {209_W},
-                                     {140_GPa}});
+         return SetProperties({Type::k172Beryllium,
+                               Color::kMetallic,
+                               {8300_kg_per_cu_m},
+                               {1356.15_K},
+                               0.30,
+                               {209_W},
+                               {140_GPa}});
        }},
       {Type::k182Class2,
        [&]() {
-         return this->SetProperties({Type::k182Class2,
-                                     Color::kMetallic,
-                                     {8300_kg_per_cu_m},
-                                     {1356.15_K},
-                                     0.30,
-                                     {209_W},
-                                     {140_GPa}});
+         return SetProperties({Type::k182Class2,
+                               Color::kMetallic,
+                               {8300_kg_per_cu_m},
+                               {1356.15_K},
+                               0.30,
+                               {209_W},
+                               {140_GPa}});
        }},
       {Type::k655Silicon,
        [&]() {
-         return this->SetProperties({Type::k655Silicon,
-                                     Color::kMetallic,
-                                     {2330_kg_per_cu_m},
-                                     {1687_K},
-                                     0.22,
-                                     {149_W},
-                                     {50_GPa}});
+         return SetProperties({Type::k655Silicon,
+                               Color::kMetallic,
+                               {2330_kg_per_cu_m},
+                               {1687_K},
+                               0.22,
+                               {149_W},
+                               {50_GPa}});
        }},
       {Type::k706Nickel,
        [&]() {
-         return this->SetProperties({Type::k706Nickel,
-                                     Color::kMetallic,
-                                     {8908_kg_per_cu_m},
-                                     {1728_K},
-                                     0.31,
-                                     {91_W},
-                                     {207_GPa}});
+         return SetProperties({Type::k706Nickel,
+                               Color::kMetallic,
+                               {8908_kg_per_cu_m},
+                               {1728_K},
+                               0.31,
+                               {91_W},
+                               {207_GPa}});
        }},
       {Type::k715NickelSilver,
        [&]() {
-         return this->SetProperties({Type::k715NickelSilver,
-                                     Color::kMetallic,
-                                     {8400_kg_per_cu_m},
-                                     {1373_K},
-                                     0.37,
-                                     {94_W},
-                                     {130_GPa}});
+         return SetProperties({Type::k715NickelSilver,
+                               Color::kMetallic,
+                               {8400_kg_per_cu_m},
+                               {1373_K},
+                               0.37,
+                               {94_W},
+                               {130_GPa}});
        }},
       {Type::k725NickelSilver,
        [&]() {
-         return this->SetProperties({Type::k725NickelSilver,
-                                     Color::kMetallic,
-                                     {8450_kg_per_cu_m},
-                                     {1373_K},
-                                     0.37,
-                                     {93_W},
-                                     {130_GPa}});
+         return SetProperties({Type::k725NickelSilver,
+                               Color::kMetallic,
+                               {8450_kg_per_cu_m},
+                               {1373_K},
+                               0.37,
+                               {93_W},
+                               {130_GPa}});
        }},
       {Type::k735NickelSilver,
        [&]() {
-         return this->SetProperties({Type::k735NickelSilver,
-                                     Color::kMetallic,
-                                     {8500_kg_per_cu_m},
-                                     {1373_K},
-                                     0.37,
-                                     {92_W},
-                                     {130_GPa}});
+         return SetProperties({Type::k735NickelSilver,
+                               Color::kMetallic,
+                               {8500_kg_per_cu_m},
+                               {1373_K},
+                               0.37,
+                               {92_W},
+                               {130_GPa}});
        }},
       {Type::k752NickelSilver,
        [&]() {
-         return this->SetProperties({Type::k752NickelSilver,
-                                     Color::kMetallic,
-                                     {8600_kg_per_cu_m},
-                                     {1373_K},
-                                     0.37,
-                                     {90_W},
-                                     {130_GPa}});
+         return SetProperties({Type::k752NickelSilver,
+                               Color::kMetallic,
+                               {8600_kg_per_cu_m},
+                               {1373_K},
+                               0.37,
+                               {90_W},
+                               {130_GPa}});
        }},
       {Type::k762NickelSilver,
        [&]() {
-         return this->SetProperties({Type::k762NickelSilver,
-                                     Color::kMetallic,
-                                     {8650_kg_per_cu_m},
-                                     {1373_K},
-                                     0.37,
-                                     {89_W},
-                                     {130_GPa}});
+         return SetProperties({Type::k762NickelSilver,
+                               Color::kMetallic,
+                               {8650_kg_per_cu_m},
+                               {1373_K},
+                               0.37,
+                               {89_W},
+                               {130_GPa}});
        }},
       {Type::k770NickelSilver,
        [&]() {
-         return this->SetProperties({Type::k770NickelSilver,
-                                     Color::kMetallic,
-                                     {8700_kg_per_cu_m},
-                                     {1373_K},
-                                     0.37,
-                                     {88_W},
-                                     {130_GPa}});
+         return SetProperties({Type::k770NickelSilver,
+                               Color::kMetallic,
+                               {8700_kg_per_cu_m},
+                               {1373_K},
+                               0.37,
+                               {88_W},
+                               {130_GPa}});
        }},
       {Type::k1751Class3,
        [&]() {
-         return this->SetProperties({Type::k1751Class3,
-                                     Color::kMetallic,
-                                     {8920_kg_per_cu_m},
-                                     {1400_K},
-                                     0.31,
-                                     {42_W},
-                                     {110_GPa}});
+         return SetProperties({Type::k1751Class3,
+                               Color::kMetallic,
+                               {8920_kg_per_cu_m},
+                               {1400_K},
+                               0.31,
+                               {42_W},
+                               {110_GPa}});
        }},
       {Type::k1758Nickel,
        [&]() {
-         return this->SetProperties({Type::k1758Nickel,
-                                     Color::kMetallic,
-                                     {8908_kg_per_cu_m},
-                                     {1728_K},
-                                     0.31,
-                                     {91_W},
-                                     {207_GPa}});
+         return SetProperties({Type::k1758Nickel,
+                               Color::kMetallic,
+                               {8908_kg_per_cu_m},
+                               {1728_K},
+                               0.31,
+                               {91_W},
+                               {207_GPa}});
        }},
       {Type::kMoldmaxBeCu,
        [&]() {
-         return this->SetProperties({Type::kMoldmaxBeCu,
-                                     Color::kMetallic,
-                                     {8250_kg_per_cu_m},
-                                     {1356.15_K},
-                                     0.30,
-                                     {209_W},
-                                     {140_GPa}});
+         return SetProperties({Type::kMoldmaxBeCu,
+                               Color::kMetallic,
+                               {8250_kg_per_cu_m},
+                               {1356.15_K},
+                               0.30,
+                               {209_W},
+                               {140_GPa}});
        }},
       {Type::kProthermBeCu, [&]() {
-         return this->SetProperties({Type::kProthermBeCu,
-                                     Color::kMetallic,
-                                     {8250_kg_per_cu_m},
-                                     {1356.15_K},
-                                     0.30,
-                                     {209_W},
-                                     {140_GPa}});
+         return SetProperties({Type::kProthermBeCu,
+                               Color::kMetallic,
+                               {8250_kg_per_cu_m},
+                               {1356.15_K},
+                               0.30,
+                               {209_W},
+                               {140_GPa}});
        }}};
 
   /**

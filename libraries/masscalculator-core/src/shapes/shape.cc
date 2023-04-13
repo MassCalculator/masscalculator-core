@@ -1,9 +1,10 @@
 /**
- * @file shapes.hh
+ * @file shape.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains the includes for all types of shapes.
+ * @brief This file is left here for convenience, but the implementation is
+ * done with templates in the header file.
  * @version 0.2
- * @date 2023-04-13
+ * @date 2023-04-03
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -26,21 +27,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_SHAPES_H_
-#define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_SHAPES_H_
-// #include "angle.h"         // for Angle
-// #include "bar.h"           // for Bar
-// #include "beam.h"          // for Beam
-// #include "channel.h"       // for Channel
-#include "cylinder.h" // for Cylinder
-// #include "dxf_shape.h"     // for DxfShape
-// #include "elipse.h"        // for Elipse
-// #include "hexagon_bar.h"   // for HexagonBar
-// #include "octagon_bar.h"   // for OctagonBar
-// #include "pipe.h"          // for Pipe
-// #include "sheet.h"         // for Sheet
-// #include "square_bar.h"    // for SquareBar
-// #include "square_tubing.h" // for SquareTubing
-// #include "stl_shape.h"     // for StlShape
-// #include "t_bar.h"         // for TBar
-#endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_SHAPES_H_
+#include "masscalculator/masscalculator-core/shapes/shape.h"
+
+/*
+#include "masscalculator/masscalculator-core/shapes/cylinder.h"
+*/
+
+namespace masscalculator::core::shapes {
+// @todo(jimmyhalimi): Add a comment block with an example.
+} // namespace masscalculator::core::shapes

@@ -1,7 +1,7 @@
 /**
- * @file shapes.hh
+ * @file cylinder_test.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains the includes for all types of shapes.
+ * @brief Defines unit tests for the Cylinder class.
  * @version 0.2
  * @date 2023-04-13
  *
@@ -26,21 +26,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_SHAPES_H_
-#define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_SHAPES_H_
-// #include "angle.h"         // for Angle
-// #include "bar.h"           // for Bar
-// #include "beam.h"          // for Beam
-// #include "channel.h"       // for Channel
-#include "cylinder.h" // for Cylinder
-// #include "dxf_shape.h"     // for DxfShape
-// #include "elipse.h"        // for Elipse
-// #include "hexagon_bar.h"   // for HexagonBar
-// #include "octagon_bar.h"   // for OctagonBar
-// #include "pipe.h"          // for Pipe
-// #include "sheet.h"         // for Sheet
-// #include "square_bar.h"    // for SquareBar
-// #include "square_tubing.h" // for SquareTubing
-// #include "stl_shape.h"     // for StlShape
-// #include "t_bar.h"         // for TBar
-#endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_SHAPES_H_
+#ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_TESTS_SHAPES_CYLINDER_TEST_H_
+#define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_TESTS_SHAPES_CYLINDER_TEST_H_
+#include <gtest/gtest.h> // for ::testing::Test and TEST_F
+
+#include <memory> // for std::unique_ptr
+
+#include "masscalculator/masscalculator-core/shapes/cylinder.h" // for Cylinder
+
+/**
+ * @brief Default Shapes test namespace
+ */
+namespace masscalculator_test::shapes_test {
+/**
+ * @brief The test fixture for testing class AlloyCoppers.
+ */
+class CylinderTest : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    cylinder =
+        std::make_unique<masscalculator::core::shapes::Cylinder>(0_m, 0_m);
+  }
+
+  void TearDown() override { cylinder.reset(); }
+
+  /**
+   * @brief Construct a new CylinderTest object
+   */
+  CylinderTest() = default;
+
+  /**
+   * @brief Destroy the Cylinder Test object
+   */
+  ~CylinderTest() override = default;
+
+  /**
+   * @brief Member objects for class Cylinder
+   */
+  std::unique_ptr<masscalculator::core::shapes::Shape<
+      masscalculator::core::shapes::Cylinder>>
+      cylinder;
+};
+} // namespace masscalculator_test::shapes_test
+#endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_TESTS_SHAPES_CYLINDER_TEST_H_
