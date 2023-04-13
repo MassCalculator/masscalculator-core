@@ -296,7 +296,7 @@ TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest) {
             ac_protherm_be_cu->GetSpecificModOfElasticityTension());
 }
 
-TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColor) {
+TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColorTest) {
   std::vector<
       std::pair<std::unique_ptr<masscalculator::core::materials::Material<
                     masscalculator::core::materials::AlloyCoppers>>,

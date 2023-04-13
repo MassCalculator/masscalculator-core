@@ -119,9 +119,6 @@ class Shape : public Crtp<TShapeType> {
      */
     units::area::square_meter_t surface_area;
 
-    // units::density::kilograms_per_square_meter_t
-    // inertia, moment of inertia
-
     /**
      * @brief Construct a new GenericProperties object with all parameters
      * initialized
