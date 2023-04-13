@@ -1,0 +1,35 @@
+name: CMake
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        build_type: [Debug, Release]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Environment setup
+      run: sudo tools/installers/essentials.sh
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{matrix.build_type}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{matrix.build_type}}
+
+    - name: Package
+      run: echo 'Package stage is in progress'
+
+    - name: Deploy
+      run: echo 'Deploy stage is in progress'
