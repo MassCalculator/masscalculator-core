@@ -1,6 +1,6 @@
 # Tests for Shapes
 
-#Cylinder test
+## Cylinder test
 add_executable(cylinder_test
   cylinder_test.cc
 )
@@ -20,7 +20,7 @@ gtest_add_tests(TARGET      cylinder_test
                 TEST_LIST   noArgsTests
 )
 
-# #SquareBar test
+## SquareBar test
 # add_executable(
 #   square_bar_test
 #   square_bar_test.cpp

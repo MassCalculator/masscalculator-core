@@ -1,6 +1,6 @@
 # Tests for Materials
 
-#AlloyCoppers test
+## AlloyCoppers test
 add_executable(alloy_coppers_test
   alloy_coppers_test.cc
 )
@@ -20,7 +20,7 @@ gtest_add_tests(TARGET      alloy_coppers_test
                 TEST_LIST   noArgsTests
 )
 
-# #AlloySteels test
+## AlloySteels test
 # add_executable(
 #   alloy_steels_test
 #   alloy_steels_test.cpp

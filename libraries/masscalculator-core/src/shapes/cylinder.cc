@@ -1,12 +1,12 @@
 /**
- * @file alloy_coppers.h
+ * @file cylinder.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains the implementation for the alloy_coppers class.
- * The alloy_coppers class holds all the specific properties for the different
- * types of alloy_coppers. It inherits from the base class Material and provides
- * the getters and setters for the alloy_coppers properties.
+ * @brief This file contains the implementation for the cylinder class.
+ * The cylinder class holds all the specific properties for the cylinder shape.
+ * It inherits from the base class Shape and provides the getters and setters
+ * for the cylinder properties.
  * @version 0.2
- * @date 2023-04-03
+ * @date 2023-04-13
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).

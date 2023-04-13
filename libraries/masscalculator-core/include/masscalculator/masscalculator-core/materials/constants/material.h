@@ -2,7 +2,7 @@
  * @file material.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains constant expressions that define the keys to get
- * the the different types of materials.
+ * the different types of materials.
  * @version 0.2
  * @date 2023-04-03
  *

@@ -1,5 +1,5 @@
 /**
- * @file materials.h
+ * @file materials.hh
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains the includes for all types of materials.
  * @version 0.2

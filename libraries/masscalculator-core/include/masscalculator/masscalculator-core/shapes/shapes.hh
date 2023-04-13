@@ -1,5 +1,5 @@
 /**
- * @file shapes.h
+ * @file shapes.hh
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains the includes for all types of shapes.
  * @version 0.2

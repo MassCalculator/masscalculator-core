@@ -1,7 +1,10 @@
 /**
  * @file cylinder.h
  * @author Mergim Halimi (m.halimi123@gmail.com)
- * @brief This file contains the class definition for cylinder.
+ * @brief This file contains the definition for the cylinder class.
+ * The cylinder class holds all the specific properties for the cylinder shape.
+ * It inherits from the base class Shape and provides the getters and setters
+ * for the cylinder properties.
  * @version 0.2
  * @date 2023-04-13
  *

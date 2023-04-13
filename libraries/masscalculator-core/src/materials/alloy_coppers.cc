@@ -1,5 +1,5 @@
 /**
- * @file alloy_coppers.h
+ * @file alloy_coppers.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains the implementation for the alloy_coppers class.
  * The alloy_coppers class holds all the specific properties for the different
