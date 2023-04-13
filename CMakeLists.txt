@@ -19,8 +19,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # @todo(jimmyhalimi): These should be removed, leaving here until finished.
-set(BUILD_TESTS ON)
-set(BUILD_DOCS ON)
+# set(BUILD_TESTS ON)
+# set(BUILD_DOCS ON)
 # set(BUILD_EXAMPLES ON)
 # set(BUILD_RELEASE ON)
 
