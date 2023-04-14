@@ -1,47 +1,34 @@
-AlloySteels = 
-{
-  Type = 
-  {
-    AS_4135 = 
-    {
-      UseLuaConfig = false,
-      type = "AS_4135",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+AlloySteels = {
+    k4135 = {
+        UseLuaConfig = false,
+        type = "k4135",
+        color = "Metallic",
+        density = 10.0,
+        melting_point = 10.0,
+        poissons_ratio = 0.1,
+        thermal_conductivity = 10.0,
+        mod_of_elasticity_tension = 10000000000.0
     },
 
-    AS_4140 = 
-    {
-      UseLuaConfig = false,
-      type = "AS_4140",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k4140 = {
+        UseLuaConfig = false,
+        type = "k4140",
+        color = "Metallic",
+        density = 10.0,
+        melting_point = 10.0,
+        poissons_ratio = 0.1,
+        thermal_conductivity = 10.0,
+        mod_of_elasticity_tension = 10000000000.0
     },
 
-    AS_4340 = 
-    {
-      UseLuaConfig = false,
-      type = "AS_4340",
-      color = "Metallic",
-      density = 2.71,
-      gravity = 2.83,
-      melting_point = 537.778,
-      poissons_ratio = 0.33,
-      thermal_conductivity = 990.0,
-      mod_of_elasticity_tension = 9.9,
-      mod_of_elasticity_torsion = 3.8
+    k4340 = {
+        UseLuaConfig = false,
+        type = "k4340",
+        color = "Metallic",
+        density = 10.0,
+        melting_point = 10.0,
+        poissons_ratio = 0.1,
+        thermal_conductivity = 10.0,
+        mod_of_elasticity_tension = 10000000000.0
     }
-  }
 }
