@@ -35,12 +35,13 @@
 #include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-base/lua_handler_data.h" // for kTestDataConfigPath
 
-namespace masscalculator::base {
+namespace masscalculator_test::base_test {
 
 class LuaScriptHandlerTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    lua_state = std::make_unique<LuaScriptHandler>(kTestDataConfigPath);
+    lua_state = std::make_unique<masscalculator::base::LuaScriptHandler>(
+        kTestDataConfigPath);
   }
 
   void TearDown() override { lua_state.reset(); }
@@ -58,7 +59,7 @@ class LuaScriptHandlerTest : public ::testing::Test {
   /**
    * @brief Member objects for class AlloyCopper for each AlloyCopper type
    */
-  std::unique_ptr<LuaScriptHandler> lua_state;
+  std::unique_ptr<masscalculator::base::LuaScriptHandler> lua_state;
 };
-} // namespace masscalculator::base
+} // namespace masscalculator_test::base_test
 #endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_LUA_HANDLER_TEST_H_
