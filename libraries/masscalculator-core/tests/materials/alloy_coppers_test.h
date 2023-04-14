@@ -156,7 +156,7 @@ class AlloyCoppersTest : public ::testing::Test {
   ~AlloyCoppersTest() override = default;
 
   /**
-   * @brief Member objects for class AlloyCopper for each AlloyCopper type
+   * @brief Member objects for class AlloyCoppers for each AlloyCoppers type
    */
   std::unique_ptr<masscalculator::core::materials::Material<
       masscalculator::core::materials::AlloyCoppers>>

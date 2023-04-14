@@ -573,45 +573,47 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @brief A map used to convert a string representation of a type to an enum
    * value.
    */
-  static constexpr base::ImmutableMap<std::string_view, AlloyCoppers::Type, 17>
-      kType{{{
-          {constants::alloycopper::k145Telluirum,
-           AlloyCoppers::Type::k145Telluirum},
-          {constants::alloycopper::k194Iron, AlloyCoppers::Type::k194Iron},
-          {constants::alloycopper::k195Iron, AlloyCoppers::Type::k195Iron},
-          {constants::alloycopper::k172Beryllium,
-           AlloyCoppers::Type::k172Beryllium},
-          {constants::alloycopper::k182Class2, AlloyCoppers::Type::k182Class2},
-          {constants::alloycopper::k655Silicon,
-           AlloyCoppers::Type::k655Silicon},
-          {constants::alloycopper::k706Nickel, AlloyCoppers::Type::k706Nickel},
-          {constants::alloycopper::k715NickelSilver,
-           AlloyCoppers::Type::k715NickelSilver},
-          {constants::alloycopper::k725NickelSilver,
-           AlloyCoppers::Type::k725NickelSilver},
-          {constants::alloycopper::k735NickelSilver,
-           AlloyCoppers::Type::k735NickelSilver},
-          {constants::alloycopper::k752NickelSilver,
-           AlloyCoppers::Type::k752NickelSilver},
-          {constants::alloycopper::k762NickelSilver,
-           AlloyCoppers::Type::k762NickelSilver},
-          {constants::alloycopper::k770NickelSilver,
-           AlloyCoppers::Type::k770NickelSilver},
-          {constants::alloycopper::k1751Class3,
-           AlloyCoppers::Type::k1751Class3},
-          {constants::alloycopper::k1758Nickel,
-           AlloyCoppers::Type::k1758Nickel},
-          {constants::alloycopper::kMoldmaxBeCu,
-           AlloyCoppers::Type::kMoldmaxBeCu},
-          {constants::alloycopper::kProthermBeCu,
-           AlloyCoppers::Type::kProthermBeCu},
-      }}};
+  static constexpr base::ImmutableMap<std::string_view, AlloyCoppers::Type, 18>
+      kType{{{{constants::alloycopper::k145Telluirum,
+               AlloyCoppers::Type::k145Telluirum},
+              {constants::alloycopper::k194Iron, AlloyCoppers::Type::k194Iron},
+              {constants::alloycopper::k195Iron, AlloyCoppers::Type::k195Iron},
+              {constants::alloycopper::k172Beryllium,
+               AlloyCoppers::Type::k172Beryllium},
+              {constants::alloycopper::k182Class2,
+               AlloyCoppers::Type::k182Class2},
+              {constants::alloycopper::k655Silicon,
+               AlloyCoppers::Type::k655Silicon},
+              {constants::alloycopper::k706Nickel,
+               AlloyCoppers::Type::k706Nickel},
+              {constants::alloycopper::k715NickelSilver,
+               AlloyCoppers::Type::k715NickelSilver},
+              {constants::alloycopper::k725NickelSilver,
+               AlloyCoppers::Type::k725NickelSilver},
+              {constants::alloycopper::k735NickelSilver,
+               AlloyCoppers::Type::k735NickelSilver},
+              {constants::alloycopper::k752NickelSilver,
+               AlloyCoppers::Type::k752NickelSilver},
+              {constants::alloycopper::k762NickelSilver,
+               AlloyCoppers::Type::k762NickelSilver},
+              {constants::alloycopper::k770NickelSilver,
+               AlloyCoppers::Type::k770NickelSilver},
+              {constants::alloycopper::k1751Class3,
+               AlloyCoppers::Type::k1751Class3},
+              {constants::alloycopper::k1758Nickel,
+               AlloyCoppers::Type::k1758Nickel},
+              {constants::alloycopper::kMoldmaxBeCu,
+               AlloyCoppers::Type::kMoldmaxBeCu},
+              {constants::alloycopper::kProthermBeCu,
+               AlloyCoppers::Type::kProthermBeCu},
+              {constants::alloycopper::kUnspecified,
+               AlloyCoppers::Type::kUnspecified}}}};
 
   /**
    * @brief A map used to convert an enum value of type Type to its string
    * representation.
    */
-  static constexpr base::ImmutableMap<AlloyCoppers::Type, std::string_view, 17>
+  static constexpr base::ImmutableMap<AlloyCoppers::Type, std::string_view, 18>
       kTypeString{
           {{{AlloyCoppers::Type::k145Telluirum,
              constants::alloycopper::k145Telluirum},
@@ -644,7 +646,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
             {AlloyCoppers::Type::kMoldmaxBeCu,
              constants::alloycopper::kMoldmaxBeCu},
             {AlloyCoppers::Type::kProthermBeCu,
-             constants::alloycopper::kProthermBeCu}}}};
+             constants::alloycopper::kProthermBeCu},
+            {AlloyCoppers::Type::kUnspecified,
+             constants::alloycopper::kUnspecified}}}};
 };
 } // namespace masscalculator::core::materials
 #endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_ALLOY_COPPERS_H_

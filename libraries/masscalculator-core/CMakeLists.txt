@@ -15,6 +15,7 @@ file(
 add_library(${PROJECT_NAME} SHARED 
   src/interface/object_interface.cc
   src/materials/alloy_coppers.cc
+  src/materials/alloy_steels.cc
   src/materials/material.cc
   src/shapes/cylinder.cc
   src/shapes/shape.cc
