@@ -48,7 +48,11 @@ static inline char* Timenow();
 #define DEBUG_LEVEL 0x03
 
 #ifndef LOG_LEVEL
+#if defined NDEBUG
+#define LOG_LEVEL ERROR_LEVEL
+#else
 #define LOG_LEVEL DEBUG_LEVEL
+#endif
 #endif
 
 #define PRINTFUNCTION(format, ...) fprintf(stderr, format, __VA_ARGS__)
