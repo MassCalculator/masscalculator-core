@@ -48,38 +48,40 @@ AlloyCoppers::AlloyCoppers(const std::string_view& type)
     : specific_properties_(std::make_unique<Properties>()),
       lua_state_(std::make_unique<base::LuaScriptHandler>(
           constants::alloycopper::kConfigPath)) {
-  if (!SetType(kType.at(type))) {
+  if (!SetType(type)) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
   }
 }
 
-std::string_view AlloyCoppers::GetType() const {
+[[nodiscard]] std::string_view AlloyCoppers::GetType() const {
   return kTypeString.at(specific_properties_->type);
 }
 
-AlloyCoppers::Color AlloyCoppers::GetSpecificColor() const {
+[[nodiscard]] AlloyCoppers::Color AlloyCoppers::GetSpecificColor() const {
   return specific_properties_->color;
 }
 
-units::density::kilograms_per_cubic_meter_t AlloyCoppers::GetSpecificDensity()
-    const {
+[[nodiscard]] units::density::kilograms_per_cubic_meter_t
+AlloyCoppers::GetSpecificDensity() const {
   return {specific_properties_->density};
 }
 
-units::temperature::kelvin_t AlloyCoppers::GetSpecificMeltingPoint() const {
+[[nodiscard]] units::temperature::kelvin_t
+AlloyCoppers::GetSpecificMeltingPoint() const {
   return {specific_properties_->melting_point};
 }
 
-double AlloyCoppers::GetSpecificPoissonsRatio() const {
+[[nodiscard]] double AlloyCoppers::GetSpecificPoissonsRatio() const {
   return specific_properties_->poissons_ratio;
 }
 
-units::power::watt_t AlloyCoppers::GetSpecificThermalConductivity() const {
+[[nodiscard]] units::power::watt_t
+AlloyCoppers::GetSpecificThermalConductivity() const {
   return {specific_properties_->thermal_conductivity};
 }
 
-units::pressure::pascal_t AlloyCoppers::GetSpecificModOfElasticityTension()
-    const {
+[[nodiscard]] units::pressure::pascal_t
+AlloyCoppers::GetSpecificModOfElasticityTension() const {
   return {specific_properties_->mod_of_elasticity_tension};
 }
 
@@ -119,8 +121,8 @@ bool AlloyCoppers::SetProperties(const Properties& properties) {
   return true;
 }
 
-bool AlloyCoppers::SetType(const AlloyCoppers::Type& type) {
-  auto pair = type2func_.find(type);
+bool AlloyCoppers::SetType(const std::string_view& type) {
+  auto pair = type2func_.find(kType.at(type));
 
   if (pair != type2func_.end()) {
     pair->second();

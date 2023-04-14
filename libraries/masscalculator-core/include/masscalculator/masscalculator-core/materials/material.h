@@ -143,11 +143,12 @@ class Material : public Crtp<TMaterialType> {
     /**
      * @brief Construct a new Properties object through initializer list
      */
-    Properties(typename TMaterialType::Type type, Color color,
-               units::density::kilograms_per_cubic_meter_t density,
-               units::temperature::kelvin_t melting_point,
-               double poissons_ratio, units::power::watt_t thermal_conductivity,
-               units::pressure::pascal_t mod_of_elasticity_tension)
+    explicit Properties(typename TMaterialType::Type type, Color color,
+                        units::density::kilograms_per_cubic_meter_t density,
+                        units::temperature::kelvin_t melting_point,
+                        double poissons_ratio,
+                        units::power::watt_t thermal_conductivity,
+                        units::pressure::pascal_t mod_of_elasticity_tension)
         : type{type},
           color{color},
           density{density},
@@ -241,6 +242,17 @@ class Material : public Crtp<TMaterialType> {
   [[nodiscard]] constexpr units::pressure::pascal_t
   GetSpecificModOfElasticityTension() const {
     return this->MaterialType().GetSpecificModOfElasticityTension();
+  }
+
+  /**
+   * @brief Set the Propertie Specs object
+   *
+   * @param type Type of AlloyCoppers
+   * @return true If the specifications of propertie are successfully set
+   * @return false  If the specifications of propertie failed to set
+   */
+  constexpr bool SetType(const std::string_view& type) {
+    return this->MaterialType().SetType(type);
   }
 
   /**

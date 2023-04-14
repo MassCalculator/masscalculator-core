@@ -40,7 +40,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "units.h" // for units::*
 
-namespace masscalculator_test::materials_test {
+namespace masscalculator_test::core_test::materials_test {
 TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k145Telluirum,
@@ -373,7 +373,7 @@ TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColorTest) {
     EXPECT_EQ(expected, type.str());
   }
 }
-} // namespace masscalculator_test::materials_test
+} // namespace masscalculator_test::core_test::materials_test
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
