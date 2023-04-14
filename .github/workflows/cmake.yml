@@ -42,8 +42,9 @@ jobs:
 
     steps:
       - name: Send repository dispatch event
-        uses: actions/trigger@v1
+        uses: peter-evans/repository-dispatch@v1
         with:
-          event: masscalculator-core-pr-merged
+          
           repository: MassCalculator/masscalculator.github.io
+          event-type: masscalculator-core-pr-merged
           token: ${{secrets.GITHUB_TOKEN}}
