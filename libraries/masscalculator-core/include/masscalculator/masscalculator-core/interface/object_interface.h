@@ -119,6 +119,15 @@ class Object {
   Object& operator=(Object&&) = default;
 
   /**
+   * @brief Function to return "this" derived object
+   *
+   * @return const TShapeType&
+   */
+  const Object& ThisObjectType() const {
+    return *static_cast<const Object*>(this);
+  }
+
+  /**
    * @brief Shift operator overload for class Object, this will print all the
    * calculated properties
    */
@@ -168,6 +177,7 @@ std::ostream& operator<<(std::ostream& os,
   os << "Object properties: ";
   os << "\n  - Weight: ";
   os << units::mass::to_string(obj.GetWeight());
+  os << "\n";
   return os;
 };
 } // namespace masscalculator::core::interface

@@ -18,11 +18,13 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# @todo(jimmyhalimi): These should be removed, leaving here until finished.
-# set(BUILD_TESTS ON)
-# set(BUILD_DOCS ON)
-# set(BUILD_EXAMPLES ON)
-# set(BUILD_RELEASE ON)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(BUILD_TESTS ON)
+  set(BUILD_EXAMPLES ON)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+  set(BUILD_TESTS ON)
+  # set(BUILD_RELEASE ON)
+endif()
 
 # Set the project version.
 set(MASSCALCULATOR_CORE_NAME ${PROJECT_NAME})

@@ -20,13 +20,13 @@ jobs:
       run: sudo tools/installers/essentials.sh
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+      run: cmake -B ${{github.workspace}}/build/masscalculator-core-${{matrix.build_type}} -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{matrix.build_type}}
+      run: cmake --build ${{github.workspace}}/build/masscalculator-core-${{matrix.build_type}} --config ${{matrix.build_type}}
 
     - name: Test
-      working-directory: ${{github.workspace}}/build
+      working-directory: ${{github.workspace}}/build/masscalculator-core-${{matrix.build_type}}
       run: ctest -C ${{matrix.build_type}}
 
     - name: Package

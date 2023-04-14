@@ -9,26 +9,20 @@ pipeline {
         stage('Environment setup') {
             steps {
                 sh "sudo tools/installers/essentials.sh"
-                sh 'mkdir -p build/MassCalculatorCore-Debug'
-                sh 'mkdir -p build/MassCalculatorCore-Release'
             }
         }
         stage('Build') {
             parallel {
                 stage('Debug') {
                     steps {
-                        dir('build/MassCalculatorCore-Debug') {
-                            sh "cmake -DBUILD_TESTS=ON ../../"
-                            sh "cmake --build ."
-                        }
+                        sh "cmake -B build/masscalculator-core-Debug -DCMAKE_BUILD_TYPE=Debug"
+                        sh "cmake --build build/masscalculator-core-Debug --config Debug"
                     }
                 }
                 stage('Release') {
                     steps {
-                        dir('build/MassCalculatorCore-Release') {
-                            sh "cmake -DBUILD_RELEASE=ON -DBUILD_TESTS=ON ../../"
-                            sh "cmake --build ."
-                        }
+                        sh "cmake -B build/masscalculator-core-Release -DCMAKE_BUILD_TYPE=Release"
+                        sh "cmake --build build/masscalculator-core-Release --config Release"
                     }
                 }
             }
@@ -37,15 +31,15 @@ pipeline {
             parallel {
                 stage('Debug') {
                     steps {
-                        dir('build/MassCalculatorCore-Debug') {
-                            sh 'ctest'
+                        dir('build/masscalculator-core-Debug') {
+                            sh 'ctest -C Debug'
                         }
                     }
                 }
                 stage('Release') {
                     steps {
-                        dir('build/MassCalculatorCore-Release') {
-                            sh 'ctest'
+                        dir('build/masscalculator-core-Release') {
+                            sh 'ctest -C Release'
                         }
                     }
                 }
