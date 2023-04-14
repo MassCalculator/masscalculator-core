@@ -46,4 +46,4 @@ jobs:
         with:
           repository: MassCalculator/masscalculator.github.io
           event-type: masscalculator-core-pr-merged
-          token: ${{secrets.MASSCALCULATOR_CORE_SECRET}}
+          token: ${{secrets.MASSCALCULATOR_SECRET}}
