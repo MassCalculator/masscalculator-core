@@ -31,16 +31,11 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_LUA_HANDLER_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_LUA_HANDLER_H_
-#include <string> // for std::string
-#include <vector> // for std::vector
+#include <lua.hpp> // for // for luaL_newstate, luaL_loadfile, lua_State and lua_* and luaL_openlibs
+#include <string>  // for std::string
+#include <vector>  // for std::vector
 
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
-
-extern "C" {
-#include "lua5.1/lauxlib.h" // for luaL_newstate, luaL_loadfile
-#include "lua5.1/lua.h"     // for lua_State and lua_*
-#include "lua5.1/lualib.h"  // for luaL_openlibs
-}
 
 /**
  * @brief Default namespace
@@ -222,7 +217,7 @@ inline std::string_view LuaScriptHandler::LuaGet<std::string_view>(
   }
 
   const char* str = lua_tostring(lua_state_, -1);
-  size_t len = lua_strlen(lua_state_, -1);
+  size_t len = lua_rawlen(lua_state_, -1);
   return {str, len};
 }
 } // namespace masscalculator::base

@@ -55,6 +55,7 @@ class Object {
    * @brief Struct with object specific properties
    */
   using ObjectProperties = struct ObjectProperties {
+    // @todo(jimmyhalim): Change name to mass
     units::mass::kilogram_t weight;
 
     /**

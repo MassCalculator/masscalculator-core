@@ -32,5 +32,4 @@
 #include "masscalculator/masscalculator-core/materials/materials.hh" // for Material::*
 
 namespace masscalculator::core::materials {
-// @todo(jimmyhalimi): Add a comment block with an example.
 } // namespace masscalculator::core::materials

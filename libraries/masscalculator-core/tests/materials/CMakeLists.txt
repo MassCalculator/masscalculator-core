@@ -1,5 +1,7 @@
 # Tests for Materials
 
+include(GoogleTest)
+
 ## AlloyCoppers test
 add_executable(alloy_coppers_test
   alloy_coppers_test.cc
@@ -7,11 +9,11 @@ add_executable(alloy_coppers_test
 
 target_link_libraries(alloy_coppers_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
     ${PROJECT_NAME}
-    MassCalculator::masscalculator-base
-    MassCalculator::third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::third_party::units
     pthread
 )
 
@@ -27,11 +29,11 @@ add_executable(alloy_steels_test
 
 target_link_libraries(alloy_steels_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
     ${PROJECT_NAME}
-    MassCalculator::masscalculator-base
-    MassCalculator::third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::third_party::units
     pthread
 )
 
@@ -47,11 +49,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(aluminium_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -67,11 +69,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(brass_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -87,11 +89,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(bronz_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -107,11 +109,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(copper_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -127,11 +129,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(magnesium_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -147,11 +149,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(nickel_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -167,11 +169,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(plastic_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -187,11 +189,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(stainless_steel_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -207,11 +209,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(steel_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -227,11 +229,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(titanium_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 
@@ -247,11 +249,11 @@ gtest_add_tests(TARGET      alloy_steels_test
 
 # target_link_libraries(zinc_test
 #   PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
+#     gtest::gtest
 #   PRIVATE
 #     ${PROJECT_NAME}
-#     MassCalculator::masscalculator-base
-#     MassCalculator::third_party::units
+#     masscalculator::masscalculator-base
+#     masscalculator::third_party::units
 #     pthread
 # )
 

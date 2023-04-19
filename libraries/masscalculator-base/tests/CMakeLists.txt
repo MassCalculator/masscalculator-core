@@ -2,6 +2,8 @@ set(LUA_HANDLER_TEST_DATA_CONFIG "${CMAKE_CURRENT_SOURCE_DIR}/data/lua_handler_t
 configure_file(config/lua_handler_data.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/include/masscalculator/${PROJECT_NAME}/lua_handler_data.h)
 
+include(GoogleTest)
+
 add_executable(lua_handler_test
 lua_handler_test.cc
 )
@@ -13,11 +15,11 @@ target_include_directories(lua_handler_test
 
 target_link_libraries(lua_handler_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
     ${PROJECT_NAME}
-    MassCalculator::masscalculator-base
-    MassCalculator::third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::third_party::units
     pthread
 )
 

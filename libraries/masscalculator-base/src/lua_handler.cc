@@ -31,13 +31,9 @@
  */
 #include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 
-#include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
+#include <lua.hpp> // for // for luaL_newstate, luaL_loadfile, lua_State and lua_* and luaL_openlibs
 
-extern "C" {
-#include "lua5.1/lauxlib.h" // for luaL_newstate, luaL_loadfile
-#include "lua5.1/lua.h"     // for lua_State and lua_*
-#include "lua5.1/lualib.h"  // for luaL_openlibs
-}
+#include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 
 namespace masscalculator::base {
 

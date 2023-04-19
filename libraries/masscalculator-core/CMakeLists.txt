@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 
 project(masscalculator-core)
 
-set(MASSCALCULATOR_RESOURCES_PATH "${MASSCALCULATOR_HOME}/resources/")
-
 configure_file(config/resources.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/include/masscalculator/${PROJECT_NAME}/resources.h)
 
@@ -29,8 +27,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
-    MassCalculator::masscalculator-base
-    MassCalculator::third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::third_party::units
 )
 
 if(${BUILD_TESTS})

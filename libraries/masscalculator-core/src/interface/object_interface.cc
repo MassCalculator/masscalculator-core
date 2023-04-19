@@ -33,5 +33,4 @@
 #include "masscalculator/masscalculator-core/shapes/shapes.hh" // for Shape::*
 
 namespace masscalculator::core::interface {
-// @todo(jimmyhalimi): Add a comment block with an example.
 } // namespace masscalculator::core::interface

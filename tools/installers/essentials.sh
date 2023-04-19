@@ -14,6 +14,7 @@ apt-get update > ${OUTPUT} 2>&1
 echo "This script requires ${CURRENT_DIRECTORY}/common.sh to run." && exit 1
 source ${CURRENT_DIRECTORY}/common.sh
 
+# @todo(jimmyhalimi): Update the list with packages.
 echo "[INFO] Installing required packages from apt..."
 apt-get install -y --no-install-recommends \
 apt-utils \

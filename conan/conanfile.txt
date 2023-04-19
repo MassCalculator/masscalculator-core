@@ -1,7 +1,7 @@
 [requires]
-doxygen/1.9.4
 gtest/1.13.0
 lua/5.4.4
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain
