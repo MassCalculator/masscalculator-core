@@ -25,7 +25,6 @@ clang-13 \
 ccache \
 curl \
 cmake \
-conan \
 graphviz \
 doxygen \
 git \
@@ -38,6 +37,10 @@ sudo \
 unzip \
 vim \
 wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
+[[ $rc -ne 0 ]] && on_exit $rc
+
+echo "[INFO] Installing required packages from pip..."
+pip install cpplint pylint conan > ${OUTPUT} 2>&1 && rc=$? || rc=$?
 [[ $rc -ne 0 ]] && on_exit $rc
 
 on_exit 0
