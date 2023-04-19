@@ -43,8 +43,4 @@ echo "[INFO] Installing required packages from pip..."
 pip install cpplint pylint conan > ${OUTPUT} 2>&1 && rc=$? || rc=$?
 [[ $rc -ne 0 ]] && on_exit $rc
 
-# Conan configuration
-echo "[INFO] Configuring default conan profile..."
-conan profile detect
-
 on_exit 0
