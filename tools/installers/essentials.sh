@@ -19,19 +19,22 @@ echo "[INFO] Installing required packages from apt..."
 apt-get install -y --no-install-recommends \
 apt-utils \
 build-essential \
+ccache \
+clang-13 \
 clang-format-13 \
 clang-tidy-13 \
-clang-13 \
-ccache \
-curl \
 cmake \
-graphviz \
+curl \
 doxygen \
 git \
-libgtest-dev \
+graphviz \
 libdxflib-dev \
+libgtest-dev \
 liblua5.1-0-dev \
 ninja-build \
+python3 \
+python3-pip \
+python3-setuptools \
 software-properties-common \
 sudo \
 unzip \
@@ -39,8 +42,8 @@ vim \
 wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
 [[ $rc -ne 0 ]] && on_exit $rc
 
-echo "[INFO] Installing required packages from pip..."
-pip install cpplint pylint conan > ${OUTPUT} 2>&1 && rc=$? || rc=$?
+echo "[INFO] Installing required packages from pip3..."
+pip3 install cpplint pylint conan > ${OUTPUT} 2>&1 && rc=$? || rc=$?
 [[ $rc -ne 0 ]] && on_exit $rc
 
 on_exit 0

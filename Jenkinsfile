@@ -15,13 +15,13 @@ pipeline {
             parallel {
                 stage('Debug') {
                     steps {
-                        sh "cmake -B build/masscalculator-core-Debug -DCMAKE_BUILD_TYPE=Debug"
+                        sh "cmake -B build/masscalculator-core-Debug -G Ninja -DCMAKE_BUILD_TYPE=Debug"
                         sh "cmake --build build/masscalculator-core-Debug --config Debug"
                     }
                 }
                 stage('Release') {
                     steps {
-                        sh "cmake -B build/masscalculator-core-Release -DCMAKE_BUILD_TYPE=Release"
+                        sh "cmake -B build/masscalculator-core-Release -G Ninja -DCMAKE_BUILD_TYPE=Release"
                         sh "cmake --build build/masscalculator-core-Release --config Release"
                     }
                 }
