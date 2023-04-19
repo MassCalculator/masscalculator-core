@@ -31,9 +31,10 @@
  */
 #include "masscalculator/masscalculator-core/shapes/cylinder.h" // for Cylinder
 
-#include <memory>  // for std::make_unique
-#include <ostream> // fot std::ostream
-#include <string>  // for std::string
+#include <memory>    // for std::make_unique
+#include <ostream>   // fot std::ostream
+#include <stdexcept> // for std::runtime_error
+#include <string>    // for std::string
 
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 #include "masscalculator/masscalculator-core/shapes/constants/shape.h" // for shape::k*
@@ -43,8 +44,13 @@
 namespace masscalculator::core::shapes {
 Cylinder::Cylinder(units::length::meter_t radius, units::length::meter_t length)
     : properties_(std::make_unique<Properties>()) {
-  if (!SetSize(radius, length)) {
+  if (properties_ == nullptr) {
+    throw std::runtime_error{"Cylinder failed to initialize..."};
+  }
+
+  if (const auto success = SetSize(radius, length); !success) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
+    throw std::runtime_error{"Cylinder failed to initialize..."};
   }
 }
 

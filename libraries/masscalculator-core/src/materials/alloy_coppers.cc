@@ -33,6 +33,7 @@
 
 #include <memory>      // for std::make_unique
 #include <ostream>     // fot std::ostream
+#include <stdexcept>   // for std::runtime_error
 #include <string>      // for std::string
 #include <string_view> // for std::string_view
 
@@ -48,8 +49,13 @@ AlloyCoppers::AlloyCoppers(const std::string_view& type)
     : specific_properties_(std::make_unique<Properties>()),
       lua_state_(std::make_unique<base::LuaScriptHandler>(
           constants::alloycopper::kConfigPath)) {
-  if (!SetType(type)) {
+  if (specific_properties_ == nullptr || lua_state_ == nullptr) {
+    throw std::runtime_error{"AlloyCoppers failed to initialize..."};
+  }
+
+  if (const auto success = SetType(type); !success) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
+    throw std::runtime_error{"AlloyCoppers failed to initialize..."};
   }
 }
 
@@ -127,7 +133,7 @@ bool AlloyCoppers::SetType(const std::string_view& type) {
   if (pair != type2func_.end()) {
     pair->second();
   } else {
-    LOG_ERROR("Could not set the values for type: %s",
+    LOG_ERROR("Could not set the values for type: %s.",
               std::string(GetType()).c_str());
   }
 

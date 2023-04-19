@@ -38,22 +38,22 @@ constexpr auto kControlRadius{0.05_m};
 constexpr auto kControlLength{0.10_m};
 constexpr auto kControlType{
     masscalculator::core::materials::constants::alloycopper::k715NickelSilver};
-constexpr auto kExpectedWeight{6.5973445725385664_kg};
+constexpr auto kExpectedMass{6.5973445725385664_kg};
 } // namespace
 
-TEST_F(ObjectInterfaceTest, GetWeightTest) {
+TEST_F(ObjectInterfaceTest, GetMassTest) {
   EXPECT_NEAR(units::mass::kilogram_t{0.0_kg}.to<double>(),
-              object_cylinder_alloycopper->GetWeight().to<double>(), 0.001);
+              object_cylinder_alloycopper->GetMass().to<double>(), 0.001);
 }
 
-TEST_F(ObjectInterfaceTest, GetWeightAfterSetTest) {
+TEST_F(ObjectInterfaceTest, GetMassAfterSetTest) {
   shape->SetSize(kControlRadius, kControlLength);
   material->SetType(kControlType);
 
   object_cylinder_alloycopper->SetProperties(shape, material);
 
-  EXPECT_NEAR(kExpectedWeight.to<double>(),
-              object_cylinder_alloycopper->GetWeight().to<double>(), 0.001);
+  EXPECT_NEAR(kExpectedMass.to<double>(),
+              object_cylinder_alloycopper->GetMass().to<double>(), 0.001);
 }
 } // namespace masscalculator_test::core_test::interface_test
 

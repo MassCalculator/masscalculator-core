@@ -29,7 +29,8 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_INTERFACE_OBJECT_INTERFACE_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_INTERFACE_OBJECT_INTERFACE_H_
-#include <memory> // for std::make_unique
+#include <memory>    // for std::make_unique
+#include <stdexcept> // for std::runtime_error
 
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 #include "units.h"                                           // for units::*
@@ -55,19 +56,17 @@ class Object {
    * @brief Struct with object specific properties
    */
   using ObjectProperties = struct ObjectProperties {
-    // @todo(jimmyhalim): Change name to mass
-    units::mass::kilogram_t weight;
+    units::mass::kilogram_t mass;
 
     /**
      * @brief Construct a new Properties object with all parameters initialized
      */
-    ObjectProperties() : weight{0_kg} {}
+    ObjectProperties() : mass{0_kg} {}
 
     /**
      * @brief Construct a new Properties object through initializer list
      */
-    explicit ObjectProperties(units::mass::kilogram_t weight)
-        : weight{weight} {}
+    explicit ObjectProperties(units::mass::kilogram_t mass) : mass{mass} {}
   };
 
   /**
@@ -88,11 +87,11 @@ class Object {
                                const std::unique_ptr<TMaterial>& material);
 
   /**
-   * @brief Get the Weight object
+   * @brief Get the mass object
    *
-   * @return kilogram_t  The calculated weight for specific object and shape
+   * @return kilogram_t  The calculated mass for specific object and shape
    */
-  [[nodiscard]] constexpr units::mass::kilogram_t GetWeight() const;
+  [[nodiscard]] constexpr units::mass::kilogram_t GetMass() const;
 
   /**
    * @brief Destroy the Object object
@@ -147,8 +146,13 @@ template <typename TShape, typename TMaterial>
 Object<TShape, TMaterial>::Object(const std::unique_ptr<TShape>& shape,
                                   const std::unique_ptr<TMaterial>& material)
     : object_properties_(std::make_unique<ObjectProperties>()) {
-  if (!SetProperties(shape, material)) {
+  if (object_properties_ == nullptr) {
+    throw std::runtime_error{"Object<T, U> failed to initialize..."};
+  }
+
+  if (const auto success = SetProperties(shape, material); !success) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
+    throw std::runtime_error{"Object<T, U> failed to initialize..."};
   }
 };
 
@@ -157,10 +161,11 @@ constexpr bool Object<TShape, TMaterial>::SetProperties(
     const std::unique_ptr<TShape>& shape,
     const std::unique_ptr<TMaterial>& material) {
   if (shape == nullptr || material == nullptr) {
+    LOG_ERROR("Could not set the properties for object.");
     return false;
   }
 
-  object_properties_->weight =
+  object_properties_->mass =
       shape->GetVolume() * material->GetSpecificDensity();
 
   return true;
@@ -168,16 +173,16 @@ constexpr bool Object<TShape, TMaterial>::SetProperties(
 
 template <typename TShape, typename TMaterial>
 [[nodiscard]] constexpr units::mass::kilogram_t
-Object<TShape, TMaterial>::GetWeight() const {
-  return object_properties_->weight;
+Object<TShape, TMaterial>::GetMass() const {
+  return object_properties_->mass;
 };
 
 template <typename TShape, typename TMaterial>
 std::ostream& operator<<(std::ostream& os,
                          const Object<TShape, TMaterial>& obj) {
   os << "Object properties: ";
-  os << "\n  - Weight: ";
-  os << units::mass::to_string(obj.GetWeight());
+  os << "\n  - Mass: ";
+  os << units::mass::to_string(obj.GetMass());
   os << "\n";
   return os;
 };
