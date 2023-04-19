@@ -25,6 +25,7 @@ clang-13 \
 ccache \
 curl \
 cmake \
+conan \
 graphviz \
 doxygen \
 git \
