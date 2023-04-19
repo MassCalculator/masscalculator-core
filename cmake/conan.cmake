@@ -9,18 +9,23 @@ endif()
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
-execute_process(
+find_program(CONAN conan)
+if(CONAN)
+  execute_process(
     COMMAND ${CONAN} profile list
     OUTPUT_VARIABLE CONAN_PROFILE_LIST
-)
-
-if("${CONAN_PROFILE_LIST}" MATCHES "default")
-  message(STATUS "Using existing default Conan profile")
-else()
-  message(STATUS "Creating default Conan profile")
-  execute_process(
-    COMMAND ${CONAN} profile new default --detect
   )
+
+  if("${CONAN_PROFILE_LIST}" MATCHES "default")
+    message(STATUS "Using existing default Conan profile")
+  else()
+    message(STATUS "Creating default Conan profile")
+    execute_process(
+      COMMAND ${CONAN} profile detect
+    )
+  endif()
+else()
+    message(WARNING "Conan not found, skipping profile creation")
 endif()
 
 # Set libcxx and compiler settings
