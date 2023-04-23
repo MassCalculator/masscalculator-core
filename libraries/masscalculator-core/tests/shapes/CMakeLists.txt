@@ -1,5 +1,7 @@
 # Tests for Shapes
 
+include(GoogleTest)
+
 ## Cylinder test
 add_executable(cylinder_test
   cylinder_test.cc
@@ -7,11 +9,11 @@ add_executable(cylinder_test
 
 target_link_libraries(cylinder_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
     ${PROJECT_NAME}
-    MassCalculator::masscalculator-base
-    MassCalculator::third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::third_party::units
     pthread
 )
 
@@ -28,7 +30,7 @@ gtest_add_tests(TARGET      cylinder_test
 
 # target_link_libraries(
 #   square_bar_test
-#   ${GTEST_BOTH_LIBRARIES}
+#   gtest::gtest
 #   ${PROJECT_NAME}
 # )
 
@@ -45,7 +47,7 @@ gtest_add_tests(TARGET      cylinder_test
 
 # target_link_libraries(
 #   square_tubing_test
-#   ${GTEST_BOTH_LIBRARIES}
+#   gtest::gtest
 #   ${PROJECT_NAME}
 # )
 

@@ -31,16 +31,11 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_LUA_HANDLER_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_LUA_HANDLER_H_
-#include <string> // for std::string
-#include <vector> // for std::vector
+#include <lua.hpp> // for // for luaL_newstate, luaL_loadfile, lua_State and lua_* and luaL_openlibs
+#include <string>  // for std::string
+#include <vector>  // for std::vector
 
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
-
-extern "C" {
-#include "lua5.1/lauxlib.h" // for luaL_newstate, luaL_loadfile
-#include "lua5.1/lua.h"     // for lua_State and lua_*
-#include "lua5.1/lualib.h"  // for luaL_openlibs
-}
 
 /**
  * @brief Default namespace
@@ -64,6 +59,34 @@ class LuaScriptHandler {
   ~LuaScriptHandler();
 
   /**
+   * @brief Get a value from Lua config, or a default value if Lua config is not
+   * used.
+   *
+   * @tparam TLuaReturnType The return type.
+   * @tparam TValue The type of the default value.
+   * @param value The name of the value in Lua config.
+   * @param default_value The default value.
+   * @return The value from Lua config if available, otherwise the default
+   * value.
+   */
+  template <typename TLuaReturnType, typename TValue>
+  TLuaReturnType GetOrDefault(const std::string& value,
+                              const TValue& default_value) {
+    auto pos = value.find_last_of(".");
+    if (pos == std::string::npos) {
+      // @todo(jimmyhalimi): Handle error case where '.' is not found in string
+    }
+
+    std::string new_value = value.substr(0, pos) + ".UseLuaConfig";
+    if (lua_state_ != nullptr && Get<bool>(new_value.c_str())) {
+      return static_cast<TLuaReturnType>(Get<TLuaReturnType>({value}));
+    }
+
+    return static_cast<TLuaReturnType>(default_value);
+  }
+
+ private:
+  /**
    * @brief Get a value from Lua config.
    *
    * @tparam TLuaReturnType The return type.
@@ -82,32 +105,6 @@ class LuaScriptHandler {
     return TLuaReturnType{};
   }
 
-  /**
-   * @brief Get a value from Lua config, or a default value if Lua config is not
-   * used.
-   *
-   * @tparam TLuaReturnType The return type.
-   * @tparam TValue The type of the default value.
-   * @param value The name of the value in Lua config.
-   * @param default_value The default value.
-   * @return The value from Lua config if available, otherwise the default
-   * value.
-   */
-  template <typename TLuaReturnType, typename TValue>
-  TLuaReturnType GetOrDefault(const std::string& value,
-                              const TValue& default_value) {
-    auto pos = value.find_last_of(".");
-    if (pos == std::string::npos) {
-      // handle error case where '.' is not found in the string
-    }
-    std::string new_value = value.substr(0, pos) + ".UseLuaConfig";
-    if (Get<bool>(new_value.c_str())) {
-      return static_cast<TLuaReturnType>(Get<TLuaReturnType>({value}));
-    }
-    return static_cast<TLuaReturnType>(default_value);
-  }
-
- private:
   /**
    * @brief Opens the Lua state and standard libraries, and loads the specified
    * Lua script file into the state.
@@ -154,7 +151,7 @@ class LuaScriptHandler {
   template <typename TLuaReturnType>
   TLuaReturnType LuaGet(const std::string& variable_name) {
     if (lua_isnumber(lua_state_, -1) == 0) {
-      LOG_ERROR("Can't get [%s]. Not a number", variable_name.c_str());
+      LOG_ERROR("Can't get [%s]. Not a number.", variable_name.c_str());
     }
 
     return static_cast<TLuaReturnType>(lua_tonumber(lua_state_, -1));
@@ -167,7 +164,7 @@ class LuaScriptHandler {
    * created by `luaL_newstate`. It is used to interact with the Lua interpreter
    * API functions.
    */
-  lua_State* lua_state_;
+  lua_State* lua_state_{nullptr};
 };
 
 /**
@@ -181,7 +178,7 @@ class LuaScriptHandler {
 template <>
 inline bool LuaScriptHandler::LuaGet<bool>(const std::string& variable_name) {
   if (!lua_isboolean(lua_state_, -1)) {
-    LOG_ERROR("Can't get [%s]. Not a boolean", variable_name.c_str());
+    LOG_ERROR("Can't get [%s]. Not a boolean.", variable_name.c_str());
   }
 
   return static_cast<bool>(lua_toboolean(lua_state_, -1));
@@ -199,7 +196,7 @@ template <>
 inline std::string LuaScriptHandler::LuaGet<std::string>(
     const std::string& variable_name) {
   if (lua_isstring(lua_state_, -1) == 0) {
-    LOG_ERROR("Can't get [%s]. Not a string", variable_name.c_str());
+    LOG_ERROR("Can't get [%s]. Not a string.", variable_name.c_str());
   }
 
   return lua_tostring(lua_state_, -1);
@@ -218,11 +215,11 @@ template <>
 inline std::string_view LuaScriptHandler::LuaGet<std::string_view>(
     const std::string& variable_name) {
   if (lua_isstring(lua_state_, -1) == 0) {
-    LOG_ERROR("Can't get [%s]. Not a string", variable_name.c_str());
+    LOG_ERROR("Can't get [%s]. Not a string.", variable_name.c_str());
   }
 
   const char* str = lua_tostring(lua_state_, -1);
-  size_t len = lua_strlen(lua_state_, -1);
+  size_t len = lua_rawlen(lua_state_, -1);
   return {str, len};
 }
 } // namespace masscalculator::base

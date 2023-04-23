@@ -211,7 +211,7 @@ namespace MassCalculator::Materials
 
       /**
        * @brief One of the most commonly used high strength aluminum alloys. With its combination of high strength and excellent fatigue resistance, it is commonly used 
-       * where a good strength-to-weight ratio is desired.  This grade can be machined to a high finish and it can be formed in the annealed condition with 
+       * where a good strength-to-mass ratio is desired.  This grade can be machined to a high finish and it can be formed in the annealed condition with 
        * subsequent heat treating, if needed. The corrosion resistance of this grade is relatively low. When this is an issue, 2024 is commonly used in an 
        * anodized finish or in clad form (thin surface layer of high purity aluminum) known as Alclad.
        * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
@@ -257,7 +257,7 @@ namespace MassCalculator::Materials
       A_6063,
 
       /**
-       * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to weight ratio, and it is ideally used for highly stressed parts. 
+       * @brief This is one of the highest strength aluminum alloys available. It has an excellent strength-to mass ratio, and it is ideally used for highly stressed parts. 
        * This grade can be formed in the annealed condition and subsequently heat treated, if needed. It can also be spot or flash welded (arc and gas not recommended).
        * Source [Last visit: 2020-03-28]: https://www.metalsupermarkets.com/what-aluminum-grade-should-i-use/
        * 

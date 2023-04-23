@@ -1,16 +1,18 @@
 # Test for ObjectInterface
 
+include(GoogleTest)
+
 add_executable(object_interface_test
   object_interface_test.cc
 )
 
 target_link_libraries(object_interface_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
     ${PROJECT_NAME}
-    MassCalculator::masscalculator-base
-    MassCalculator::third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::third_party::units
     pthread
 )
 

@@ -147,8 +147,7 @@ int main(/*int argc, char** argv*/) {
    * @brief Printout using logger and oss.
    */
   LOG_INFO("Object properties:");
-  LOG_INFO("  - Weight: %s",
-           units::mass::to_string(object->GetWeight()).c_str());
+  LOG_INFO("  - Mass: %s", units::mass::to_string(object->GetMass()).c_str());
 
   return 0;
 }

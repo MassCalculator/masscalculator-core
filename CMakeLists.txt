@@ -14,6 +14,7 @@ project(masscalculator-core
         LANGUAGES CXX
 )
 
+# Set C and C++ standards
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -55,8 +56,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 )
 
 # Initialize the package manager.
-# @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
-# include(conan)
+include(conan)
 # Search for all third party dependencies
 include(third_party)
 # This adds the packaging steps.
@@ -90,8 +90,7 @@ target_link_options(${PROJECT_NAME} PRIVATE -flto)
 #
 ################################################################################
 
-# @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
-# include(install)
+include(install)
 
 # This adds the packaging steps.
 # @todo(jimmyhalimi): Commented out for now, until time comes to fix this.

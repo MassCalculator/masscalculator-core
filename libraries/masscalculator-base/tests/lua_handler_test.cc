@@ -184,6 +184,17 @@ TEST_F(LuaScriptHandlerTest, GetNumericValueFourTest) {
   EXPECT_EQ(numeric_value, 0.0);
 }
 
+TEST_F(LuaScriptHandlerTest, LuaStateEmptyFilepath) {
+  std::unique_ptr<masscalculator::base::LuaScriptHandler> lua_state_no_file =
+      std::make_unique<masscalculator::base::LuaScriptHandler>("");
+
+  ASSERT_NE(lua_state_no_file, nullptr);
+
+  const auto numeric_value{lua_state_no_file->GetOrDefault<double>(
+      std::string(kFirstLevelKey), 0.0)};
+  EXPECT_EQ(numeric_value, 0.0);
+}
+
 } // namespace masscalculator_test::base_test
 
 /**
