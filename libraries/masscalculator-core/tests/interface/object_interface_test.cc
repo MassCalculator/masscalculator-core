@@ -28,8 +28,8 @@
  */
 #include "object_interface_test.h" // for Object<T, U>
 
-#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h"
-#include "units.h"
+#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "masscalculator/third_party/units/units.h" // for units::*
 
 namespace masscalculator_test::core_test::interface_test {
 

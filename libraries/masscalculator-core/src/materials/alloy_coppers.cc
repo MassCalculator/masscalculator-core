@@ -42,7 +42,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/properties.h" // for properties::k*
 #include "masscalculator/masscalculator-core/materials/material.h" // for material
-#include "units.h" // for units::*
+#include "masscalculator/third_party/units/units.h" // for units::*
 
 namespace masscalculator::core::materials {
 AlloyCoppers::AlloyCoppers(const std::string_view& type)

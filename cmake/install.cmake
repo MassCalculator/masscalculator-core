@@ -14,14 +14,14 @@ include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 
 # # Install the Google Test libraries.
 # install(
-#     DIRECTORY ${GTest_LIBRARIES}
-#     DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
+#   DIRECTORY ${GTest_LIBRARIES}
+#   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
 # )
 
 # Install the Google Test headers.
 install(
-    DIRECTORY ${GTest_INCLUDE_DIRS}/
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  DIRECTORY ${GTest_INCLUDE_DIRS}/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 ############################################################
@@ -30,14 +30,26 @@ install(
 
 # # Install the Lua libraries.
 # install(
-#     DIRECTORY ${lua_LIBRARIES}
-#     DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
+#   DIRECTORY ${lua_LIBRARIES}
+#   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
 # )
 
 # Install the Lua headers.
 install(
-    DIRECTORY ${lua_INCLUDE_DIR}/
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  DIRECTORY ${lua_INCLUDE_DIR}/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+############################################################
+# UNITS
+############################################################
+
+# Install the Units header.
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libraries/third_party/units/include/masscalculator
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN "CMakeLists.txt" EXCLUDE
 )
 
 ############################################################

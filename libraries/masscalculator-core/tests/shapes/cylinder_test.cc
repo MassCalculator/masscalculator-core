@@ -31,7 +31,7 @@
 #include <gtest/gtest.h> // for ::testing::Test and TEST_F
 
 #include "masscalculator/masscalculator-core/shapes/cylinder.h" // for Cylinder::Type
-#include "units.h"                                              // for units::*
+#include "masscalculator/third_party/units/units.h"             // for units::*
 
 namespace masscalculator_test::core_test::shapes_test {
 TEST_F(CylinderTest, GetTypeTest) {
