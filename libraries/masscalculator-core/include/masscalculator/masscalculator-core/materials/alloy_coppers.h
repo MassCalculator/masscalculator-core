@@ -46,7 +46,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
-#include "units.h" // for units::*
+#include "masscalculator/third_party/units/units.h" // for units::*
 
 /**
  * @brief Default Materials namespace

@@ -39,7 +39,7 @@
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 #include "masscalculator/masscalculator-core/shapes/constants/shape.h" // for shape::k*
 #include "masscalculator/masscalculator-core/shapes/shape.h" // for Shape<T>
-#include "units.h"                                           // for units::*
+#include "masscalculator/third_party/units/units.h"          // for units::*
 
 namespace masscalculator::core::shapes {
 Cylinder::Cylinder(units::length::meter_t radius, units::length::meter_t length)

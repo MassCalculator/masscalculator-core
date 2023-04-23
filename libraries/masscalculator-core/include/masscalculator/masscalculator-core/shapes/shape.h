@@ -36,7 +36,7 @@
 
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
 #include "masscalculator/masscalculator-core/shapes/constants/shape.h" // for shape::k*
-#include "units.h" // for units::*
+#include "masscalculator/third_party/units/units.h" // for units::*
 
 // NOLINTNEXTLINE(google-global-names-in-headers,google-build-using-namespace)
 using namespace units::literals;

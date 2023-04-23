@@ -36,7 +36,7 @@
 
 #include "masscalculator/masscalculator-core/shapes/constants/shape.h" // for shape::k*
 #include "masscalculator/masscalculator-core/shapes/shape.h" // for Shape<T>
-#include "units.h"                                           // for units::*
+#include "masscalculator/third_party/units/units.h"          // for units::*
 
 /**
  * @brief Default Shapes namespace

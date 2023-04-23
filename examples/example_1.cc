@@ -34,7 +34,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/materials.hh" // for Materials*
 #include "masscalculator/masscalculator-core/shapes/shapes.hh" // for Shapes*
-#include "units.h"                                             // for units::*
+#include "masscalculator/third_party/units/units.h"            // for units::*
 
 // NOLINTNEXTLINE(google-global-names-in-headers,google-build-using-namespace)
 using namespace units::literals;

@@ -21,6 +21,10 @@ foreach(LUA_FILE ${LUA_FILES})
   file(REMOVE ${LUA_FILE})
 endforeach()
 
+if(EXISTS "/usr/local/include/masscalculator/third_party")
+  file(REMOVE_RECURSE "/usr/local/include/masscalculator/third_party")
+endif()
+
 if(EXISTS "/usr/local/include/masscalculator/masscalculator-base")
   file(REMOVE_RECURSE "/usr/local/include/masscalculator/masscalculator-base")
 endif()

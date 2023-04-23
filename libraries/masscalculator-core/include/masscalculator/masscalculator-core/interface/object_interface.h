@@ -33,7 +33,7 @@
 #include <stdexcept> // for std::runtime_error
 
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
-#include "units.h"                                           // for units::*
+#include "masscalculator/third_party/units/units.h"          // for units::*
 
 // NOLINTNEXTLINE(google-global-names-in-headers,google-build-using-namespace)
 using namespace units::literals;
