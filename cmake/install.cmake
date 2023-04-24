@@ -2,7 +2,7 @@
 include(GNUInstallDirs)
 
 ############################################################
-# INSTALL THIRD PARTY LIBRARIES
+# INSTALL THIRD PARTY HEADERS
 ############################################################
 
 # Include paths coming from Conan installations
@@ -11,12 +11,6 @@ include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 ############################################################
 # GOOGLE TEST
 ############################################################
-
-# # Install the Google Test libraries.
-# install(
-#   DIRECTORY ${GTest_LIBRARIES}
-#   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
-# )
 
 # Install the Google Test headers.
 install(
@@ -28,12 +22,6 @@ install(
 # LUA
 ############################################################
 
-# # Install the Lua libraries.
-# install(
-#   DIRECTORY ${lua_LIBRARIES}
-#   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
-# )
-
 # Install the Lua headers.
 install(
   DIRECTORY ${lua_INCLUDE_DIR}/
@@ -41,58 +29,79 @@ install(
 )
 
 ############################################################
-# UNITS
+# INSTALL THIRD PARTY LIBRARIES
 ############################################################
 
-# Install the Units header.
 install(
-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libraries/third_party/units/include/masscalculator
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
-  FILES_MATCHING PATTERN "*.h"
-  PATTERN "CMakeLists.txt" EXCLUDE
+  DIRECTORY ${CMAKE_LIBRARY_PATH}
+  DESTINATION ${CMAKE_INSTALL_PREFIX}
 )
 
 ############################################################
 # INSTALL MASSCALCULATOR-CORE LIBRARY
 ############################################################
 
+set_target_properties(masscalculator-base PROPERTIES
+                      INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+                      INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+
 # Install the library targets and their corresponding headers
 install(
-  TARGETS masscalculator-base
+  TARGETS     
+    masscalculator-base  
+    ${PROJECT_NAME}
+    units
   EXPORT ${PROJECT_NAME}-config
-  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/masscalculator
-  INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/${${CMAKE_INSTALL_INCLUDEDIR}}
+  INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(
+  EXPORT ${PROJECT_NAME}-config
+  DESTINATION share/cmake/${PROJECT_NAME}
+  NAMESPACE masscalculator::
+  FILE ${PROJECT_NAME}-config.cmake
 )
 
 install(
   DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libraries/masscalculator-base/include/masscalculator
   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
-  FILES_MATCHING PATTERN "*.h"
+  FILES_MATCHING PATTERN "*.h*"
   PATTERN "CMakeLists.txt" EXCLUDE
 )
 
 install(
-  TARGETS ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}-config
-  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/masscalculator
-  INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/${${CMAKE_INSTALL_INCLUDEDIR}}
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/libraries/masscalculator-base/include/masscalculator
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  FILES_MATCHING PATTERN "*.h*"
+  PATTERN "CMakeLists.txt" EXCLUDE
 )
 
 install(
   DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libraries/${PROJECT_NAME}/include/masscalculator
   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
-  FILES_MATCHING PATTERN "*.h"
+  FILES_MATCHING PATTERN "*.h*"
+  PATTERN "CMakeLists.txt" EXCLUDE
+)
+
+install(
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/libraries/${PROJECT_NAME}/include/masscalculator
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  FILES_MATCHING PATTERN "*.h*"
+  PATTERN "CMakeLists.txt" EXCLUDE
+)
+
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libraries/third_party/units/include/masscalculator
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  FILES_MATCHING PATTERN "*.h*"
   PATTERN "CMakeLists.txt" EXCLUDE
 )
 
 install(
   DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libraries/${PROJECT_NAME}/resources
-  DESTINATION ${MASSCALCULATOR_HOME}
-)
-
-install(
- EXPORT ${PROJECT_NAME}-config
- DESTINATION share/cmake/masscalculator/${PROJECT_NAME}
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/masscalculator
 )
 
 install(
