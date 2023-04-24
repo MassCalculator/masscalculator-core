@@ -1,46 +1,19 @@
-# @todo(jimmyhalimi): Update the list with macros.
-
-if(EXISTS "/usr/local/lib/masscalculator/libmasscalculator-base.so")
-  file(REMOVE "/usr/local/lib/masscalculator/libmasscalculator-base.so")
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt")
+    message(FATAL_ERROR "Cannot find install manifest: ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt")
 endif()
 
-if(EXISTS "/usr/local/lib/masscalculator/libmasscalculator-core.so")
-  file(REMOVE "/usr/local/lib/masscalculator/libmasscalculator-core.so")
-endif()
+file(READ "${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt" files)
+string(REGEX REPLACE "\n" ";" files "${files}")
 
-if(EXISTS "/usr/local/include/gtest")
-  file(REMOVE_RECURSE "/usr/local/include/gtest")
-endif()
-
-if(EXISTS "/usr/local/include/gmock")
-  file(REMOVE_RECURSE "/usr/local/include/gmock")
-endif()
-
-file(GLOB LUA_FILES "/usr/local/include/l*lib.h")
-foreach(LUA_FILE ${LUA_FILES})
-  file(REMOVE ${LUA_FILE})
+foreach(file IN LISTS files)
+    message(STATUS "Removing file: ${file}")
+    if(EXISTS "${file}")
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} -E remove "${file}"
+            RESULT_VARIABLE result
+        )
+        if(NOT result EQUAL 0)
+            message(FATAL_ERROR "Failed to remove file: ${file}")
+        endif()
+    endif()
 endforeach()
-
-if(EXISTS "/usr/local/include/masscalculator/third_party")
-  file(REMOVE_RECURSE "/usr/local/include/masscalculator/third_party")
-endif()
-
-if(EXISTS "/usr/local/include/masscalculator/masscalculator-base")
-  file(REMOVE_RECURSE "/usr/local/include/masscalculator/masscalculator-base")
-endif()
-
-if(EXISTS "/usr/local/include/masscalculator/masscalculator-core")
-  file(REMOVE_RECURSE "/usr/local/include/masscalculator/masscalculator-core")
-endif()
-
-if(EXISTS "${MASSCALCULATOR_HOME}")
-  file(REMOVE_RECURSE "${MASSCALCULATOR_HOME}")
-endif()
-
-if(EXISTS "/usr/local/share/cmake/masscalculator/masscalculator-core")
-  file(REMOVE_RECURSE "/usr/local/share/cmake/masscalculator/masscalculator-core")
-endif()
-
-if(EXISTS "/usr/local/share/man/man1/masscalculator-core.1.gz")
-  file(REMOVE "/usr/local/share/man/man1/masscalculator-core.1.gz")
-endif()
