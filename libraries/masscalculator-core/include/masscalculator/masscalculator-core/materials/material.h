@@ -35,7 +35,9 @@
 #include <unordered_map> // for std::unordered_map
 
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
+#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/masscalculator-core/materials/constants/properties.h" // for properties::k*
 #include "masscalculator/third_party/units/units.h" // for units::*
 
 // NOLINTNEXTLINE(google-global-names-in-headers,google-build-using-namespace)
@@ -175,79 +177,75 @@ class Material : public Crtp<TMaterialType> {
   /**
    * @brief Get the Type object
    *
-   * @return const std::string_view Type of the Material from Derived class
+   * @return std::string_view Type of the Material
    */
   [[nodiscard]] constexpr std::string_view GetType() const {
-    return this->MaterialType().GetType();
+    return this->MaterialType().kTypeString.at(specific_properties->type);
   }
 
   /**
    * @brief Get the Specific Color object
    *
-   * @return Color Color of the material from Derived class
+   * @return Color Color of the material
    */
   [[nodiscard]] constexpr Color GetSpecificColor() const {
-    return this->MaterialType().GetSpecificColor();
+    return specific_properties->color;
   }
 
   /**
    * @brief Get the Specific Density object
    *
-   * @return kilograms_per_cubic_meter_t Density of the material from Derived
-   * class
+   * @return kilograms_per_cubic_meter_t Density of the material
    */
   [[nodiscard]] constexpr units::density::kilograms_per_cubic_meter_t
   GetSpecificDensity() const {
-    return this->MaterialType().GetSpecificDensity();
+    return {specific_properties->density};
   }
 
   /**
    * @brief Get the Specific Melting Point object
    *
-   * @return kelvin_t The specific melting point of Material type from Derived
-   * class
+   * @return kelvin_t The specific melting point of TMaterialType type
    */
   [[nodiscard]] constexpr units::temperature::kelvin_t GetSpecificMeltingPoint()
       const {
-    return this->MaterialType().GetSpecificMeltingPoint();
+    return {specific_properties->melting_point};
   }
 
   /**
    * @brief Get the Specific PoissonsRatio object
    *
-   * @return double The specific poissons ratio of Material type from Derived
-   * class
+   * @return double The specific poissons ratio of TMaterialType type
    */
   [[nodiscard]] constexpr double GetSpecificPoissonsRatio() const {
-    return this->MaterialType().GetSpecificPoissonsRatio();
+    return specific_properties->poissons_ratio;
   }
 
   /**
    * @brief Get the Specific Thermal Conductivity object
    *
-   * @return watt_t The specific thermal conductivity of Material type from
-   * Derived class
+   * @return watt_t The specific thermal conductivity of TMaterialType type
    */
   [[nodiscard]] constexpr units::power::watt_t GetSpecificThermalConductivity()
       const {
-    return this->MaterialType().GetSpecificThermalConductivity();
+    return {specific_properties->thermal_conductivity};
   }
 
   /**
    * @brief Get the Specific Modulus of Elasticity Tension object
    *
    * @return pascal_t The specific modulus of elasticity tension point of
-   * Material type from Derived class
+   * TMaterialType type
    */
   [[nodiscard]] constexpr units::pressure::pascal_t
   GetSpecificModOfElasticityTension() const {
-    return this->MaterialType().GetSpecificModOfElasticityTension();
+    return {specific_properties->mod_of_elasticity_tension};
   }
 
   /**
    * @brief Set the Propertie Specs object
    *
-   * @param type Type of AlloyCoppers
+   * @param type Type of TMaterialType
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
@@ -300,6 +298,31 @@ class Material : public Crtp<TMaterialType> {
   }
 
   /**
+   * @brief Shift operator overload for class TMaterialType, this will print all
+   * the nessesery informations
+   */
+  friend std::ostream& operator<<(std::ostream& os, const TMaterialType& obj) {
+    os << std::string(obj.GetClassName()) + " object properties: ";
+    os << "\n  - Type                         : ";
+    os << obj.GetType();
+    os << "\n  - Color                        : ";
+    os << obj.GetSpecificColor();
+    os << "\n  - Density                      : ";
+    os << units::density::to_string(obj.GetSpecificDensity());
+    os << "\n  - Melting point                : ";
+    os << units::temperature::to_string(obj.GetSpecificMeltingPoint());
+    os << "\n  - Poissons ratio               : ";
+    os << std::to_string(obj.GetSpecificPoissonsRatio());
+    os << "\n  - Thermal conductivity         : ";
+    os << units::power::to_string(obj.GetSpecificThermalConductivity());
+    os << "\n  - Modulus of elasticity tension: ";
+    os << units::pressure::to_string(obj.GetSpecificModOfElasticityTension());
+    os << "\n";
+
+    return os;
+  }
+
+  /**
    * @brief Shift operator template overload, for the class Color
    */
   friend std::ostream& operator<<(std::ostream& os,
@@ -310,6 +333,64 @@ class Material : public Crtp<TMaterialType> {
   }
 
  protected:
+  /**
+   * @brief Function to set the static propertie values
+   *
+   * @param properties Structure of the constant properties
+   * @return true If properties are correctly set
+   * @return false If properties have failed to set
+   */
+  bool SetProperties(const Properties& properties) {
+    auto fetch_from_lua_or_default = [&](const std::string& property_name,
+                                         auto default_value) {
+      using ValueType = decltype(default_value);
+      return lua_state->GetOrDefault<ValueType>(
+          std::string(this->MaterialType().GetClassName()) + "." +
+              std::string(
+                  this->MaterialType().kTypeString.at(properties.type)) +
+              "." + property_name,
+          default_value);
+    };
+
+    specific_properties->type =
+        this->MaterialType().kType.at(fetch_from_lua_or_default(
+            constants::properties::kTypeKey,
+            this->MaterialType().kTypeString.at(properties.type)));
+
+    specific_properties->color = kColor.at(fetch_from_lua_or_default(
+        constants::properties::kColorKey, kColorString.at(properties.color)));
+
+    specific_properties->density = fetch_from_lua_or_default(
+        constants::properties::kDensityKey, properties.density);
+
+    specific_properties->melting_point = fetch_from_lua_or_default(
+        constants::properties::kMeltingPointKey, properties.melting_point);
+
+    specific_properties->poissons_ratio = fetch_from_lua_or_default(
+        constants::properties::kPoissonsRatioKey, properties.poissons_ratio);
+
+    specific_properties->thermal_conductivity = fetch_from_lua_or_default(
+        constants::properties::kThermalConductivityKey,
+        properties.thermal_conductivity);
+
+    specific_properties->mod_of_elasticity_tension = fetch_from_lua_or_default(
+        constants::properties::kModOfElasticityTensionKey,
+        properties.mod_of_elasticity_tension);
+
+    return true;
+  }
+
+  /**
+   * @brief Properties struct to hold the specific object properties
+   */
+  std::unique_ptr<Properties> specific_properties;
+
+  /**
+   * @brief Lua Handler object to get the config for metals from LuaScript is
+   * necessary
+   */
+  std::unique_ptr<base::LuaScriptHandler> lua_state;
+
   /**
    * @brief A map used to convert a string representation of a color to an enum
    * value.

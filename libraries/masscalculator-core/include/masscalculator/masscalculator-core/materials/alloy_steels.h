@@ -33,20 +33,16 @@
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_ALLOY_STEELS_H_
 #include <cstdint>       // for uint8_t
 #include <functional>    // for std::function
-#include <memory>        // for std::unique_ptr
-#include <ostream>       // fot std::ostream
 #include <string>        // for std::string
 #include <string_view>   // for std::string_view
 #include <unordered_map> // for std::unordered_map
-#include <utility>       // for std::pair and std::move
+#include <utility>       // for std::move
 
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
-#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-core/materials/constants/alloy_steels.h" // for alloysteels::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
 #include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
-#include "masscalculator/third_party/units/units.h" // for units::*
 
 /**
  * @brief Default Materials namespace
@@ -99,58 +95,6 @@ class AlloySteels : public Material<AlloySteels> {
   explicit AlloySteels(const std::string_view& type);
 
   /**
-   * @brief Get the Type object
-   *
-   * @return Type Type enumeration of the material
-   */
-  [[nodiscard]] std::string_view GetType() const;
-
-  /**
-   * @brief Get the Specific color object
-   *
-   * @return Color color of the material
-   */
-  [[nodiscard]] Color GetSpecificColor() const;
-
-  /**
-   * @brief Get the Specific Density object
-   *
-   * @return kilograms_per_cubic_meter_t Density of the material
-   */
-  [[nodiscard]] units::density::kilograms_per_cubic_meter_t GetSpecificDensity()
-      const;
-
-  /**
-   * @brief Get the Specific Melting Point object
-   *
-   * @return kelvin_t The specific melting point of AlloySteels type
-   */
-  [[nodiscard]] units::temperature::kelvin_t GetSpecificMeltingPoint() const;
-
-  /**
-   * @brief Get the Specific PoissonsRatio object
-   *
-   * @return double The specific poissons ratio of AlloySteels type
-   */
-  [[nodiscard]] double GetSpecificPoissonsRatio() const;
-
-  /**
-   * @brief Get the Specific Thermal Conductivity object
-   *
-   * @return watt_t The specific thermal conductivity of AlloySteels type
-   */
-  [[nodiscard]] units::power::watt_t GetSpecificThermalConductivity() const;
-
-  /**
-   * @brief Get the Specific Modulus of Elasticity Tension object
-   *
-   * @return pascal_t The specific modulus of elasticity tension point of
-   * AlloySteels type
-   */
-  [[nodiscard]] units::pressure::pascal_t GetSpecificModOfElasticityTension()
-      const;
-
-  /**
    * @brief Set the Propertie Specs object
    *
    * @param type Type of AlloySteels
@@ -163,12 +107,6 @@ class AlloySteels : public Material<AlloySteels> {
    * @brief Destroy the AlloySteels object
    */
   ~AlloySteels() = default;
-
-  /**
-   * @brief Shift operator overload for class AlloySteels, this will print all
-   * the nessesery informations
-   */
-  friend std::ostream& operator<<(std::ostream& os, const AlloySteels& obj);
 
   /**
    * @brief Delete copy constructor
@@ -190,10 +128,30 @@ class AlloySteels : public Material<AlloySteels> {
    */
   AlloySteels& operator=(AlloySteels&&) = default;
 
- private:
   /**
-   * @brief Function to return the class name, not the pointer of the class, I
-   * am trying to keep away this function outside of the class
+   * @brief A map used to convert a string representation of a type to an enum
+   * value.
+   */
+  static constexpr base::ImmutableMap<std::string_view, AlloySteels::Type, 4>
+      kType{{{{constants::alloysteel::k4135, AlloySteels::Type::k4135},
+              {constants::alloysteel::k4140, AlloySteels::Type::k4140},
+              {constants::alloysteel::k4340, AlloySteels::Type::k4340},
+              {constants::alloysteel::kUnspecified,
+               AlloySteels::Type::kUnspecified}}}};
+
+  /**
+   * @brief A map used to convert an enum value of type Type to its string
+   * representation.
+   */
+  static constexpr base::ImmutableMap<AlloySteels::Type, std::string_view, 4>
+      kTypeString{{{{AlloySteels::Type::k4135, constants::alloysteel::k4135},
+                    {AlloySteels::Type::k4140, constants::alloysteel::k4140},
+                    {AlloySteels::Type::k4340, constants::alloysteel::k4340},
+                    {AlloySteels::Type::kUnspecified,
+                     constants::alloysteel::kUnspecified}}}};
+
+  /**
+   * @brief Function to return the class name, not the pointer of the class.
    *
    * @return std::string Class name as a string
    */
@@ -201,15 +159,7 @@ class AlloySteels : public Material<AlloySteels> {
     return constants::material::kAlloySteels;
   };
 
-  /**
-   * @brief Function to set the static propertie values
-   *
-   * @param _properties Structure of the constant properties
-   * @return true If properties are correctly set
-   * @return false If properties have failed to set
-   */
-  bool SetProperties(const Properties& properties);
-
+ private:
   /**
    * @brief Convert a string representation of a unit to its corresponding SI
    * unit using an unordered map and a lambda function.
@@ -249,39 +199,6 @@ class AlloySteels : public Material<AlloySteels> {
                                          {10.0_W},
                                          {10.0_GPa}});
        }}};
-
-  /**
-   * @brief Properties struct to hold the specific object properties
-   */
-  std::unique_ptr<Properties> specific_properties_;
-
-  /**
-   * @brief Lua Handler object to get the config for metals from LuaScript is
-   * necessary
-   */
-  std::unique_ptr<base::LuaScriptHandler> lua_state_;
-
-  /**
-   * @brief A map used to convert a string representation of a type to an enum
-   * value.
-   */
-  static constexpr base::ImmutableMap<std::string_view, AlloySteels::Type, 4>
-      kType{{{{constants::alloysteel::k4135, AlloySteels::Type::k4135},
-              {constants::alloysteel::k4140, AlloySteels::Type::k4140},
-              {constants::alloysteel::k4340, AlloySteels::Type::k4340},
-              {constants::alloysteel::kUnspecified,
-               AlloySteels::Type::kUnspecified}}}};
-
-  /**
-   * @brief A map used to convert an enum value of type Type to its string
-   * representation.
-   */
-  static constexpr base::ImmutableMap<AlloySteels::Type, std::string_view, 4>
-      kTypeString{{{{AlloySteels::Type::k4135, constants::alloysteel::k4135},
-                    {AlloySteels::Type::k4140, constants::alloysteel::k4140},
-                    {AlloySteels::Type::k4340, constants::alloysteel::k4340},
-                    {AlloySteels::Type::kUnspecified,
-                     constants::alloysteel::kUnspecified}}}};
 };
 } // namespace masscalculator::core::materials
 #endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_ALLOY_STEELS_H_
