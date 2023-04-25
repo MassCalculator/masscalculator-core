@@ -27,8 +27,3 @@ gtest_add_tests(TARGET      lua_handler_test
                 TEST_SUFFIX .noArgs
                 TEST_LIST   noArgsTests
 )
-
-add_test(
-  NAME LuaHandler
-  COMMAND lua_handler_test
-)
