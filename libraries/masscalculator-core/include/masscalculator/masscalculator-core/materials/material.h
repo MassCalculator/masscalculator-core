@@ -44,7 +44,7 @@
 using namespace units::literals;
 
 /**
- * @brief Default Materials namespace
+ * @brief MassCalculator Core Materials namespace
  */
 namespace masscalculator::core::materials {
 /**

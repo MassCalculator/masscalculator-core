@@ -45,7 +45,7 @@
 #include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
 
 /**
- * @brief Default Materials namespace
+ * @brief MassCalculator Core Materials namespace
  */
 namespace masscalculator::core::materials {
 /**

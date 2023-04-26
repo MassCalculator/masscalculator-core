@@ -33,6 +33,9 @@
 #include <algorithm> // for std::find_if, begin and end
 #include <array>     // for std::array
 
+/**
+ * @brief MassCalculator Base namespace
+ */
 namespace masscalculator::base {
 
 template <typename Key, typename Value, std::size_t Size>

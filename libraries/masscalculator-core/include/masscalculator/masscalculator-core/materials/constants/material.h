@@ -29,6 +29,10 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_MATERIAL_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_MATERIAL_H_
+
+/**
+ * @brief MassCalculator Core Materials Constants Material namespace
+ */
 namespace masscalculator::core::materials::constants::material {
 // ! String constant for AlloyCoppers material.
 constexpr auto kAlloyCoppers{"AlloyCoppers"};

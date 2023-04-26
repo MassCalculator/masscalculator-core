@@ -33,6 +33,9 @@
 
 #include "masscalculator/masscalculator-core/resources.h" // for core::kResourcesPath
 
+/**
+ * @brief MassCalculator Core Materials Constants AlloyCopper namespace
+ */
 namespace masscalculator::core::materials::constants::alloycopper {
 // ! String constant for material AlloyCopper type 145Tellvirum.
 constexpr auto k145Telluirum{"k145Telluirum"};
