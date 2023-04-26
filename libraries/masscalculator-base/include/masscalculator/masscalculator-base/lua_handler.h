@@ -38,7 +38,7 @@
 #include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
 
 /**
- * @brief Default namespace
+ * @brief MassCalculator Base namespace
  */
 namespace masscalculator::base {
 

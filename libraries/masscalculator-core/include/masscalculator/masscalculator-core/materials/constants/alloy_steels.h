@@ -33,6 +33,9 @@
 
 #include "masscalculator/masscalculator-core/resources.h" // for core::kResourcesPath
 
+/**
+ * @brief MassCalculator Core Materials Constants AlloySteel namespace
+ */
 namespace masscalculator::core::materials::constants::alloysteel {
 // ! String constant for material AlloySteel type 4135.
 constexpr auto k4135{"k4135"};

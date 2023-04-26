@@ -42,7 +42,7 @@
 using namespace units::literals;
 
 /**
- * @brief Default Shapes namespace
+ * @brief MassCalculator Core Shapes namespace
  */
 namespace masscalculator::core::shapes {
 /**

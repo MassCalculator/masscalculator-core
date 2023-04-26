@@ -29,6 +29,10 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_PROPERTIES_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_PROPERTIES_H_
+
+/**
+ * @brief MassCalculator Core Materials Constants Properties namespace
+ */
 namespace masscalculator::core::materials::constants::properties {
 // ! Key to get the type.
 constexpr auto kTypeKey{"type"};

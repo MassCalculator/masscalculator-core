@@ -39,7 +39,7 @@
 using namespace units::literals;
 
 /**
- * @brief Default Materials namespace
+ * @brief MassCalculator Core Interface namespace
  */
 namespace masscalculator::core::interface {
 /**

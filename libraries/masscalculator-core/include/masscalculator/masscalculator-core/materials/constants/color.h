@@ -29,6 +29,10 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_COLOR_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONSTANTS_COLOR_H_
+
+/**
+ * @brief MassCalculator Core Materials Constants Color namespace
+ */
 namespace masscalculator::core::materials::constants::color {
 // ! String constant for Metallic color.
 constexpr auto kMetallic{"Metallic"};

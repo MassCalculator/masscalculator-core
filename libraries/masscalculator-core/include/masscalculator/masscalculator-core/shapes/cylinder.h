@@ -39,7 +39,7 @@
 #include "masscalculator/third_party/units/units.h"          // for units::*
 
 /**
- * @brief Default Shapes namespace
+ * @brief MassCalculator Core Shapes namespace
  */
 namespace masscalculator::core::shapes {
 /**
