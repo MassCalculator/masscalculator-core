@@ -17,8 +17,8 @@ target_link_libraries(lua_handler_test
   PUBLIC
     gtest::gtest
   PRIVATE
-    ${PROJECT_NAME}
     masscalculator::masscalculator-base
+    masscalculator::${PROJECT_NAME}
     masscalculator::third_party::units
     pthread
 )

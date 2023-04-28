@@ -57,8 +57,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 
 # Initialize the package manager.
 include(conan)
+
 # Search for all third party dependencies
 include(third_party)
+
 # This adds the packaging steps.
 include(test-ctest)
 
@@ -69,12 +71,15 @@ include(test-ctest)
 ################################################################################
 
 if(${BUILD_DOCS})
+  # This adds the doxygen documentation.
   add_subdirectory(docs)
 endif()
 
+# This adds the libraries.
 add_subdirectory(libraries)
 
 if (${BUILD_EXAMPLES})
+  # This adds the examples executables.
   add_subdirectory(examples)
 endif()
 
@@ -97,5 +102,7 @@ include(install)
 # include(pack-cpack)
 
 if(${BUILD_RELEASE})
-  include(deploy)
+  # @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
+  # This adds the deployment steps.
+  # include(deploy)
 endif()
