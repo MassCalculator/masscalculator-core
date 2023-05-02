@@ -41,20 +41,29 @@ install(
 # INSTALL MASSCALCULATOR-CORE LIBRARY
 ############################################################
 
+# Set the RPATH when installing packages
 set_target_properties(masscalculator-base PROPERTIES
-                      INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+  INSTALL_RPATH "$ORIGIN"
+)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-                      INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+  INSTALL_RPATH "$ORIGIN"
+)
+
+set_target_properties(units PROPERTIES
+  INSTALL_RPATH "$ORIGIN"
+)
 
 # Install the library targets and their corresponding headers
 install(
-  TARGETS     
-    masscalculator-base  
+  TARGETS
+    masscalculator-base
     ${PROJECT_NAME}
     units
   EXPORT ${PROJECT_NAME}-config
   INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
 )
 
 install(
@@ -106,7 +115,7 @@ install(
 
 install(
   FILES ${CMAKE_SOURCE_DIR}/docs/assets/man/masscalculator-core.1.gz
-  DESTINATION share/man/man1
+  DESTINATION ${CMAKE_INSTALL_MANDIR}/man1
   COMPONENT ${PROJECT_NAME}
 )
 

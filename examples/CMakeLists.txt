@@ -6,8 +6,7 @@ add_executable(${PROJECT_NAME}_example_1
 
 target_link_libraries(${PROJECT_NAME}_example_1
   PRIVATE
-    ${PROJECT_NAME}
     masscalculator::masscalculator-base
-    masscalculator::masscalculator-core
+    masscalculator::${PROJECT_NAME}
     masscalculator::third_party::units
 )

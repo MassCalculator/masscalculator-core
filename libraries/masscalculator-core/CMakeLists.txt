@@ -34,7 +34,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 )
 
 target_link_libraries(${PROJECT_NAME} 
-  PRIVATE
+  PUBLIC
     masscalculator::masscalculator-base
     masscalculator::third_party::units
 )
