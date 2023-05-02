@@ -43,15 +43,15 @@ install(
 
 # Set the RPATH when installing packages
 set_target_properties(masscalculator-base PROPERTIES
-  INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
+  INSTALL_RPATH "$ORIGIN"
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-  INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
+  INSTALL_RPATH "$ORIGIN"
 )
 
 set_target_properties(units PROPERTIES
-  INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
+  INSTALL_RPATH "$ORIGIN"
 )
 
 # Install the library targets and their corresponding headers
