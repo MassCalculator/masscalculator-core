@@ -52,9 +52,7 @@ These are a bit long commands, but an alias can be used
 alias build_masscalculator_core='cd <BUILD DIRECTORY> && cmake -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE && cmake --build . && cd -'
 ```
 
-## Build Artifacts
-
-### Documentation
+## Documentation
 
 The Doxygen documentation will be available under the subdirectory `docs/html`
 of your build directory. E.g., in `build/docs/html`.
