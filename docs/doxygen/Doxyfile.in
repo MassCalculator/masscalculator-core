@@ -6,11 +6,11 @@ INPUT = @PROJECT_SOURCE_DIR@/README.md \
 
 OUTPUT_DIRECTORY = "@DOXYGEN_OUTPUT_DIR@"
 
-RECURSIVE              = YES
+RECURSIVE = YES
 
 GENERATE_XML = YES
 
 EXCLUDE_PATTERNS = "@CMAKE_BINARY_DIR@/* @CMAKE_SOURCE_DIR@/tools/* @CMAKE_SOURCE_DIR@/libraries/third_party/*"
 EXCLUDE = @CMAKE_SOURCE_DIR@/libraries/third_party/units/include/masscalculator/third_party/units/units.h
 
-USE_MDFILE_AS_MAINPAGE="README.md"
+USE_MDFILE_AS_MAINPAGE = "README.md"

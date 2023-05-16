@@ -7,19 +7,19 @@ The MassCalculator core library is built using CMake, therefore two steps are ne
 Create a build directory, anywhere but inside the source directory.
 Call CMake using the following commands:
 
-##### Basic Configuration, Debug, no Extra Tools, no Tests, no Documentation
+### Basic Configuration, Debug, no Extra Tools, no Tests, no Documentation
 
 ```bash
 cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY>
 ```
 
-##### Configure Build with all Tests
+### Configure Build with all Tests
 
 ```bash
 cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -DBUILD_TESTS=ON`
 ```
 
-##### Configure Build with Doxygen Documentation
+### Configure Build with Doxygen Documentation
 
 ```bash
 cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -DBUILD_DOCS=ON
@@ -52,9 +52,7 @@ These are a bit long commands, but an alias can be used
 alias build_masscalculator_core='cd <BUILD DIRECTORY> && cmake -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE && cmake --build . && cd -'
 ```
 
-## Build Artifacts
-
-### Documentation
+## Documentation
 
 The Doxygen documentation will be available under the subdirectory `docs/html`
 of your build directory. E.g., in `build/docs/html`.
