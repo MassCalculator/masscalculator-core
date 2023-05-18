@@ -25,7 +25,7 @@ gtest_add_tests(TARGET      cylinder_test
 ## SquareBar test
 # add_executable(
 #   square_bar_test
-#   square_bar_test.cpp
+#   square_bar_test.cc
 # )
 
 # target_link_libraries(
@@ -42,7 +42,7 @@ gtest_add_tests(TARGET      cylinder_test
 # #SquareTubing test
 # add_executable(
 #   square_tubing_test
-#   square_tubing_test.cpp
+#   square_tubing_test.cc
 # )
 
 # target_link_libraries(
