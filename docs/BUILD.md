@@ -10,19 +10,19 @@ Call CMake using the following commands:
 ### Basic Configuration, Debug, no Extra Tools, no Tests, no Documentation
 
 ```bash
-cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY>
+cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -G Ninja -DCMAKE_BUILD_TYPE=<Debug|Release>
 ```
 
 ### Configure Build with all Tests
 
 ```bash
-cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -DBUILD_TESTS=ON`
+cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -G Ninja -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=<Debug|Release>
 ```
 
 ### Configure Build with Doxygen Documentation
 
 ```bash
-cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -DBUILD_DOCS=ON
+cmake -S $MASSCALCULATOR_SOURCE -B <BUILD DIRECTORY> -G Ninja -DBUILD_DOCS=ON -DCMAKE_BUILD_TYPE=<Debug|Release>
 ```
 
 ## Build
@@ -32,24 +32,7 @@ From the build directory call
 ### Build everything
 
 ```bash
-cmake --build .
-```
-
-### Old way build
-
-```bash
-cd $MASSCALCULATOR_SOURCE
-mkdir build && cd build
-cmake .. -DBUILD_TESTS=ON 
-cmake --build .
-```
-
-## Alias
-
-These are a bit long commands, but an alias can be used
-
-```bash
-alias build_masscalculator_core='cd <BUILD DIRECTORY> && cmake -DBUILD_TESTS=ON $MASSCALCULATOR_SOURCE && cmake --build . && cd -'
+cmake --build <BUILD DIRECTORY> --config <Debug|Release>
 ```
 
 ## Documentation
