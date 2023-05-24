@@ -3,7 +3,7 @@
 [![Build Status](https://jenkins.mergimhalimi.com/buildStatus/icon?job=masscalculator-core%2Fdevel)](https://jenkins.mergimhalimi.com/job/masscalculator-core/job/devel/)
 [![CMake](https://github.com/MassCalculator/masscalculator-core/actions/workflows/cmake.yml/badge.svg?branch=devel)](https://github.com/MassCalculator/masscalculator-core/actions/workflows/cmake.yml)
 
-This repository contains the main codebase for the MassCalculator library development.
+This repository contains the main codebase for the `masscalculator-core` library.
 
 ## What is masscalculator-core
 
