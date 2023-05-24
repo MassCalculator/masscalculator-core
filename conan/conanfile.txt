@@ -1,5 +1,7 @@
 [requires]
-gtest/1.8.1
+gtest/1.13.0
+lua/5.4.4
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain

@@ -32,83 +32,97 @@
 
 #include <memory> // for std::unique_ptr
 
-#include "materials/alloy_coppers.h"           // for AlloyCoppers
-#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "masscalculator/masscalculator-core/materials/alloy_coppers.h" // for AlloyCoppers
+#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 
 /**
  * @brief Default Materials test namespace
  */
-namespace masscalculator_test::materials_test {
+namespace masscalculator_test::core_test::materials_test {
 /**
  * @brief The test fixture for testing class AlloyCoppers.
  */
 class AlloyCoppersTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    ac_145_telluirum =
-        std::make_unique<masscalculator::materials::AlloyCoppers>(
-            masscalculator::materials::constants::alloycopper::k145Telluirum);
+    ac_145_telluirum = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k145Telluirum);
 
-    ac_194_iron = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k194Iron);
+    ac_194_iron =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::k194Iron);
 
-    ac_195_iron = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k195Iron);
+    ac_195_iron =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::k195Iron);
 
-    ac_172_beryllium =
-        std::make_unique<masscalculator::materials::AlloyCoppers>(
-            masscalculator::materials::constants::alloycopper::k172Beryllium);
+    ac_172_beryllium = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k172Beryllium);
 
-    ac_182_class2 = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k182Class2);
+    ac_182_class2 = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k182Class2);
 
-    ac_655_silicon = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k655Silicon);
+    ac_655_silicon = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k655Silicon);
 
-    ac_706_nickel = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k706Nickel);
+    ac_706_nickel = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k706Nickel);
 
-    ac_715_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k715NickelSilver);
+    ac_715_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k715NickelSilver);
 
-    ac_715_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k715NickelSilver);
+    ac_715_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k715NickelSilver);
 
-    ac_725_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k725NickelSilver);
+    ac_725_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k725NickelSilver);
 
-    ac_735_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k735NickelSilver);
+    ac_735_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k735NickelSilver);
 
-    ac_752_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k752NickelSilver);
+    ac_752_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k752NickelSilver);
 
-    ac_762_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k762NickelSilver);
+    ac_762_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k762NickelSilver);
 
-    ac_770_nickel_silver = std::make_unique<
-        masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k770NickelSilver);
+    ac_770_nickel_silver =
+        std::make_unique<masscalculator::core::materials::AlloyCoppers>(
+            masscalculator::core::materials::constants::alloycopper::
+                k770NickelSilver);
 
-    ac_1751_class3 = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k1751Class3);
+    ac_1751_class3 = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k1751Class3);
 
-    ac_1758_nickel = std::make_unique<masscalculator::materials::AlloyCoppers>(
-        masscalculator::materials::constants::alloycopper::k1758Nickel);
+    ac_1758_nickel = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::k1758Nickel);
 
-    ac_moldmax_be_cu =
-        std::make_unique<masscalculator::materials::AlloyCoppers>(
-            masscalculator::materials::constants::alloycopper::kMoldmaxBeCu);
+    ac_moldmax_be_cu = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::kMoldmaxBeCu);
 
-    ac_protherm_be_cu =
-        std::make_unique<masscalculator::materials::AlloyCoppers>(
-            masscalculator::materials::constants::alloycopper::kProthermBeCu);
+    ac_protherm_be_cu = std::make_unique<
+        masscalculator::core::materials::AlloyCoppers>(
+        masscalculator::core::materials::constants::alloycopper::kProthermBeCu);
   }
 
   void TearDown() override {
@@ -142,59 +156,59 @@ class AlloyCoppersTest : public ::testing::Test {
   ~AlloyCoppersTest() override = default;
 
   /**
-   * @brief Member objects for class AlloyCopper for each AlloyCopper type
+   * @brief Member objects for class AlloyCoppers for each AlloyCoppers type
    */
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_145_telluirum;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_194_iron;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_195_iron;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_172_beryllium;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_182_class2;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_655_silicon;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_706_nickel;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_715_nickel_silver;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_725_nickel_silver;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_735_nickel_silver;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_752_nickel_silver;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_762_nickel_silver;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_770_nickel_silver;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_1751_class3;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_1758_nickel;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_moldmax_be_cu;
-  std::unique_ptr<masscalculator::materials::Material<
-      masscalculator::materials::AlloyCoppers>>
+  std::unique_ptr<masscalculator::core::materials::Material<
+      masscalculator::core::materials::AlloyCoppers>>
       ac_protherm_be_cu;
 };
-} // namespace masscalculator_test::materials_test
+} // namespace masscalculator_test::core_test::materials_test
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_TESTS_MATERIALS_ALLOY_COPPERS_TEST_H_

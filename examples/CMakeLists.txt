@@ -1,14 +1,12 @@
 #Example_1
-set(SRC
-  example_1.cpp
+
+add_executable(${PROJECT_NAME}_example_1
+  example_1.cc
 )
 
-add_executable(
-  ${PROJECT_NAME}_example_1
-  ${SRC}
-)
-
-target_link_libraries(
-  ${PROJECT_NAME}_example_1
-  ${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}_example_1
+  PRIVATE
+    masscalculator::masscalculator-base
+    masscalculator::${PROJECT_NAME}
+    masscalculator::third_party::units
 )

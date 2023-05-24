@@ -12,4 +12,4 @@ if(${BUILD_TESTS})
   include(googletest)
 endif()
 
-include(lua51)
+include(lua)

@@ -35,83 +35,96 @@
 #include <string>  // for std::string
 #include <utility> // for std::pair
 
-#include "materials/alloy_coppers.h"           // for AlloyCoppers::Color
-#include "materials/constants/alloy_coppers.h" // for alloycopper::k*
-#include "materials/constants/color.h"         // for color::k*
-#include "units.h"                             // for units::*
-namespace masscalculator_test::materials_test {
+#include "masscalculator/masscalculator-core/materials/alloy_coppers.h" // for AlloyCoppers::Color
+#include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
+#include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/third_party/units/units.h" // for units::*
 
+namespace masscalculator_test::core_test::materials_test {
 TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k145Telluirum,
-            ac_145_telluirum->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k194Iron,
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k145Telluirum,
+      ac_145_telluirum->GetType());
+  EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k194Iron,
             ac_194_iron->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k195Iron,
+  EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k195Iron,
             ac_195_iron->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k172Beryllium,
-            ac_172_beryllium->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k182Class2,
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k172Beryllium,
+      ac_172_beryllium->GetType());
+  EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k182Class2,
             ac_182_class2->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k655Silicon,
-            ac_655_silicon->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k706Nickel,
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k655Silicon,
+      ac_655_silicon->GetType());
+  EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k706Nickel,
             ac_706_nickel->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k715NickelSilver,
-            ac_715_nickel_silver->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k725NickelSilver,
-            ac_725_nickel_silver->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k735NickelSilver,
-            ac_735_nickel_silver->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k752NickelSilver,
-            ac_752_nickel_silver->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k762NickelSilver,
-            ac_762_nickel_silver->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k770NickelSilver,
-            ac_770_nickel_silver->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k1751Class3,
-            ac_1751_class3->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::k1758Nickel,
-            ac_1758_nickel->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::kMoldmaxBeCu,
-            ac_moldmax_be_cu->GetType());
-  EXPECT_EQ(masscalculator::materials::constants::alloycopper::kProthermBeCu,
-            ac_protherm_be_cu->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k715NickelSilver,
+      ac_715_nickel_silver->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k725NickelSilver,
+      ac_725_nickel_silver->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k735NickelSilver,
+      ac_735_nickel_silver->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k752NickelSilver,
+      ac_752_nickel_silver->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k762NickelSilver,
+      ac_762_nickel_silver->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k770NickelSilver,
+      ac_770_nickel_silver->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k1751Class3,
+      ac_1751_class3->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::k1758Nickel,
+      ac_1758_nickel->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::kMoldmaxBeCu,
+      ac_moldmax_be_cu->GetType());
+  EXPECT_EQ(
+      masscalculator::core::materials::constants::alloycopper::kProthermBeCu,
+      ac_protherm_be_cu->GetType());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificColorTest) {
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_145_telluirum->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_194_iron->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_195_iron->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_182_class2->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_172_beryllium->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_655_silicon->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_706_nickel->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_715_nickel_silver->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_725_nickel_silver->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_735_nickel_silver->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_752_nickel_silver->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_762_nickel_silver->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_770_nickel_silver->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_1751_class3->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_1758_nickel->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_moldmax_be_cu->GetSpecificColor());
-  EXPECT_EQ(masscalculator::materials::AlloyCoppers::Color::kMetallic,
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Color::kMetallic,
             ac_protherm_be_cu->GetSpecificColor());
 }
 
@@ -283,59 +296,76 @@ TEST_F(AlloyCoppersTest, GetSpecificModOfElasticityTensionTest) {
             ac_protherm_be_cu->GetSpecificModOfElasticityTension());
 }
 
-TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColor) {
-  std::vector<std::pair<std::unique_ptr<masscalculator::materials::Material<
-                            masscalculator::materials::AlloyCoppers>>,
-                        std::string_view>>
+TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColorTest) {
+  std::vector<
+      std::pair<std::unique_ptr<masscalculator::core::materials::Material<
+                    masscalculator::core::materials::AlloyCoppers>>,
+                std::string_view>>
       alloys;
 
-  alloys.emplace_back(std::move(ac_145_telluirum),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_145_telluirum),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_194_iron),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_194_iron),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_195_iron),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_195_iron),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_172_beryllium),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_172_beryllium),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_655_silicon),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_655_silicon),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_706_nickel),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_706_nickel),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_715_nickel_silver),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_715_nickel_silver),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_725_nickel_silver),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_725_nickel_silver),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_735_nickel_silver),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_735_nickel_silver),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_752_nickel_silver),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_752_nickel_silver),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_762_nickel_silver),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_762_nickel_silver),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_770_nickel_silver),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_770_nickel_silver),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_1751_class3),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_1751_class3),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_1758_nickel),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_1758_nickel),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_moldmax_be_cu),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_moldmax_be_cu),
+      masscalculator::core::materials::constants::color::kMetallic);
 
-  alloys.emplace_back(std::move(ac_protherm_be_cu),
-                      masscalculator::materials::constants::color::kMetallic);
+  alloys.emplace_back(
+      std::move(ac_protherm_be_cu),
+      masscalculator::core::materials::constants::color::kMetallic);
 
   for (const auto& [alloy, expected] : alloys) {
     std::ostringstream type;
@@ -343,7 +373,7 @@ TEST_F(AlloyCoppersTest, OstreamOperatorAlloyCoppersColor) {
     EXPECT_EQ(expected, type.str());
   }
 }
-} // namespace masscalculator_test::materials_test
+} // namespace masscalculator_test::core_test::materials_test
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

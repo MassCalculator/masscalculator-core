@@ -32,7 +32,7 @@ Link your test executable to the required libraries they are using, e.g.,
 ```cmake
 target_link_libraries(demo_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
     pthread
     lib_1

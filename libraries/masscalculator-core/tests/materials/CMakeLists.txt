@@ -1,18 +1,19 @@
 # Tests for Materials
 
-#AlloyCoppers test
+include(GoogleTest)
+
+## AlloyCoppers test
 add_executable(alloy_coppers_test
   alloy_coppers_test.cc
 )
 
 target_link_libraries(alloy_coppers_test
   PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    gtest::gtest
   PRIVATE
-    ${PROJECT_NAME}
-    lua-handler
-    MassCalculator::base
-    third_party::units
+    masscalculator::masscalculator-base
+    masscalculator::${PROJECT_NAME}
+    masscalculator::third_party::units
     pthread
 )
 
@@ -21,213 +22,244 @@ gtest_add_tests(TARGET      alloy_coppers_test
                 TEST_LIST   noArgsTests
 )
 
-add_test(
-  NAME AlloyCoppers
-  COMMAND alloy_coppers_test
+## AlloySteels test
+add_executable(alloy_steels_test
+  alloy_steels_test.cc
 )
 
-# #AlloySteels test
-# add_executable(
-#   alloy_steels_test
-#   alloy_steels_test.cpp
+target_link_libraries(alloy_steels_test
+  PUBLIC
+    gtest::gtest
+  PRIVATE
+    masscalculator::masscalculator-base
+    masscalculator::${PROJECT_NAME}
+    masscalculator::third_party::units
+    pthread
+)
+
+gtest_add_tests(TARGET      alloy_steels_test
+                TEST_SUFFIX .noArgs
+                TEST_LIST   noArgsTests
+)
+
+## Aluminium test
+# add_executable(aluminium_test
+#   aluminium_test.cc
 # )
 
-# target_link_libraries(
-#   alloy_steels_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(aluminium_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME AlloySteelsTest
-#   COMMAND alloy_steels_test
+# gtest_add_tests(TARGET      aluminium_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Aluminium test
-# add_executable(
-#   aluminium_test
-#   aluminium_test.cpp
+## Brass test
+# add_executable(brass_test
+#   brass_test.cc
 # )
 
-# target_link_libraries(
-#   aluminium_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(brass_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME AluminiumTest
-#   COMMAND aluminium_test
+# gtest_add_tests(TARGET      brass_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Brass test
-# add_executable(
-#   brass_test
-#   brass_test.cpp
+## Bronz test
+# add_executable(bronz_test
+#   bronz_test.cc
 # )
 
-# target_link_libraries(
-#   brass_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(bronz_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME BrassTest
-#   COMMAND brass_test
+# gtest_add_tests(TARGET      bronz_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Bronz test
-# add_executable(
-#   bronz_test
-#   bronz_test.cpp
+## Copper test
+# add_executable(copper_test
+#   copper_test.cc
 # )
 
-# target_link_libraries(
-#   bronz_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(copper_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME BronzTest
-#   COMMAND bronz_test
+# gtest_add_tests(TARGET      copper_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Copper test
-# add_executable(
-#   copper_test
-#   copper_test.cpp
+## Magnesium test
+# add_executable(magnesium_test
+#   magnesium_test.cc
 # )
 
-# target_link_libraries(
-#   copper_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(magnesium_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME CopperTest
-#   COMMAND copper_test
+# gtest_add_tests(TARGET      magnesium_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Magnesium test
-# add_executable(
-#   magnesium_test
-#   magnesium_test.cpp
+## Nickel test
+# add_executable(nickel_test
+#   nickel_test.cc
 # )
 
-# target_link_libraries(
-#   magnesium_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(nickel_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME MagnesiumTest
-#   COMMAND magnesium_test
+# gtest_add_tests(TARGET      nickel_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Nickel test
-# add_executable(
-#   nickel_test
-#   nickel_test.cpp
+## Plastic test
+# add_executable(plastic_test
+#   plastic_test.cc
 # )
 
-# target_link_libraries(
-#   nickel_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(plastic_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME NickelTest
-#   COMMAND nickel_test
+# gtest_add_tests(TARGET      plastic_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Plastic test
-# add_executable(
-#   plastic_test
-#   plastic_test.cpp
+## StainlessSteel test
+# add_executable(stainless_steel_test
+#   stainless_steel_test.cc
 # )
 
-# target_link_libraries(
-#   plastic_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(stainless_steel_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME PlasticTest
-#   COMMAND plastic_test
+# gtest_add_tests(TARGET      stainless_steel_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #StainlessSteel test
-# add_executable(
-#   stainless_steel_test
-#   stainless_steel_test.cpp
+## Steel test
+# add_executable(steel_test
+#   steel_test.cc
 # )
 
-# target_link_libraries(
-#   stainless_steel_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(steel_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME StainlessSteelTest
-#   COMMAND stainless_steel_test
+# gtest_add_tests(TARGET      steel_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Steel test
-# add_executable(
-#   steel_test
-#   steel_test.cpp
+## Titanium test
+# add_executable(titanium_test
+#   titanium_test.cc
 # )
 
-# target_link_libraries(
-#   steel_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(titanium_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME SteelTest
-#   COMMAND steel_test
+# gtest_add_tests(TARGET      titanium_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
-# #Titanium test
-# add_executable(
-#   titanium_test
-#   titanium_test.cpp
+## Zinc test
+# add_executable(zinc_test
+#   zinc_test.cc
 # )
 
-# target_link_libraries(
-#   titanium_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
+# target_link_libraries(zinc_test
+#   PUBLIC
+#     gtest::gtest
+#   PRIVATE
+#     masscalculator::masscalculator-base
+#     masscalculator::${PROJECT_NAME}
+#     masscalculator::third_party::units
+#     pthread
 # )
 
-# add_test(
-#   NAME TitaniumTest
-#   COMMAND titanium_test
-# )
-
-# #Zinc test
-# add_executable(
-#   zinc_test
-#   zinc_test.cpp
-# )
-
-# target_link_libraries(
-#   zinc_test
-#   ${GTEST_BOTH_LIBRARIES}
-#   ${PROJECT_NAME}
-# )
-
-# add_test(
-#   NAME ZincTest
-#   COMMAND zinc_test
+# gtest_add_tests(TARGET      zinc_test
+#                 TEST_SUFFIX .noArgs
+#                 TEST_LIST   noArgsTests
 # )
 
 set_tests_properties(${noArgsTests}   PROPERTIES TIMEOUT 10)

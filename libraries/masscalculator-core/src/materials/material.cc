@@ -1,5 +1,5 @@
 /**
- * @file material.cpp
+ * @file material.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file is left here for convenience, but the implementation is
  * done with templates in the header file.
@@ -27,25 +27,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "materials/material.h"
+#include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
 
-/*
-#include "materials/aluminium.hpp"
-*/
+#include "masscalculator/masscalculator-core/materials/materials.hh" // for Material::*
 
-namespace masscalculator::materials {
-
-/*
-//Code example how it can be done in cpp
-
-template<typename TMaterialType>
-const std::string Material<TMaterialType>::getSpecificColor(void)
-{
-  return{static_cast<TMaterialType*>(this)->getSpecificColor()};
-}
-template const std::string Material<Aluminium>::getSpecificColor();
-template const std::string Material<Steel>::getSpecificColor();
-
-*/
-
-} // namespace masscalculator::materials
+namespace masscalculator::core::materials {
+} // namespace masscalculator::core::materials

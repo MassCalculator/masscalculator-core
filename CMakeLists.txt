@@ -14,15 +14,18 @@ project(masscalculator-core
         LANGUAGES CXX
 )
 
+# Set C and C++ standards
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# @todo(jimmyhalimi): These should be removed, leaving here until finished.
-set(BUILD_TESTS ON)
-set(BUILD_DOCS ON)
-# set(BUILD_EXAMPLES ON)
-# set(BUILD_RELEASE ON)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(BUILD_TESTS ON)
+  set(BUILD_EXAMPLES ON)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+  set(BUILD_TESTS ON)
+  # set(BUILD_RELEASE ON)
+endif()
 
 # Set the project version.
 set(MASSCALCULATOR_CORE_NAME ${PROJECT_NAME})
@@ -53,10 +56,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 )
 
 # Initialize the package manager.
-# @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
-# include(conan)
+include(conan)
+
 # Search for all third party dependencies
 include(third_party)
+
 # This adds the packaging steps.
 include(test-ctest)
 
@@ -67,12 +71,15 @@ include(test-ctest)
 ################################################################################
 
 if(${BUILD_DOCS})
+  # This adds the doxygen documentation.
   add_subdirectory(docs)
 endif()
 
+# This adds the libraries.
 add_subdirectory(libraries)
 
 if (${BUILD_EXAMPLES})
+  # This adds the examples executables.
   add_subdirectory(examples)
 endif()
 
@@ -88,13 +95,14 @@ target_link_options(${PROJECT_NAME} PRIVATE -flto)
 #
 ################################################################################
 
-# @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
-# include(install)
+include(install)
 
 # This adds the packaging steps.
 # @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
 # include(pack-cpack)
 
 if(${BUILD_RELEASE})
-  include(deploy)
+  # @todo(jimmyhalimi): Commented out for now, until time comes to fix this.
+  # This adds the deployment steps.
+  # include(deploy)
 endif()
