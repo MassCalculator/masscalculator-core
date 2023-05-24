@@ -1,5 +1,5 @@
 /**
- * @file material.cpp
+ * @file material.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file is left here for convenience, but the implementation is
  * done with templates in the header file.
