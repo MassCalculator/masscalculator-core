@@ -2,8 +2,8 @@
  * @file materials.hh
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains the includes for all types of materials.
- * @version 0.2
- * @date 2023-04-13
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -29,8 +29,8 @@
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_MATERIALS_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_MATERIALS_H_
 #include "alloy_coppers.h" // for AlloyCoppers
-// #include "alloy_steels.h"    // for AlloySteels
-// #include "aluminium.h"       // for Aluminium
+#include "alloy_steels.h"  // for AlloySteels
+#include "aluminium.h"     // for Aluminium
 // #include "brass.h"           // for Brass
 // #include "bronz.h"           // for Bronz
 // #include "copper.h"          // for Copper
