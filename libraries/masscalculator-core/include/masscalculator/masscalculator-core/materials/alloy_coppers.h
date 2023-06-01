@@ -41,7 +41,6 @@
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
-#include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
 
 /**
@@ -57,7 +56,7 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   /**
    * @brief Enum that holds the AlloyCoppers types
    */
-  enum class Type : uint8_t {
+  enum class SubType : uint8_t {
     kBegin = 0,
 
     /**
@@ -258,18 +257,27 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   };
 
   /**
-   * @brief Construct a new AlloyCoppers object and specify the type
+   * @brief Construct a new AlloyCoppers object and specify the sub_type
    */
-  explicit AlloyCoppers(const std::string_view& type);
+  explicit AlloyCoppers(const std::string_view& sub_type);
 
   /**
    * @brief Set the Propertie Specs object
    *
-   * @param type Type of AlloyCoppers
+   * @param sub_type SubType of AlloyCoppers
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
-  bool SetType(const std::string_view& type);
+  bool SetSubType(const std::string_view& sub_type);
+
+  /**
+   * @brief Get the type as string
+   *
+   * @return std::string Type as string
+   */
+  [[nodiscard]] inline constexpr Type GetType() const {
+    return Type::kAlloyCoppers;
+  }
 
   /**
    * @brief Destroy the AlloyCoppers object
@@ -297,84 +305,87 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   AlloyCoppers& operator=(AlloyCoppers&&) = default;
 
   /**
-   * @brief A map used to convert a string representation of a type to an enum
-   * value.
+   * @brief A map used to convert a string representation of a sub_type to an
+   * enum value.
    */
-  static constexpr base::ImmutableMap<std::string_view, AlloyCoppers::Type, 18>
-      kType{{{{constants::alloycopper::k145Telluirum,
-               AlloyCoppers::Type::k145Telluirum},
-              {constants::alloycopper::k194Iron, AlloyCoppers::Type::k194Iron},
-              {constants::alloycopper::k195Iron, AlloyCoppers::Type::k195Iron},
-              {constants::alloycopper::k172Beryllium,
-               AlloyCoppers::Type::k172Beryllium},
-              {constants::alloycopper::k182Class2,
-               AlloyCoppers::Type::k182Class2},
-              {constants::alloycopper::k655Silicon,
-               AlloyCoppers::Type::k655Silicon},
-              {constants::alloycopper::k706Nickel,
-               AlloyCoppers::Type::k706Nickel},
-              {constants::alloycopper::k715NickelSilver,
-               AlloyCoppers::Type::k715NickelSilver},
-              {constants::alloycopper::k725NickelSilver,
-               AlloyCoppers::Type::k725NickelSilver},
-              {constants::alloycopper::k735NickelSilver,
-               AlloyCoppers::Type::k735NickelSilver},
-              {constants::alloycopper::k752NickelSilver,
-               AlloyCoppers::Type::k752NickelSilver},
-              {constants::alloycopper::k762NickelSilver,
-               AlloyCoppers::Type::k762NickelSilver},
-              {constants::alloycopper::k770NickelSilver,
-               AlloyCoppers::Type::k770NickelSilver},
-              {constants::alloycopper::k1751Class3,
-               AlloyCoppers::Type::k1751Class3},
-              {constants::alloycopper::k1758Nickel,
-               AlloyCoppers::Type::k1758Nickel},
-              {constants::alloycopper::kMoldmaxBeCu,
-               AlloyCoppers::Type::kMoldmaxBeCu},
-              {constants::alloycopper::kProthermBeCu,
-               AlloyCoppers::Type::kProthermBeCu},
-              {constants::alloycopper::kUnspecified,
-               AlloyCoppers::Type::kUnspecified}}}};
+  static constexpr base::ImmutableMap<std::string_view, AlloyCoppers::SubType,
+                                      18>
+      kSubType{
+          {{{constants::alloycopper::k145Telluirum,
+             AlloyCoppers::SubType::k145Telluirum},
+            {constants::alloycopper::k194Iron, AlloyCoppers::SubType::k194Iron},
+            {constants::alloycopper::k195Iron, AlloyCoppers::SubType::k195Iron},
+            {constants::alloycopper::k172Beryllium,
+             AlloyCoppers::SubType::k172Beryllium},
+            {constants::alloycopper::k182Class2,
+             AlloyCoppers::SubType::k182Class2},
+            {constants::alloycopper::k655Silicon,
+             AlloyCoppers::SubType::k655Silicon},
+            {constants::alloycopper::k706Nickel,
+             AlloyCoppers::SubType::k706Nickel},
+            {constants::alloycopper::k715NickelSilver,
+             AlloyCoppers::SubType::k715NickelSilver},
+            {constants::alloycopper::k725NickelSilver,
+             AlloyCoppers::SubType::k725NickelSilver},
+            {constants::alloycopper::k735NickelSilver,
+             AlloyCoppers::SubType::k735NickelSilver},
+            {constants::alloycopper::k752NickelSilver,
+             AlloyCoppers::SubType::k752NickelSilver},
+            {constants::alloycopper::k762NickelSilver,
+             AlloyCoppers::SubType::k762NickelSilver},
+            {constants::alloycopper::k770NickelSilver,
+             AlloyCoppers::SubType::k770NickelSilver},
+            {constants::alloycopper::k1751Class3,
+             AlloyCoppers::SubType::k1751Class3},
+            {constants::alloycopper::k1758Nickel,
+             AlloyCoppers::SubType::k1758Nickel},
+            {constants::alloycopper::kMoldmaxBeCu,
+             AlloyCoppers::SubType::kMoldmaxBeCu},
+            {constants::alloycopper::kProthermBeCu,
+             AlloyCoppers::SubType::kProthermBeCu},
+            {constants::alloycopper::kUnspecified,
+             AlloyCoppers::SubType::kUnspecified}}}};
 
   /**
-   * @brief A map used to convert an enum value of type Type to its string
-   * representation.
+   * @brief A map used to convert an enum value of sub_type SubType to its
+   * string representation.
    */
-  static constexpr base::ImmutableMap<AlloyCoppers::Type, std::string_view, 18>
-      kTypeString{
-          {{{AlloyCoppers::Type::k145Telluirum,
+  static constexpr base::ImmutableMap<AlloyCoppers::SubType, std::string_view,
+                                      18>
+      kSubTypeString{
+          {{{AlloyCoppers::SubType::k145Telluirum,
              constants::alloycopper::k145Telluirum},
-            {AlloyCoppers::Type::k194Iron, constants::alloycopper::k194Iron},
-            {AlloyCoppers::Type::k195Iron, constants::alloycopper::k195Iron},
-            {AlloyCoppers::Type::k172Beryllium,
+            {AlloyCoppers::SubType::k194Iron, constants::alloycopper::k194Iron},
+            {AlloyCoppers::SubType::k195Iron, constants::alloycopper::k195Iron},
+            {AlloyCoppers::SubType::k172Beryllium,
              constants::alloycopper::k172Beryllium},
-            {AlloyCoppers::Type::k182Class2,
+            {AlloyCoppers::SubType::k182Class2,
              constants::alloycopper::k182Class2},
-            {AlloyCoppers::Type::k655Silicon,
+            {AlloyCoppers::SubType::k655Silicon,
              constants::alloycopper::k655Silicon},
-            {AlloyCoppers::Type::k706Nickel,
+            {AlloyCoppers::SubType::k706Nickel,
              constants::alloycopper::k706Nickel},
-            {AlloyCoppers::Type::k715NickelSilver,
+            {AlloyCoppers::SubType::k715NickelSilver,
              constants::alloycopper::k715NickelSilver},
-            {AlloyCoppers::Type::k725NickelSilver,
+            {AlloyCoppers::SubType::k725NickelSilver,
              constants::alloycopper::k725NickelSilver},
-            {AlloyCoppers::Type::k735NickelSilver,
+            {AlloyCoppers::SubType::k735NickelSilver,
              constants::alloycopper::k735NickelSilver},
-            {AlloyCoppers::Type::k752NickelSilver,
+            {AlloyCoppers::SubType::k752NickelSilver,
              constants::alloycopper::k752NickelSilver},
-            {AlloyCoppers::Type::k762NickelSilver,
+            {AlloyCoppers::SubType::k762NickelSilver,
              constants::alloycopper::k762NickelSilver},
-            {AlloyCoppers::Type::k770NickelSilver,
+            {AlloyCoppers::SubType::k770NickelSilver,
              constants::alloycopper::k770NickelSilver},
-            {AlloyCoppers::Type::k1751Class3,
+            {AlloyCoppers::SubType::k1751Class3,
              constants::alloycopper::k1751Class3},
-            {AlloyCoppers::Type::k1758Nickel,
+            {AlloyCoppers::SubType::k1758Nickel,
              constants::alloycopper::k1758Nickel},
-            {AlloyCoppers::Type::kMoldmaxBeCu,
+            {AlloyCoppers::SubType::kMoldmaxBeCu,
              constants::alloycopper::kMoldmaxBeCu},
-            {AlloyCoppers::Type::kProthermBeCu,
+            {AlloyCoppers::SubType::kProthermBeCu,
              constants::alloycopper::kProthermBeCu},
-            {AlloyCoppers::Type::kUnspecified,
+            {AlloyCoppers::SubType::kUnspecified,
              constants::alloycopper::kUnspecified}}}};
 
   /**
@@ -383,7 +394,7 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    * @return std::string Class name as a string
    */
   [[nodiscard]] inline constexpr auto GetClassName() const {
-    return constants::material::kAlloyCoppers;
+    return kTypeString.at(GetType());
   };
 
  private:
@@ -396,10 +407,10 @@ class AlloyCoppers : public Material<AlloyCoppers> {
    *
    * @source: GPT 4.0
    */
-  std::unordered_map<Type, std::function<void()>> type2func_{
-      {Type::k145Telluirum,
+  std::unordered_map<SubType, std::function<void()>> sub_type2func_{
+      {SubType::k145Telluirum,
        [&]() {
-         return SetProperties(Properties{Type::k145Telluirum,
+         return SetProperties(Properties{SubType::k145Telluirum,
                                          Color::kMetallic,
                                          {8940_kg_per_cu_m},
                                          {1323.15_K},
@@ -407,9 +418,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {315.0_W},
                                          {128_GPa}});
        }},
-      {Type::k194Iron,
+      {SubType::k194Iron,
        [&]() {
-         return SetProperties(Properties{Type::k194Iron,
+         return SetProperties(Properties{SubType::k194Iron,
                                          Color::kMetallic,
                                          {7874_kg_per_cu_m},
                                          {1811.15_K},
@@ -417,9 +428,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {80.4_W},
                                          {211_GPa}});
        }},
-      {Type::k195Iron,
+      {SubType::k195Iron,
        [&]() {
-         return SetProperties(Properties{Type::k195Iron,
+         return SetProperties(Properties{SubType::k195Iron,
                                          Color::kMetallic,
                                          {7874_kg_per_cu_m},
                                          {1811.15_K},
@@ -427,9 +438,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {80.4_W},
                                          {211_GPa}});
        }},
-      {Type::k172Beryllium,
+      {SubType::k172Beryllium,
        [&]() {
-         return SetProperties(Properties{Type::k172Beryllium,
+         return SetProperties(Properties{SubType::k172Beryllium,
                                          Color::kMetallic,
                                          {8300_kg_per_cu_m},
                                          {1356.15_K},
@@ -437,9 +448,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {209_W},
                                          {140_GPa}});
        }},
-      {Type::k182Class2,
+      {SubType::k182Class2,
        [&]() {
-         return SetProperties(Properties{Type::k182Class2,
+         return SetProperties(Properties{SubType::k182Class2,
                                          Color::kMetallic,
                                          {8300_kg_per_cu_m},
                                          {1356.15_K},
@@ -447,9 +458,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {209_W},
                                          {140_GPa}});
        }},
-      {Type::k655Silicon,
+      {SubType::k655Silicon,
        [&]() {
-         return SetProperties(Properties{Type::k655Silicon,
+         return SetProperties(Properties{SubType::k655Silicon,
                                          Color::kMetallic,
                                          {2330_kg_per_cu_m},
                                          {1687_K},
@@ -457,9 +468,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {149_W},
                                          {50_GPa}});
        }},
-      {Type::k706Nickel,
+      {SubType::k706Nickel,
        [&]() {
-         return SetProperties(Properties{Type::k706Nickel,
+         return SetProperties(Properties{SubType::k706Nickel,
                                          Color::kMetallic,
                                          {8908_kg_per_cu_m},
                                          {1728_K},
@@ -467,9 +478,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {91_W},
                                          {207_GPa}});
        }},
-      {Type::k715NickelSilver,
+      {SubType::k715NickelSilver,
        [&]() {
-         return SetProperties(Properties{Type::k715NickelSilver,
+         return SetProperties(Properties{SubType::k715NickelSilver,
                                          Color::kMetallic,
                                          {8400_kg_per_cu_m},
                                          {1373_K},
@@ -477,9 +488,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {94_W},
                                          {130_GPa}});
        }},
-      {Type::k725NickelSilver,
+      {SubType::k725NickelSilver,
        [&]() {
-         return SetProperties(Properties{Type::k725NickelSilver,
+         return SetProperties(Properties{SubType::k725NickelSilver,
                                          Color::kMetallic,
                                          {8450_kg_per_cu_m},
                                          {1373_K},
@@ -487,9 +498,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {93_W},
                                          {130_GPa}});
        }},
-      {Type::k735NickelSilver,
+      {SubType::k735NickelSilver,
        [&]() {
-         return SetProperties(Properties{Type::k735NickelSilver,
+         return SetProperties(Properties{SubType::k735NickelSilver,
                                          Color::kMetallic,
                                          {8500_kg_per_cu_m},
                                          {1373_K},
@@ -497,9 +508,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {92_W},
                                          {130_GPa}});
        }},
-      {Type::k752NickelSilver,
+      {SubType::k752NickelSilver,
        [&]() {
-         return SetProperties(Properties{Type::k752NickelSilver,
+         return SetProperties(Properties{SubType::k752NickelSilver,
                                          Color::kMetallic,
                                          {8600_kg_per_cu_m},
                                          {1373_K},
@@ -507,9 +518,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {90_W},
                                          {130_GPa}});
        }},
-      {Type::k762NickelSilver,
+      {SubType::k762NickelSilver,
        [&]() {
-         return SetProperties(Properties{Type::k762NickelSilver,
+         return SetProperties(Properties{SubType::k762NickelSilver,
                                          Color::kMetallic,
                                          {8650_kg_per_cu_m},
                                          {1373_K},
@@ -517,9 +528,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {89_W},
                                          {130_GPa}});
        }},
-      {Type::k770NickelSilver,
+      {SubType::k770NickelSilver,
        [&]() {
-         return SetProperties(Properties{Type::k770NickelSilver,
+         return SetProperties(Properties{SubType::k770NickelSilver,
                                          Color::kMetallic,
                                          {8700_kg_per_cu_m},
                                          {1373_K},
@@ -527,9 +538,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {88_W},
                                          {130_GPa}});
        }},
-      {Type::k1751Class3,
+      {SubType::k1751Class3,
        [&]() {
-         return SetProperties(Properties{Type::k1751Class3,
+         return SetProperties(Properties{SubType::k1751Class3,
                                          Color::kMetallic,
                                          {8920_kg_per_cu_m},
                                          {1400_K},
@@ -537,9 +548,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {42_W},
                                          {110_GPa}});
        }},
-      {Type::k1758Nickel,
+      {SubType::k1758Nickel,
        [&]() {
-         return SetProperties(Properties{Type::k1758Nickel,
+         return SetProperties(Properties{SubType::k1758Nickel,
                                          Color::kMetallic,
                                          {8908_kg_per_cu_m},
                                          {1728_K},
@@ -547,9 +558,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {91_W},
                                          {207_GPa}});
        }},
-      {Type::kMoldmaxBeCu,
+      {SubType::kMoldmaxBeCu,
        [&]() {
-         return SetProperties(Properties{Type::kMoldmaxBeCu,
+         return SetProperties(Properties{SubType::kMoldmaxBeCu,
                                          Color::kMetallic,
                                          {8250_kg_per_cu_m},
                                          {1356.15_K},
@@ -557,8 +568,8 @@ class AlloyCoppers : public Material<AlloyCoppers> {
                                          {209_W},
                                          {140_GPa}});
        }},
-      {Type::kProthermBeCu, [&]() {
-         return SetProperties(Properties{Type::kProthermBeCu,
+      {SubType::kProthermBeCu, [&]() {
+         return SetProperties(Properties{SubType::kProthermBeCu,
                                          Color::kMetallic,
                                          {8250_kg_per_cu_m},
                                          {1356.15_K},

@@ -2,8 +2,8 @@
  * @file alloy_coppers_test.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief Defines unit tests for the AlloyCoppers class.
- * @version 0.2
- * @date 2023-04-03
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -38,57 +38,132 @@
 #include "masscalculator/masscalculator-core/materials/alloy_coppers.h" // for AlloyCoppers::Color
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/third_party/units/units.h" // for units::*
 
 namespace masscalculator_test::core_test::materials_test {
+TEST_F(AlloyCoppersTest, GetClassNameTest) {
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_145_telluirum->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_194_iron->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_195_iron->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_172_beryllium->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_182_class2->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_655_silicon->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_706_nickel->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_715_nickel_silver->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_725_nickel_silver->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_735_nickel_silver->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_752_nickel_silver->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_762_nickel_silver->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_770_nickel_silver->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_1751_class3->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_1758_nickel->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_moldmax_be_cu->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloyCoppers,
+            ac_protherm_be_cu->GetClassName());
+}
+
+TEST_F(AlloyCoppersTest, GetGenericTypeTest) {
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_145_telluirum->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_194_iron->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_195_iron->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_172_beryllium->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_182_class2->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_655_silicon->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_706_nickel->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_715_nickel_silver->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_725_nickel_silver->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_735_nickel_silver->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_752_nickel_silver->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_762_nickel_silver->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_770_nickel_silver->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_1751_class3->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_1758_nickel->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_moldmax_be_cu->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloyCoppers::Type::kAlloyCoppers,
+            ac_protherm_be_cu->GetType());
+}
+
 TEST_F(AlloyCoppersTest, GetSpecificTypeTest) {
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k145Telluirum,
-      ac_145_telluirum->GetType());
+      ac_145_telluirum->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k194Iron,
-            ac_194_iron->GetType());
+            ac_194_iron->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k195Iron,
-            ac_195_iron->GetType());
+            ac_195_iron->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k172Beryllium,
-      ac_172_beryllium->GetType());
+      ac_172_beryllium->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k182Class2,
-            ac_182_class2->GetType());
+            ac_182_class2->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k655Silicon,
-      ac_655_silicon->GetType());
+      ac_655_silicon->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::alloycopper::k706Nickel,
-            ac_706_nickel->GetType());
+            ac_706_nickel->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k715NickelSilver,
-      ac_715_nickel_silver->GetType());
+      ac_715_nickel_silver->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k725NickelSilver,
-      ac_725_nickel_silver->GetType());
+      ac_725_nickel_silver->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k735NickelSilver,
-      ac_735_nickel_silver->GetType());
+      ac_735_nickel_silver->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k752NickelSilver,
-      ac_752_nickel_silver->GetType());
+      ac_752_nickel_silver->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k762NickelSilver,
-      ac_762_nickel_silver->GetType());
+      ac_762_nickel_silver->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k770NickelSilver,
-      ac_770_nickel_silver->GetType());
+      ac_770_nickel_silver->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k1751Class3,
-      ac_1751_class3->GetType());
+      ac_1751_class3->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::k1758Nickel,
-      ac_1758_nickel->GetType());
+      ac_1758_nickel->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::kMoldmaxBeCu,
-      ac_moldmax_be_cu->GetType());
+      ac_moldmax_be_cu->GetSubType());
   EXPECT_EQ(
       masscalculator::core::materials::constants::alloycopper::kProthermBeCu,
-      ac_protherm_be_cu->GetType());
+      ac_protherm_be_cu->GetSubType());
 }
 
 TEST_F(AlloyCoppersTest, GetSpecificColorTest) {

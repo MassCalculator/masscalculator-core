@@ -41,7 +41,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 
 namespace masscalculator::core::materials {
-AlloyCoppers::AlloyCoppers(const std::string_view& type) {
+AlloyCoppers::AlloyCoppers(const std::string_view& sub_type) {
   specific_properties = std::make_unique<Properties>();
   lua_state = std::make_unique<base::LuaScriptHandler>(
       constants::alloycopper::kConfigPath);
@@ -50,20 +50,20 @@ AlloyCoppers::AlloyCoppers(const std::string_view& type) {
     throw std::runtime_error{"AlloyCoppers failed to initialize..."};
   }
 
-  if (const auto success = SetType(type); !success) {
+  if (const auto success = SetSubType(sub_type); !success) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
     throw std::runtime_error{"AlloyCoppers failed to initialize..."};
   }
 }
 
-bool AlloyCoppers::SetType(const std::string_view& type) {
-  auto pair = type2func_.find(kType.at(type));
+bool AlloyCoppers::SetSubType(const std::string_view& sub_type) {
+  auto pair = sub_type2func_.find(kSubType.at(sub_type));
 
-  if (pair != type2func_.end()) {
+  if (pair != sub_type2func_.end()) {
     pair->second();
   } else {
     LOG_ERROR("Could not set the values for type: %s.",
-              std::string(GetType()).c_str());
+              std::string(GetSubType()).c_str());
   }
 
   return true;
