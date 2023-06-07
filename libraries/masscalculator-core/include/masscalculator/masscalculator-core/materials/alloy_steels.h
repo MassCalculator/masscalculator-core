@@ -57,7 +57,7 @@ class AlloySteels : public Material<AlloySteels> {
   /**
    * @brief Enum that holds the AlloySteels types
    */
-  enum class Type : uint8_t {
+  enum class SubType : uint8_t {
     kBegin = 0,
 
     /**
@@ -90,18 +90,29 @@ class AlloySteels : public Material<AlloySteels> {
   };
 
   /**
-   * @brief Construct a new AlloySteels object and specify the type
+   * @brief Construct a new Alloy Steels object
+   *
+   * @param sub_type SubType of AlloySteels
    */
-  explicit AlloySteels(const std::string_view& type);
+  explicit AlloySteels(const std::string_view& sub_type);
 
   /**
    * @brief Set the Propertie Specs object
    *
-   * @param type Type of AlloySteels
+   * @param sub_type SubType of AlloySteels
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
-  bool SetType(const std::string_view& type);
+  bool SetSubType(const std::string_view& sub_type);
+
+  /**
+   * @brief Get the Type object
+   *
+   * @return constexpr Type of material class: AlloySteels
+   */
+  [[nodiscard]] inline constexpr Type GetType() const {
+    return kType.at(constants::material::kAlloySteels);
+  }
 
   /**
    * @brief Destroy the AlloySteels object
@@ -129,34 +140,35 @@ class AlloySteels : public Material<AlloySteels> {
   AlloySteels& operator=(AlloySteels&&) = default;
 
   /**
-   * @brief A map used to convert a string representation of a type to an enum
-   * value.
+   * @brief A map used to convert a string representation of a sub_type to an
+   * enum value.
    */
-  static constexpr base::ImmutableMap<std::string_view, AlloySteels::Type, 4>
-      kType{{{{constants::alloysteel::k4135, AlloySteels::Type::k4135},
-              {constants::alloysteel::k4140, AlloySteels::Type::k4140},
-              {constants::alloysteel::k4340, AlloySteels::Type::k4340},
-              {constants::alloysteel::kUnspecified,
-               AlloySteels::Type::kUnspecified}}}};
+  static constexpr base::ImmutableMap<std::string_view, AlloySteels::SubType, 4>
+      kSubType{{{{constants::alloysteel::k4135, AlloySteels::SubType::k4135},
+                 {constants::alloysteel::k4140, AlloySteels::SubType::k4140},
+                 {constants::alloysteel::k4340, AlloySteels::SubType::k4340},
+                 {constants::alloysteel::kUnspecified,
+                  AlloySteels::SubType::kUnspecified}}}};
 
   /**
    * @brief A map used to convert an enum value of type Type to its string
    * representation.
    */
-  static constexpr base::ImmutableMap<AlloySteels::Type, std::string_view, 4>
-      kTypeString{{{{AlloySteels::Type::k4135, constants::alloysteel::k4135},
-                    {AlloySteels::Type::k4140, constants::alloysteel::k4140},
-                    {AlloySteels::Type::k4340, constants::alloysteel::k4340},
-                    {AlloySteels::Type::kUnspecified,
-                     constants::alloysteel::kUnspecified}}}};
+  static constexpr base::ImmutableMap<AlloySteels::SubType, std::string_view, 4>
+      kSubTypeString{
+          {{{AlloySteels::SubType::k4135, constants::alloysteel::k4135},
+            {AlloySteels::SubType::k4140, constants::alloysteel::k4140},
+            {AlloySteels::SubType::k4340, constants::alloysteel::k4340},
+            {AlloySteels::SubType::kUnspecified,
+             constants::alloysteel::kUnspecified}}}};
 
   /**
-   * @brief Function to return the class name, not the pointer of the class.
+   * @brief Function to return the class name.
    *
-   * @return std::string Class name as a string
+   * @return std::string_view Class name as a string
    */
   [[nodiscard]] inline constexpr auto GetClassName() const {
-    return constants::material::kAlloySteels;
+    return kTypeString.at(GetType());
   };
 
  private:
@@ -169,10 +181,10 @@ class AlloySteels : public Material<AlloySteels> {
    *
    * @source: @todo(jimmyhalimi): Add the source of the properties for alloy.
    */
-  std::unordered_map<Type, std::function<void()>> type2func_{
-      {Type::k4135,
+  std::unordered_map<SubType, std::function<void()>> sub_type2func_{
+      {SubType::k4135,
        [&]() {
-         return SetProperties(Properties{Type::k4135,
+         return SetProperties(Properties{SubType::k4135,
                                          Color::kMetallic,
                                          {10.0_kg_per_cu_m},
                                          {10.0_K},
@@ -180,9 +192,9 @@ class AlloySteels : public Material<AlloySteels> {
                                          {10.0_W},
                                          {10.0_GPa}});
        }},
-      {Type::k4140,
+      {SubType::k4140,
        [&]() {
-         return SetProperties(Properties{Type::k4140,
+         return SetProperties(Properties{SubType::k4140,
                                          Color::kMetallic,
                                          {10.0_kg_per_cu_m},
                                          {10.0_K},
@@ -190,8 +202,8 @@ class AlloySteels : public Material<AlloySteels> {
                                          {10.0_W},
                                          {10.0_GPa}});
        }},
-      {Type::k4340, [&]() {
-         return SetProperties(Properties{Type::k4340,
+      {SubType::k4340, [&]() {
+         return SetProperties(Properties{SubType::k4340,
                                          Color::kMetallic,
                                          {10.0_kg_per_cu_m},
                                          {10.0_K},

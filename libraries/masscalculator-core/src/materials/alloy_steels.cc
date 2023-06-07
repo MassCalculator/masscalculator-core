@@ -5,8 +5,8 @@
  * The alloy_steels class holds all the specific properties for the different
  * types of alloy_steels. It inherits from the base class Material and provides
  * the getters and setters for the alloy_steels properties.
- * @version 0.2
- * @date 2023-04-14
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -41,7 +41,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_steels.h" // for alloysteel::k*
 
 namespace masscalculator::core::materials {
-AlloySteels::AlloySteels(const std::string_view& type) {
+AlloySteels::AlloySteels(const std::string_view& sub_type) {
   specific_properties = std::make_unique<Properties>();
   lua_state = std::make_unique<base::LuaScriptHandler>(
       constants::alloysteel::kConfigPath);
@@ -50,20 +50,20 @@ AlloySteels::AlloySteels(const std::string_view& type) {
     throw std::runtime_error{"AlloySteels failed to initialize..."};
   }
 
-  if (const auto success = SetType(type); !success) {
+  if (const auto success = SetSubType(sub_type); !success) {
     LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
     throw std::runtime_error{"AlloySteels failed to initialize..."};
   }
 }
 
-bool AlloySteels::SetType(const std::string_view& type) {
-  auto pair = type2func_.find(kType.at(type));
+bool AlloySteels::SetSubType(const std::string_view& sub_type) {
+  auto pair = sub_type2func_.find(kSubType.at(sub_type));
 
-  if (pair != type2func_.end()) {
+  if (pair != sub_type2func_.end()) {
     pair->second();
   } else {
     LOG_ERROR("Could not set the values for type: %s.",
-              std::string(GetType()).c_str());
+              std::string(GetSubType()).c_str());
   }
 
   return true;

@@ -35,7 +35,7 @@
 #include "masscalculator/masscalculator-core/shapes/cylinder.h" // for Cylinder
 
 /**
- * @brief Default Shapes test namespace
+ * @brief MassCalculator Test Core Test Shapes Test namespace
  */
 namespace masscalculator_test::core_test::shapes_test {
 /**
@@ -67,5 +67,5 @@ class CylinderTest : public ::testing::Test {
       masscalculator::core::shapes::Cylinder>>
       cylinder;
 };
-} // namespace masscalculator_test::shapes_test
+} // namespace masscalculator_test::core_test::shapes_test
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_TESTS_SHAPES_CYLINDER_TEST_H_

@@ -2,8 +2,8 @@
  * @file example_1.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief This file contains an example for using the Object Interface class.
- * @version 0.2
- * @date 2023-04-14
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -112,14 +112,15 @@ int main(/*int argc, char** argv*/) {
   /**
    * @brief Change the type of the material.
    */
-  material->SetType(
+  material->SetSubType(
       masscalculator::core::materials::constants::alloycopper::kMoldmaxBeCu);
 
   /**
    * @brief Printout using logger and oss.
    */
-  LOG_INFO("%s object properties:", material->GetType().data());
-  LOG_INFO("  - Type                         : %s", material->GetType().data());
+  LOG_INFO("%s object properties:", material->GetSubType().data());
+  LOG_INFO("  - Type                         : %s",
+           material->GetSubType().data());
   oss.str("");
   oss << material->GetSpecificColor();
   LOG_INFO("  - Color                        : %s", oss.str().c_str());

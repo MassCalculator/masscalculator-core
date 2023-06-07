@@ -2,8 +2,8 @@
  * @file alloy_steels_test.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief Defines unit tests for the AlloySteels class.
- * @version 0.2
- * @date 2023-04-03
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -38,16 +38,35 @@
 #include "alloy_steels_test.h" // for AlloySteelsTest
 #include "masscalculator/masscalculator-core/materials/constants/alloy_steels.h" // for alloysteel::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/third_party/units/units.h" // for units::*
 
 namespace masscalculator_test::core_test::materials_test {
+TEST_F(AlloySteelsTest, GetClassNameTest) {
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloySteels,
+            as_4135->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloySteels,
+            as_4140->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAlloySteels,
+            as_4340->GetClassName());
+}
+
+TEST_F(AlloySteelsTest, GetGenericTypeTest) {
+  EXPECT_EQ(masscalculator::core::materials::AlloySteels::Type::kAlloySteels,
+            as_4135->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloySteels::Type::kAlloySteels,
+            as_4140->GetType());
+  EXPECT_EQ(masscalculator::core::materials::AlloySteels::Type::kAlloySteels,
+            as_4340->GetType());
+}
+
 TEST_F(AlloySteelsTest, GetSpecificTypeTest) {
   EXPECT_EQ(masscalculator::core::materials::constants::alloysteel::k4135,
-            as_4135->GetType());
+            as_4135->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::alloysteel::k4140,
-            as_4140->GetType());
+            as_4140->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::alloysteel::k4340,
-            as_4340->GetType());
+            as_4340->GetSubType());
 }
 
 TEST_F(AlloySteelsTest, GetSpecificColorTest) {

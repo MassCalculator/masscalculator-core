@@ -4,8 +4,8 @@
  * @brief This file contains the base class for Shapes.
  * This class is inherited by all Shape types and provides the prototypes
  * for the derived classes to be accessed from its object pointer.
- * @version 0.2
- * @date 2023-04-03
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -239,7 +239,6 @@ class Shape : public Crtp<TShapeType> {
     return os;
   }
 
- protected:
   /**
    * @brief A map used to convert a string representation of a shape to an enum
    * value.

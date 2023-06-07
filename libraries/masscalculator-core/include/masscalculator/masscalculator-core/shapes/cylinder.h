@@ -5,8 +5,8 @@
  * The cylinder class holds all the specific properties for the cylinder shape.
  * It inherits from the base class Shape and provides the getters and setters
  * for the cylinder properties.
- * @version 0.2
- * @date 2023-04-13
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -154,8 +154,8 @@ class Cylinder : public Shape<Cylinder> {
    *
    * @return std::string Class name as a string
    */
-  [[nodiscard]] inline constexpr auto GetClassName() const {
-    return constants::shape::kCylinder;
+  [[nodiscard]] inline auto GetClassName() const {
+    return kTypeString.at(GetType());
   };
 
   /**

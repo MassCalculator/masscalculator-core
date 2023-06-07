@@ -4,8 +4,8 @@
  * @brief This file contains the base class for Materials.
  * This class is inherited by all Material types and provides the prototypes
  * for the derived classes to be accessed from its object pointer.
- * @version 0.2
- * @date 2023-04-03
+ * @version 0.3
+ * @date 2023-06-07
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -37,6 +37,7 @@
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
 #include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/masscalculator-core/materials/constants/properties.h" // for properties::k*
 #include "masscalculator/third_party/units/units.h" // for units::*
 
@@ -81,6 +82,28 @@ template <typename TMaterialType>
 class Material : public Crtp<TMaterialType> {
  public:
   /**
+   * @brief Enumeration that holds the material types.
+   */
+  enum class Type : uint8_t {
+    kBegin = 0,
+    kAlloyCoppers = kBegin,
+    kAlloySteels,
+    kAluminium,
+    kBrass,
+    kBronz,
+    kCopper,
+    kMagnesium,
+    kNickel,
+    kPlastic,
+    kStainlessSteel,
+    kSteel,
+    kTitanium,
+    kZinc,
+    kUnspecified,
+    kEnd = kUnspecified
+  };
+
+  /**
    * @brief Enumeration that holds the material colors.
    */
   enum class Color : uint8_t {
@@ -96,9 +119,9 @@ class Material : public Crtp<TMaterialType> {
    */
   using Properties = struct Properties {
     /**
-     * @brief TMaterialType::Type The parameter to save the specific type
+     * @brief TMaterialType::SubType The parameter to save the specific sub-type
      */
-    typename TMaterialType::Type type;
+    typename TMaterialType::SubType sub_type;
 
     /**
      * @brief Color Parameter to save specific color
@@ -134,7 +157,7 @@ class Material : public Crtp<TMaterialType> {
      * @brief Construct a new Properties object with all parameters initialized
      */
     Properties()
-        : type{TMaterialType::Type::kUnspecified},
+        : sub_type{TMaterialType::SubType::kUnspecified},
           color{Color::kUnspecified},
           density{0_kg_per_cu_m},
           melting_point{0_K},
@@ -145,13 +168,13 @@ class Material : public Crtp<TMaterialType> {
     /**
      * @brief Construct a new Properties object through initializer list
      */
-    explicit Properties(typename TMaterialType::Type type, Color color,
+    explicit Properties(typename TMaterialType::SubType sub_type, Color color,
                         units::density::kilograms_per_cubic_meter_t density,
                         units::temperature::kelvin_t melting_point,
                         double poissons_ratio,
                         units::power::watt_t thermal_conductivity,
                         units::pressure::pascal_t mod_of_elasticity_tension)
-        : type{type},
+        : sub_type{sub_type},
           color{color},
           density{density},
           melting_point{melting_point},
@@ -168,19 +191,38 @@ class Material : public Crtp<TMaterialType> {
   /**
    * @brief Construct a new Material object
    *
-   * @param type Type of the Material
+   * @param sub_type SubType of the Material
    */
-  explicit Material(const std::string_view& type) {
-    this->MaterialType()(type);
+  explicit Material(const std::string_view& sub_type) {
+    this->MaterialType()(sub_type);
   }
 
   /**
    * @brief Get the Type object
    *
-   * @return std::string_view Type of the Material
+   * @return Type Type of the Metal from Derived class
    */
-  [[nodiscard]] constexpr std::string_view GetType() const {
-    return this->MaterialType().kTypeString.at(specific_properties->type);
+  [[nodiscard]] constexpr Type GetType() const {
+    return this->MaterialType().GetType();
+  }
+
+  /**
+   * @brief Get the SubType object
+   *
+   * @return std::string_view SubType of the Material
+   */
+  [[nodiscard]] constexpr std::string_view GetSubType() const {
+    return this->MaterialType().kSubTypeString.at(
+        specific_properties->sub_type);
+  }
+
+  /**
+   * @brief Function to return the class name.
+   *
+   * @return std::string_view Name of the Derived class
+   */
+  [[nodiscard]] inline constexpr auto GetClassName() const {
+    return this->MaterialType().GetClassName();
   }
 
   /**
@@ -245,12 +287,12 @@ class Material : public Crtp<TMaterialType> {
   /**
    * @brief Set the Propertie Specs object
    *
-   * @param type Type of TMaterialType
+   * @param sub_type SubType of TMaterialType
    * @return true If the specifications of propertie are successfully set
    * @return false  If the specifications of propertie failed to set
    */
-  constexpr bool SetType(const std::string_view& type) {
-    return this->MaterialType().SetType(type);
+  constexpr bool SetSubType(const std::string_view& sub_type) {
+    return this->MaterialType().SetSubType(sub_type);
   }
 
   /**
@@ -304,7 +346,7 @@ class Material : public Crtp<TMaterialType> {
   friend std::ostream& operator<<(std::ostream& os, const TMaterialType& obj) {
     os << std::string(obj.GetClassName()) + " object properties: ";
     os << "\n  - Type                         : ";
-    os << obj.GetType();
+    os << obj.GetSubType();
     os << "\n  - Color                        : ";
     os << obj.GetSpecificColor();
     os << "\n  - Density                      : ";
@@ -332,6 +374,47 @@ class Material : public Crtp<TMaterialType> {
     return os;
   }
 
+  /**
+   * @brief A map used to convert a string representation of a shape to an
+   enum
+   * value.
+   */
+  static constexpr base::ImmutableMap<std::string_view, Type, 14> kType{
+      {{{constants::material::kAlloyCoppers, Type::kAlloyCoppers},
+        {constants::material::kAlloySteels, Type::kAlloySteels},
+        {constants::material::kAluminium, Type::kAluminium},
+        {constants::material::kBrass, Type::kBrass},
+        {constants::material::kBronz, Type::kBronz},
+        {constants::material::kCopper, Type::kCopper},
+        {constants::material::kMagnesium, Type::kMagnesium},
+        {constants::material::kNickel, Type::kNickel},
+        {constants::material::kPlastic, Type::kPlastic},
+        {constants::material::kStainlessSteel, Type::kStainlessSteel},
+        {constants::material::kSteel, Type::kSteel},
+        {constants::material::kTitanium, Type::kTitanium},
+        {constants::material::kZinc, Type::kZinc},
+        {constants::material::kUnspecified, Type::kUnspecified}}}};
+
+  /**
+   * @brief A map used to convert an enum value of type Type to its string
+   * representation.
+   */
+  static constexpr base::ImmutableMap<Type, std::string_view, 14> kTypeString{
+      {{{Type::kAlloyCoppers, constants::material::kAlloyCoppers},
+        {Type::kAlloySteels, constants::material::kAlloySteels},
+        {Type::kAluminium, constants::material::kAluminium},
+        {Type::kBrass, constants::material::kBrass},
+        {Type::kBronz, constants::material::kBronz},
+        {Type::kCopper, constants::material::kCopper},
+        {Type::kMagnesium, constants::material::kMagnesium},
+        {Type::kNickel, constants::material::kNickel},
+        {Type::kPlastic, constants::material::kPlastic},
+        {Type::kStainlessSteel, constants::material::kStainlessSteel},
+        {Type::kSteel, constants::material::kSteel},
+        {Type::kTitanium, constants::material::kTitanium},
+        {Type::kZinc, constants::material::kZinc},
+        {Type::kUnspecified, constants::material::kUnspecified}}}};
+
  protected:
   /**
    * @brief Function to set the static propertie values
@@ -347,15 +430,15 @@ class Material : public Crtp<TMaterialType> {
       return lua_state->GetOrDefault<ValueType>(
           std::string(this->MaterialType().GetClassName()) + "." +
               std::string(
-                  this->MaterialType().kTypeString.at(properties.type)) +
+                  this->MaterialType().kSubTypeString.at(properties.sub_type)) +
               "." + property_name,
           default_value);
     };
 
-    specific_properties->type =
-        this->MaterialType().kType.at(fetch_from_lua_or_default(
+    specific_properties->sub_type =
+        this->MaterialType().kSubType.at(fetch_from_lua_or_default(
             constants::properties::kTypeKey,
-            this->MaterialType().kTypeString.at(properties.type)));
+            this->MaterialType().kSubTypeString.at(properties.sub_type)));
 
     specific_properties->color = kColor.at(fetch_from_lua_or_default(
         constants::properties::kColorKey, kColorString.at(properties.color)));

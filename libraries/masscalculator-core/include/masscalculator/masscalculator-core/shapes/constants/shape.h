@@ -29,6 +29,10 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_CONSTANTS_SHAPE_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_CORE_SHAPES_CONSTANTS_SHAPE_H_
+
+/**
+ * @brief MassCalculator Core Shapes Constants Shape namespace
+ */
 namespace masscalculator::core::shapes::constants::shape {
 // ! String constant for Angle shape.
 constexpr auto kAngle{"Angle"};

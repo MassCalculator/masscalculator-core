@@ -36,7 +36,7 @@
 #include "masscalculator/masscalculator-core/materials/constants/alloy_steels.h" // for alloysteel::k*
 
 /**
- * @brief Default Materials test namespace
+ * @brief MassCalculator Test Core Test Materials Test namespace
  */
 namespace masscalculator_test::core_test::materials_test {
 /**

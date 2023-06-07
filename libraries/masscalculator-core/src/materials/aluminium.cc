@@ -1,181 +1,71 @@
-#include "materials/aluminium.hpp"
+/**
+ * @file aluminium.cc
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief This file contains the implementation for the aluminium class.
+ * The aluminium class holds all the specific properties for the different
+ * types of aluminium. It inherits from the base class Material and provides
+ * the getters and setters for the aluminium properties.
+ * @version 0.3
+ * @date 2023-06-02
+ *
+ * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
+ * @license This project is released under the  MIT license (MIT).
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+#include "masscalculator/masscalculator-core/materials/aluminium.h" // for Aluminium
 
-namespace MassCalculator::Materials
-{
-  Aluminium::Aluminium(void)
-  {
-    if(!this->initLuaScript())
-    {
-      LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
-    }
+#include <memory>      // for std::make_unique
+#include <stdexcept>   // for std::runtime_error
+#include <string>      // for std::string
+#include <string_view> // for std::string_view
+
+#include "masscalculator/masscalculator-base/lua_handler.h" // for LuaScriptHandler
+#include "masscalculator/masscalculator-base/macro_logger.h" // for LOG_*
+#include "masscalculator/masscalculator-core/materials/constants/aluminium.h" // for aluminium::k*
+
+namespace masscalculator::core::materials {
+Aluminium::Aluminium(const std::string_view& sub_type) {
+  specific_properties = std::make_unique<Properties>();
+  lua_state = std::make_unique<base::LuaScriptHandler>(
+      constants::aluminium::kConfigPath);
+
+  if (specific_properties == nullptr || lua_state == nullptr) {
+    throw std::runtime_error{"Aluminium failed to initialize..."};
   }
 
-  Aluminium::Aluminium(const Aluminium::Type &type)
-  {
-    if(!setType(type) || !this->initLuaScript())
-    {
-      LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
-    }
+  if (const auto success = SetSubType(sub_type); !success) {
+    LOG_ERROR("Construction of the object failed. %s", __PRETTY_FUNCTION__);
+    throw std::runtime_error{"Aluminium failed to initialize..."};
+  }
+}
+
+bool Aluminium::SetSubType(const std::string_view& sub_type) {
+  auto pair = sub_type2func_.find(kSubType.at(sub_type));
+
+  if (pair != sub_type2func_.end()) {
+    pair->second();
+  } else {
+    LOG_ERROR("Could not set the values for type: %s.",
+              std::string(GetSubType()).c_str());
   }
 
-  bool Aluminium::initLuaScript(void)
-  {
-    return this->lua_state_.openScript(Constants::Aluminium::LuaConfigPath);
-  }
-
-  bool Aluminium::setType(const Aluminium::Type &type)
-  {
-    if(!setPropertieSpecs(type))
-    {
-      LOG_ERROR("Cannot set the Aluminium type. %s", __PRETTY_FUNCTION__);
-      return false;
-    }
-    
-    return true;
-  }
-
-  std::pair<std::string, Aluminium::Type> Aluminium::getType(void) const
-  {
-    return{this->specific_properties_.type_};
-  }
-
-  std::string Aluminium::getSpecificColor(void) const
-  {
-    return{this->specific_properties_.color_};
-  }
-
-  kilograms_per_cubic_meter_t Aluminium::getSpecificDensity(void) const
-  {
-    return{this->specific_properties_.density_};
-  }
-
-  meters_per_second_squared_t Aluminium::getSpecificGravity(void) const
-  {
-    return{this->specific_properties_.gravity_};
-  }
-
-  kelvin_t Aluminium::getSpecificMeltingPoint(void) const
-  {
-    return{this->specific_properties_.melting_point_};
-  }
-
-  double Aluminium::getSpecificPoissonsRatio(void) const
-  {
-    return{this->specific_properties_.poissons_ratio_};
-  }
-
-  watt_t Aluminium::getSpecificThermalConductivity(void) const
-  {
-    return{this->specific_properties_.thermal_conductivity_};
-  }
-
-  pascal_t Aluminium::getSpecificModOfElasticityTension(void) const
-  {
-    return{this->specific_properties_.mod_of_elasticity_tension_};
-  }
-
-  pascal_t Aluminium::getSpecificModOfElasticityTorsion(void) const
-  {
-    return{this->specific_properties_.mod_of_elasticity_torsion_};
-  }
-
-  bool Aluminium::_setPropertieSpecs(const Properties_t &_properties)
-  {
-    this->specific_properties_.type_ = {
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".type"}),
-        {_properties.type_.first}
-      ), _properties.type_.second};
-    this->specific_properties_.color_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        getFromLuaConfig<std::string>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".color"}),
-        {_properties.color_}
-      );
-    this->specific_properties_.density_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        static_cast<kilograms_per_cubic_meter_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".density"})),
-        {_properties.density_}
-      );
-    this->specific_properties_.gravity_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        static_cast<meters_per_second_squared_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".gravity"})),
-        {_properties.gravity_}
-      );
-    this->specific_properties_.melting_point_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        static_cast<kelvin_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".melting_point"})),
-        {_properties.melting_point_}
-      );
-    this->specific_properties_.poissons_ratio_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".poissons_ratio"}),
-        {_properties.poissons_ratio_}
-      );
-    this->specific_properties_.thermal_conductivity_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        static_cast<watt_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".thermal_conductivity"})),
-        {_properties.thermal_conductivity_}
-      );
-    this->specific_properties_.mod_of_elasticity_tension_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_tension"})),
-        {_properties.mod_of_elasticity_tension_}
-      );
-    this->specific_properties_.mod_of_elasticity_torsion_ = 
-      TTernaryOperator(checkFromLuaConfig(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".UseLuaConfig"}),
-        static_cast<pascal_t>(getFromLuaConfig<double>(std::move(this->lua_state_), {this->_getClassName(this) + ".Type." + _properties.type_.first + ".mod_of_elasticity_torsion"})),
-        {_properties.mod_of_elasticity_torsion_}
-      );
-    return true;
-  }
-
-  bool Aluminium::setPropertieSpecs(const Aluminium::Type &type)
-  {
-    auto _pair = type2func.find(type);
-
-    if(_pair != type2func.end())
-    {
-      _pair->second();
-    }
-    else
-    {
-      LOG_ERROR("Could not set the values for type: %s", this->getType().first.c_str());
-    }
-
-    return true;
-  }
-
-  std::ostream &operator << (std::ostream &os, const Aluminium &obj)
-  {
-    os << "  Aluminium object properties: " "\n"
-          "   - Type    : " + obj.getType().first + "\n"
-          "   - Color   : " + obj.getSpecificColor() + "\n"
-          "   - Density : " + units::density::to_string(obj.getSpecificDensity()) + "\n"
-          "   - Gravity : " + units::acceleration::to_string(obj.getSpecificGravity()) + "\n"
-          "   - Melting point : " + units::temperature::to_string(obj.getSpecificMeltingPoint()) + "\n"
-          "   - Poissons ratio: " + std::to_string(obj.getSpecificPoissonsRatio()) + "\n"
-          "   - Thermal conductivity         : " + units::power::to_string(obj.getSpecificThermalConductivity()) + "\n"
-          "   - Modulus of elasticity tension: " + units::pressure::to_string(obj.getSpecificModOfElasticityTension()) + "\n"
-          "   - Modulus of elasticity torsion: " + units::pressure::to_string(obj.getSpecificModOfElasticityTorsion()) + "\n";
-    return os;
-  }
-
-  std::ostream &operator << (std::ostream &os, const Aluminium::Type &type)
-  {
-    switch(type)
-    {
-      case Aluminium::Type::A_1100: os << Constants::Aluminium::A_1100; break;
-      case Aluminium::Type::A_2011: os << Constants::Aluminium::A_2011; break;
-      case Aluminium::Type::A_2014: os << Constants::Aluminium::A_2014; break;
-      case Aluminium::Type::A_2024: os << Constants::Aluminium::A_2024; break;
-      case Aluminium::Type::A_3003: os << Constants::Aluminium::A_3003; break;
-      case Aluminium::Type::A_5052: os << Constants::Aluminium::A_5052; break;
-      case Aluminium::Type::A_6061: os << Constants::Aluminium::A_6061; break;
-      case Aluminium::Type::A_6063: os << Constants::Aluminium::A_6063; break;
-      case Aluminium::Type::A_7075: os << Constants::Aluminium::A_7075; break;
-      case Aluminium::Type::UNSPECIFIED: os << Constants::Aluminium::UNSPECIFIED; break;
-      default: os << "Name cannot be found";
-    }
-    return os;
-  }
-}//end namespace MassCalculator::Materials
+  return true;
+}
+} // namespace masscalculator::core::materials

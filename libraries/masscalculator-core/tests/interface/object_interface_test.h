@@ -36,7 +36,7 @@
 #include "masscalculator/masscalculator-core/shapes/shapes.hh" // for Shapes*
 
 /**
- * @brief Default Object Interface test namespace
+ * @brief MassCalculator Test Core Test Interface Test namespace
  */
 namespace masscalculator_test::core_test::interface_test {
 /**

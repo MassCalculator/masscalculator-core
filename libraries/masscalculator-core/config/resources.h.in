@@ -29,9 +29,12 @@
  */
 #ifndef MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONFIG_RESOURCES_H_
 #define MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONFIG_RESOURCES_H_
+
+/**
+ * @brief MassCalculator Core namespace
+ */
 namespace masscalculator::core {
 // ! String constant to get path to the masscalculator resources.
 constexpr auto kResourcesPath = "@MASSCALCULATOR_RESOURCES_PATH@";
 } // namespace masscalculator::core
-
 #endif // MASSCALCULATOR_LIBRARIES_MASSCALCULATOR_CORE_MATERIALS_CONFIG_RESOURCES_H_

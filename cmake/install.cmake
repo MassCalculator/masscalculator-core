@@ -113,12 +113,6 @@ install(
   DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/masscalculator
 )
 
-install(
-  FILES ${CMAKE_SOURCE_DIR}/docs/assets/man/masscalculator-core.1.gz
-  DESTINATION ${CMAKE_INSTALL_MANDIR}/man1
-  COMPONENT ${PROJECT_NAME}
-)
-
 add_custom_target(
   uninstall
   COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/cmake/uninstall.cmake

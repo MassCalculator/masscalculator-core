@@ -2,8 +2,8 @@
  * @file object_interface_test.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief Defines unit tests for the Object class.
- * @version 0.2
- * @date 2023-04-14
+ * @version 0.3
+ * @date 2023-06-02
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
  * @license This project is released under the  MIT license (MIT).
@@ -48,7 +48,7 @@ TEST_F(ObjectInterfaceTest, GetMassTest) {
 
 TEST_F(ObjectInterfaceTest, GetMassAfterSetTest) {
   shape->SetSize(kControlRadius, kControlLength);
-  material->SetType(kControlType);
+  material->SetSubType(kControlType);
 
   object_cylinder_alloycopper->SetProperties(shape, material);
 
