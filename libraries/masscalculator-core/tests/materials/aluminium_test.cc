@@ -1,204 +1,152 @@
-#include "aluminium_test.hpp"
-
-namespace MassCalculatorTest::MaterialsTest
-{
-  /**
-   * @brief Construct a new AluminiumTest object
-   * 
-   */
-  TEST_F(AluminiumTest, TypeConstructorTest)
-  {
-    EXPECT_DOUBLE_EQ(5.0, 5.0);
-  }
-
-  /**
-   * @brief Get Specific Type for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificTypeTest)
-  {
-    std::pair<std::string, MassCalculator::Materials::Aluminium::Type> 
-      type{MassCalculator::Materials::Constants::Aluminium::A_1100, MassCalculator::Materials::Aluminium::Type::A_1100};
-
-    EXPECT_EQ(type.first, material_A_1100.getType().first);
-    EXPECT_EQ(type.second, material_A_1100.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_2011, MassCalculator::Materials::Aluminium::Type::A_2011};
-    EXPECT_EQ(type.first, material_A_2011.getType().first);
-    EXPECT_EQ(type.second, material_A_2011.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_2014, MassCalculator::Materials::Aluminium::Type::A_2014};
-    EXPECT_EQ(type.first, material_A_2014.getType().first);
-    EXPECT_EQ(type.second, material_A_2014.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_2024, MassCalculator::Materials::Aluminium::Type::A_2024};
-    EXPECT_EQ(type.first, material_A_2024.getType().first);
-    EXPECT_EQ(type.second, material_A_2024.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_3003, MassCalculator::Materials::Aluminium::Type::A_3003};
-    EXPECT_EQ(type.first, material_A_3003.getType().first);
-    EXPECT_EQ(type.second, material_A_3003.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_5052, MassCalculator::Materials::Aluminium::Type::A_5052};
-    EXPECT_EQ(type.first, material_A_5052.getType().first);
-    EXPECT_EQ(type.second, material_A_5052.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_6061, MassCalculator::Materials::Aluminium::Type::A_6061};
-    EXPECT_EQ(type.first, material_A_6061.getType().first);
-    EXPECT_EQ(type.second, material_A_6061.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_6063, MassCalculator::Materials::Aluminium::Type::A_6063};
-    EXPECT_EQ(type.first, material_A_6063.getType().first);
-    EXPECT_EQ(type.second, material_A_6063.getType().second);
-
-    type = {MassCalculator::Materials::Constants::Aluminium::A_7075, MassCalculator::Materials::Aluminium::Type::A_7075};
-    EXPECT_EQ(type.first, material_A_7075.getType().first);
-    EXPECT_EQ(type.second, material_A_7075.getType().second);
-  }
-
-  /**
-   * @brief Get Specific Color for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificColorTest)
-  {
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_1100.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_2011.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_2014.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_2024.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_3003.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_5052.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_6061.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_6063.getSpecificColor());
-    EXPECT_EQ(std::string{MassCalculator::Materials::Constants::Color::Metallic}, material_A_7075.getSpecificColor());
-  }
-
-  /**
-   * @brief Get Specific Density for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificDensityTest)
-  {
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_1100.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.82}, material_A_2011.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_2014.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_2024.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_3003.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_5052.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_6061.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_6063.getSpecificDensity());
-    EXPECT_EQ(kilograms_per_cubic_meter_t{2.71}, material_A_7075.getSpecificDensity());
-  }
-
-  /**
-   * @brief Get Specific Gravity for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificGravityTest)
-  {
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_1100.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_2011.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_2014.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_2024.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_3003.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_5052.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_6061.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_6063.getSpecificGravity());
-    EXPECT_EQ(meters_per_second_squared_t{2.83}, material_A_7075.getSpecificGravity());
-  }
-
-  /**
-   * @brief Get Specific Melting Point for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificMeltingPointTest)
-  {
-    EXPECT_EQ(kelvin_t{537.778}, material_A_1100.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{1000.00}, material_A_2011.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_2014.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_2024.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_3003.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_5052.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_6061.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_6063.getSpecificMeltingPoint());
-    EXPECT_EQ(kelvin_t{537.778}, material_A_7075.getSpecificMeltingPoint());
-  }
-
-  /**
-   * @brief Get Specific Poissons Ratio for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificPoissonsRatioTest)
-  {
-    EXPECT_EQ(double{0.33}, material_A_1100.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_2011.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_2014.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_2024.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_3003.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_5052.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_6061.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_6063.getSpecificPoissonsRatio());
-    EXPECT_EQ(double{0.33}, material_A_7075.getSpecificPoissonsRatio());
-  }
-
-  /**
-   * @brief Get Specific Thermal Conductivity for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificThermalConductivityTest)
-  {
-    EXPECT_EQ(watt_t{990.0}, material_A_1100.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_2011.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_2014.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_2024.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_3003.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_5052.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_6061.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_6063.getSpecificThermalConductivity());
-    EXPECT_EQ(watt_t{990.0}, material_A_7075.getSpecificThermalConductivity());
-  }
-
-  /**
-   * @brief Get Specific Modulus of Elasticity Tension for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificModOfElasticityTensionTest)
-  {
-    EXPECT_EQ(pascal_t{9.9}, material_A_1100.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{10.2}, material_A_2011.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_2014.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_2024.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_3003.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_5052.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_6061.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_6063.getSpecificModOfElasticityTension());
-    EXPECT_EQ(pascal_t{9.9}, material_A_7075.getSpecificModOfElasticityTension());
-  }
-
-  /**
-   * @brief Get Specific Modulus of Elasticity Torsion for specific material
-   * 
-   */
-  TEST_F(AluminiumTest, GetSpecificModOfElasticityTorsionTest)
-  {
-    EXPECT_EQ(pascal_t{3.8}, material_A_1100.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.85}, material_A_2011.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_2014.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_2024.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_3003.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_5052.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_6061.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_6063.getSpecificModOfElasticityTorsion());
-    EXPECT_EQ(pascal_t{3.8}, material_A_7075.getSpecificModOfElasticityTorsion());
-  }
-}//end namespace MassCalculatorTest::MaterialsTest
-
 /**
- * @brief Main function to run these tests
- * 
+ * @file aluminium_test.cc
+ * @author Mergim Halimi (m.halimi123@gmail.com)
+ * @brief Defines unit tests for the Aluminium class.
+ * @version 0.2
+ * @date 2023-06-07
+ *
+ * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
+ * @license This project is released under the  MIT license (MIT).
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
-int main(int argc, char **argv) 
-{
+#include "masscalculator/masscalculator-core/materials/aluminium.h" // for Aluminium::Color
+
+#include <gtest/gtest.h> // for ::testing::Test and TEST_F
+
+#include <memory>  // for std::unique_ptr
+#include <sstream> // for std::ostringstream
+#include <string>  // for std::string
+#include <utility> // for std::pair
+
+#include "aluminium_test.h" // for AluminiumTest
+#include "masscalculator/masscalculator-core/materials/constants/aluminium.h" // for aluminium::k*
+#include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/third_party/units/units.h" // for units::*
+
+namespace masscalculator_test::core_test::materials_test {
+TEST_F(AluminiumTest, GetClassNameTest) {
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAluminium,
+            a_1100->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAluminium,
+            a_2011->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kAluminium,
+            a_2014->GetClassName());
+}
+
+TEST_F(AluminiumTest, GetGenericTypeTest) {
+  EXPECT_EQ(masscalculator::core::materials::Aluminium::Type::kAluminium,
+            a_1100->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Aluminium::Type::kAluminium,
+            a_2011->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Aluminium::Type::kAluminium,
+            a_2014->GetType());
+}
+
+TEST_F(AluminiumTest, GetSpecificTypeTest) {
+  EXPECT_EQ(masscalculator::core::materials::constants::aluminium::k1100,
+            a_1100->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::aluminium::k2011,
+            a_2011->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::aluminium::k2014,
+            a_2014->GetSubType());
+}
+
+TEST_F(AluminiumTest, GetSpecificColorTest) {
+  EXPECT_EQ(masscalculator::core::materials::Aluminium::Color::kMetallic,
+            a_1100->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Aluminium::Color::kMetallic,
+            a_2011->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Aluminium::Color::kMetallic,
+            a_2014->GetSpecificColor());
+}
+
+TEST_F(AluminiumTest, GetSpecificDensityTest) {
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            a_1100->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            a_2011->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            a_2014->GetSpecificDensity());
+}
+
+TEST_F(AluminiumTest, GetSpecificMeltingPointTest) {
+  EXPECT_EQ(units::temperature::kelvin_t{10.0_K},
+            a_1100->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            a_2011->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            a_2014->GetSpecificMeltingPoint());
+}
+
+TEST_F(AluminiumTest, GetSpecificPoissonsRatioTest) {
+  EXPECT_EQ(double{0.1}, a_1100->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, a_2011->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, a_2014->GetSpecificPoissonsRatio());
+}
+
+TEST_F(AluminiumTest, GetSpecificThermalConductivityTest) {
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            a_1100->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            a_2011->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            a_2014->GetSpecificThermalConductivity());
+}
+
+TEST_F(AluminiumTest, GetSpecificModOfElasticityTensionTest) {
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            a_1100->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            a_2011->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            a_2014->GetSpecificModOfElasticityTension());
+}
+
+TEST_F(AluminiumTest, OstreamOperatorAluminiumColorTest) {
+  std::vector<
+      std::pair<std::unique_ptr<masscalculator::core::materials::Material<
+                    masscalculator::core::materials::Aluminium>>,
+                std::string_view>>
+      alloys;
+
+  alloys.emplace_back(
+      std::move(a_1100),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(a_2011),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(a_2014),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  for (const auto& [alloy, expected] : alloys) {
+    std::ostringstream type;
+    type << alloy->GetSpecificColor();
+    EXPECT_EQ(expected, type.str());
+  }
+}
+} // namespace masscalculator_test::core_test::materials_test
+
+int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
