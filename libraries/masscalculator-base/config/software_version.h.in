@@ -35,6 +35,9 @@
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_CONFIG_SOFTWARE_VERSION_H_
 #include <string> // for std::string
 
+/**
+ * @brief MassCalculator Base namespace
+ */
 namespace masscalculator::base {
 // ! String constant to get the software name.
 constexpr auto kSoftwareName = "@MASSCALCULATOR_CORE_NAME@";
@@ -56,7 +59,5 @@ inline auto GetVersion() {
   return std::string{"Project: " + std::string(kSoftwareName) +
                      ", Version: " + std::string(kSoftwareVersion)};
 }
-
 } // namespace masscalculator::base
-
 #endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_CONFIG_SOFTWARE_VERSION_H_

@@ -41,6 +41,7 @@
 #include "masscalculator/masscalculator-base/immutable_map.h" // for ImmutableMap
 #include "masscalculator/masscalculator-core/materials/constants/alloy_coppers.h" // for alloycopper::k*
 #include "masscalculator/masscalculator-core/materials/constants/color.h" // for color::k*
+#include "masscalculator/masscalculator-core/materials/constants/material.h" // for material::k*
 #include "masscalculator/masscalculator-core/materials/material.h" // for Material<T>
 
 /**
@@ -257,7 +258,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   };
 
   /**
-   * @brief Construct a new AlloyCoppers object and specify the sub_type
+   * @brief Construct a new Alloy Coppers object
+   *
+   * @param sub_type SubType of AlloyCoppers
    */
   explicit AlloyCoppers(const std::string_view& sub_type);
 
@@ -271,12 +274,12 @@ class AlloyCoppers : public Material<AlloyCoppers> {
   bool SetSubType(const std::string_view& sub_type);
 
   /**
-   * @brief Get the type as string
+   * @brief Get the Type object
    *
-   * @return std::string Type as string
+   * @return constexpr Type of material class: AlloyCoppers
    */
   [[nodiscard]] inline constexpr Type GetType() const {
-    return Type::kAlloyCoppers;
+    return kType.at(constants::material::kAlloyCoppers);
   }
 
   /**
@@ -389,9 +392,9 @@ class AlloyCoppers : public Material<AlloyCoppers> {
              constants::alloycopper::kUnspecified}}}};
 
   /**
-   * @brief Function to return the class name, not the pointer of the class.
+   * @brief Function to return the class name.
    *
-   * @return std::string Class name as a string
+   * @return std::string_view Class name as a string
    */
   [[nodiscard]] inline constexpr auto GetClassName() const {
     return kTypeString.at(GetType());

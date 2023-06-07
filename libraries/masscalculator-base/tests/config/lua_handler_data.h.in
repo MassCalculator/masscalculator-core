@@ -29,9 +29,12 @@
  */
 #ifndef MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_CONFIG_LUA_HANDLER_DATA_H_
 #define MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_CONFIG_LUA_HANDLER_DATA_H_
+
+/**
+ * @brief MassCalculator Test Base Test namespace
+ */
 namespace masscalculator_test::base_test {
 // ! String constant to get the path to the test configuration.
 constexpr auto kTestDataConfigPath = "@LUA_HANDLER_TEST_DATA_CONFIG@";
 } // namespace masscalculator_test::base_test
-
 #endif // MASSCALCULATOR_CORE_LIBRARIES_MASSCALCULATOR_BASE_TESTS_CONFIG_LUA_HANDLER_DATA_H_

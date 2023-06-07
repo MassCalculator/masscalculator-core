@@ -217,9 +217,9 @@ class Material : public Crtp<TMaterialType> {
   }
 
   /**
-   * @brief Get the Class name object
+   * @brief Function to return the class name.
    *
-   * @return auto Name of the Derived class
+   * @return std::string_view Name of the Derived class
    */
   [[nodiscard]] inline constexpr auto GetClassName() const {
     return this->MaterialType().GetClassName();
