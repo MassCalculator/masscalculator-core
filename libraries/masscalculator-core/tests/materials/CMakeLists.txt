@@ -63,24 +63,24 @@ gtest_add_tests(TARGET      aluminium_test
 )
 
 ## Brass test
-# add_executable(brass_test
-#   brass_test.cc
-# )
+add_executable(brass_test
+  brass_test.cc
+)
 
-# target_link_libraries(brass_test
-#   PUBLIC
-#     gtest::gtest
-#   PRIVATE
-#     masscalculator::masscalculator-base
-#     masscalculator::${PROJECT_NAME}
-#     masscalculator::third_party::units
-#     pthread
-# )
+target_link_libraries(brass_test
+  PUBLIC
+    gtest::gtest
+  PRIVATE
+    masscalculator::masscalculator-base
+    masscalculator::${PROJECT_NAME}
+    masscalculator::third_party::units
+    pthread
+)
 
-# gtest_add_tests(TARGET      brass_test
-#                 TEST_SUFFIX .noArgs
-#                 TEST_LIST   noArgsTests
-# )
+gtest_add_tests(TARGET      brass_test
+                TEST_SUFFIX .noArgs
+                TEST_LIST   noArgsTests
+)
 
 ## Bronz test
 # add_executable(bronz_test
