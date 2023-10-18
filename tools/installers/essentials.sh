@@ -14,10 +14,8 @@ apt-get update > ${OUTPUT} 2>&1
 echo "This script requires ${CURRENT_DIRECTORY}/common.sh to run." && exit 1
 source ${CURRENT_DIRECTORY}/common.sh
 
-# @todo(jimmyhalimi): Update the list with packages.
 echo "[INFO] Installing required packages from apt..."
-apt-get install -y --no-install-recommends \
-apt-utils \
+apt-get install -y --no-install-recommends apt-utils \
 build-essential \
 ccache \
 clang-13 \
@@ -43,7 +41,7 @@ wget > ${OUTPUT} 2>&1 && rc=$? || rc=$?
 [[ $rc -ne 0 ]] && on_exit $rc
 
 echo "[INFO] Installing required packages from pip3..."
-pip3 install cpplint pylint conan > ${OUTPUT} 2>&1 && rc=$? || rc=$?
+pip3 install conan cpplint ninja pylint > ${OUTPUT} 2>&1 && rc=$? || rc=$?
 [[ $rc -ne 0 ]] && on_exit $rc
 
 on_exit 0
