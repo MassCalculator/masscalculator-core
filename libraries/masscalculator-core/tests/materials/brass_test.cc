@@ -2,7 +2,7 @@
  * @file brass_test.cc
  * @author Mergim Halimi (m.halimi123@gmail.com)
  * @brief Defines unit tests for the Brass class.
- * @version 0.2
+ * @version 0.3
  * @date 2023-10-18
  *
  * @copyright Copyright (c) 2023, MassCalculator, Org., All rights reserved.
@@ -48,6 +48,16 @@ TEST_F(BrassTest, GetClassNameTest) {
             b_260Cartridge->GetClassName());
   EXPECT_EQ(masscalculator::core::materials::constants::material::kBrass,
             b_353Leaded->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kBrass,
+            b_360->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kBrass,
+            b_365->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kBrass,
+            b_380->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kBrass,
+            b_385->GetClassName());
+  EXPECT_EQ(masscalculator::core::materials::constants::material::kBrass,
+            b_464->GetClassName());
 }
 
 TEST_F(BrassTest, GetGenericTypeTest) {
@@ -57,6 +67,16 @@ TEST_F(BrassTest, GetGenericTypeTest) {
             b_260Cartridge->GetType());
   EXPECT_EQ(masscalculator::core::materials::Brass::Type::kBrass,
             b_353Leaded->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Type::kBrass,
+            b_360->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Type::kBrass,
+            b_365->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Type::kBrass,
+            b_380->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Type::kBrass,
+            b_385->GetType());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Type::kBrass,
+            b_464->GetType());
 }
 
 TEST_F(BrassTest, GetSpecificTypeTest) {
@@ -66,6 +86,16 @@ TEST_F(BrassTest, GetSpecificTypeTest) {
             b_260Cartridge->GetSubType());
   EXPECT_EQ(masscalculator::core::materials::constants::brass::k353Leaded,
             b_353Leaded->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::brass::k360,
+            b_360->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::brass::k365,
+            b_365->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::brass::k380,
+            b_380->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::brass::k385,
+            b_385->GetSubType());
+  EXPECT_EQ(masscalculator::core::materials::constants::brass::k464,
+            b_464->GetSubType());
 }
 
 TEST_F(BrassTest, GetSpecificColorTest) {
@@ -75,6 +105,16 @@ TEST_F(BrassTest, GetSpecificColorTest) {
             b_260Cartridge->GetSpecificColor());
   EXPECT_EQ(masscalculator::core::materials::Brass::Color::kMetallic,
             b_353Leaded->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Color::kMetallic,
+            b_360->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Color::kMetallic,
+            b_365->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Color::kMetallic,
+            b_380->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Color::kMetallic,
+            b_385->GetSpecificColor());
+  EXPECT_EQ(masscalculator::core::materials::Brass::Color::kMetallic,
+            b_464->GetSpecificColor());
 }
 
 TEST_F(BrassTest, GetSpecificDensityTest) {
@@ -84,6 +124,16 @@ TEST_F(BrassTest, GetSpecificDensityTest) {
             b_260Cartridge->GetSpecificDensity());
   EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
             b_353Leaded->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            b_360->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            b_365->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            b_380->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            b_385->GetSpecificDensity());
+  EXPECT_EQ(units::density::kilograms_per_cubic_meter_t{10.0_kg_per_cu_m},
+            b_464->GetSpecificDensity());
 }
 
 TEST_F(BrassTest, GetSpecificMeltingPointTest) {
@@ -93,12 +143,27 @@ TEST_F(BrassTest, GetSpecificMeltingPointTest) {
             b_260Cartridge->GetSpecificMeltingPoint());
   EXPECT_EQ(units::temperature::kelvin_t{10.0},
             b_353Leaded->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            b_360->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            b_365->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            b_380->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            b_385->GetSpecificMeltingPoint());
+  EXPECT_EQ(units::temperature::kelvin_t{10.0},
+            b_464->GetSpecificMeltingPoint());
 }
 
 TEST_F(BrassTest, GetSpecificPoissonsRatioTest) {
   EXPECT_EQ(double{0.1}, b_240Low->GetSpecificPoissonsRatio());
   EXPECT_EQ(double{0.1}, b_260Cartridge->GetSpecificPoissonsRatio());
   EXPECT_EQ(double{0.1}, b_353Leaded->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, b_360->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, b_365->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, b_380->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, b_385->GetSpecificPoissonsRatio());
+  EXPECT_EQ(double{0.1}, b_464->GetSpecificPoissonsRatio());
 }
 
 TEST_F(BrassTest, GetSpecificThermalConductivityTest) {
@@ -108,6 +173,16 @@ TEST_F(BrassTest, GetSpecificThermalConductivityTest) {
             b_260Cartridge->GetSpecificThermalConductivity());
   EXPECT_EQ(units::power::watt_t{10.0_W},
             b_353Leaded->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            b_360->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            b_365->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            b_380->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            b_385->GetSpecificThermalConductivity());
+  EXPECT_EQ(units::power::watt_t{10.0_W},
+            b_464->GetSpecificThermalConductivity());
 }
 
 TEST_F(BrassTest, GetSpecificModOfElasticityTensionTest) {
@@ -117,6 +192,16 @@ TEST_F(BrassTest, GetSpecificModOfElasticityTensionTest) {
             b_260Cartridge->GetSpecificModOfElasticityTension());
   EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
             b_353Leaded->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            b_360->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            b_365->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            b_380->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            b_385->GetSpecificModOfElasticityTension());
+  EXPECT_EQ(units::pressure::pascal_t{10.0_GPa},
+            b_464->GetSpecificModOfElasticityTension());
 }
 
 TEST_F(BrassTest, OstreamOperatorBrassColorTest) {
@@ -136,6 +221,26 @@ TEST_F(BrassTest, OstreamOperatorBrassColorTest) {
 
   alloys.emplace_back(
       std::move(b_353Leaded),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(b_360),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(b_365),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(b_380),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(b_385),
+      masscalculator::core::materials::constants::color::kMetallic);
+
+  alloys.emplace_back(
+      std::move(b_464),
       masscalculator::core::materials::constants::color::kMetallic);
 
   for (const auto& [alloy, expected] : alloys) {
