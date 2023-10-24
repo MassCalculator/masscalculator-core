@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.15)
 
 # Define the project
 project(masscalculator-core
-        VERSION 0.1.0
+        VERSION 0.2.0
         HOMEPAGE_URL "https://github.com/MassCalculator/masscalculator-core"
         DESCRIPTION "masscalculator-core library"
         LANGUAGES CXX
